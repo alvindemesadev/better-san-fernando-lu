@@ -1,0 +1,41 @@
+{
+  "name": "better-sanfernandolu",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "build:fresh": "npm run refresh:data && npm run build",
+    "lint": "oxlint",
+    "refresh:data": "python scripts/refresh_data.py",
+    "test": "vitest run",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lenis": "^1.3.27",
+    "lucide-react": "^1.61.0",
+    "motion": "^14.5.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "oxlint": "^1.88.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.4",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.0.5"
+  },
+  "description": "Independent civic data guide for San Fernando, La Union.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

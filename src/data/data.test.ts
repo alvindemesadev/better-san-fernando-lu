@@ -1,0 +1,320 @@
+import { describe, expect, it } from 'vitest'
+import { barangayMap } from './barangayMap'
+import { barangays } from './barangays'
+import { bidBulletins, bidResults } from './bidDocs'
+import { budgetDocs } from './budgetDocs'
+import { categories } from './categories'
+import { city } from './city'
+import { factGroups, history, mapLinks, pillars } from './cityProfile'
+import { dpwhSanFernando, philgepsSanFernando } from './contracts'
+import { cityElections } from './elections'
+import { faqs } from './faqs'
+import { fiscal2024, ilocosCities2024, revenueSources2024 } from './fiscal'
+import { news, newsLastVerified } from './news'
+import { offices } from './offices'
+import { officials } from './officials'
+import { onlineServiceSlugs, onlineServices } from './onlineServices'
+import { openDataSources } from './openData'
+import { services } from './services'
+import { sources } from './sources'
+import { searchIndex } from '../lib/search'
+
+const http = /^https?:\/\//
+const slugPattern = /^[a-z0-9-]+$/
+
+function unique(values: string[]) {
+  return new Set(values).size === values.length
+}
+
+function isDate(value: string) {
+  return !Number.isNaN(Date.parse(value))
+}
+
+describe('cities and categories', () => {
+  it('has unique category slugs and accurate service counts', () => {
+    expect(categories).toHaveLength(12)
+    expect(unique(categories.map((category) => category.slug))).toBe(true)
+    for (const category of categories) {
+      const count = services.filter((service) => service.category === category.slug).length
+      expect(category.serviceCount).toBe(count)
+      expect(count).toBeGreaterThan(0)
+    }
+  })
+
+  it('has plausible city figures', () => {
+    expect(city.population2024).toBeGreaterThan(0)
+    expect(city.revenue2024).toBeGreaterThan(0)
+    expect(city.expenditures2024).toBeGreaterThan(0)
+    expect(http.test(city.website)).toBe(true)
+    expect(http.test(city.citizensCharter)).toBe(true)
+  })
+})
+
+describe('services', () => {
+  it('has 243 services with unique category and slug pairs', () => {
+    expect(services).toHaveLength(243)
+    expect(unique(services.map((service) => `${service.category}/${service.slug}`))).toBe(true)
+  })
+
+  it('has complete, well-formed service records', () => {
+    for (const service of services) {
+      expect(service.title.trim()).not.toBe('')
+      expect(service.slug).toMatch(slugPattern)
+      expect(service.office.trim()).not.toBe('')
+      expect(service.officeCode.trim()).not.toBe('')
+      expect(service.summary.trim()).not.toBe('')
+      expect(isDate(service.lastVerified)).toBe(true)
+      expect(http.test(service.sourceUrl)).toBe(true)
+      for (const pdf of service.pdfs) expect(http.test(pdf)).toBe(true)
+    }
+  })
+
+  it('resolves every service to a known office', () => {
+    const officeCodes = new Set(offices.map((office) => office.code).filter(Boolean))
+    const unresolved = services.filter((service) => !officeCodes.has(service.officeCode))
+    expect(unresolved).toEqual([])
+  })
+
+  it('has no new gaps in service classification', () => {
+    const missing = services
+      .filter((service) => !service.classification.trim())
+      .map((service) => service.slug)
+    expect(missing).toEqual(['cctv-review-and-request-for-copy-of-cctv-footage'])
+  })
+
+  it('lists only real services in the online slug allowlist', () => {
+    const serviceSlugs = new Set(services.map((service) => service.slug))
+    for (const slug of onlineServiceSlugs) expect(serviceSlugs.has(slug)).toBe(true)
+  })
+})
+
+describe('offices and officials', () => {
+  it('has unique office slugs and codes', () => {
+    expect(unique(offices.map((office) => office.slug))).toBe(true)
+    const codes = offices.flatMap((office) => (office.code ? [office.code] : []))
+    expect(unique(codes)).toBe(true)
+    for (const office of offices) {
+      expect(office.ccUrl === '' || http.test(office.ccUrl)).toBe(true)
+      expect(http.test(office.sourceUrl)).toBe(true)
+    }
+  })
+
+  it('has 15 officials with valid profile links', () => {
+    expect(officials).toHaveLength(15)
+    expect(unique(officials.map((official) => official.slug))).toBe(true)
+    const roles = new Set(['City Mayor', 'City Vice Mayor', 'City Councilor', 'Ex-Officio Member, SK Federation'])
+    for (const official of officials) {
+      expect(roles.has(official.role)).toBe(true)
+      expect(official.bioUrl === '' || http.test(official.bioUrl)).toBe(true)
+    }
+    expect(officials.find((official) => official.slug === 'kirk-andrew-agulan')?.photo).toBe(
+      '/officials/kirk-andrew-agulan.jpg',
+    )
+  })
+})
+
+describe('barangays', () => {
+  it('has 59 barangays with complete council records', () => {
+    expect(barangays).toHaveLength(59)
+    expect(unique(barangays.map((barangay) => barangay.slug))).toBe(true)
+    for (const barangay of barangays) {
+      expect(barangay.population2024).toBeGreaterThan(0)
+      expect(barangay.districtNumber).toBeGreaterThanOrEqual(1)
+      expect(barangay.districtNumber).toBeLessThanOrEqual(12)
+      expect(barangay.punongBarangay.trim()).not.toBe('')
+      expect(barangay.kagawads.length).toBeGreaterThanOrEqual(7)
+      expect(barangay.kagawads.length).toBeLessThanOrEqual(8)
+      expect(http.test(barangay.sourceUrl)).toBe(true)
+    }
+  })
+})
+
+describe('news', () => {
+  it('has well-formed stories with local images and official links', () => {
+    expect(isDate(newsLastVerified)).toBe(true)
+    expect(unique(news.map((item) => item.slug))).toBe(true)
+    expect([...news].sort((a, b) => b.date.localeCompare(a.date))).toEqual(news)
+    for (const item of news) {
+      expect(item.slug).toMatch(slugPattern)
+      expect(isDate(item.date)).toBe(true)
+      expect(item.excerpt.trim()).not.toBe('')
+      expect(item.excerpt).toMatch(/[.!?]$/)
+      expect(item.excerpt.startsWith(item.title)).toBe(false)
+      expect(item.excerpt).not.toContain('\uFFFD')
+      expect(item.image.startsWith('/news/')).toBe(true)
+      expect(http.test(item.sourceUrl)).toBe(true)
+    }
+  })
+})
+
+describe('documents and links', () => {
+  it('has valid budget and procurement document links', () => {
+    for (const doc of budgetDocs) {
+      expect(doc.title.trim()).not.toBe('')
+      expect(http.test(doc.url)).toBe(true)
+    }
+    for (const result of bidResults) {
+      expect(result.reference.trim()).not.toBe('')
+      expect(isDate(result.date)).toBe(true)
+      expect(http.test(result.url)).toBe(true)
+    }
+    for (const bulletin of bidBulletins) {
+      expect(bulletin.label.trim()).not.toBe('')
+      expect(http.test(bulletin.url)).toBe(true)
+    }
+  })
+
+  it('has valid online services and city profile links', () => {
+    for (const service of onlineServices) {
+      expect(service.name.trim()).not.toBe('')
+      expect(http.test(service.url)).toBe(true)
+    }
+    for (const map of mapLinks) {
+      expect(map.label.trim()).not.toBe('')
+      expect(http.test(map.url)).toBe(true)
+    }
+    for (const source of sources) {
+      expect(source.name.trim()).not.toBe('')
+      expect(http.test(source.url)).toBe(true)
+    }
+  })
+
+  it('has complete FAQ entries and profile content', () => {
+    expect(faqs.length).toBeGreaterThanOrEqual(8)
+    for (const faq of faqs) {
+      expect(faq.q.trim()).not.toBe('')
+      expect(faq.a.trim()).not.toBe('')
+      expect(faq.link.startsWith('/')).toBe(true)
+      expect(faq.source.trim()).not.toBe('')
+    }
+    expect(pillars.length).toBeGreaterThan(0)
+    expect(factGroups.length).toBeGreaterThan(0)
+    expect(history.length).toBeGreaterThan(0)
+  })
+})
+
+describe('open data extracts', () => {
+  it('reconciles the city fiscal figures', () => {
+    expect(fiscal2024.totalLocalSources).toBeCloseTo(
+      fiscal2024.totalTaxRevenue + fiscal2024.totalNonTaxRevenue,
+      2,
+    )
+    expect(revenueSources2024.reduce((total, source) => total + source.amount, 0)).toBeCloseTo(
+      fiscal2024.totalIncome,
+      2,
+    )
+    expect(fiscal2024.netOperatingIncome).toBeCloseTo(
+      fiscal2024.totalIncome - fiscal2024.totalOperatingExpenditures,
+      2,
+    )
+    expect(fiscal2024.disasterFund.spent).toBeGreaterThan(0)
+    expect(fiscal2024.disasterFund.spent).toBeLessThanOrEqual(fiscal2024.disasterFund.appropriation)
+    expect(fiscal2024.specialEducationFund).toBeGreaterThan(0)
+  })
+
+  it('has nine comparable Ilocos cities with valid shares', () => {
+    expect(ilocosCities2024).toHaveLength(9)
+    expect(unique(ilocosCities2024.map((city) => `${city.province}/${city.name}`))).toBe(true)
+    expect(ilocosCities2024.some((city) => city.name === 'San Fernando' && city.province === 'La Union')).toBe(true)
+    for (const city of ilocosCities2024) {
+      expect(city.annualRegularIncome).toBeGreaterThan(0)
+      expect(city.localSources).toBeGreaterThan(0)
+      expect(city.localSources).toBeLessThanOrEqual(city.annualRegularIncome)
+      expect(city.ownSourceShare).toBeGreaterThan(0)
+      expect(city.ownSourceShare).toBeLessThan(1)
+      expect(city.ownSourceShare).toBeCloseTo(city.localSources / city.annualRegularIncome, 3)
+      expect(city.ntaShare).toBeGreaterThan(0)
+      expect(city.ntaShare).toBeLessThan(1)
+    }
+  })
+
+  it('has a complete election history extract', () => {
+    expect(cityElections).toHaveLength(7)
+    expect(unique(cityElections.map((election) => String(election.year)))).toBe(true)
+    expect(
+      cityElections.some((election) => election.year === 2025 && election.mayor?.name.includes('Gualberto')),
+    ).toBe(true)
+    expect(cityElections.find((election) => election.year === 2007)?.mayor).toEqual({
+      name: 'Pablo C. Ortega',
+      party: 'Lakas-CMD',
+    })
+    for (const election of cityElections) {
+      expect(election.year).toBeGreaterThanOrEqual(2000)
+      for (const winner of [election.mayor, election.viceMayor]) {
+        if (winner) {
+          expect(winner.name.trim()).not.toBe('')
+          expect(winner.party.trim()).not.toBe('')
+        }
+      }
+    }
+  })
+
+  it('has contract aggregates that reconcile', () => {
+    expect(dpwhSanFernando.completed + dpwhSanFernando.ongoing + dpwhSanFernando.forProcurement).toBe(
+      dpwhSanFernando.totalProjects,
+    )
+    expect(unique(dpwhSanFernando.recentYears.map((year) => String(year.year)))).toBe(true)
+    expect(dpwhSanFernando.largestProjects.length).toBeGreaterThan(0)
+    for (const year of dpwhSanFernando.recentYears) {
+      expect(year.projects).toBeGreaterThan(0)
+      expect(year.amount).toBeGreaterThan(0)
+    }
+    for (const project of dpwhSanFernando.largestProjects) {
+      expect(project.budget).toBeGreaterThan(0)
+      expect(project.contractId.trim()).not.toBe('')
+      expect(project.title.trim()).not.toBe('')
+    }
+    expect(philgepsSanFernando.totalAwards).toBeGreaterThan(0)
+    expect(philgepsSanFernando.totalAmount).toBeGreaterThan(0)
+    expect(philgepsSanFernando.topAwardees.length).toBeGreaterThan(0)
+    expect(philgepsSanFernando.topAward.amount).toBeLessThanOrEqual(philgepsSanFernando.totalAmount)
+  })
+
+  it('maps every site barangay exactly once', () => {
+    expect(barangayMap.features).toHaveLength(barangays.length)
+    expect(unique(barangayMap.features.map((feature) => feature.slug))).toBe(true)
+    expect(barangayMap.viewBox.trim()).not.toBe('')
+    const siteSlugs = new Set(barangays.map((barangay) => barangay.slug))
+    for (const feature of barangayMap.features) {
+      expect(siteSlugs.has(feature.slug)).toBe(true)
+      expect(feature.name.trim()).not.toBe('')
+      expect(feature.areaSqKm).toBeGreaterThan(0)
+      expect(feature.path.startsWith('M')).toBe(true)
+      expect(feature.path.endsWith('Z')).toBe(true)
+    }
+  })
+
+  it('has a well-formed open data catalog', () => {
+    expect(openDataSources).toHaveLength(8)
+    expect(unique(openDataSources.map((source) => source.id))).toBe(true)
+    expect(openDataSources.some((source) => source.group === 'integrated')).toBe(true)
+    expect(openDataSources.some((source) => source.group === 'reference')).toBe(true)
+    for (const source of openDataSources) {
+      expect(source.name.trim()).not.toBe('')
+      expect(source.publisher.trim()).not.toBe('')
+      expect(source.license.trim()).not.toBe('')
+      expect(source.coverage.trim()).not.toBe('')
+      expect(source.formats.trim()).not.toBe('')
+      expect(http.test(source.href)).toBe(true)
+      if (source.resourceHref) expect(http.test(source.resourceHref)).toBe(true)
+      if (source.group === 'integrated') expect(source.localHref?.startsWith('/')).toBe(true)
+    }
+  })
+})
+
+describe('search index', () => {
+  it('indexes services, offices, barangays, and news with valid hrefs', () => {
+    const kinds = new Set(searchIndex.map((result) => result.kind))
+    for (const kind of ['Service', 'Office', 'Barangay', 'News', 'Page'] as const) expect(kinds.has(kind)).toBe(true)
+    expect(searchIndex.filter((result) => result.kind === 'Service')).toHaveLength(services.length)
+    expect(searchIndex.filter((result) => result.kind === 'Office')).toHaveLength(offices.length)
+    expect(searchIndex.filter((result) => result.kind === 'Barangay')).toHaveLength(barangays.length)
+    for (const result of searchIndex) {
+      expect(result.href.startsWith('/')).toBe(true)
+      expect(result.title.trim()).not.toBe('')
+      expect(result.meta.trim()).not.toBe('')
+      expect(result.keywords.trim()).not.toBe('')
+    }
+    expect(searchIndex.some((result) => result.href === '/transparency/open-data')).toBe(true)
+  })
+})
