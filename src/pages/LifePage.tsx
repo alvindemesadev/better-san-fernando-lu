@@ -400,12 +400,12 @@ export function LifePage() {
             {festivals.map((festival) => (
               <li
                 key={festival}
-                className="flex min-h-20 items-start gap-3 rounded-2xl border border-line bg-white p-3 shadow-card sm:min-h-24 sm:p-4"
+                className="flex min-h-16 items-center gap-3 rounded-2xl border border-line bg-white p-3 shadow-card transition hover:border-brand-200 hover:shadow-float sm:p-3"
               >
-                <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+                <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
                   <Sparkles aria-hidden="true" className="size-4" />
                 </span>
-                <span className="pt-0.5 text-sm font-bold leading-5 text-ink-900">{festival}</span>
+                <span className="text-sm font-bold leading-5 text-ink-900">{festival}</span>
               </li>
             ))}
           </ul>
