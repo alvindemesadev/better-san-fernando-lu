@@ -171,9 +171,9 @@ export function HomePage() {
       </section>
 
       {savedServices.length ? (
-        <section id="saved" className="scroll-mt-24 border-b border-line bg-surface">
+        <section className="border-b border-line bg-surface">
           <div className="container-page py-10 sm:py-12">
-            <div className="flex flex-wrap items-center justify-between gap-3">
+            <div id="saved" className="scroll-mt-24 flex flex-wrap items-center justify-between gap-3">
               <h2 className="inline-flex items-center gap-2 text-lg font-extrabold tracking-tight text-ink-950">
                 <Bookmark aria-hidden="true" className="size-4 text-brand-700" />
                 Your saved services
@@ -224,25 +224,27 @@ export function HomePage() {
         </section>
       ) : null}
 
-      <section id="services" className="scroll-mt-24">
+      <section>
         <div className="container-page py-16 sm:py-20">
-          <Reveal>
-            <SectionHeading
-              eyebrow="City services"
-              title="What do you need today?"
-              description="Start with the services residents and businesses use most, grouped the way City Hall organizes them."
-              action={
-                <Link
-                  to="/services"
-                  viewTransition
-                  className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
-                >
-                  All services
-                  <ArrowRight aria-hidden="true" className="size-4" />
-                </Link>
-              }
-            />
-          </Reveal>
+          <div id="services" className="scroll-mt-24">
+            <Reveal>
+              <SectionHeading
+                eyebrow="City services"
+                title="What do you need today?"
+                description="Start with the services residents and businesses use most, grouped the way City Hall organizes them."
+                action={
+                  <Link
+                    to="/services"
+                    viewTransition
+                    className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
+                  >
+                    All services
+                    <ArrowRight aria-hidden="true" className="size-4" />
+                  </Link>
+                }
+              />
+            </Reveal>
+          </div>
 
           <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {featuredCategories.map((category, index) => (
@@ -254,15 +256,17 @@ export function HomePage() {
         </div>
       </section>
 
-      <section id="news" className="scroll-mt-24 border-y border-line bg-surface">
+      <section className="border-y border-line bg-surface">
         <div className="container-page py-16 sm:py-20">
-          <Reveal>
-            <SectionHeading
-              eyebrow="From City Hall"
-              title="Latest updates"
-              description="Recent announcements from the City Government of San Fernando, linked to the official source."
-            />
-          </Reveal>
+          <div id="news" className="scroll-mt-24">
+            <Reveal>
+              <SectionHeading
+                eyebrow="From City Hall"
+                title="Latest updates"
+                description="Recent announcements from the City Government of San Fernando, linked to the official source."
+              />
+            </Reveal>
+          </div>
 
           <div className="mt-9 grid gap-5 md:grid-cols-3">
             {latestNews.map((item, index) => (
