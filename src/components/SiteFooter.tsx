@@ -138,14 +138,15 @@ export function SiteFooter() {
                 href="https://bettergov.ph/"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex size-12 shrink-0 items-center justify-center rounded-2xl bg-white/5 transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
+                aria-label="BetterGov.ph national civic portal (opens in a new tab)"
+                className="inline-flex size-12 shrink-0 items-center justify-center rounded-2xl bg-white p-1.5 shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
               >
                 <img
-                  src="/logos/bettergov-emblem-inversed.svg"
+                  src="/logos/bettergov-icon-primary.svg"
                   alt="BetterGov.ph"
                   width="48"
                   height="48"
-                  className="size-10"
+                  className="size-full object-contain"
                 />
               </a>
               <div className="min-w-0">
