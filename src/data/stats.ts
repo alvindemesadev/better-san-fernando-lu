@@ -8,7 +8,7 @@ export const stats: CityStats[] = [
   },
   {
     "label": "Services",
-    "value": "243",
+    "value": "242",
     "note": "from the Citizens' Charter"
   },
   {

@@ -366,7 +366,7 @@ export function BusinessPage() {
           <Reveal>
             <div className="mt-8 flex flex-col gap-4 rounded-2xl border border-line bg-ink-950 p-6 text-white shadow-card sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">Incentives</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">Incentives</p>
                 <h3 className="mt-1.5 text-lg font-extrabold tracking-tight">
                   Investments and Incentives Code — Ordinance No. 2024-41
                 </h3>

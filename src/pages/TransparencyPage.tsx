@@ -1,4 +1,4 @@
-import { ArrowRight, Database, FileSearch, Landmark, Wallet } from 'lucide-react'
+import { ArrowRight, Database, FileSearch, Landmark, MapPin, Wallet } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { PageHero } from '../components/PageHero'
 import { Reveal } from '../components/Reveal'
@@ -8,6 +8,7 @@ import { StatCard } from '../components/StatCard'
 import { budgetDocs } from '../data/budgetDocs'
 import { city } from '../data/city'
 import { openDataSources } from '../data/openData'
+import { dpwhProjects } from '../data/projects'
 import { formatDate, formatPeso } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
@@ -63,7 +64,7 @@ export function TransparencyPage() {
               />
             </Reveal>
 
-            <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
               <Reveal>
                 <Link
                   to="/transparency/budget"
@@ -116,6 +117,31 @@ export function TransparencyPage() {
                 </Link>
               </Reveal>
             </div>
+
+            <Reveal delay={0.1}>
+              <Link
+                to="/transparency/projects"
+                viewTransition
+                className="group mt-5 flex flex-col gap-4 rounded-2xl border border-line bg-white p-6 shadow-card transition hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-float sm:flex-row sm:items-center"
+              >
+                <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+                  <MapPin aria-hidden="true" className="size-5" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-700">Project tracker</p>
+                  <h2 className="mt-1 text-xl font-extrabold tracking-tight text-ink-950 group-hover:text-brand-700">
+                    Every DPWH project linked to the city
+                  </h2>
+                  <p className="mt-1 text-sm leading-6 text-ink-600">
+                    Contract values, status, contractors, barangays, and an interactive project map.
+                  </p>
+                </div>
+                <span className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-brand-700">
+                  {dpwhProjects.length} projects
+                  <ArrowRight aria-hidden="true" className="size-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            </Reveal>
 
             <Reveal delay={0.1}>
               <Link

@@ -9,6 +9,8 @@ Survey of the BetterGov.ph LGU network, compiled October 2026.
 - 3,659 unique pages analyzed.
 - 14 portals had no crawlable sitemap/static links (SPA, WIP, or unreachable): Baler, Bulakan, Cabuyao, Carigara, Dasmariñas, Koronadal, Maasin, Manila, Olongapo, Trece Martires, Bacoor, Caloocan, San Pablo, Tagaytay.
 
+This document records the October 2026 network survey and its planning baseline. The site's current routes and implemented features have since expanded; see the repository [README](README.md) for current setup and feature notes.
+
 ## Page frequency across 51 portals
 
 | Page type | Sites | % |
@@ -141,7 +143,19 @@ Agency/office, number(s), coverage/hours.
 | Multilingual | San Fernando (Pampanga), Agoo, Solano | EN/FIL/ILO |
 | Methodology/provenance | San Fernando (Pampanga) | Sources, methodology, limitations pages |
 
-## Recommended sitemap for BetterSanFernandoLU
+## Original recommended sitemap (planning baseline)
+
+The phase groupings below describe the original proposal from the survey, not a list of unfinished work. Several items are implemented under different route names; the current implementation is summarized here.
+
+### Current implementation snapshot — 2026-10-23
+
+- Services: `/services`, category and service detail routes, with 242 service records.
+- Government: officials, offices and office profiles, all 59 barangays and profiles, hotlines, and legislation.
+- City: profile, life and tourism, and business pages.
+- Transparency: budget, procurement, DPWH infrastructure projects and project map, and open data.
+- News: latest updates, archive, and individual stories.
+- Site support: search, sitemap, accessibility, privacy, terms, and FAQ pages.
+- Maps: MapLibre GL barangay boundaries with a selected-area 3D extrusion; project locations are shown separately on the project map. Boundary and population data use different vintages (2023 boundary source and 2024 census population).
 
 ### Phase 1
 ```

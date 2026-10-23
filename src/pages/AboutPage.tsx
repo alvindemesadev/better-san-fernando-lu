@@ -80,7 +80,7 @@ export function AboutPage() {
               <Database aria-hidden="true" className="size-5 text-brand-700" />
               <h2 className="mt-3 text-base font-extrabold text-ink-950">Structured public data</h2>
               <p className="mt-2 text-sm leading-6 text-ink-600">
-                243 services, 38 offices, 59 barangays, 15 officials, and the city’s budget and procurement
+                242 services, 38 offices, 59 barangays, 15 officials, and the city’s budget and procurement
                 documents.
               </p>
             </div>

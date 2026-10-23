@@ -30,9 +30,15 @@ const GovernmentPage = lazy(() =>
 const HotlinesPage = lazy(() =>
   import('./pages/HotlinesPage').then((module) => ({ default: module.HotlinesPage })),
 )
+const LegislationPage = lazy(() =>
+  import('./pages/LegislationPage').then((module) => ({ default: module.LegislationPage })),
+)
 const LifePage = lazy(() => import('./pages/LifePage').then((module) => ({ default: module.LifePage })))
 const NewsDetailPage = lazy(() =>
   import('./pages/NewsDetailPage').then((module) => ({ default: module.NewsDetailPage })),
+)
+const NewsArchivePage = lazy(() =>
+  import('./pages/NewsArchivePage').then((module) => ({ default: module.NewsArchivePage })),
 )
 const NewsPage = lazy(() => import('./pages/NewsPage').then((module) => ({ default: module.NewsPage })))
 const OfficeDetailPage = lazy(() =>
@@ -49,6 +55,7 @@ const OpenDataPage = lazy(() =>
   import('./pages/OpenDataPage').then((module) => ({ default: module.OpenDataPage })),
 )
 const PrivacyPage = lazy(() => import('./pages/PrivacyPage').then((module) => ({ default: module.PrivacyPage })))
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then((module) => ({ default: module.ProjectsPage })))
 const ProcurementPage = lazy(() =>
   import('./pages/ProcurementPage').then((module) => ({ default: module.ProcurementPage })),
 )
@@ -85,6 +92,7 @@ export default function App() {
               <Route path="government/barangays" element={<BarangaysPage />} />
               <Route path="government/barangays/:slug" element={<BarangayDetailPage />} />
               <Route path="government/hotlines" element={<HotlinesPage />} />
+              <Route path="government/legislation" element={<LegislationPage />} />
               <Route path="city" element={<CityProfilePage />} />
               <Route path="city/life" element={<LifePage />} />
               <Route path="city/business" element={<BusinessPage />} />
@@ -93,7 +101,9 @@ export default function App() {
               <Route path="transparency/budget" element={<BudgetPage />} />
               <Route path="transparency/procurement" element={<ProcurementPage />} />
               <Route path="transparency/open-data" element={<OpenDataPage />} />
+              <Route path="transparency/projects" element={<ProjectsPage />} />
               <Route path="news" element={<NewsPage />} />
+              <Route path="news/archive" element={<NewsArchivePage />} />
               <Route path="news/:slug" element={<NewsDetailPage />} />
               <Route path="about" element={<AboutPage />} />
               <Route path="contact" element={<ContactPage />} />

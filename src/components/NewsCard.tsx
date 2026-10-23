@@ -13,7 +13,7 @@ export function NewsCard({ item, compact = false }: NewsCardProps) {
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-card">
-      <Link to={href} viewTransition className="relative block overflow-hidden">
+      <Link to={href} viewTransition aria-label={`Read “${item.title}”`} className="relative block overflow-hidden">
         <img
           src={item.image}
           alt=""

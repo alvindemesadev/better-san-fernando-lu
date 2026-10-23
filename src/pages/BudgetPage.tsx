@@ -81,19 +81,18 @@ export function BudgetPage() {
 
             <dl className="mt-5 space-y-4">
               {bars.map((bar) => (
-                <div key={bar.label}>
-                  <div className="flex items-baseline justify-between gap-3 text-sm">
-                    <dt className="font-semibold text-ink-700">{bar.label}</dt>
-                    <dd className="font-extrabold tabular-nums text-ink-950">{formatPeso(bar.value)}</dd>
-                  </div>
-                  <div className="mt-1.5 h-3 overflow-hidden rounded-full bg-surface">
-                    <div
-                      className={`h-full rounded-full ${bar.tone}`}
+                <div key={bar.label} className="grid grid-cols-2 gap-x-3 text-sm">
+                  <dt className="font-semibold text-ink-700">{bar.label}</dt>
+                  <dd className="text-right font-extrabold tabular-nums text-ink-950">{formatPeso(bar.value)}</dd>
+                  <dd
+                    className="col-span-2 mt-1.5 h-3 overflow-hidden rounded-full bg-surface"
+                    aria-hidden="true"
+                  >
+                    <span
+                      className={`block h-full rounded-full ${bar.tone}`}
                       style={{ width: `${(bar.value / maxFigure) * 100}%` }}
-                      role="img"
-                      aria-label={`${bar.label}: ${formatPeso(bar.value)}`}
                     />
-                  </div>
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -163,20 +162,21 @@ export function BudgetPage() {
                 const share = source.amount / fiscal2024.totalIncome
                 const isLocal = source.key === 'tax' || source.key === 'nonTax'
                 return (
-                  <div key={source.key}>
-                    <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 text-sm">
-                      <dt className="font-semibold text-ink-700">{source.label}</dt>
-                      <dd className="font-extrabold tabular-nums text-ink-950">
-                        {formatPeso(source.amount)}{' '}
-                        <span className="text-xs font-semibold text-ink-500">{percent(share)}</span>
-                      </dd>
-                    </div>
-                    <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-surface">
-                      <div
-                        className={`h-full rounded-full ${isLocal ? 'bg-brand-600' : 'bg-ink-700'}`}
+                  <div key={source.key} className="grid grid-cols-2 gap-x-3 text-sm">
+                    <dt className="font-semibold text-ink-700">{source.label}</dt>
+                    <dd className="text-right font-extrabold tabular-nums text-ink-950">
+                      {formatPeso(source.amount)}{' '}
+                      <span className="text-xs font-semibold text-ink-500">{percent(share)}</span>
+                    </dd>
+                    <dd
+                      className="col-span-2 mt-1.5 h-1.5 overflow-hidden rounded-full bg-surface"
+                      aria-hidden="true"
+                    >
+                      <span
+                        className={`block h-full rounded-full ${isLocal ? 'bg-brand-600' : 'bg-ink-700'}`}
                         style={{ width: `${share * 100}%` }}
                       />
-                    </div>
+                    </dd>
                   </div>
                 )
               })}
@@ -254,7 +254,13 @@ export function BudgetPage() {
               </div>
             </div>
 
-            <div className="mt-5 overflow-x-auto rounded-xl border border-line">
+            <p className="mb-2 text-xs text-ink-600 sm:hidden">Swipe the table horizontally to view all columns.</p>
+            <div
+              role="region"
+              aria-label="Annual budget summary"
+              tabIndex={0}
+              className="mt-5 overflow-x-auto rounded-xl border border-line focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+            >
               <table className="w-full min-w-[680px] text-left text-sm">
                 <caption className="sr-only">
                   FY2024 own-source revenue shares for cities in the Ilocos Region

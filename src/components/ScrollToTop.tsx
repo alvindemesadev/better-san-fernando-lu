@@ -13,7 +13,7 @@ export function ScrollToTop() {
       const target = document.getElementById(hash.slice(1))
       if (target) {
         if (lenis) {
-          lenis.scrollTo(target, { offset: -88 })
+          lenis.scrollTo(target)
         } else {
           target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })
         }

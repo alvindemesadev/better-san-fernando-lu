@@ -9,9 +9,26 @@ export interface CityElection {
   viceMayor: ElectionWinner | null
 }
 
+export interface ElectionSupplementSource {
+  year: number
+  url: string
+}
+
 export const electionSourceUrl = 'https://data.bettergov.ph/datasets/25'
-export const electionSupplementSourceUrl =
-  'https://www.comelec.gov.ph/php-tpls-attachments/ListElectedCandidates/2007_list_of_elected_city_municipal_candidates.pdf'
+export const electionSupplementSources: ElectionSupplementSource[] = [
+  {
+    year: 2007,
+    url: 'https://www.comelec.gov.ph/php-tpls-attachments/ListElectedCandidates/2007_list_of_elected_city_municipal_candidates.pdf',
+  },
+  {
+    year: 2010,
+    url: 'https://www.comelec.gov.ph/php-tpls-attachments/ListElectedCandidates/2010_list_of_elected_citymunicipal_candidates.pdf',
+  },
+  {
+    year: 2013,
+    url: 'https://www.comelec.gov.ph/php-tpls-attachments/ListElectedCandidates/2013_list_of_elected_citymunicipal_candidates.pdf',
+  },
+]
 
 export const cityElections: CityElection[] = [
   {
@@ -28,6 +45,16 @@ export const cityElections: CityElection[] = [
     year: 2007,
     mayor: { name: 'Pablo C. Ortega', party: 'Lakas-CMD' },
     viceMayor: { name: 'Pancracio Q. Nisce', party: 'NPC' },
+  },
+  {
+    year: 2010,
+    mayor: { name: 'Pablo C. Ortega', party: 'Lakas-Kampi-CMD (LKS-KAM)' },
+    viceMayor: { name: 'Hermenegildo A. Gualberto', party: 'Independent' },
+  },
+  {
+    year: 2013,
+    mayor: { name: 'Pablo C. Ortega', party: 'Independent' },
+    viceMayor: { name: 'Hermenegildo A. Gualberto', party: 'Independent' },
   },
   {
     year: 2016,

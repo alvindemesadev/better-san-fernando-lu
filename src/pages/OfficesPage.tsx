@@ -59,7 +59,7 @@ export function OfficesPage() {
                 type="button"
                 onClick={() => setQuery('')}
                 aria-label="Clear office search"
-                className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg text-ink-400 transition hover:bg-surface hover:text-ink-700"
+                className="inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-ink-600 transition hover:bg-surface hover:text-ink-700"
               >
                 <X aria-hidden="true" className="size-4" />
               </button>

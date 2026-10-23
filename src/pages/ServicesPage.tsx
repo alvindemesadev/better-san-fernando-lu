@@ -59,7 +59,7 @@ export function ServicesPage() {
 
   usePageMeta(
     'City services',
-    'Browse all 243 city services from the San Fernando Citizens’ Charter, grouped by category with requirements, fees, and official forms.',
+    `Browse all ${services.length} city services from the San Fernando Citizens’ Charter, grouped by category with requirements, fees, and official forms.`,
     { path: '/services' },
   )
 
@@ -68,7 +68,7 @@ export function ServicesPage() {
       <PageHero
         eyebrow="City services"
         title="Every city service, in one place"
-        description="243 services from the official Citizens’ Charter, grouped into 12 practical categories. Open a service for requirements, fees, forms, and the office that handles it."
+        description="242 services from the official Citizens’ Charter, grouped into 12 practical categories. Open a service for requirements, fees, forms, and the office that handles it."
         crumbs={[{ label: 'Services' }]}
       >
         <div className="max-w-2xl">
@@ -137,7 +137,7 @@ export function ServicesPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Full directory"
-              title="All 243 services"
+              title="All 242 services"
               description="Filter the directory by office, transaction type, or online availability, then expand a category."
             />
           </Reveal>

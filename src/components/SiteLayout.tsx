@@ -11,7 +11,7 @@ import {
   X,
 } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
-import { Suspense, lazy, useEffect, useState } from 'react'
+import { Suspense, lazy, useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import logoLight from '../assets/logo-light.png'
@@ -44,6 +44,7 @@ export function SiteLayout() {
   const [menuPath, setMenuPath] = useState<string | null>(null)
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [paletteLoaded, setPaletteLoaded] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
   const location = useLocation()
   const menuOpen = menuPath === location.pathname
 
@@ -58,6 +59,20 @@ export function SiteLayout() {
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [])
+
+  useEffect(() => {
+    if (!menuOpen) return
+
+    function closeMenuOnEscape(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setMenuPath(null)
+        menuButtonRef.current?.focus()
+      }
+    }
+
+    window.addEventListener('keydown', closeMenuOnEscape)
+    return () => window.removeEventListener('keydown', closeMenuOnEscape)
+  }, [menuOpen])
 
   function openPalette() {
     setPaletteLoaded(true)
@@ -97,7 +112,7 @@ export function SiteLayout() {
         </div>
       </div>
 
-      <header className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85">
+      <header className="sticky top-0 z-50 border-b border-line bg-white">
         <div className="container-page flex h-[4.5rem] items-center justify-between gap-4 lg:h-20">
           <Link to="/" viewTransition className="group flex min-w-0 items-center">
             <img
@@ -123,7 +138,7 @@ export function SiteLayout() {
               onClick={openPalette}
               aria-label="Search this site (Ctrl+K)"
               title="Search (Ctrl+K)"
-              className="inline-flex size-10 items-center justify-center rounded-xl text-ink-600 transition hover:bg-surface hover:text-brand-700"
+              className="inline-flex size-11 items-center justify-center rounded-xl text-ink-600 transition hover:bg-surface hover:text-brand-700"
             >
               <Search aria-hidden="true" className="size-5" />
             </button>
@@ -136,11 +151,12 @@ export function SiteLayout() {
             </Link>
             <button
               type="button"
+              ref={menuButtonRef}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               onClick={() => setMenuPath(menuOpen ? null : location.pathname)}
-              className="inline-flex size-10 items-center justify-center rounded-xl text-ink-700 transition hover:bg-surface lg:hidden"
+              className="inline-flex size-11 items-center justify-center rounded-xl text-ink-700 transition hover:bg-surface lg:hidden"
             >
               {menuOpen ? <X aria-hidden="true" className="size-5" /> : <Menu aria-hidden="true" className="size-5" />}
             </button>
@@ -151,11 +167,11 @@ export function SiteLayout() {
           {menuOpen ? (
             <motion.div
               id="mobile-menu"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden border-t border-line bg-white lg:hidden"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-x-0 top-full z-50 max-h-[calc(100dvh-6.5rem)] overflow-y-auto border-t border-line bg-white shadow-xl lg:hidden"
             >
               <nav aria-label="Mobile navigation" className="container-page grid gap-1 py-4">
                 {primaryNav.map((item) => (
@@ -194,7 +210,7 @@ export function SiteLayout() {
         </AnimatePresence>
       </header>
 
-      <main id="main-content" className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1 scroll-mt-24">
         <Suspense fallback={<PageFallback />}>
           <Outlet />
         </Suspense>
@@ -218,7 +234,7 @@ export function SiteLayout() {
                   height="199"
                   className="h-10 w-auto"
                 />
-                <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/40">
+                <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">
                   La Union · Civic guide
                 </p>
               </div>
@@ -238,7 +254,7 @@ export function SiteLayout() {
             </div>
 
             <div>
-              <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-white/40">Explore</h2>
+              <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-white/60">Explore</h2>
               <ul className="mt-4 space-y-2.5 text-sm">
                 {[
                   ['All services', '/services'],
@@ -246,11 +262,14 @@ export function SiteLayout() {
                   ['City government', '/government'],
                   ['City officials', '/government/officials'],
                   ['Barangays', '/government/barangays'],
+                  ['Ordinances and executive orders', '/government/legislation'],
                   ['City profile', '/city'],
                   ['Life and tourism', '/city/life'],
                   ['Business and investment', '/city/business'],
                   ['Transparency', '/transparency'],
+                  ['Infrastructure projects', '/transparency/projects'],
                   ['News', '/news'],
+                  ['News archive', '/news/archive'],
                 ].map(([label, href]) => (
                   <li key={href}>
                     <Link to={href} viewTransition className="text-white/70 transition hover:text-white">
@@ -262,7 +281,7 @@ export function SiteLayout() {
             </div>
 
             <div>
-              <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-white/40">Service categories</h2>
+              <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-white/60">Service categories</h2>
               <ul className="mt-4 space-y-2.5 text-sm">
                 {categories.slice(0, 6).map((category) => (
                   <li key={category.slug}>
@@ -279,7 +298,7 @@ export function SiteLayout() {
             </div>
 
             <div>
-              <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-white/40">City Hall</h2>
+              <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-white/60">City Hall</h2>
               <ul className="mt-4 space-y-3 text-sm text-white/70">
                 <li className="flex gap-2.5">
                   <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-brand-300" />
@@ -305,7 +324,7 @@ export function SiteLayout() {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/40 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/60 lg:flex-row lg:items-center lg:justify-between">
             <p>
               © 2026 Better San Fernando. Independent civic project. Data last verified October 21, 2026.
             </p>

@@ -34,6 +34,14 @@ jobs:
           cache: pip
           cache-dependency-path: scripts/requirements.txt
 
+      - name: Restore public source data cache
+        uses: actions/cache/restore@v6
+        with:
+          path: scripts/.cache
+          key: public-source-data-${{ runner.os }}-bootstrap
+          restore-keys: |
+            public-source-data-${{ runner.os }}-
+
       - name: Install Python dependencies
         run: python -m pip install -r scripts/requirements.txt
 
@@ -42,6 +50,12 @@ jobs:
 
       - name: Refresh data and news snapshots
         run: npm run refresh:data
+
+      - name: Save public source data cache
+        uses: actions/cache/save@v6
+        with:
+          path: scripts/.cache
+          key: public-source-data-${{ runner.os }}-${{ hashFiles('scripts/.cache/**') }}
 
       - name: Lint
         run: npm run lint
@@ -68,6 +82,7 @@ jobs:
             - `src/data/elections.ts`
             - `src/data/contracts.ts`
             - `src/data/barangayMap.ts`
+            - `src/data/projects.ts`
             - `src/data/news.ts`
             - `public/news/*.jpg`
 
@@ -78,5 +93,6 @@ jobs:
             src/data/elections.ts
             src/data/contracts.ts
             src/data/barangayMap.ts
+            src/data/projects.ts
             src/data/news.ts
             public/news

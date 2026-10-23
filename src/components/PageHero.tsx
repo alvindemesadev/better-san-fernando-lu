@@ -7,16 +7,17 @@ interface PageHeroProps {
   eyebrow?: string
   crumbs?: Crumb[]
   children?: ReactNode
+  overflowVisible?: boolean
 }
 
-export function PageHero({ title, description, eyebrow, crumbs, children }: PageHeroProps) {
+export function PageHero({ title, description, eyebrow, crumbs, children, overflowVisible = false }: PageHeroProps) {
   return (
-    <section className="relative isolate overflow-hidden border-b border-line bg-[linear-gradient(135deg,#f5f7ff_0%,#ffffff_58%,#fffbe5_100%)]">
+    <section
+      className={`relative isolate border-b border-line bg-[linear-gradient(135deg,#f5f7ff_0%,#ffffff_70%)] ${
+        overflowVisible ? 'z-20 overflow-visible' : 'overflow-hidden'
+      }`}
+    >
       <div aria-hidden="true" className="dot-grid absolute inset-y-0 right-0 -z-10 w-2/3 opacity-35" />
-      <div
-        aria-hidden="true"
-        className="absolute -right-24 -top-32 -z-10 size-80 rounded-full bg-accent/30 blur-3xl"
-      />
       <div className="container-page py-10 sm:py-12 lg:py-16">
         {crumbs ? <Breadcrumbs items={crumbs} className="mb-7" /> : null}
         {eyebrow ? (

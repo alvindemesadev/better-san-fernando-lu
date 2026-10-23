@@ -1,4 +1,4 @@
-import type { Service } from './types';
+import type { Service } from './types.ts';
 
 export const services: Service[] = [
   {
@@ -664,22 +664,6 @@ export const services: Service[] = [
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/CCTV-Clearance-STEPS-OPS.pdf"
     ],
     "sourceUrl": "https://cc.sanfernandocity.gov.ph/wordpress/2024/05/27/cctv-clearance/",
-    "lastVerified": "2026-10-21"
-  },
-  {
-    "slug": "cctv-review-and-request-for-copy-of-cctv-footage",
-    "title": "CCTV Review and Request for Copy of CCTV Footage",
-    "office": "Office for Public Safety",
-    "officeCode": "ops",
-    "category": "safety",
-    "classification": "",
-    "transactionType": "",
-    "whoMayAvail": "",
-    "description": "",
-    "summary": "CCTV Review and Request for Copy of CCTV Footage at the Office for Public Safety.",
-    "fees": "No fee information is published on the service page.",
-    "pdfs": [],
-    "sourceUrl": "https://cc.sanfernandocity.gov.ph/wordpress/2024/05/27/cctv-review-and-request-for-copy-of-cctv-footage/",
     "lastVerified": "2026-10-21"
   },
   {

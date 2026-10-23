@@ -9,7 +9,7 @@ export const sources: Source[] = [
   {
     "name": "Citizens' Charter",
     "url": "https://cc.sanfernandocity.gov.ph",
-    "note": "243 services with requirements, fees, and steps"
+    "note": "242 services with requirements, fees, and steps"
   },
   {
     "name": "About CSF",
@@ -20,6 +20,11 @@ export const sources: Source[] = [
     "name": "Life in CSF",
     "url": "https://www.sanfernandocity.gov.ph/life-in-csf/",
     "note": "Tourism, attractions, and festivals"
+  },
+  {
+    "name": "La Union Provincial Tourism Plan",
+    "url": "https://launion.gov.ph/knowledge-resources-hub/provincial-tourism-plan",
+    "note": "Provincial tourism master plan and circuit plans"
   },
   {
     "name": "Business in the City",

@@ -1,4 +1,4 @@
-import type { ServiceCategory } from './types';
+import type { ServiceCategory } from './types.ts';
 
 export const categories: ServiceCategory[] = [
   {
@@ -116,7 +116,7 @@ export const categories: ServiceCategory[] = [
       "Disaster training",
       "Safety clearance"
     ],
-    "serviceCount": 15
+    "serviceCount": 14
   },
   {
     "slug": "employment",

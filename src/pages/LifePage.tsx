@@ -76,8 +76,8 @@ const visitorLinks = [
     url: 'https://drive.google.com/file/d/13MAdp7BVYczEM16xBTzd_UQsHQ3YyA58/view?usp=sharing',
   },
   {
-    label: 'Tourism development plan',
-    url: 'https://drive.google.com/file/d/1Ti-pg13IzfQ7hpQC_KvYF0FDfcTqlPDG/view',
+    label: 'La Union tourism plan',
+    url: 'https://launion.gov.ph/knowledge-resources-hub/provincial-tourism-plan',
   },
   {
     label: 'Accredited establishments',
@@ -250,9 +250,9 @@ export function LifePage() {
               href="https://www.sanfernandocity.gov.ph/life-in-csf/"
               linkLabel="Life in CSF on the city website"
             >
-              Tourism information, maps, and the tourism development plan are published by the City Government of
-              San Fernando. Confirm schedules and access with the city tourism office. Data last verified on{' '}
-              {formatDate(city.lastVerified)}.
+              Tourism information and maps are published by the City Government of San Fernando. The provincial
+              tourism plan covers San Fernando and the wider La Union circuits. Confirm schedules and access with the
+              city tourism office. Data last verified on {formatDate(city.lastVerified)}.
             </SourceNote>
           </div>
 

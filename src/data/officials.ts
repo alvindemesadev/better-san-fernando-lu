@@ -1,4 +1,4 @@
-import type { Official } from './types';
+import type { Official } from './types.ts';
 
 export const officials: Official[] = [
   {

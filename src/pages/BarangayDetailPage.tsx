@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, MapPin, Users } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight, MapPin, UserRound, Users } from 'lucide-react'
 import { motion } from 'motion/react'
 import { Link, useParams } from 'react-router-dom'
 import { NotFoundPage } from './NotFoundPage'
@@ -7,7 +7,7 @@ import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
 import { SourceNote } from '../components/SourceNote'
 import { StatCard } from '../components/StatCard'
-import { barangays } from '../data/barangays'
+import { barangayDilgSourceUrl, barangays } from '../data/barangays'
 import { city } from '../data/city'
 import { formatDate, formatNumber, initials } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
@@ -137,6 +137,18 @@ export function BarangayDetailPage() {
                   ))}
                 </ul>
               </div>
+
+              {barangay.skChairperson ? (
+                <div className="mt-5 border-t border-line pt-5">
+                  <div className="rounded-xl border border-line bg-surface p-3">
+                    <p className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">
+                      <UserRound aria-hidden="true" className="size-3.5" />
+                      SK chairperson
+                    </p>
+                    <p className="mt-1 text-sm font-bold leading-5 text-ink-900">{barangay.skChairperson}</p>
+                  </div>
+                </div>
+              ) : null}
             </section>
           </Reveal>
         </div>
@@ -174,9 +186,15 @@ export function BarangayDetailPage() {
         </section>
 
         <div className="mt-8">
-          <SourceNote href={barangay.sourceUrl} linkLabel="View the city barangay directory">
-            Population figures use the 2024 Census of Population. Barangay officials come from the city
-            government’s published barangay directory. Data last verified on {formatDate(city.lastVerified)}.
+          <SourceNote
+            href={barangay.sourceUrl}
+            linkLabel="city barangay directory"
+            links={[{ href: barangayDilgSourceUrl, label: 'DILG barangay officials directory' }]}
+          >
+            Population figures use the 2024 Census of Population. The punong barangay and council come from the city
+            government’s published directory; the SK chairperson comes from the DILG Barangay Information System.
+            Facilities are not yet published in a citywide dataset. Data last verified on{' '}
+            {formatDate(city.lastVerified)}.
           </SourceNote>
         </div>
 

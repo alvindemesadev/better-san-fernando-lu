@@ -12,6 +12,7 @@ const mainLinks = [
   { label: 'City government', href: '/government' },
   { label: 'Transparency', href: '/transparency' },
   { label: 'News', href: '/news' },
+  { label: 'News archive', href: '/news/archive' },
   { label: 'About this project', href: '/about' },
   { label: 'Contact and sources', href: '/contact' },
   { label: 'Frequently asked questions', href: '/faq' },
@@ -23,12 +24,14 @@ const governmentLinks = [
   { label: 'Offices and departments', href: '/government/offices' },
   { label: 'Barangays', href: '/government/barangays' },
   { label: 'Emergency hotlines', href: '/government/hotlines' },
+  { label: 'Ordinances and executive orders', href: '/government/legislation' },
 ]
 
 const transparencyLinks = [
   { label: 'Transparency overview', href: '/transparency' },
   { label: 'Budget and spending', href: '/transparency/budget' },
   { label: 'Procurement and bids', href: '/transparency/procurement' },
+  { label: 'Infrastructure projects', href: '/transparency/projects' },
   { label: 'Open data', href: '/transparency/open-data' },
 ]
 

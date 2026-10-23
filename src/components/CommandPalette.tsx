@@ -32,6 +32,7 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
 function CommandPaletteDialog({ onClose }: { onClose: () => void }) {
   const navigate = useNavigate()
   const inputRef = useRef<HTMLInputElement>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
   const [query, setQuery] = useState('')
   const [active, setActive] = useState(0)
 
@@ -59,7 +60,32 @@ function CommandPaletteDialog({ onClose }: { onClose: () => void }) {
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === 'Escape') onClose()
+      if (event.key === 'Escape') {
+        onClose()
+        return
+      }
+
+      if (event.key !== 'Tab') return
+      const dialog = dialogRef.current
+      if (!dialog) return
+
+      const focusable = dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      )
+      const first = focusable.item(0)
+      const last = focusable.item(focusable.length - 1)
+      if (!first || !last) {
+        event.preventDefault()
+        return
+      }
+
+      if (event.shiftKey && (document.activeElement === first || !dialog.contains(document.activeElement))) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && (document.activeElement === last || !dialog.contains(document.activeElement))) {
+        event.preventDefault()
+        first.focus()
+      }
     }
     window.addEventListener('keydown', onKeyDown)
     return () => {
@@ -86,6 +112,7 @@ function CommandPaletteDialog({ onClose }: { onClose: () => void }) {
       onClick={onClose}
     >
       <motion.div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-label="Search the site"
@@ -96,7 +123,7 @@ function CommandPaletteDialog({ onClose }: { onClose: () => void }) {
         transition={{ duration: 0.18 }}
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="flex items-center gap-3 border-b border-line px-4">
+        <div className="flex items-center gap-3 border-b border-line px-4 focus-within:ring-2 focus-within:ring-inset focus-within:ring-brand-500">
           <Search aria-hidden="true" className="size-5 shrink-0 text-ink-400" />
           <input
             ref={inputRef}
@@ -126,7 +153,7 @@ function CommandPaletteDialog({ onClose }: { onClose: () => void }) {
             type="button"
             onClick={onClose}
             aria-label="Close search"
-            className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg text-ink-400 transition hover:bg-surface hover:text-ink-700"
+            className="inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-ink-600 transition hover:bg-surface hover:text-ink-700"
           >
             <X aria-hidden="true" className="size-4" />
           </button>
@@ -172,11 +199,10 @@ function CommandPaletteDialog({ onClose }: { onClose: () => void }) {
 
         <div className="flex items-center justify-between gap-3 border-t border-line bg-surface px-4 py-2.5 text-[11px] text-ink-500">
           <span className="hidden sm:inline">
-            {hasQuery ? '↑↓ to navigate · Enter to open · Esc to close' : 'Type to search all 243 services'}
+            {hasQuery ? '↑↓ to navigate · Enter to open · Esc to close' : 'Type to search all 242 services'}
           </span>
-          <span className="inline-flex items-center gap-1.5 sm:hidden">
-            Search
-            <kbd className="rounded border border-line bg-white px-1.5 py-0.5 font-mono text-[10px]">Ctrl K</kbd>
+          <span className="sm:hidden">
+            {hasQuery ? 'Tap a result to open' : 'Popular pages · Type to search'}
           </span>
           <kbd className="hidden rounded border border-line bg-white px-1.5 py-0.5 font-mono text-[10px] sm:inline">
             Ctrl K

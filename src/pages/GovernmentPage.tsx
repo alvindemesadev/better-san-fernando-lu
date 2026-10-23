@@ -212,7 +212,7 @@ export function GovernmentPage() {
 
             <Reveal delay={0.08}>
               <div className="h-full rounded-2xl border border-line bg-ink-950 p-6 text-white shadow-card sm:p-7">
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">Emergency contacts</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">Emergency contacts</p>
                 <h2 className="mt-2 text-2xl font-extrabold tracking-tight">Help, without the guesswork</h2>
                 <p className="mt-2 text-sm leading-6 text-white/60">
                   Verified numbers for emergencies, disasters, police, and fire response.

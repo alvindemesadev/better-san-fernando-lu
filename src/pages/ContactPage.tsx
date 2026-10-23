@@ -35,41 +35,41 @@ export function ContactPage() {
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-700">City Hall</p>
             <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-ink-950">City Government of San Fernando</h2>
             <dl className="mt-6 space-y-5 text-sm">
-              <div className="flex gap-3">
-                <MapPin aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-brand-600" />
-                <div>
-                  <dt className="font-semibold text-ink-900">Address</dt>
-                  <dd className="mt-0.5 leading-6 text-ink-600">{city.address}</dd>
-                </div>
+              <div>
+                <dt className="inline-flex items-center gap-2 font-semibold text-ink-900">
+                  <MapPin aria-hidden="true" className="size-4 text-brand-600" />
+                  Address
+                </dt>
+                <dd className="mt-0.5 leading-6 text-ink-600">{city.address}</dd>
               </div>
-              <div className="flex gap-3">
-                <Phone aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-brand-600" />
-                <div>
-                  <dt className="font-semibold text-ink-900">Trunkline</dt>
-                  <dd className="mt-0.5">
-                    <a href={telHref(city.trunkline)} className="font-semibold text-brand-700 hover:text-brand-800">
-                      {city.trunkline}
-                    </a>
-                  </dd>
-                </div>
+              <div>
+                <dt className="inline-flex items-center gap-2 font-semibold text-ink-900">
+                  <Phone aria-hidden="true" className="size-4 text-brand-600" />
+                  Trunkline
+                </dt>
+                <dd className="mt-0.5">
+                  <a href={telHref(city.trunkline)} className="font-semibold text-brand-700 hover:text-brand-800">
+                    {city.trunkline}
+                  </a>
+                </dd>
               </div>
-              <div className="flex gap-3">
-                <Mail aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-brand-600" />
-                <div>
-                  <dt className="font-semibold text-ink-900">Email</dt>
-                  <dd className="mt-0.5">
-                    <a href={`mailto:${city.email}`} className="break-all font-semibold text-brand-700 hover:text-brand-800">
-                      {city.email}
-                    </a>
-                  </dd>
-                </div>
+              <div>
+                <dt className="inline-flex items-center gap-2 font-semibold text-ink-900">
+                  <Mail aria-hidden="true" className="size-4 text-brand-600" />
+                  Email
+                </dt>
+                <dd className="mt-0.5">
+                  <a href={`mailto:${city.email}`} className="break-all font-semibold text-brand-700 hover:text-brand-800">
+                    {city.email}
+                  </a>
+                </dd>
               </div>
-              <div className="flex gap-3">
-                <Clock aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-brand-600" />
-                <div>
-                  <dt className="font-semibold text-ink-900">Office hours</dt>
-                  <dd className="mt-0.5 leading-6 text-ink-600">{city.hours}</dd>
-                </div>
+              <div>
+                <dt className="inline-flex items-center gap-2 font-semibold text-ink-900">
+                  <Clock aria-hidden="true" className="size-4 text-brand-600" />
+                  Office hours
+                </dt>
+                <dd className="mt-0.5 leading-6 text-ink-600">{city.hours}</dd>
               </div>
             </dl>
 

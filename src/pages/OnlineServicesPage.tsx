@@ -86,7 +86,7 @@ export function OnlineServicesPage() {
           <div className="mt-10 rounded-2xl border border-line bg-surface p-5 sm:p-6">
             <h2 className="text-base font-extrabold tracking-tight text-ink-950">Prefer to transact in person?</h2>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-ink-600">
-              The Citizens’ Charter lists the requirements, fees, and steps for all 243 city services, including the
+              The Citizens’ Charter lists the requirements, fees, and steps for all 242 city services, including the
               office that handles each one.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">

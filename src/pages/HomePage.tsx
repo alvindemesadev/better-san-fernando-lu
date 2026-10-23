@@ -129,7 +129,7 @@ export function HomePage() {
             <aside className="rounded-3xl border border-white/15 bg-white/[0.06] p-5 shadow-hero backdrop-blur-sm sm:p-7">
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">
                     San Fernando, La Union
                   </p>
                   <p className="mt-1 text-xl font-extrabold tracking-tight">City at a glance</p>

@@ -4,7 +4,7 @@ import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
 import { SourceNote } from '../components/SourceNote'
 import { city } from '../data/city'
-import { cityElections, electionSourceUrl, electionSupplementSourceUrl } from '../data/elections'
+import { cityElections, electionSourceUrl, electionSupplementSources } from '../data/elections'
 import { officials } from '../data/officials'
 import { formatDate } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
@@ -77,20 +77,26 @@ export function OfficialsPage() {
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-700">Election history</p>
               <h3 className="mt-2 text-xl font-extrabold tracking-tight text-ink-950">City mayors and vice mayors</h3>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-600">
-                Winning candidates in city elections. Rows come from OpenHalalan; the 2007 mayoral winner is
+                Winning candidates in city elections. Rows come from OpenHalalan; the 2007, 2010, and 2013 cycles are
                 supplemented from the{' '}
                 <a
-                  href={electionSupplementSourceUrl}
+                  href={electionSupplementSources[0]?.url}
                   target="_blank"
                   rel="noreferrer"
                   className="font-semibold text-brand-700 underline decoration-brand-300 underline-offset-2 hover:text-brand-800"
                 >
-                  COMELEC list of elected city/municipal candidates
+                  COMELEC lists of elected city/municipal candidates
                 </a>
                 . Party labels are as recorded by each source.
               </p>
             </div>
-            <div className="overflow-x-auto">
+            <p className="mb-2 text-xs text-ink-600 sm:hidden">Swipe the table horizontally to view all columns.</p>
+            <div
+              role="region"
+              aria-label="City mayors and vice mayors by election year"
+              tabIndex={0}
+              className="overflow-x-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+            >
               <table className="w-full min-w-[620px] text-left text-sm">
                 <caption className="sr-only">Mayors and vice mayors of San Fernando, La Union, by election year</caption>
                 <thead className="bg-surface text-[11px] font-bold uppercase tracking-[0.1em] text-ink-500">
@@ -138,9 +144,16 @@ export function OfficialsPage() {
               </table>
             </div>
             <div className="border-t border-line p-4">
-              <SourceNote href={electionSourceUrl} linkLabel="OpenHalalan on data.bettergov.ph">
-                The OpenHalalan extract still omits the 2010 and 2013 cycles. Missing rows do not mean an election was
-                not held.
+              <SourceNote
+                href={electionSourceUrl}
+                linkLabel="OpenHalalan on data.bettergov.ph"
+                links={electionSupplementSources.map((source) => ({
+                  href: source.url,
+                  label: `${source.year} COMELEC list`,
+                }))}
+              >
+                The OpenHalalan extract supplies the 2001, 2004, and 2016–2025 cycles; COMELEC lists fill the 2007,
+                2010, and 2013 gaps. Missing rows do not mean an election was not held.
               </SourceNote>
             </div>
           </div>

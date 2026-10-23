@@ -22,13 +22,17 @@ from PIL import Image, ImageOps
 import openpyxl
 from shapely import transform as transform_geometry
 from shapely.geometry import shape
+from shapely.ops import unary_union
+
+CITY_BOUNDARIES_PATH = Path(__file__).resolve().parents[1] / "src" / "data" / "san-fernando-barangays.geojson"
+MAP_TILE_ZOOM = 13
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "src" / "data"
 DEFAULT_CACHE_DIR = ROOT / "scripts" / ".cache"
 API_BASE = "https://data.bettergov.ph/api/v1"
 NEWS_API_BASE = "https://www.sanfernandocity.gov.ph/wp-json/wp/v2"
-NEWS_STORY_LIMIT = 6
+NEWS_STORY_LIMIT = 30
 NEWS_IMAGE_SIZE = (1200, 800)
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -115,14 +119,44 @@ NAME_OVERRIDES = {
 
 ELECTION_SUPPLEMENTS = {
     2007: {
-        "mayor": {"name": "Pablo C. Ortega", "party": "Lakas-CMD"},
+        "sourceUrl": (
+            "https://www.comelec.gov.ph/php-tpls-attachments/"
+            "ListElectedCandidates/2007_list_of_elected_city_municipal_candidates.pdf"
+        ),
+        "winners": {
+            "mayor": {"name": "Pablo C. Ortega", "party": "Lakas-CMD"},
+        },
+    },
+    2010: {
+        "sourceUrl": (
+            "https://www.comelec.gov.ph/php-tpls-attachments/"
+            "ListElectedCandidates/2010_list_of_elected_citymunicipal_candidates.pdf"
+        ),
+        "winners": {
+            "mayor": {
+                "name": "Pablo C. Ortega",
+                "party": "Lakas-Kampi-CMD (LKS-KAM)",
+            },
+            "viceMayor": {
+                "name": "Hermenegildo A. Gualberto",
+                "party": "Independent",
+            },
+        },
+    },
+    2013: {
+        "sourceUrl": (
+            "https://www.comelec.gov.ph/php-tpls-attachments/"
+            "ListElectedCandidates/2013_list_of_elected_citymunicipal_candidates.pdf"
+        ),
+        "winners": {
+            "mayor": {"name": "Pablo C. Ortega", "party": "Independent"},
+            "viceMayor": {
+                "name": "Hermenegildo A. Gualberto",
+                "party": "Independent",
+            },
+        },
     },
 }
-
-ELECTION_SUPPLEMENT_SOURCE_URL = (
-    "https://www.comelec.gov.ph/php-tpls-attachments/"
-    "ListElectedCandidates/2007_list_of_elected_city_municipal_candidates.pdf"
-)
 
 PROJECT_TITLE_OVERRIDES = {
     "24AE0103": "Slope protection structure",
@@ -139,6 +173,7 @@ CONTRACTOR_OVERRIDES = {
 AWARDEE_OVERRIDES = {
     "LAV CONSTRUCTION & SUPPLY": "LAV Construction & Supply",
 }
+
 
 
 def normalize(value: Any) -> str:
@@ -594,7 +629,7 @@ def parse_elections(path: Path) -> list[dict[str, Any]]:
         election = elections.setdefault(
             year, {"year": year, "mayor": None, "viceMayor": None}
         )
-        for position, winner in supplement.items():
+        for position, winner in supplement["winners"].items():
             if election.get(position) is None:
                 election[position] = winner
     return [elections[year] for year in sorted(elections)]
@@ -639,6 +674,59 @@ def display_status(raw: str) -> str:
     }.get(normalize(raw), str(raw).strip())
 
 
+def compact_key(value: Any) -> str:
+    return re.sub(r"[^a-z0-9]", "", str(value).lower())
+
+
+def optional_text(value: Any) -> str | None:
+    if value is None:
+        return None
+    text = str(value).strip()
+    if not text or text.lower() == "nan":
+        return None
+    return text
+
+
+def optional_number(value: Any, places: int = 6) -> float | None:
+    if value is None:
+        return None
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+    if math.isnan(number):
+        return None
+    return round(number, places)
+
+
+def load_barangay_names() -> list[str]:
+    source_text = (DATA_DIR / "barangays.ts").read_text(encoding="utf-8")
+    declaration = source_text.index("export const barangays")
+    array_start = source_text.index("[", source_text.index("= [", declaration))
+    array_end = source_text.rindex("]")
+    sites = json.loads(source_text[array_start : array_end + 1])
+    return [site["name"] for site in sites]
+
+
+BARANGAY_NAMES = load_barangay_names()
+
+
+def find_project_barangay(description: Any, barangay_names: list[str]) -> str | None:
+    keys = [(compact_key(name), name) for name in barangay_names]
+    for match in re.finditer(r"(?:BARANGAY|BRGY\.?)\s*([A-Z0-9 .'-]+)", str(description).upper()):
+        tail = compact_key(match.group(1))
+        candidates = [(len(key), name) for key, name in keys if key and key in tail]
+        if candidates:
+            return max(candidates)[1]
+    return None
+
+
+def project_category(raw: Any, component: Any) -> str:
+    value = str(component or "").strip() or str(raw or "").strip()
+    allowed = {"Buildings and Facilities", "Roads", "Flood Control and Drainage", "Water Provision and Storage", "Bridges"}
+    return value if value in allowed else "Other"
+
+
 def parse_dpwh(path: Path) -> dict[str, Any]:
     connection = duckdb.connect()
     try:
@@ -679,6 +767,17 @@ def parse_dpwh(path: Path) -> dict[str, Any]:
             LIMIT 5
             """
         ).fetchall()
+        records = connection.execute(
+            f"""
+            SELECT contractId, description, status, budget, progress, contractor,
+                   latitude, longitude, startDate, completionDate,
+                   TRY_CAST(infraYear AS INTEGER) AS year, category,
+                   componentCategories, sourceOfFunds
+            FROM dpwh
+            WHERE {where}
+            ORDER BY budget DESC
+            """
+        ).fetchall()
     finally:
         connection.close()
 
@@ -716,6 +815,42 @@ def parse_dpwh(path: Path) -> dict[str, Any]:
             for year, project_count, amount in recent_years
         ],
         "largestProjects": projects,
+        "records": [
+            {
+                "contractId": str(contract_id or ""),
+                "title": display_project_title(str(contract_id or ""), description),
+                "year": int(year or 0),
+                "budget": round(as_number(budget, f"{contract_id} budget"), 2),
+                "status": display_status(status),
+                "progress": round(as_number(progress, f"{contract_id} progress"), 2),
+                "contractor": CONTRACTOR_OVERRIDES.get(
+                    str(contract_id or ""), display_contractor(contractor)
+                ),
+                "category": project_category(category, component_categories),
+                "barangay": find_project_barangay(description, BARANGAY_NAMES),
+                "latitude": optional_number(latitude),
+                "longitude": optional_number(longitude),
+                "startDate": optional_text(start_date),
+                "completionDate": optional_text(completion_date),
+                "sourceOfFunds": optional_text(source_of_funds),
+            }
+            for (
+                contract_id,
+                description,
+                status,
+                budget,
+                progress,
+                contractor,
+                latitude,
+                longitude,
+                start_date,
+                completion_date,
+                year,
+                category,
+                component_categories,
+                source_of_funds,
+            ) in records
+        ],
     }
 
 
@@ -791,7 +926,66 @@ def parse_philgeps(path: Path) -> dict[str, Any]:
     }
 
 
-def generate_barangay_map(path: Path) -> tuple[list[dict[str, Any]], str]:
+def write_projects(records: list[dict[str, Any]], bounds: tuple[float, float, float, float]) -> None:
+    min_lng, min_lat, max_lng, max_lat = bounds
+    lines = [
+        "export interface DpwhProjectRecord {",
+        "  contractId: string",
+        "  title: string",
+        "  year: number",
+        "  budget: number",
+        "  status: string",
+        "  progress: number",
+        "  contractor: string",
+        "  category: string",
+        "  barangay: string | null",
+        "  latitude: number | null",
+        "  longitude: number | null",
+        "  startDate: string | null",
+        "  completionDate: string | null",
+        "  sourceOfFunds: string | null",
+        "}",
+        "",
+        "export const dpwhProjectSourceUrl = 'https://data.bettergov.ph/datasets/19'",
+        "",
+        "export const dpwhMapBounds = {",
+        f"  minLat: {min_lat:.7f},",
+        f"  maxLat: {max_lat:.7f},",
+        f"  minLng: {min_lng:.7f},",
+        f"  maxLng: {max_lng:.7f},",
+        "}",
+        "",
+        "export const dpwhProjects: DpwhProjectRecord[] = [",
+    ]
+    for record in records:
+        lines.extend(
+            [
+                "  {",
+                f"    contractId: {quote(record['contractId'])},",
+                f"    title: {quote(record['title'])},",
+                f"    year: {record['year']},",
+                f"    budget: {num(record['budget']) },",
+                f"    status: {quote(record['status'])},",
+                f"    progress: {num(record['progress'])},",
+                f"    contractor: {quote(record['contractor'])},",
+                f"    category: {quote(record['category'])},",
+                f"    barangay: {quote(record['barangay']) if record['barangay'] is not None else 'null'},",
+                f"    latitude: {num(record['latitude']) if record['latitude'] is not None else 'null'},",
+                f"    longitude: {num(record['longitude']) if record['longitude'] is not None else 'null'},",
+                f"    startDate: {quote(record['startDate']) if record['startDate'] is not None else 'null'},",
+                f"    completionDate: {quote(record['completionDate']) if record['completionDate'] is not None else 'null'},",
+                f"    sourceOfFunds: {quote(record['sourceOfFunds']) if record['sourceOfFunds'] is not None else 'null'},",
+                "  },",
+            ]
+        )
+    lines.extend([" ]", ""])
+    write_text(DATA_DIR / "projects.ts", "\n".join(lines))
+
+
+def generate_barangay_map(
+    path: Path,
+    detailed_city_path: Path | None = None,
+) -> tuple[list[dict[str, Any]], str, tuple[float, float, float, float], str, list[dict[str, Any]]]:
     source_text = (DATA_DIR / "barangays.ts").read_text(encoding="utf-8")
     declaration = source_text.index("export const barangays")
     array_start = source_text.index("[", source_text.index("= [", declaration))
@@ -801,12 +995,17 @@ def generate_barangay_map(path: Path) -> tuple[list[dict[str, Any]], str]:
 
     with path.open(encoding="utf-8") as handle:
         geojson = json.load(handle)
-    features = [
+    city_features = [
         feature
         for feature in geojson["features"]
         if feature["properties"].get("ADM3_EN") == "City of San Fernando (Capital)"
         and feature["properties"].get("ADM2_EN") == "La Union"
     ]
+    features = city_features
+    if detailed_city_path is not None and detailed_city_path.is_file():
+        with detailed_city_path.open(encoding="utf-8") as handle:
+            detailed_geojson = json.load(handle)
+        features = detailed_geojson["features"]
     if not features:
         raise ValueError("No San Fernando features found in the boundary GeoJSON")
 
@@ -816,22 +1015,31 @@ def generate_barangay_map(path: Path) -> tuple[list[dict[str, Any]], str]:
     maxx = max(bound[2] for bound in bounds)
     miny = min(bound[1] for bound in bounds)
     maxy = max(bound[3] for bound in bounds)
-    lat0 = (miny + maxy) / 2
-
-    x_scale = math.cos(math.radians(lat0)) * 111320.0
-    y_scale = 110540.0
+    earth_radius = 6_378_137.0
 
     def project(x: float, y: float, z: Any = None) -> tuple[float, float]:
-        return (x * x_scale, -y * y_scale)
+        latitude = math.radians(y)
+        return (
+            earth_radius * math.radians(x),
+            -earth_radius * math.log(math.tan(math.pi / 4 + latitude / 2)),
+        )
 
     def project_coords(coords: Any) -> Any:
         projected = coords.copy()
-        projected[:, 0] = coords[:, 0] * x_scale
-        projected[:, 1] = -coords[:, 1] * y_scale
+        latitudes = [math.radians(latitude) for latitude in coords[:, 1]]
+        projected[:, 0] = [earth_radius * math.radians(longitude) for longitude in coords[:, 0]]
+        projected[:, 1] = [
+            -earth_radius * math.log(math.tan(math.pi / 4 + latitude / 2))
+            for latitude in latitudes
+        ]
         return projected
 
-    x0, y0 = project(minx, maxy)
-    x1, y1 = project(maxx, miny)
+    map_minx = minx - 0.012
+    map_miny = miny - 0.010
+    map_maxx = maxx + 0.012
+    map_maxy = maxy + 0.010
+    x0, y0 = project(map_minx, map_maxy)
+    x1, y1 = project(map_maxx, map_miny)
     width = x1 - x0
     height = y1 - y0
     view_width = 1000.0
@@ -839,6 +1047,68 @@ def generate_barangay_map(path: Path) -> tuple[list[dict[str, Any]], str]:
     padding = 12.0
     scale_x = (view_width - padding * 2) / width
     scale_y = (view_height - padding * 2) / height
+
+    def geometry_path(
+        geometry: Any,
+        include_interiors: bool = True,
+        already_projected: bool = False,
+    ) -> str:
+        projected = (
+            geometry
+            if already_projected
+            else transform_geometry(geometry, project_coords)
+        ).simplify(24, preserve_topology=True)
+        polygons = (
+            list(projected.geoms) if projected.geom_type == "MultiPolygon" else [projected]
+        )
+        parts: list[str] = []
+        for polygon in polygons:
+            rings = [polygon.exterior, *polygon.interiors] if include_interiors else [polygon.exterior]
+            for ring in rings:
+                coordinates = [
+                    ((x - x0) * scale_x + padding, (y - y0) * scale_y + padding)
+                    for x, y in ring.coords
+                ]
+                if len(coordinates) < 4:
+                    continue
+                parts.append(
+                    "M"
+                    + " ".join(f"{x:.1f},{y:.1f}" for x, y in coordinates[:-1])
+                    + "Z"
+                )
+        return "".join(parts)
+
+    def map_point(x: float, y: float) -> tuple[float, float]:
+        return ((x - x0) * scale_x + padding, (y - y0) * scale_y + padding)
+
+    tile_zoom = MAP_TILE_ZOOM
+    tile_count = 2**tile_zoom
+    world_half = math.pi * earth_radius
+    tile_span = (2 * world_half) / tile_count
+    min_tile_x = max(0, math.floor((x0 + world_half) / tile_span))
+    max_tile_x = min(tile_count - 1, math.floor((x1 + world_half) / tile_span))
+    min_tile_y = max(0, math.floor((y0 + world_half) / tile_span))
+    max_tile_y = min(tile_count - 1, math.floor((y1 + world_half) / tile_span))
+    tiles = []
+    for tile_y in range(min_tile_y, max_tile_y + 1):
+        for tile_x in range(min_tile_x, max_tile_x + 1):
+            left = -world_half + tile_x * tile_span
+            top = -world_half + tile_y * tile_span
+            right = left + tile_span
+            bottom = top + tile_span
+            screen_left, screen_top = map_point(left, top)
+            screen_right, screen_bottom = map_point(right, bottom)
+            tiles.append(
+                {
+                    "tileZ": tile_zoom,
+                    "tileX": tile_x,
+                    "tileY": tile_y,
+                    "x": screen_left,
+                    "y": screen_top,
+                    "width": screen_right - screen_left,
+                    "height": screen_bottom - screen_top,
+                }
+            )
 
     items: list[dict[str, Any]] = []
     unmatched: list[str] = []
@@ -854,32 +1124,18 @@ def generate_barangay_map(path: Path) -> tuple[list[dict[str, Any]], str]:
             unmatched.append(geo_name)
             continue
         used_slugs.add(site["slug"])
-        projected = transform_geometry(geometry, project_coords).simplify(
-            18, preserve_topology=True
+        projected_geometry = transform_geometry(geometry, project_coords)
+        label_x, label_y = map_point(
+            *projected_geometry.representative_point().coords[0]
         )
-        polygons = (
-            list(projected.geoms) if projected.geom_type == "MultiPolygon" else [projected]
-        )
-        parts: list[str] = []
-        for polygon in polygons:
-            for ring in [polygon.exterior, *polygon.interiors]:
-                coordinates = [
-                    ((x - x0) * scale_x + padding, (y - y0) * scale_y + padding)
-                    for x, y in ring.coords
-                ]
-                if len(coordinates) < 4:
-                    continue
-                parts.append(
-                    "M"
-                    + " ".join(f"{x:.1f},{y:.1f}" for x, y in coordinates[:-1])
-                    + "Z"
-                )
         items.append(
             {
                 "slug": site["slug"],
                 "name": site["name"],
                 "areaSqKm": as_number(properties.get("AREA_SQKM") or 0, f"{geo_name} area"),
-                "path": "".join(parts),
+                "labelX": label_x,
+                "labelY": label_y,
+                "path": geometry_path(projected_geometry, already_projected=True),
             }
         )
 
@@ -891,8 +1147,22 @@ def generate_barangay_map(path: Path) -> tuple[list[dict[str, Any]], str]:
     if missing:
         raise ValueError(f"Barangays without boundary features: {', '.join(missing)}")
 
+    city_outline = geometry_path(
+        unary_union(
+            [transform_geometry(geometry, project_coords) for geometry in geometries]
+        ),
+        include_interiors=False,
+        already_projected=True,
+    )
+
     items.sort(key=lambda item: item["name"])
-    return items, f"0 0 {view_width:.0f} {view_height:.0f}"
+    return (
+        items,
+        f"0 0 {view_width:.0f} {view_height:.0f}",
+        (minx, miny, maxx, maxy),
+        city_outline,
+        tiles,
+    )
 
 
 def write_bytes(path: Path, data: bytes) -> None:
@@ -1002,11 +1272,27 @@ def write_elections(elections: list[dict[str, Any]]) -> None:
         "  viceMayor: ElectionWinner | null",
         "}",
         "",
-        "export const electionSourceUrl = 'https://data.bettergov.ph/datasets/25'",
-        f"export const electionSupplementSourceUrl = {quote(ELECTION_SUPPLEMENT_SOURCE_URL)}",
+        "export interface ElectionSupplementSource {",
+        "  year: number",
+        "  url: string",
+        "}",
         "",
-        "export const cityElections: CityElection[] = [",
+        "export const electionSourceUrl = 'https://data.bettergov.ph/datasets/25'",
+        "export const electionSupplementSources: ElectionSupplementSource[] = [",
     ]
+    for year, supplement in sorted(ELECTION_SUPPLEMENTS.items()):
+        lines.append(
+            "  { "
+            f"year: {year}, url: {quote(supplement['sourceUrl'])} "
+            "},"
+        )
+    lines.extend(
+        [
+            "]",
+            "",
+            "export const cityElections: CityElection[] = [",
+        ]
+    )
     for election in elections:
         lines.extend(["  {", f"    year: {election['year']},"])
         for key in ("mayor", "viceMayor"):
@@ -1113,19 +1399,52 @@ def write_contracts(dpwh: dict[str, Any], philgeps: dict[str, Any]) -> None:
     write_text(DATA_DIR / "contracts.ts", "\n".join(lines))
 
 
-def write_barangay_map(features: list[dict[str, Any]], view_box: str) -> None:
+def write_barangay_map(
+    features: list[dict[str, Any]],
+    view_box: str,
+    city_outline: str,
+    tiles: list[dict[str, Any]],
+) -> None:
     lines = [
         "export interface BarangayMapFeature {",
         "  slug: string",
         "  name: string",
         "  areaSqKm: number",
+        "  labelX: number",
+        "  labelY: number",
         "  path: string",
+        "}",
+        "",
+        "export interface BarangayMapTile {",
+        "  tileZ: number",
+        "  tileX: number",
+        "  tileY: number",
+        "  x: number",
+        "  y: number",
+        "  width: number",
+        "  height: number",
         "}",
         "",
         "export const barangayMap = {",
         f"  viewBox: {quote(view_box)},",
-        "  features: [",
+        f"  cityOutline: {quote(city_outline)},",
+        "  tiles: [",
     ]
+    for tile in tiles:
+        lines.extend(
+            [
+                "    {",
+                f"      tileZ: {int(tile['tileZ'])},",
+                f"      tileX: {int(tile['tileX'])},",
+                f"      tileY: {int(tile['tileY'])},",
+                f"      x: {tile['x']:.2f},",
+                f"      y: {tile['y']:.2f},",
+                f"      width: {tile['width']:.2f},",
+                f"      height: {tile['height']:.2f},",
+                "    },",
+            ]
+        )
+    lines.extend(["  ],", "  features: ["])
     for feature in features:
         lines.extend(
             [
@@ -1133,6 +1452,8 @@ def write_barangay_map(features: list[dict[str, Any]], view_box: str) -> None:
                 f"      slug: {quote(feature['slug'])},",
                 f"      name: {json.dumps(feature['name'], ensure_ascii=False)},",
                 f"      areaSqKm: {feature['areaSqKm']:.2f},",
+                f"      labelX: {feature['labelX']:.1f},",
+                f"      labelY: {feature['labelY']:.1f},",
                 f"      path: {quote(feature['path'])},",
                 "    },",
             ]
@@ -1161,9 +1482,18 @@ def main() -> None:
         action="store_true",
         help="Use only cached source files; do not contact the API or download.",
     )
+    parser.add_argument(
+        "--news-only",
+        action="store_true",
+        help="Refresh only the news snapshot and images.",
+    )
     args = parser.parse_args()
     if args.force and args.offline:
         parser.error("--force and --offline cannot be used together")
+    if args.news_only:
+        news_count = refresh_news(args.offline)
+        print(f"refreshed {news_count or 0} news stories")
+        return
     cache_dir = args.cache_dir.resolve()
     cache_dir.mkdir(parents=True, exist_ok=True)
 
@@ -1180,13 +1510,16 @@ def main() -> None:
     elections = parse_elections(paths["elections"])
     dpwh = parse_dpwh(paths["dpwh"])
     philgeps = parse_philgeps(paths["philgeps"])
-    map_features, view_box = generate_barangay_map(paths["boundaries"])
+    map_features, view_box, map_bounds, city_outline, map_tiles = generate_barangay_map(
+        paths["boundaries"], CITY_BOUNDARIES_PATH
+    )
 
     print("writing snapshots")
     write_fiscal(fiscal, peers)
     write_elections(elections)
     write_contracts(dpwh, philgeps)
-    write_barangay_map(map_features, view_box)
+    write_projects(dpwh["records"], map_bounds)
+    write_barangay_map(map_features, view_box, city_outline, map_tiles)
     news_count = refresh_news(args.offline)
 
     summary = (
@@ -1194,7 +1527,8 @@ def main() -> None:
         f"{len(peers)} cities, {len(elections)} election cycles, "
         f"{dpwh['totalProjects']} DPWH projects, "
         f"{philgeps['totalAwards']} PhilGEPS awards, "
-        f"{len(map_features)} barangay boundaries"
+        f"{len(map_features)} barangay boundaries, "
+        f"{len(dpwh['records'])} project records"
     )
     if news_count is not None:
         summary += f", {news_count} news stories"

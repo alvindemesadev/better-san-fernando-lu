@@ -60,7 +60,9 @@ export interface Barangay {
   poblacion: boolean;
   punongBarangay: string;
   kagawads: string[];
+  skChairperson: string | null;
   sourceUrl: string;
+  dilgSourceUrl: string;
 }
 
 export interface Official {

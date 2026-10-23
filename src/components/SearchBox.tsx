@@ -32,7 +32,7 @@ export function SearchBox({
       role="search"
       onSubmit={handleSubmit}
       className={cn(
-        'flex items-center gap-2 rounded-2xl bg-white p-1.5 shadow-float ring-1 ring-black/5',
+        'flex items-center gap-2 rounded-2xl bg-white p-1.5 shadow-float ring-1 ring-black/5 focus-within:ring-2 focus-within:ring-brand-500/60',
         large ? 'sm:p-2' : '',
         className,
       )}
@@ -56,7 +56,7 @@ export function SearchBox({
       <button
         type="submit"
         className={cn(
-          'shrink-0 rounded-xl bg-brand-600 font-bold text-white transition hover:bg-brand-700',
+          'min-h-11 shrink-0 rounded-xl bg-brand-600 font-bold text-white transition hover:bg-brand-700',
           large ? 'px-4 py-2.5 text-sm sm:px-6 sm:py-3 sm:text-base' : 'px-3 py-2 text-xs',
         )}
       >

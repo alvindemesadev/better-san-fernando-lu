@@ -1,4 +1,4 @@
-import type { Office } from './types';
+import type { Office } from './types.ts';
 
 export const offices: Office[] = [
   {

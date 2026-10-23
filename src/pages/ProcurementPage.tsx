@@ -70,7 +70,13 @@ export function ProcurementPage() {
             />
           </Reveal>
 
-          <div className="mt-6 overflow-x-auto rounded-2xl border border-line bg-white shadow-card">
+          <p className="mb-2 text-xs text-ink-600 sm:hidden">Swipe the table horizontally to view all columns.</p>
+          <div
+            role="region"
+            aria-label="City bid results"
+            tabIndex={0}
+            className="mt-6 overflow-x-auto rounded-2xl border border-line bg-white shadow-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+          >
             <table className="min-w-[720px] w-full text-left text-sm">
               <caption className="sr-only">Recent 2025 bid results published by the City Government of San Fernando</caption>
               <thead className="bg-surface text-[11px] font-bold uppercase tracking-[0.1em] text-ink-500">
@@ -252,18 +258,18 @@ export function ProcurementPage() {
 
               <dl className="mt-5 grid grid-cols-2 gap-3">
                 <div className="rounded-xl bg-white/10 p-3">
-                  <dt className="text-[10px] font-bold uppercase tracking-[0.1em] text-white/50">Awards</dt>
+                  <dt className="text-[10px] font-bold uppercase tracking-[0.1em] text-white/60">Awards</dt>
                   <dd className="mt-1 text-lg font-extrabold tabular-nums">{formatNumber(philgepsSanFernando.totalAwards)}</dd>
                 </div>
                 <div className="rounded-xl bg-white/10 p-3">
-                  <dt className="text-[10px] font-bold uppercase tracking-[0.1em] text-white/50">Award value</dt>
+                  <dt className="text-[10px] font-bold uppercase tracking-[0.1em] text-white/60">Award value</dt>
                   <dd className="mt-1 text-[11px] font-extrabold leading-4 sm:text-sm sm:leading-5">
                     {formatPeso(philgepsSanFernando.totalAmount)}
                   </dd>
                 </div>
               </dl>
 
-              <p className="mt-5 text-xs font-bold uppercase tracking-[0.12em] text-white/45">Top awardees, 2016–2025</p>
+              <p className="mt-5 text-xs font-bold uppercase tracking-[0.12em] text-white/60">Top awardees, 2016–2025</p>
               <ol className="mt-2 divide-y divide-white/10">
                 {philgepsSanFernando.topAwardees.map((awardee, index) => (
                   <li key={awardee.name} className="flex items-start justify-between gap-3 py-3">
@@ -273,7 +279,7 @@ export function ProcurementPage() {
                       </span>
                       <div className="min-w-0">
                         <p className="text-sm font-bold leading-5">{awardee.name}</p>
-                        <p className="mt-0.5 text-xs text-white/45">{awardee.awards} awards</p>
+                        <p className="mt-0.5 text-xs text-white/60">{awardee.awards} awards</p>
                       </div>
                     </div>
                     <span className="shrink-0 text-xs font-extrabold tabular-nums text-brand-200">
@@ -282,14 +288,14 @@ export function ProcurementPage() {
                   </li>
                 ))}
               </ol>
-              <p className="mt-2 text-[11px] leading-5 text-white/40">
+              <p className="mt-2 text-[11px] leading-5 text-white/60">
                 These five awardees account for {percent(topAwardeeShare)} of total award value.
               </p>
 
               <div className="mt-auto rounded-xl border border-white/10 bg-white/5 p-3 pt-3">
-                <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-white/45">Largest single award</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-white/60">Largest single award</p>
                 <p className="mt-1 text-sm font-bold leading-5">{philgepsSanFernando.topAward.title}</p>
-                <p className="mt-1 text-xs text-white/50">
+                <p className="mt-1 text-xs text-white/60">
                   {philgepsSanFernando.topAward.awardee} · {philgepsSanFernando.topAward.year} ·{' '}
                   {formatPeso(philgepsSanFernando.topAward.amount)}
                 </p>

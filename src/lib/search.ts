@@ -22,7 +22,7 @@ const staticPages: SearchResult[] = [
   {
     kind: 'Page',
     title: 'All city services',
-    description: 'Browse the 243 services in the official Citizens’ Charter by category.',
+    description: 'Browse the 242 services in the official Citizens’ Charter by category.',
     href: '/services',
     meta: 'Services',
     keywords: 'citizens charter requirements fees offices',
@@ -77,6 +77,14 @@ const staticPages: SearchResult[] = [
   },
   {
     kind: 'Page',
+    title: 'Ordinances and executive orders',
+    description: 'Recent city ordinances, resolutions, and executive orders with official copies.',
+    href: '/government/legislation',
+    meta: 'Government',
+    keywords: 'ordinance resolution executive order sangguniang panlungsod legislation council laws',
+  },
+  {
+    kind: 'Page',
     title: 'City profile',
     description: 'Facts, history, maps, and figures about San Fernando, La Union.',
     href: '/city',
@@ -125,6 +133,14 @@ const staticPages: SearchResult[] = [
   },
   {
     kind: 'Page',
+    title: 'Infrastructure projects',
+    description: 'DPWH projects linked to San Fernando with budgets, status, contractors, and a map.',
+    href: '/transparency/projects',
+    meta: 'Transparency',
+    keywords: 'infrastructure projects dpwh construction roads flood control contracts map budget',
+  },
+  {
+    kind: 'Page',
     title: 'Open data',
     description: 'Datasets behind the fiscal profile, barangay map, election history, and procurement records.',
     href: '/transparency/open-data',
@@ -138,6 +154,14 @@ const staticPages: SearchResult[] = [
     href: '/news',
     meta: 'News',
     keywords: 'updates announcements city government',
+  },
+  {
+    kind: 'Page',
+    title: 'News archive',
+    description: 'Browse every city story currently tracked by the guide, with official source links.',
+    href: '/news/archive',
+    meta: 'News',
+    keywords: 'archive older news announcements updates',
   },
   {
     kind: 'Page',
@@ -222,7 +246,7 @@ export const searchIndex: SearchResult[] = [
     description: `${barangay.district} · ${barangay.population2024.toLocaleString('en-PH')} people (2024)`,
     href: `/government/barangays/${barangay.slug}`,
     meta: 'Barangay',
-    keywords: `${barangay.punongBarangay} ${barangay.kagawads.join(' ')}`,
+    keywords: `${barangay.punongBarangay} ${barangay.kagawads.join(' ')} ${barangay.skChairperson ?? ''}`,
   })),
   ...news.map((item) => ({
     kind: 'News' as const,

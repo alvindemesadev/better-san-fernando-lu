@@ -1,4 +1,6 @@
-import type { Barangay } from './types';
+import type { Barangay } from './types.ts';
+
+export const barangayDilgSourceUrl = 'https://beta.dilg.gov.ph/barangay-officials-directory';
 
 export const barangays: Barangay[] = [
   {
@@ -24,7 +26,9 @@ export const barangays: Barangay[] = [
       "Gabriel F. Galvez IV",
       "Noriel B. Concubierta"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Janine Ira C. Tan",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "barangay-ii",
@@ -49,7 +53,9 @@ export const barangays: Barangay[] = [
       "Carol B. Aromin",
       "Roberto F. Tatunay"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Michaela Luisa A. Flordelis",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "barangay-iii",
@@ -74,7 +80,9 @@ export const barangays: Barangay[] = [
       "Marcelo F. Cruz Jr.",
       "Juvy T. Ang"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Stephanie U. Santiago",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "barangay-iv",
@@ -99,7 +107,9 @@ export const barangays: Barangay[] = [
       "Jackqueline C. Belleza",
       "Miriam C. Galibut"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Christian Daniel T. Garcia",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "ilocanos-norte",
@@ -124,7 +134,9 @@ export const barangays: Barangay[] = [
       "Arabelle A. Colet",
       "Herico F. Dolor"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Reynalyn M. Borja",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "ilocanos-sur",
@@ -149,7 +161,9 @@ export const barangays: Barangay[] = [
       "Jovita P. Parcon",
       "Nimfa B. Beltran"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Justin Daniel A. Pablo",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "pagdaraoan",
@@ -174,7 +188,9 @@ export const barangays: Barangay[] = [
       "Runstedt R. Artacho",
       "Leo S. Galvez"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Monica Lorraine C. Mendoza",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "catbangen",
@@ -199,7 +215,9 @@ export const barangays: Barangay[] = [
       "Rolando H. Pascual Jr.",
       "Genevev B. Abasolo"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Kate Cassandra M. Ancheta",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "madayegdeg",
@@ -224,7 +242,9 @@ export const barangays: Barangay[] = [
       "Mario C. Gacayan",
       "John Paul D. Morales"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Roma Khytte M. Apilado",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "parian",
@@ -249,7 +269,9 @@ export const barangays: Barangay[] = [
       "Robinson L. Apilado",
       "Wilson E. Wenceslao"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Carl Josh Ivan D. Moreno",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "canaoay",
@@ -274,7 +296,9 @@ export const barangays: Barangay[] = [
       "Brick F. Cacananta",
       "Alfredo A. Andal"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Kelvin G. Carino",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "poro",
@@ -299,7 +323,9 @@ export const barangays: Barangay[] = [
       "Godofredo F. Hufana",
       "Ramibeth A. Galvez"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Jerico M. Castillo",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "san-agustin",
@@ -324,7 +350,9 @@ export const barangays: Barangay[] = [
       "Jeraline E. Flores",
       "Richard A. Cura"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Renz H. Pulido",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "san-francisco",
@@ -349,7 +377,9 @@ export const barangays: Barangay[] = [
       "Joseph G. Torres",
       "Rogelio V. Flores Jr."
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Rhovin Thoben C. Fontanilla",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "carlatan",
@@ -374,7 +404,9 @@ export const barangays: Barangay[] = [
       "Danilo D. Vergara",
       "Lyrie P. Sison"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Kirk Andrew M. Agulan",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "dalumpinas-este",
@@ -399,7 +431,9 @@ export const barangays: Barangay[] = [
       "Esmenia G. Bengson",
       "Marilou C. Pascua"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Norbert Nicole T. Cuyo",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "dalumpinas-oeste",
@@ -424,7 +458,9 @@ export const barangays: Barangay[] = [
       "Eduardo C. Apilado Jr.",
       "Victor E. Badua"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Maricar A. Apilado",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "lingsat",
@@ -449,7 +485,9 @@ export const barangays: Barangay[] = [
       "Leo A. Hidalgo",
       "Rodrigo C. Casugay"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Ian Rhalf D. Llona",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "abut",
@@ -474,7 +512,9 @@ export const barangays: Barangay[] = [
       "Jan Emil C. Casilla",
       "Asuncion V. Laudencia"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Lyka Joycee C. Parro",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "bangcusay",
@@ -499,7 +539,9 @@ export const barangays: Barangay[] = [
       "Reynaldo C. Nisperos",
       "Mary Ann C. Cariño"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Viosa Angelika B. Calderon",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "bato",
@@ -524,7 +566,9 @@ export const barangays: Barangay[] = [
       "Rodrigo E. Subido Jr.",
       "Eufemia E. Tadifa"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Ashley Collen M. Abenojar",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "biday",
@@ -549,7 +593,9 @@ export const barangays: Barangay[] = [
       "Rodolfo C. Flores",
       "Bella D. Nones"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Kenneth L. Peralta",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "mameltac",
@@ -574,7 +620,9 @@ export const barangays: Barangay[] = [
       "Lorie D. Duculan",
       "Rogelio D. Balcita"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Joshua B. Cabrera",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "namtutan",
@@ -599,7 +647,9 @@ export const barangays: Barangay[] = [
       "Rosalie S. Graycochea",
       "Richard F. Martinez"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Kathleen D. Tagalog",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "saoay",
@@ -624,7 +674,9 @@ export const barangays: Barangay[] = [
       "David Sammy B. Balanon",
       "Rogelio B. Ganaden Jr."
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Whendyz T. Cariño",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "pagdalagan",
@@ -649,7 +701,9 @@ export const barangays: Barangay[] = [
       "Benjamin B. Diagan Jr.",
       "Fe M. Reyes"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Edna D. Dulatre",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "pagudpud",
@@ -674,7 +728,9 @@ export const barangays: Barangay[] = [
       "Bernard G. Villarmia",
       "Amelito U. Pimentel"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Caryl Louise M. Marzan",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "san-vicente",
@@ -699,7 +755,9 @@ export const barangays: Barangay[] = [
       "Jerome L. Galvez",
       "Menard C. Morales"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Romar P. Pimentel",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "sevilla",
@@ -724,7 +782,9 @@ export const barangays: Barangay[] = [
       "Julio F. Estrada Jr.",
       "Janet M. Zamoranos"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Sherick Boy R. Balbin",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "birunget",
@@ -749,7 +809,9 @@ export const barangays: Barangay[] = [
       "Rodolfo F. Marzo",
       "Rogelio M Cariaga"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Justin M. Escosio",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "bungro",
@@ -774,7 +836,9 @@ export const barangays: Barangay[] = [
       "Orlino A. Ebueza Jr.",
       "Lorylyn A. Buenavista"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Mark Joseph C. Abellera",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "narra-este",
@@ -799,7 +863,9 @@ export const barangays: Barangay[] = [
       "Geraldine F. Apilado",
       "Leonard Bryan F. Mazon"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Gerald R. Villanueva",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "narra-oeste",
@@ -824,7 +890,9 @@ export const barangays: Barangay[] = [
       "Lourdes F. Dumaguin",
       "Zaldy A. Casilla"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Charnes C. Ellson",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "sagayad",
@@ -849,7 +917,9 @@ export const barangays: Barangay[] = [
       "Elito N. Batulan",
       "Alvin G. Manuel"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Jurey M. Manuel",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "siboan-otong",
@@ -874,7 +944,9 @@ export const barangays: Barangay[] = [
       "Aljon G. Guron",
       "Florante A. Nisperos"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Marjorie F. Garcia",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "tanquigan",
@@ -899,7 +971,9 @@ export const barangays: Barangay[] = [
       "Oscar G. Balicha",
       "Alicia L. Pimentel"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "April Rose M. Ordoño",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "cabaroan",
@@ -924,7 +998,9 @@ export const barangays: Barangay[] = [
       "Ryan Jheremy C. Padilla",
       "Magdalena M. Balanon"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Ceffred G. Laudencia",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "dallangayan-oeste",
@@ -949,7 +1025,9 @@ export const barangays: Barangay[] = [
       "Allan C. Martinez",
       "Edwin E. Rivera"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Rephan Lloyd M. Buenaventura",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "santiago-sur",
@@ -974,7 +1052,9 @@ export const barangays: Barangay[] = [
       "Jenebel E. Jubilo",
       "Allan A. Lubrica"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Allysa Mhae D. Niñalga",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "tanqui",
@@ -999,7 +1079,9 @@ export const barangays: Barangay[] = [
       "Eliza D. Bangsil",
       "Ma. Eliza F. Gurion"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Larry G. Dizon Jr.",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "cadaclan",
@@ -1024,7 +1106,9 @@ export const barangays: Barangay[] = [
       "Ryan A. Jucar",
       "Renato S. Munar Jr."
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Donnie O. Rivera",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "camansi",
@@ -1049,7 +1133,9 @@ export const barangays: Barangay[] = [
       "Susan H. Hufano",
       "Eric T. Hufano"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Trisha Mae C. Rodillas",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "dallangayan-este",
@@ -1074,7 +1160,9 @@ export const barangays: Barangay[] = [
       "Arnel G. Ducusin",
       "Austhralon N. Flores"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Gerard Joseph F. Egar Jr.",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "langcuas",
@@ -1100,7 +1188,9 @@ export const barangays: Barangay[] = [
       "Editha D. Nisperos",
       "Susan A. Cariaga"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Ravenne D. Espina",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "pias",
@@ -1125,7 +1215,9 @@ export const barangays: Barangay[] = [
       "Wilfredo C. Ducusin",
       "Valeriano G. Silverie"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Ron Dale S. Julian",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "santiago-norte",
@@ -1150,7 +1242,9 @@ export const barangays: Barangay[] = [
       "Rafael G. Galvez",
       "Abelardo C. Ducusin Jr."
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Kenedy G. Flores",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "cabarsican",
@@ -1175,7 +1269,9 @@ export const barangays: Barangay[] = [
       "Antonio G. Peralta Jr.",
       "Jasmin A. Marquez"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "April Joy B. Nullar",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "masicong",
@@ -1200,7 +1296,9 @@ export const barangays: Barangay[] = [
       "Joanna M. Ariz",
       "Bernardo G. Casuga Jr."
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Jamery Joy D. Fusilero",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "nagyubuyuban",
@@ -1225,7 +1323,9 @@ export const barangays: Barangay[] = [
       "Eduardo L. Ordoño",
       "Perlita D. Lopez"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Maridel J. Tadina",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "pacpaco",
@@ -1250,7 +1350,9 @@ export const barangays: Barangay[] = [
       "Delfin G. Graycochea",
       "Analyn D. Ebreo"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Mark Eugene C. Borja",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "pao-norte",
@@ -1275,7 +1377,9 @@ export const barangays: Barangay[] = [
       "Cristeta H. Mendoza",
       "Raul E Aberin"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Jerick M. Graycochea",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "pao-sur",
@@ -1300,7 +1404,9 @@ export const barangays: Barangay[] = [
       "Judy Lyn B. Valdez",
       "Mary Jane G. Sobremonte"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Rodel G. Ariz",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "sacyud",
@@ -1325,7 +1431,9 @@ export const barangays: Barangay[] = [
       "Ernesto F. Glass Jr.",
       "Wilfredo D. Ballesteros"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Glaiza C. Ballesteros",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "apaleng",
@@ -1350,7 +1458,9 @@ export const barangays: Barangay[] = [
       "Rosedelia C. Gacayan",
       "Sonny R. Duclayan"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Julius M. Gacayan",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "bacsil",
@@ -1375,7 +1485,9 @@ export const barangays: Barangay[] = [
       "Imelda L. Duculan",
       "Renante B. Mendoza"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Erika D. Valdez",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "bangbangolan",
@@ -1400,7 +1512,9 @@ export const barangays: Barangay[] = [
       "Amando C. Cabanban Jr.",
       "Elizabeth G. Manzano"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Ma. Elena M. Gumia",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "baraoas",
@@ -1425,7 +1539,9 @@ export const barangays: Barangay[] = [
       "Jerwin V. Danao",
       "Mayleen M. Ferido"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Jessel A. Nanali",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "calabugao",
@@ -1450,7 +1566,9 @@ export const barangays: Barangay[] = [
       "Nemalyn Leonor D. Balcita",
       "Marinella B. Ducusin"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": "Rhea Anne C. Labayane",
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   },
   {
     "slug": "puspus",
@@ -1475,6 +1593,8 @@ export const barangays: Barangay[] = [
       "Cherry Lyn V. Pasca",
       "Edna R. Nisperos"
     ],
-    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/"
+    "sourceUrl": "https://www.sanfernandocity.gov.ph/vision-and-mission-2-3/",
+    "skChairperson": null,
+    "dilgSourceUrl": "https://beta.dilg.gov.ph/barangay-officials-directory"
   }
 ];
