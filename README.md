@@ -12,6 +12,7 @@ This is not an official City Government website. Official sources are linked thr
 - FY2024 revenue, spending, SEF, and LDRRMF data
 - Budget documents, audit reports, procurement records, and a DPWH project map
 - Legislation, election results, and a searchable City Government news archive
+- City life and tourism page with city-sourced photography, a visitor-map preview, and expandable activity details
 - Site-wide search suggestions, sitemap, accessibility, privacy, and terms pages
 - Responsive desktop and mobile navigation with sticky-header-aware in-page links
 

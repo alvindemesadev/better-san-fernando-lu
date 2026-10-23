@@ -152,6 +152,7 @@ The phase groupings below describe the original proposal from the survey, not a 
 - Services: `/services`, category and service detail routes, with 242 service records.
 - Government: officials, offices and office profiles, all 59 barangays and profiles, hotlines, and legislation.
 - City: profile, life and tourism, and business pages.
+- Life and tourism: activity and travel details follow the City Government's [Life in CSF](https://www.sanfernandocity.gov.ph/life-in-csf/) page. The page uses credited city photos and a compressed preview of the official 2022 City AdvenTour map; visitors are told to confirm current access and business details.
 - Transparency: budget, procurement, DPWH infrastructure projects and project map, and open data.
 - News: latest updates, archive, and individual stories.
 - Site support: search, sitemap, accessibility, privacy, terms, and FAQ pages.

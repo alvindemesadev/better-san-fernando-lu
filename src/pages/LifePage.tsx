@@ -1,4 +1,16 @@
-import { ArrowRight, Camera, Car, ExternalLink, Flower2, Landmark, Plane, Ship, Utensils, Waves } from 'lucide-react'
+import {
+  ArrowRight,
+  Camera,
+  Car,
+  ChevronDown,
+  ExternalLink,
+  Flower2,
+  Landmark,
+  Plane,
+  Ship,
+  Utensils,
+  Waves,
+} from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { PageHero } from '../components/PageHero'
 import { Reveal } from '../components/Reveal'
@@ -11,6 +23,7 @@ import { usePageMeta } from '../lib/usePageMeta'
 const experiences = [
   {
     title: 'Beaches and water activities',
+    summary: 'Coastal circuits, surfing, marine sanctuaries, and sunset views.',
     icon: Waves,
     items: [
       'Five beach circuits across the San Fernando coast: San Francisco–Canaoay (Acapulco); Pagdalagan–Pagudpud–San Vicente; Carlatan–Lingsat–Dalumpinas Oeste; San Agustin–Poro–Catbangen; and Ilocanos Sur–Ilocanos Norte–Pagdaraoan.',
@@ -21,6 +34,7 @@ const experiences = [
   },
   {
     title: 'Heritage and culture',
+    summary: 'Historic landmarks, churches, the Ma-Cho Temple, and public art.',
     icon: Landmark,
     items: [
       'Historical landmarks: Pindangan Ruins, the Tomb of the Unknown Soldier, the Moro Watchtower, and the Battle of Bacsil Ridge Monument.',
@@ -30,6 +44,7 @@ const experiences = [
   },
   {
     title: 'Food and pasalubong',
+    summary: 'Ilocano dishes, food parks, and local delicacies to bring home.',
     icon: Utensils,
     items: [
       'Local food trips through Ilocano eateries, restaurants, and food parks.',
@@ -39,6 +54,7 @@ const experiences = [
   },
   {
     title: 'Wellness and nature',
+    summary: 'Garden walks, mangroves, upland views, and wellness stops.',
     icon: Flower2,
     items: [
       'Nature walks at the Botanical and Zoological Garden in Cadaclan and the Mangrove Walk in Carlatan.',
@@ -48,6 +64,7 @@ const experiences = [
   },
   {
     title: 'Outdoor and photography',
+    summary: 'Hill walks, wildlife, rice terraces, and coastal viewpoints.',
     icon: Camera,
     items: [
       'Trekking up Pagoda Hill or Reservoir Hill.',
@@ -72,16 +89,33 @@ const festivals = [
 
 const visitorLinks = [
   {
-    label: 'Adventure map',
-    url: 'https://drive.google.com/file/d/13MAdp7BVYczEM16xBTzd_UQsHQ3YyA58/view?usp=sharing',
-  },
-  {
     label: 'La Union tourism plan',
     url: 'https://launion.gov.ph/knowledge-resources-hub/provincial-tourism-plan',
   },
   {
     label: 'Accredited establishments',
     url: 'https://drive.google.com/open?id=1M99J4Y-eS0uPHIoJXyERrZLkquxlnbv1',
+  },
+]
+
+const adventureMapUrl = 'https://drive.google.com/file/d/13MAdp7BVYczEM16xBTzd_UQsHQ3YyA58/view?usp=sharing'
+const adventureMapPreviewUrl = '/city/city-adventour-map.webp'
+
+const tourismPhotos = [
+  {
+    src: '/city/coast.webp',
+    alt: 'Rocky coastline and the sea along San Fernando.',
+    label: 'The coast',
+  },
+  {
+    src: '/city/heritage.webp',
+    alt: 'Stone arches and greenery at a local heritage site.',
+    label: 'Heritage',
+  },
+  {
+    src: '/city/food.webp',
+    alt: 'Local dishes and desserts served on banana leaves.',
+    label: 'Local flavors',
   },
 ]
 
@@ -140,6 +174,66 @@ export function LifePage() {
         </div>
       </PageHero>
 
+      <section aria-labelledby="visit-map-title" className="border-b border-line bg-surface">
+        <div className="container-page grid gap-6 py-8 sm:py-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center lg:gap-10">
+          <div>
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">Plan your visit</p>
+            <h2 id="visit-map-title" className="text-2xl font-extrabold tracking-tight text-ink-950 sm:text-3xl">
+              Find your way around the city
+            </h2>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-ink-600 sm:text-base sm:leading-7">
+              Preview the City AdvenTour map for visitor spots, food, places to stay, and travel routes. It is the
+              city’s 2022 edition, so confirm current access and business details before you go.
+            </p>
+
+            <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3" role="group" aria-label="Tourism highlights">
+              {tourismPhotos.map((photo) => (
+                <figure key={photo.src} className="min-w-0 overflow-hidden rounded-xl border border-line bg-white">
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[4/3] w-full object-cover"
+                  />
+                  <figcaption className="px-2 py-1.5 text-center text-[11px] font-semibold text-ink-700 sm:px-3 sm:py-2 sm:text-xs">
+                    {photo.label}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <p className="mt-2 text-[11px] text-ink-500">
+              Photos: <a href="https://www.sanfernandocity.gov.ph/life-in-csf/" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-brand-700">City Government of San Fernando</a>
+            </p>
+          </div>
+
+          <a
+            href={adventureMapUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open the full City AdvenTour 2022 map in a new tab"
+            className="group block overflow-hidden rounded-2xl border border-line bg-white shadow-card transition hover:border-brand-200 hover:shadow-float focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+          >
+            <div className="flex min-h-48 items-center justify-center bg-[#168ca3] p-2 sm:min-h-64 sm:p-3">
+              <img
+                src={adventureMapPreviewUrl}
+                alt="Preview of the official City AdvenTour map, showing visitor trails, attractions, food, lodging, services, and travel routes."
+                loading="lazy"
+                decoding="async"
+                className="max-h-[360px] w-full object-contain"
+              />
+            </div>
+            <div className="flex items-center justify-between gap-3 px-4 py-3">
+              <span>
+                <span className="block text-sm font-bold text-ink-950">City AdvenTour map · 2022</span>
+                <span className="mt-0.5 block text-xs text-ink-500">Open the full-size map</span>
+              </span>
+              <ExternalLink aria-hidden="true" className="size-4 shrink-0 text-brand-700 transition group-hover:translate-x-0.5" />
+            </div>
+          </a>
+        </div>
+      </section>
+
       <section>
         <div className="container-page py-12 sm:py-16">
           <Reveal>
@@ -160,7 +254,7 @@ export function LifePage() {
                       <Icon aria-hidden="true" className="size-5" />
                     </span>
                     <h3 className="mt-4 text-lg font-extrabold tracking-tight text-ink-950">{option.title}</h3>
-                    <ul className="mt-3 space-y-2 text-sm leading-6 text-ink-600">
+                    <ul className="mt-3 list-disc space-y-2 pl-4 text-sm leading-6 text-ink-600">
                       {option.lines.map((line) => (
                         <li key={line}>{line}</li>
                       ))}
@@ -193,11 +287,18 @@ export function LifePage() {
                       <Icon aria-hidden="true" className="size-5" />
                     </span>
                     <h3 className="mt-4 text-lg font-extrabold tracking-tight text-ink-950">{experience.title}</h3>
-                    <ul className="mt-3 list-disc space-y-2 pl-4 text-sm leading-6 text-ink-600">
-                      {experience.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
+                    <p className="mt-2 text-sm leading-6 text-ink-600">{experience.summary}</p>
+                    <details className="group mt-4 border-t border-line pt-3">
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 rounded-lg text-sm font-bold text-brand-700 outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2">
+                        <span>See places and activities</span>
+                        <ChevronDown aria-hidden="true" className="size-4 shrink-0 transition-transform group-open:rotate-180" />
+                      </summary>
+                      <ul className="mt-3 list-disc space-y-2 pl-4 text-sm leading-6 text-ink-600">
+                        {experience.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </details>
                   </div>
                 </Reveal>
               )
@@ -227,7 +328,7 @@ export function LifePage() {
             ))}
           </ul>
 
-          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+          <div className="mt-10 grid gap-3 sm:grid-cols-2">
             {visitorLinks.map((link) => (
               <a
                 key={link.url}
