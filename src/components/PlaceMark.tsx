@@ -23,7 +23,7 @@ const brandMarks: Array<{ name: string; icon: SimpleIcon }> = [
   { name: 'xiaomi', icon: siXiaomi },
 ]
 
-const imageMarks: Array<{ match: string; src: string; wide?: boolean; dark?: boolean }> = [
+const imageMarks: Array<{ match: string; src: string; wide?: boolean; large?: boolean; dark?: boolean }> = [
   // Local and national public-service identities. Branches share their parent agency's mark.
   // Official assets are bundled locally to avoid third-party image requests in the directory.
   { match: 'bureau of customs', src: '/logos/gov-boc.png' },
@@ -129,7 +129,7 @@ const imageMarks: Array<{ match: string; src: string; wide?: boolean; dark?: boo
   { match: 'mary grace', src: '/logos/mary-grace.webp' },
   { match: 'robinsons la union', src: '/logos/robinsons.png', wide: true, dark: true },
   { match: 'robinsons movieworld', src: '/logos/robinsons-movieworld.png', wide: true },
-  { match: 'robinsons department store', src: '/logos/robinsons-department-store.svg', wide: true },
+  { match: 'robinsons department store', src: '/logos/robinsons-department-store.svg', wide: true, large: true },
   { match: 'robinsons supermarket', src: '/logos/robinsons-supermarket.webp', wide: true },
   { match: 'robinsons easymart', src: '/logos/robinsons-easymart.png', wide: true },
   { match: 'digital walker', src: '/logos/digital-walker.png', wide: true },
@@ -291,7 +291,7 @@ export function PlaceMark({ item, fallback: Fallback }: { item: PlaceRecord; fal
 
   if (imageMark) {
     return (
-      <span className={`inline-flex ${imageMark.wide ? 'h-10 w-14' : 'size-10'} shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line ${imageMark.dark ? 'bg-ink-950' : 'bg-white'} p-1.5`} aria-hidden="true">
+      <span className={`inline-flex ${imageMark.large ? 'h-10 w-20 p-1' : imageMark.wide ? 'h-10 w-14 p-1.5' : 'size-10 p-1.5'} shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line ${imageMark.dark ? 'bg-ink-950' : 'bg-white'}`} aria-hidden="true">
         <img src={imageMark.src} alt="" className="size-full object-contain" loading="lazy" />
       </span>
     )
