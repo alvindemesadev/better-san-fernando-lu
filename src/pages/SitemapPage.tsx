@@ -54,7 +54,7 @@ const siteLinks = [
 
 function LinkList({ title, links }: { title: string; links: { label: string; href: string }[] }) {
   return (
-    <section className="h-full rounded-2xl border border-line bg-white p-4 shadow-card sm:p-5">
+    <section className="flex flex-col rounded-2xl border border-line bg-white p-4 shadow-card sm:p-5">
       <div className="flex items-center justify-between gap-3 border-b border-line pb-3">
         <h2 className="text-sm font-extrabold uppercase tracking-[0.12em] text-ink-950">{title}</h2>
         <span className="rounded-full bg-brand-50 px-2 py-1 text-[10px] font-bold tabular-nums text-brand-700">
@@ -113,7 +113,7 @@ export function SitemapPage() {
           ))}
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <LinkList title="Main pages" links={mainLinks} />
           <LinkList
             title={`Service categories (${categories.length})`}
@@ -122,9 +122,11 @@ export function SitemapPage() {
               href: `/services/${category.slug}`,
             }))}
           />
-          <LinkList title="Government" links={governmentLinks} />
-          <div className="space-y-10">
+          <div className="flex flex-col gap-6">
+            <LinkList title="Government" links={governmentLinks} />
             <LinkList title="Transparency" links={transparencyLinks} />
+          </div>
+          <div className="flex flex-col gap-6">
             <LinkList title="City and life" links={cityLinks} />
             <LinkList title="Site information" links={siteLinks} />
           </div>
