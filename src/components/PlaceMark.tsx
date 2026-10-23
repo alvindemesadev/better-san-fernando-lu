@@ -111,7 +111,14 @@ const imageMarks: Array<{ match: string; src: string; wide?: boolean; large?: bo
   { match: 'bethany hospital', src: '/logos/bethany-hospital.png' },
   { match: 'lorma medical center', src: '/logos/lorma-medical-center.png', wide: true },
   { match: 'lumed', src: '/logos/lumed-hospital.png' },
+  { match: 'healthpro multi-specialty center', src: '/logos/healthpro-la-union.jpg' },
   { match: 'bpi', src: '/logos/bpi.svg' },
+  { match: 'automobile association philippines', src: '/logos/aap.png' },
+  { match: 'core pacific', src: '/logos/core-pacific.png', wide: true },
+  { match: 'smile city dental essentials', src: '/logos/smile-city-dental.jpg', wide: true },
+  { match: 'guanzon mobitek', src: '/logos/guanzon-group.png', wide: true },
+  { match: '@tokyo', src: '/logos/at-tokyo.png' },
+  { match: 'aficionado', src: '/logos/aficionado.png', wide: true },
   { match: 'ace hardware', src: '/logos/ace-hardware.png' },
   { match: 'oxygen', src: '/logos/oxgn.png', wide: true },
   { match: 'bench', src: '/logos/bench.jpg', wide: true },
@@ -140,14 +147,28 @@ const imageMarks: Array<{ match: string; src: string; wide?: boolean; large?: bo
   { match: 'daiso', src: '/logos/daiso.svg', wide: true },
   { match: 'sm store', src: '/logos/sm-store.png', wide: true },
   { match: 'sm supermarket', src: '/logos/sm-supermarket.png' },
+  { match: 'savemore', src: '/logos/savemore.png', wide: true },
+  { match: 'broadway gems', src: '/logos/broadway-gems.png' },
   { match: 'sm appliance center', src: '/logos/sm-appliance-center.jpg' },
   { match: 'csi mall', src: '/logos/csi-favicon.png' },
   { match: 'csi supermarket', src: '/logos/csi-favicon.png' },
   { match: 'picture city', src: '/logos/picture-city.png', wide: true },
   { match: 'david', src: '/logos/davids-salon.png', wide: true, dark: true },
+  { match: 'tom’s world', src: '/logos/toms-world.png', large: true },
+  { match: 'nailandia', src: '/logos/nailandia.png', wide: true },
   { match: 'conti', src: '/logos/contis.png' },
   { match: 'mesa', src: '/logos/mesa.svg', wide: true },
   { match: 'turks', src: '/logos/turks.png', wide: true, dark: true },
+  { match: 'beanleaf coffee', src: '/logos/beanleaf.png' },
+  { match: 'candy corner', src: '/logos/candy-corner.png', wide: true },
+  { match: 'bebo', src: '/logos/bebos-bombay-burritos.jpg' },
+  { match: 'chapo', src: '/logos/chapos-grill-sizzlers.jpg' },
+  { match: 'everything on sticks', src: '/logos/sams-everything-on-sticks.jpg', wide: true },
+  { match: 'macao imperial tea', src: '/logos/macao-imperial-tea.jpg', wide: true },
+  { match: 'mr. kimbob', src: '/logos/mr-kimbob.png', wide: true },
+  { match: 'chizmozza', src: '/logos/chizmozza.png', wide: true },
+  { match: 'kettle korn', src: '/logos/kettle-korn.jpg', wide: true },
+  { match: 'beautederm', src: '/logos/beautederm.png' },
   { match: 'ramen nagi', src: '/logos/ramen-nagi.png' },
   { match: 'italian', src: '/logos/italianis.png', wide: true },
   { match: 'tgi fridays', src: '/logos/tgi-fridays.png', wide: true },
@@ -170,6 +191,7 @@ const imageMarks: Array<{ match: string; src: string; wide?: boolean; large?: bo
   { match: 'sports central', src: '/logos/sports-central.png', wide: true },
   { match: 'kidzoona', src: '/logos/kidzooona.svg', wide: true },
   { match: 'travelite express hotel', src: '/logos/travelite-express-hotel.png', wide: true },
+  { match: 'partas bus terminal', src: '/logos/partas.png', wide: true },
   { match: 'aureo', src: '/logos/aureo-la-union.png' },
   { match: 'lbc', src: '/logos/lbc-express.png' },
   { match: 'jollibee', src: '/logos/jollibee-favicon.ico' },
@@ -245,6 +267,7 @@ const categoryListingIds = new Set([
   'city-bus-terminals',
   'city-everyday-map',
   'ev-charging',
+  'rob-authorized-lotto',
 ])
 
 function isCityOffice(item: PlaceRecord) {
@@ -289,18 +312,18 @@ export function PlaceMark({ item, fallback: Fallback }: { item: PlaceRecord; fal
     )
   }
 
-  if (imageMark) {
-    return (
-      <span className={`inline-flex ${imageMark.large ? 'h-10 w-20 p-1' : imageMark.wide ? 'h-10 w-14 p-1.5' : 'size-10 p-1.5'} shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line ${imageMark.dark ? 'bg-ink-950' : 'bg-white'}`} aria-hidden="true">
-        <img src={imageMark.src} alt="" className="size-full object-contain" loading="lazy" />
-      </span>
-    )
-  }
-
   if (item.id.endsWith('-map') || categoryListingIds.has(item.id)) {
     return (
       <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700" aria-hidden="true">
         <Fallback className="size-5" />
+      </span>
+    )
+  }
+
+  if (imageMark) {
+    return (
+      <span className={`inline-flex ${imageMark.large ? 'h-10 w-20 p-1' : imageMark.wide ? 'h-10 w-14 p-1.5' : 'size-10 p-1.5'} shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line ${imageMark.dark ? 'bg-ink-950' : 'bg-white'}`} aria-hidden="true">
+        <img src={imageMark.src} alt="" className="size-full object-contain" loading="lazy" />
       </span>
     )
   }

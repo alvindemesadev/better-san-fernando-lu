@@ -160,6 +160,12 @@ const smSandboxPhoto: PlaceImage = {
   credit: 'SM Supermalls',
   creditUrl: 'https://www.smsupermalls.com/whats-new/lifestyle/sm-city-la-union-opens-as-the-new-gen-z-destination-up-north',
 }
+const nisceBranchPhoto: PlaceImage = {
+  src: '/places/nisce-robinsons-la-union.jpg',
+  alt: 'Nisce Skin Medispa sign at the Robinsons La Union branch',
+  credit: 'Parlon',
+  creditUrl: 'https://www.parlon.ph/parlon/nisce-skin-medispa/nisce-skin-medispa-robinsons-la-union',
+}
 
 const placePhotosById: Record<string, PlaceImage> = {
   'city-hall': tourismPhotos['San Fernando City Hall'],
@@ -196,6 +202,7 @@ const placePhotosByName: Record<string, PlaceImage> = {
   'La Union Botanical and Zoological Garden': tourismPhotos['La Union Botanical Garden'],
   'Bacsil Ridge Monument and Viewdeck': tourismPhotos['Bacsil Ridge Monument'],
   'Poro Point San Fernando Airport': airportPhoto,
+  'Nisce Skin Clinic': nisceBranchPhoto,
 }
 
 function place(

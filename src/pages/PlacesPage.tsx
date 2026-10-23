@@ -136,6 +136,17 @@ const logoSources = [
   { href: 'https://n-nagi.com/shop_overseas/', label: 'Ramen Nagi official shop directory' },
   { href: 'https://robinsonsmalls.com/node/12', label: 'Robinsons MovieWorld official page' },
   { href: 'https://www.robinsonsmovieworld.com/', label: 'Robinsons MovieWorld official website' },
+  { href: 'https://mallstoresdirectory.com/sm-city-urdaneta-central', label: 'Chapo’s Grill & Sizzlers logo · mall tenant directory' },
+  { href: 'https://www.pfa.org.ph/product-page/sam-s-everything-on-stick', label: 'Sam’s Everything on Sticks logo · Philippine Franchise Association' },
+  { href: 'https://www.smsupermalls.com/mall-directory/sm-city-davao/shops/candy-corner', label: 'Candy Corner logo · SM Supermalls' },
+  { href: 'https://www.smsupermalls.com/mall-directory/sm-city-rosales/shops/smile-city-dental-essentials', label: 'Smile City Dental Essentials logo · SM Supermalls' },
+  { href: 'https://www.guanzongroup.com.ph/', label: 'Guanzon Group official mark' },
+  { href: 'https://www.aap.org.ph/contactus', label: 'Automobile Association Philippines · La Union branch' },
+  { href: 'https://www.smsupermalls.com/mall-directory/sm-center-sangandaan/shops/broadway-gems', label: 'Broadway Gems logo · SM Supermalls' },
+  { href: 'https://www.smsupermalls.com/mall-directory/smdc-green-mall/shops/savemore-market', label: 'Savemore Market logo · SM Supermalls' },
+  { href: 'https://services.tomsworld.com.ph/helpdesk_ticketing/', label: 'Tom’s World official mark' },
+  { href: 'https://www.smsupermalls.com/mall-directory/sm-city-north-edsa/shops/nailandia-spa', label: 'Nailandia logo · SM Supermalls' },
+  { href: 'https://www.parlon.ph/parlon/nisce-skin-medispa/nisce-skin-medispa-robinsons-la-union', label: 'Nisce Skin Medispa · Robinsons La Union branch photo' },
 ]
 
 function PlaceCard({ item }: { item: PlaceRecord }) {
