@@ -9,7 +9,7 @@ import { budgetDocs } from '../data/budgetDocs'
 import { city } from '../data/city'
 import { openDataSources } from '../data/openData'
 import { dpwhProjects } from '../data/projects'
-import { formatDate, formatPeso } from '../lib/utils'
+import { formatPeso } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 const fundCategories = ['Budget & expenditure', 'Special funds', 'Audit & accountability']
@@ -217,8 +217,8 @@ export function TransparencyPage() {
 
           <div className="mt-8">
             <SourceNote href={city.website} linkLabel="Visit the official city website">
-              Figures are for 2024 unless otherwise noted. Budget and procurement links point to documents published
-              by the City Government of San Fernando. Data last verified on {formatDate(city.lastVerified)}.
+              Figures are dated individually. Budget and procurement links point to documents published by the City
+              Government of San Fernando; use each linked publisher for the latest releases.
             </SourceNote>
           </div>
         </div>

@@ -16,8 +16,6 @@ import { PageHero } from '../components/PageHero'
 import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
 import { SourceNote } from '../components/SourceNote'
-import { city } from '../data/city'
-import { formatDate } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 const experiences = [
@@ -352,8 +350,8 @@ export function LifePage() {
               linkLabel="Life in CSF on the city website"
             >
               Tourism information and maps are published by the City Government of San Fernando. The provincial
-              tourism plan covers San Fernando and the wider La Union circuits. Confirm schedules and access with the
-              city tourism office. Data last verified on {formatDate(city.lastVerified)}.
+              tourism plan covers San Fernando and the wider La Union circuits. Confirm current schedules and access
+              with the city tourism office; source pages publish their own update dates.
             </SourceNote>
           </div>
 

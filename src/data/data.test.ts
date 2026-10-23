@@ -289,12 +289,12 @@ describe('open data extracts', () => {
   })
 
   it('has a verified legislation extract', () => {
-    expect(legislation).toHaveLength(8)
+    expect(legislation).toHaveLength(12)
     expect(legislationSources).toHaveLength(5)
     expect(unique(legislation.map((item) => item.id))).toBe(true)
     expect(unique(legislation.map((item) => item.number))).toBe(true)
     expect(legislation.filter((item) => item.status === 'Enacted')).toHaveLength(5)
-    expect(legislation.filter((item) => item.status === 'Issued')).toHaveLength(2)
+    expect(legislation.filter((item) => item.status === 'Issued')).toHaveLength(6)
     expect(legislation.filter((item) => item.status === 'Proposed')).toHaveLength(1)
     for (const item of legislation) {
       expect(item.number.trim()).not.toBe('')
@@ -348,7 +348,7 @@ describe('open data extracts', () => {
   })
 
   it('has a well-formed open data catalog', () => {
-    expect(openDataSources).toHaveLength(8)
+    expect(openDataSources).toHaveLength(9)
     expect(unique(openDataSources.map((source) => source.id))).toBe(true)
     expect(openDataSources.some((source) => source.group === 'integrated')).toBe(true)
     expect(openDataSources.some((source) => source.group === 'reference')).toBe(true)
@@ -412,11 +412,11 @@ describe('prerender metadata', () => {
 })
 
 describe('manual data freshness', () => {
-  it('reports current verification dates and flags undated directories', () => {
+  it('reports current verification dates for manually maintained data', () => {
     const report = getDataFreshness(new Date('2026-10-23T00:00:00Z'))
     expect(report.find((row) => row.dataset === 'Service charter records')?.status).toBe('current')
-    expect(report.find((row) => row.dataset === 'City office directory')?.status).toBe('unknown')
-    expect(report.find((row) => row.dataset === 'Elected officials')?.status).toBe('unknown')
-    expect(formatDataFreshnessReport(new Date('2026-10-23T00:00:00Z'))).toContain('Barangay profiles')
+    expect(report.find((row) => row.dataset === 'City office directory')?.status).toBe('current')
+    expect(report.find((row) => row.dataset === 'Elected officials')?.status).toBe('current')
+    expect(formatDataFreshnessReport(new Date('2026-10-23T00:00:00Z'))).toContain('Barangay names and population')
   })
 })

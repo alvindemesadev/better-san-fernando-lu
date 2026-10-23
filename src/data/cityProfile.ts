@@ -26,7 +26,7 @@ export const factGroups: FactGroup[] = [
       {
         "label": "Land area",
         "value": "102.72 km²",
-        "note": "PSA and PhilAtlas figure. The city government cites 105.26 km²."
+        "note": "Published figures differ: PSA/PhilAtlas report 102.72 km², the city reports 105.26 km², and the provincial profile reports 106.88 km²."
       },
       {
         "label": "Population density",
@@ -84,8 +84,8 @@ export const factGroups: FactGroup[] = [
       },
       {
         "label": "Languages",
-        "value": "Ilokano, Filipino, English, and other dialects",
-        "note": "Includes Bisaya, Bicol, Ilonggo, Cebuano, and Bago"
+        "value": "Ilokano, Bisaya, Bicol, Ilonggo, Cebuano, Chinese, and Bago",
+        "note": "Languages listed in the City Government's profile; English is not included in that source list."
       }
     ]
   },

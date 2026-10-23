@@ -5,7 +5,6 @@ import { Reveal } from '../components/Reveal'
 import { SourceNote } from '../components/SourceNote'
 import { city } from '../data/city'
 import { faqs } from '../data/faqs'
-import { formatDate } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 export function FaqPage() {
@@ -125,8 +124,8 @@ export function FaqPage() {
 
         <div className="mt-10">
           <SourceNote href={city.website} linkLabel="Visit the official city website">
-            Answers are summaries, not official rulings. Requirements and fees can change. Confirm with the issuing
-            office before your visit. Data last verified on {formatDate(city.lastVerified)}.
+            Answers are summaries, not official rulings. Requirements and fees can change. Follow the source link and
+            confirm with the issuing office before your visit.
           </SourceNote>
         </div>
       </div>

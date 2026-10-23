@@ -24,10 +24,11 @@ import { city } from '../data/city'
 import { news } from '../data/news'
 import { stats } from '../data/stats'
 import { removeSavedService, useSavedServices } from '../lib/savedServices'
-import { formatDate, telHref } from '../lib/utils'
+import { telHref } from '../lib/utils'
 
 const featuredCategories = categories.slice(0, 6)
 const latestNews = news.slice(0, 3)
+const popularSearches = ['Business permit', 'Birth certificate', 'Real property tax', 'Senior citizen ID']
 
 const exploreLinks = [
   {
@@ -61,9 +62,9 @@ export function HomePage() {
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-ink-950 text-white">
+      <section className="relative isolate z-30 overflow-visible bg-ink-950 text-white">
         <div className="container-page relative grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-24">
-          <div>
+          <div className="min-w-0">
             <Reveal>
               <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white/65">
                 <span className="size-1.5 rounded-full bg-accent" />
@@ -86,13 +87,17 @@ export function HomePage() {
 
             <Reveal delay={0.18}>
               <div className="mt-8 max-w-xl">
-                <SearchBox large placeholder="Search services, offices, barangays…" />
+                <SearchBox
+                  large
+                  placeholder="Search services, offices, barangays…"
+                  defaultSuggestions={popularSearches}
+                />
               </div>
             </Reveal>
 
             <Reveal delay={0.24}>
               <div className="mt-5 flex flex-wrap gap-2">
-                {['Business permit', 'Birth certificate', 'Real property tax', 'Senior citizen ID'].map((term) => (
+                {popularSearches.map((term) => (
                   <Link
                     key={term}
                     to={`/search?q=${encodeURIComponent(term)}`}
@@ -322,7 +327,7 @@ export function HomePage() {
         <Reveal>
           <SourceNote href={city.website} linkLabel="Visit the official city website">
             Better San Fernando is an independent civic project, not the official city website. Population figures
-            use the 2024 Census of Population. Data and links were last verified on {formatDate(city.lastVerified)}.
+            use the 2024 Census of Population. Source dates vary by dataset; follow the linked publishers for updates.
           </SourceNote>
         </Reveal>
       </div>

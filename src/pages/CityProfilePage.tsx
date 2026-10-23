@@ -252,10 +252,27 @@ export function CityProfilePage() {
           </div>
 
           <div className="mt-10">
-            <SourceNote href="https://www.sanfernandocity.gov.ph/aboutcsf/" linkLabel="About CSF on the city website">
+            <SourceNote
+              href="https://www.sanfernandocity.gov.ph/aboutcsf/"
+              linkLabel="About CSF on the city website"
+              links={[
+                {
+                  href: 'https://rsso01.psa.gov.ph/content/highlights-population-la-union-2024-census-population',
+                  label: 'PSA 2024 Census: La Union population',
+                },
+                {
+                  href: 'https://psa.gov.ph/classification/psgc/barangays/0103314000',
+                  label: 'PSA San Fernando barangay list and 2024 counts',
+                },
+                {
+                  href: 'https://psa.gov.ph/system/files/psy/2025%20PSY%20Final_signed.pdf',
+                  label: 'PSA Statistical Yearbook: population and area',
+                },
+              ]}
+            >
               City profile, facts, maps, and history are published by the City Government of San Fernando, with
-              figures from the Philippine Statistics Authority and the La Union Ecological Profile. Data last verified
-              on {formatDate(city.lastVerified)}.
+              figures from the Philippine Statistics Authority and the La Union Ecological Profile. Core city-profile
+              sources were checked on {formatDate(city.lastVerified)}; each linked dataset carries its own source date.
             </SourceNote>
           </div>
         </div>

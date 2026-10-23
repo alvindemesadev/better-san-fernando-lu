@@ -10,7 +10,6 @@ import { SourceNote } from '../components/SourceNote'
 import { categories } from '../data/categories'
 import { city } from '../data/city'
 import { services } from '../data/services'
-import { formatDate } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 export function ServiceCategoryPage() {
@@ -33,6 +32,7 @@ export function ServiceCategoryPage() {
         title={category.name}
         description={category.description}
         crumbs={[{ label: 'Services', href: '/services' }, { label: category.shortName }]}
+        overflowVisible
       >
         <div className="max-w-2xl">
           <SearchBox large placeholder={`Search within ${category.shortName.toLowerCase()} or all services…`} />
@@ -68,8 +68,8 @@ export function ServiceCategoryPage() {
           <div className="mt-8">
             <SourceNote href={city.citizensCharter} linkLabel="Open the official Citizens’ Charter">
               Service details are summarized from the City Government’s Citizens’ Charter. Requirements, fees, and
-              processing times can change. Confirm with the issuing office before your visit. Data last verified on{' '}
-              {formatDate(city.lastVerified)}.
+              processing times can change. Confirm with the issuing office before your visit; each service record has
+              its own verification date.
             </SourceNote>
           </div>
         </div>

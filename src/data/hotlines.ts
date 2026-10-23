@@ -25,49 +25,52 @@ export const hotlines: Hotline[] = [
       "0928-522-0622"
     ],
     "email": "cdrrmo@sanfernandocity.gov.ph",
-    "note": "Disaster response and rescue coordination."
+    "note": "The city directory lists the first two numbers for operations and administration. Mobile numbers are from the city’s 2023 stakeholder directory."
   },
   {
     "label": "San Fernando City Police Station",
     "numbers": [
+      "(072) 607-8954",
       "0915-558-8888",
-      "0998-598-5167"
+      "0939-812-6888"
     ],
-    "note": "City police assistance and crime reporting."
+    "note": "Numbers are from the city’s 2023 stakeholder directory; confirm they remain active. Call 911 for immediate emergencies."
   },
   {
     "label": "San Fernando City Fire Station",
     "numbers": [
-      "(072) 607-7880",
-      "0917-183-8711"
+      "(072) 687-7880",
+      "0917-183-8711",
+      "0950-122-5008"
     ],
-    "note": "Fire and rescue response."
+    "note": "Numbers are from the city’s 2023 stakeholder directory; confirm they remain active. Call 911 for immediate emergencies."
   },
   {
     "label": "Provincial DRRMO (La Union)",
     "numbers": [
-      "0998-561-1519",
-      "(072) 770-3966",
-      "(072) 607-8723",
-      "(072) 607-9244"
+      "0998-561-1519"
     ],
-    "note": "Provincial emergency coordination."
+    "note": "Current mobile contact listed by the Provincial Government of La Union."
   },
   {
     "label": "City Health Office",
     "numbers": [
-      "(072) 888-6914"
+      "(072) 687-8100 local 123",
+      "(072) 888-6915",
+      "(072) 682-2883",
+      "0945-822-2735",
+      "0921-765-2129"
     ],
-    "email": "csflu.cho@gmail.com",
+    "email": "cho@sanfernandocity.gov.ph",
     "note": "City health services and clinic inquiries."
   },
   {
     "label": "City Social Welfare and Development Office",
     "numbers": [
       "(072) 687-8100 local 117",
-      "(072) 687-8100 local 160"
+      "0956-032-2128"
     ],
-    "email": "cswdosfclu@yahoo.com",
+    "email": "swd@sanfernandocity.gov.ph",
     "note": "Social welfare and crisis assistance."
   },
   {
@@ -76,7 +79,7 @@ export const hotlines: Hotline[] = [
       "(072) 687-8100 local 151",
       "(072) 687-8100 local 159"
     ],
-    "email": "opssfclu@gmail.com",
+    "email": "ops@sanfernandocity.gov.ph",
     "note": "Public safety and traffic concerns."
   }
 ];

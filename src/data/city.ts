@@ -36,5 +36,5 @@ export const city = {
   "povertyYear": 2023,
   "revenue2024": 1314010175.24,
   "expenditures2024": 1021576106.43,
-  "lastVerified": "2026-10-21"
+  "lastVerified": "2026-10-23"
 } as const;

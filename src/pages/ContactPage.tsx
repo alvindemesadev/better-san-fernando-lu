@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { PageHero } from '../components/PageHero'
 import { SourceNote } from '../components/SourceNote'
 import { city } from '../data/city'
-import { formatDate } from '../lib/utils'
 import { telHref } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
@@ -165,8 +164,8 @@ export function ContactPage() {
 
         <div className="mt-10">
           <SourceNote href={city.website} linkLabel="Visit the official city website">
-            Contact details come from the City Government of San Fernando. Data last verified on{' '}
-            {formatDate(city.lastVerified)}.
+            Contact details come from the City Government of San Fernando. Check its official contact page for current
+            office hours and changes.
           </SourceNote>
         </div>
       </div>

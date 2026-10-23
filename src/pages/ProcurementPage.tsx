@@ -15,7 +15,7 @@ import { usePageMeta } from '../lib/usePageMeta'
 export function ProcurementPage() {
   usePageMeta(
     'Procurement and bids',
-    'San Fernando, La Union procurement documents: annual procurement plan, quarterly bid results, bid documents, and infrastructure project status.',
+    'San Fernando, La Union procurement documents: 2026 bid invitations, 2025 bid results, procurement plans, and infrastructure project status.',
   )
 
   const docs = budgetDocs.filter((doc) => doc.category === 'Procurement')
@@ -40,7 +40,7 @@ export function ProcurementPage() {
           <SectionHeading
             eyebrow={`${docs.length} documents`}
             title="Bids, contracts, and projects"
-            description="The Annual Procurement Plan, quarterly bid results, 2025 bid documents, and the status of infrastructure projects."
+            description="The official city index includes 2026 invitations and notices; the latest posted bid-result records found are for 2025."
           />
         </Reveal>
 
@@ -349,8 +349,9 @@ export function ProcurementPage() {
 
         <div className="mt-8">
           <SourceNote href={city.website} linkLabel="Visit the official city website">
-            Procurement documents are published by the City Government of San Fernando. Availability and file
-            formats are controlled by the city. Data last verified on {formatDate(city.lastVerified)}.
+              The city currently lists 2026 invitations and notices. The local bid-results table contains the latest
+              result records we found, from 2025; the DPWH and PhilGEPS snapshots cover 2016–2025. Source pages and
+              dataset dates are linked above.
           </SourceNote>
         </div>
       </div>

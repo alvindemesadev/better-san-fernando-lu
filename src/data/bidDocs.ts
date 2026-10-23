@@ -95,6 +95,10 @@ export const bidResults: BidResult[] = [
 
 export const bidBulletins: BidBulletin[] = [
   {
+    "label": "2026 — Invitations to Bid and Notices",
+    "url": "https://www.sanfernandocity.gov.ph/bid-docs-2025/"
+  },
+  {
     "label": "2026 — Bid Supplemental #1",
     "url": "https://drive.google.com/drive/folders/1UVoU1-9k6ZMNvMqXtcsmFqmVgus3vyWR?usp=sharing"
   },

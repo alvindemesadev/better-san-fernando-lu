@@ -13,6 +13,7 @@ This is not an official City Government website. Official sources are linked thr
 - Budget documents, audit reports, procurement records, and a DPWH project map
 - Legislation, election results, and a searchable City Government news archive
 - City life and tourism page with city-sourced photography, a visitor-map preview, and expandable activity details
+- Searchable city places directory for public agencies, health, schools, shopping, dining, stays, attractions, transport, and everyday services, with live Google Maps category searches
 - Site-wide search suggestions, sitemap, accessibility, privacy, and terms pages
 - Responsive desktop and mobile navigation with sticky-header-aware in-page links
 
@@ -66,7 +67,27 @@ The workflow caches `scripts/.cache/` between runs and revalidates cached source
 
 Each production build prints a manual data freshness report. Records with no recorded verification date are listed for review; this report does not claim those records have been rechecked.
 
+The places directory at `/city/places` is a discovery index, not a business-permit census. It includes the site's city-office and 59 barangay profiles, named regional/provincial public-agency offices from La Union's February 27, 2026 roster, tertiary schools from the province's 2026 list, destination entries from its 2023 tourism inventory, and mall/operator listings. Category buttons open live Google Maps searches for additional listings. Check the linked sources and current map/business profile before relying on operating status, hours, or access.
+
 See [DATA-INVENTORY.md](DATA-INVENTORY.md) for sources and data caveats.
+
+## Data dates and source changes
+
+Data vintages are labeled per dataset rather than with one site-wide “last verified” date. The barangay map uses
+PSA/NAMRIA 2023 geometry, while population shading uses the 2024 Census; the boundary release and census year are
+different. The 59-barangay count and names were checked against the latest PSA PSGC listing available on October 23,
+2026, but that check does not change the geometry vintage.
+
+The budget page shows the latest validated full-year figures available in this project (FY2024). BLGF lists FY2025
+quarterly SRE files, which are linked separately; partial-year values are not presented as annual totals. CY2026 city
+budget and investment-plan files, the COA 2024 audit report, and recent 2026 executive orders through No. 61 are linked from their
+respective pages. Current wage rates use NWPC Region I Wage Order RB 1-24. LUECO electricity rates link to its
+period-specific tariff schedule because they change over time. Republic Act No. 12326 moved the next regular barangay
+and SK elections to the second Monday of November 2028; the site continues to identify the currently published
+incumbents. Barangay names and population are checked against PSA, and barangay captains and kagawads against the city
+roster. The DILG directory page was reachable on October 23, 2026, but its Barangay Information System records
+request failed with a 502 error. The local SK roster has 58 names and no verified Puspus entry; the remaining names
+could not be rechecked against DILG, so the roster stays marked unverified.
 
 ## Deployment
 

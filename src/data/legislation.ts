@@ -137,4 +137,48 @@ export const legislation: LegislationItem[] = [
       'Creates a technical working group to support the preparation of the city\u2019s agriculture and fisheries modernization plan.',
     sourceUrl: 'https://drive.google.com/file/d/160H_Ui3PdIzpVyGlPZTwDBIb4EGHgrqU/view?usp=drive_link',
   },
+  {
+    id: 'executive-order-59-2026',
+    number: 'Executive Order No. 59-2026',
+    title: 'Local Poverty Reduction Action Committee',
+    kind: 'Executive Order',
+    status: 'Issued',
+    year: 2026,
+    summary:
+      'Constitutes the City Local Poverty Reduction Action Committee and sets its membership and coordinating role.',
+    sourceUrl: 'https://drive.google.com/file/d/1EMsqswpjGwk6xheg_ZjsQwLoBlY-ii0E/view?usp=drive_link',
+  },
+  {
+    id: 'executive-order-58-2026',
+    number: 'Executive Order No. 58-2026',
+    title: 'Local Infrastructure Audit Team',
+    kind: 'Executive Order',
+    status: 'Issued',
+    year: 2026,
+    summary:
+      'Creates the Local Infrastructure Audit Team to review city infrastructure projects.',
+    sourceUrl: 'https://drive.google.com/file/d/1yu_WJJaHIJahe_JgqoWrFZvUQt8_uKaG/view?usp=drive_link',
+  },
+  {
+    id: 'executive-order-57-2026',
+    number: 'Executive Order No. 57-2026',
+    title: 'City Incident Management Team',
+    kind: 'Executive Order',
+    status: 'Issued',
+    year: 2026,
+    summary:
+      'Reconstitutes the City Incident Management Team and defines its incident response responsibilities.',
+    sourceUrl: 'https://drive.google.com/file/d/1zM2W5PNiT82Ex0yTUh58Ly3OkeezzfyB/view?usp=drive_link',
+  },
+  {
+    id: 'executive-order-56-2026',
+    number: 'Executive Order No. 56-2026',
+    title: 'Amendment to Executive Order No. 11-2025',
+    kind: 'Executive Order',
+    status: 'Issued',
+    year: 2026,
+    summary:
+      'Amends Executive Order No. 11-2025 to reconstitute the Technical Working Group and Joint Inspection and Compliance Monitoring Unit.',
+    sourceUrl: 'https://drive.google.com/file/d/15AARDg5EgAUt6kFbasyFnEzYPP4l1x5p/view?usp=drive_link',
+  },
 ]

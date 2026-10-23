@@ -22,8 +22,6 @@ import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
 import { SourceNote } from '../components/SourceNote'
 import { StatCard } from '../components/StatCard'
-import { city } from '../data/city'
-import { formatDate } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 const highlights = [
@@ -87,17 +85,6 @@ const businessProcess = [
   },
 ]
 
-const powerRates = [
-  ['Residential', '₱12.7878/kWh'],
-  ['GenSer, X1', '₱14.1601/kWh'],
-  ['GenSer, X2', '₱11.9481/kWh'],
-  ['Hospital', '₱10.9535/kWh'],
-  ['Industrial', '₱13.0848/kWh'],
-  ['Streetlight', '₱12.9612/kWh'],
-]
-
-const powerRateRows = powerRates.map(([label, value]) => ({ label, value }))
-
 export function BusinessPage() {
   usePageMeta(
     'Business and investment',
@@ -116,7 +103,7 @@ export function BusinessPage() {
           <StatCard value="9th of 112" label="CMCI 2024 rank" note="Component cities nationwide" />
           <StatCard value="No. 1" label="In Region I" note="2024 competitiveness index" />
           <StatCard value="1st nationwide" label="Government efficiency" note="CMCI 2024 pillar" />
-          <StatCard value="₱468.00" label="Minimum daily wage" note="Non-agriculture, 10+ employees (RB1-23)" />
+          <StatCard value="₱505.00" label="Minimum daily wage" note="Non-agriculture, 10+ employees (RB1-24)" />
         </div>
       </PageHero>
 
@@ -165,12 +152,12 @@ export function BusinessPage() {
               return (
                 <li
                   key={sector.title}
-                  className="flex items-start gap-3 rounded-2xl border border-line bg-white p-4 text-sm font-semibold leading-6 text-ink-800 shadow-card"
+                  className="flex items-center justify-start gap-3 rounded-2xl border border-line bg-white p-4 text-left text-sm font-semibold leading-6 text-ink-800 shadow-card"
                 >
-                  <span className="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
+                  <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
                     <Icon aria-hidden="true" className="size-4" />
                   </span>
-                  {sector.title}
+                  <span className="min-w-0 text-left">{sector.title}</span>
                   <span className="sr-only">Priority sector {index + 1}</span>
                 </li>
               )
@@ -185,7 +172,7 @@ export function BusinessPage() {
             <SectionHeading
               eyebrow="Cost of doing business"
               title="What it costs to operate here"
-              description="Published rates from the city’s business profile. Confirm current figures with the service providers and the city before committing."
+              description="The city’s published rental estimates are undated. Wage floors follow the current regional wage order; electricity tariffs change by billing period."
             />
           </Reveal>
 
@@ -197,12 +184,21 @@ export function BusinessPage() {
                 </span>
                 <h3 className="mt-4 text-base font-extrabold tracking-tight text-ink-950">Wage rates</h3>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-[0.1em] text-ink-400">
-                  Wage Order No. RB1-23
+                  Wage Order No. RB1-24 · effective November 19, 2025
                 </p>
                 <ul className="mt-3 space-y-2 text-sm leading-6 text-ink-600">
-                  <li>₱468.00 — non-agriculture, 10 or more employees</li>
-                  <li>₱435.00 — agriculture and establishments with fewer than 10 employees</li>
+                  <li>₱505.00 per day — non-agriculture, 10 or more employees</li>
+                  <li>₱480.00 per day — agriculture and non-agriculture, fewer than 10 employees</li>
                 </ul>
+                <a
+                  href="https://nwpc.dole.gov.ph/region-i/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 hover:text-brand-800"
+                >
+                  See the current Region I wage order
+                  <ExternalLink aria-hidden="true" className="size-3.5" />
+                </a>
               </div>
             </Reveal>
 
@@ -212,6 +208,9 @@ export function BusinessPage() {
                   <Building2 aria-hidden="true" className="size-5" />
                 </span>
                 <h3 className="mt-4 text-base font-extrabold tracking-tight text-ink-950">Rental and lease rates</h3>
+                <p className="mt-1 text-xs leading-5 text-ink-500">
+                  City-published reference ranges; no effective date or rental period is stated.
+                </p>
                 <ul className="mt-3 space-y-2 text-sm leading-6 text-ink-600">
                   <li>Commercial space: ₱200 to ₱550 per square meter</li>
                   <li>1-bedroom condo or apartment: ₱5,000 to ₱8,000</li>
@@ -227,23 +226,27 @@ export function BusinessPage() {
                 <span className="inline-flex size-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
                   <Zap aria-hidden="true" className="size-5" />
                 </span>
-                <h3 className="mt-4 text-base font-extrabold tracking-tight text-ink-950">Power rates</h3>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.1em] text-ink-400">LUECO, August 2025</p>
-                <dl className="mt-3 space-y-2 text-sm">
-                  {powerRateRows.map((row) => (
-                    <div key={row.label} className="flex items-center justify-between gap-3 border-b border-line pb-2 last:border-b-0 last:pb-0">
-                      <dt className="text-ink-600">{row.label}</dt>
-                      <dd className="font-semibold tabular-nums text-ink-900">{row.value}</dd>
-                    </div>
-                  ))}
-                </dl>
+                <h3 className="mt-4 text-base font-extrabold tracking-tight text-ink-950">Electricity tariffs</h3>
+                <p className="mt-2 text-sm leading-6 text-ink-600">
+                  LUECO publishes a tariff schedule by billing period. Check the latest schedule and the rate class
+                  that applies to your account.
+                </p>
+                <a
+                  href="https://www.luecoinc.com/rates/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-brand-800"
+                >
+                  View current LUECO rates
+                  <ExternalLink aria-hidden="true" className="size-3.5" />
+                </a>
               </div>
             </Reveal>
           </div>
 
           <p className="mt-4 text-xs leading-5 text-ink-500">
-            Water and telecommunications rates are not published in the city’s business profile summary. Contact the
-            service providers directly for current commercial rates.
+            Confirm the city’s undated rental estimates with the provider before making a decision. Water and
+            telecommunications prices are not listed in the city profile.
           </p>
         </div>
       </section>
@@ -337,9 +340,18 @@ export function BusinessPage() {
               <div className="h-full rounded-2xl border border-line bg-white p-5 shadow-card">
                 <h3 className="text-base font-extrabold tracking-tight text-ink-950">Central Business District — Biday</h3>
                 <p className="mt-2 text-sm leading-6 text-ink-600">
-                  Barangay Biday is anchored by CSI Mall and Manna Mall, with SM City La Union set to open — a growing
-                  commercial hub supported by the city’s Digital Cities recognition.
+                  Barangay Biday is anchored by CSI Mall and Manna Mall. SM City La Union opened on October 17, 2025,
+                  adding to the area’s commercial activity.
                 </p>
+                <a
+                  href="https://www.smprime.com/company_releases/sm-prime-opens-89th-mall-sm-city-la-union-to-feature-sandbox-outdoor-space/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-brand-800"
+                >
+                  SM Prime opening announcement
+                  <ExternalLink aria-hidden="true" className="size-3.5" />
+                </a>
               </div>
             </Reveal>
 
@@ -390,10 +402,18 @@ export function BusinessPage() {
             <SourceNote
               href="https://www.sanfernandocity.gov.ph/business-in-the-city/"
               linkLabel="Business in the City on the city website"
+              links={[
+                { href: 'https://nwpc.dole.gov.ph/region-i/', label: 'NWPC Region I wage rates' },
+                { href: 'https://www.luecoinc.com/rates/', label: 'LUECO tariff schedule' },
+                {
+                  href: 'https://www.smprime.com/company_releases/sm-prime-opens-89th-mall-sm-city-la-union-to-feature-sandbox-outdoor-space/',
+                  label: 'SM Prime opening announcement',
+                },
+              ]}
             >
-              Investment profile, rankings, costs, and forms are published by the City Government of San Fernando.
-              Rates and incentives can change; confirm current terms with the city and the relevant agencies. Data
-              last verified on {formatDate(city.lastVerified)}.
+              Investment priorities, rankings, and rental reference ranges are published by the City Government of San
+              Fernando. The city’s wage figures were outdated, so the current NWPC order is used above; LUECO tariffs
+              are linked to its live schedule. Rental figures have no stated effective date.
             </SourceNote>
           </div>
         </div>

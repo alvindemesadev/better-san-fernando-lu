@@ -6,7 +6,6 @@ import { SourceNote } from '../components/SourceNote'
 import { city } from '../data/city'
 import { cityElections, electionSourceUrl, electionSupplementSources } from '../data/elections'
 import { officials } from '../data/officials'
-import { formatDate } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 export function OfficialsPage() {
@@ -183,7 +182,8 @@ export function OfficialsPage() {
         <div className="container-page py-8">
           <SourceNote href={city.website} linkLabel="View official profiles">
             Portraits, roles, and profile links come from the City Government of San Fernando. This page does not
-            publish personal contact details for officials. Data last verified on {formatDate(city.lastVerified)}.
+            publish personal contact details for officials. Use the linked official profiles for current roles and
+            announcements.
           </SourceNote>
         </div>
       </section>

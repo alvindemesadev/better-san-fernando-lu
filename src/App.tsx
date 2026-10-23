@@ -54,6 +54,7 @@ const OnlineServicesPage = lazy(() =>
 const OpenDataPage = lazy(() =>
   import('./pages/OpenDataPage').then((module) => ({ default: module.OpenDataPage })),
 )
+const PlacesPage = lazy(() => import('./pages/PlacesPage').then((module) => ({ default: module.PlacesPage })))
 const PrivacyPage = lazy(() => import('./pages/PrivacyPage').then((module) => ({ default: module.PrivacyPage })))
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then((module) => ({ default: module.ProjectsPage })))
 const ProcurementPage = lazy(() =>
@@ -95,6 +96,7 @@ export default function App() {
               <Route path="government/legislation" element={<LegislationPage />} />
               <Route path="city" element={<CityProfilePage />} />
               <Route path="city/life" element={<LifePage />} />
+              <Route path="city/places" element={<PlacesPage />} />
               <Route path="city/business" element={<BusinessPage />} />
               <Route path="online-services" element={<OnlineServicesPage />} />
               <Route path="transparency" element={<TransparencyPage />} />

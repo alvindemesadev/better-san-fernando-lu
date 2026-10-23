@@ -9,7 +9,7 @@ import { SourceNote } from '../components/SourceNote'
 import { StatCard } from '../components/StatCard'
 import { barangayDilgSourceUrl, barangays } from '../data/barangays'
 import { city } from '../data/city'
-import { formatDate, formatNumber, initials } from '../lib/utils'
+import { formatNumber, initials } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 export function BarangayDetailPage() {
@@ -189,12 +189,18 @@ export function BarangayDetailPage() {
           <SourceNote
             href={barangay.sourceUrl}
             linkLabel="city barangay directory"
-            links={[{ href: barangayDilgSourceUrl, label: 'DILG barangay officials directory' }]}
+            links={[
+              { href: 'https://psa.gov.ph/classification/psgc/barangays/0103314000', label: 'PSA barangay list and population' },
+              { href: barangayDilgSourceUrl, label: 'DILG barangay officials directory' },
+              { href: 'https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/103013', label: 'Republic Act No. 12326' },
+            ]}
           >
             Population figures use the 2024 Census of Population. The punong barangay and council come from the city
-            government’s published directory; the SK chairperson comes from the DILG Barangay Information System.
-            Facilities are not yet published in a citywide dataset. Data last verified on{' '}
-            {formatDate(city.lastVerified)}.
+            government’s published directory. SK chairperson names were previously entered from the DILG Barangay
+            Information System, but its records request failed with a 502 error during the October 23, 2026 review.
+            The local roster has 58 names; Puspus has no verified entry, and the rest could not be rechecked. Confirm
+            SK names with DILG before relying on them. The next regular barangay and SK elections are scheduled for
+            November 2028 under Republic Act No. 12326. Facilities are not yet published in a citywide dataset.
           </SourceNote>
         </div>
 

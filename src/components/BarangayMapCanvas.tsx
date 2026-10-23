@@ -124,7 +124,7 @@ export function BarangayMapCanvas({ resetToken, onSelect, onHover }: BarangayMap
     labelMarkerRef.current?.remove()
     onSelect(null)
     onHover(null)
-    map.fitBounds(cityBounds, { padding: overviewPadding, pitch: 30, bearing: 0, duration: 650 })
+    map.fitBounds(cityBounds, { padding: overviewPadding, pitch: 0, bearing: 0, duration: 650 })
   }, [onHover, onSelect])
 
   useEffect(() => {
@@ -145,7 +145,7 @@ export function BarangayMapCanvas({ resetToken, onSelect, onHover }: BarangayMap
       },
       center: cityBounds.getCenter(),
       zoom: 11,
-      pitch: 30,
+      pitch: 0,
       bearing: 0,
       minZoom: 10,
       maxZoom: 17,
@@ -267,7 +267,7 @@ export function BarangayMapCanvas({ resetToken, onSelect, onHover }: BarangayMap
         },
       })
 
-      map.fitBounds(cityBounds, { padding: overviewPadding, pitch: 30, bearing: 0, duration: 0 })
+      map.fitBounds(cityBounds, { padding: overviewPadding, pitch: 0, bearing: 0, duration: 0 })
 
       map.on('click', 'barangay-fills', (event) => {
         const feature = event.features?.[0]

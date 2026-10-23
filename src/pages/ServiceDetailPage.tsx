@@ -252,8 +252,8 @@ export function ServiceDetailPage() {
 
             <SourceNote href={service.sourceUrl} linkLabel="Open the official entry">
               This page summarizes the published service record. Requirements and fees can change without notice.
-              Confirm details with the {office?.name ?? service.office} before your visit. City data last verified on{' '}
-              {formatDate(city.lastVerified)}.
+              Confirm details with the {office?.name ?? service.office} before your visit. The verification date
+              above applies to this service record only.
             </SourceNote>
           </aside>
         </div>

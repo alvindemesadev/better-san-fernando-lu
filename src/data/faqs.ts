@@ -39,7 +39,7 @@ export const faqs: Faq[] = [
   },
   {
     "q": "How do I report an emergency?",
-    "a": "Call 911 for police, fire, or medical emergencies. For city disaster response, call the CDRRMO hotlines. The hotlines page lists verified numbers.",
+    "a": "Call 911 for police, fire, or medical emergencies. For city disaster response, call the CDRRMO hotlines. The hotline page shows the source date for listed contacts; confirm older direct numbers before relying on them.",
     "link": "/government/hotlines",
     "source": "City Government / 911"
   },

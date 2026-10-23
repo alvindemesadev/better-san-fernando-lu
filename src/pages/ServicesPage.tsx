@@ -12,7 +12,6 @@ import { city } from '../data/city'
 import { offices } from '../data/offices'
 import { onlineServiceSlugs } from '../data/onlineServices'
 import { services } from '../data/services'
-import { formatDate } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 const scenarios = [
@@ -70,6 +69,7 @@ export function ServicesPage() {
         title="Every city service, in one place"
         description="242 services from the official Citizens’ Charter, grouped into 12 practical categories. Open a service for requirements, fees, forms, and the office that handles it."
         crumbs={[{ label: 'Services' }]}
+        overflowVisible
       >
         <div className="max-w-2xl">
           <SearchBox large placeholder="Search services, offices, barangays…" />
@@ -288,8 +288,8 @@ export function ServicesPage() {
           <div className="mt-8">
             <SourceNote href={city.citizensCharter} linkLabel="Open the official Citizens’ Charter">
               Service details are summarized from the City Government’s Citizens’ Charter. Requirements, fees, and
-              processing times can change. Confirm with the issuing office before your visit. Data last verified on{' '}
-              {formatDate(city.lastVerified)}.
+              processing times can change. Confirm with the issuing office before your visit; each service record has
+              its own verification date.
             </SourceNote>
           </div>
         </div>

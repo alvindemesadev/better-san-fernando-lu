@@ -7,7 +7,7 @@ import { SectionHeading } from '../components/SectionHeading'
 import { SourceNote } from '../components/SourceNote'
 import { city } from '../data/city'
 import { offices } from '../data/offices'
-import { formatDate, normalize, pluralize } from '../lib/utils'
+import { normalize, pluralize } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 export function OfficesPage() {
@@ -130,7 +130,7 @@ export function OfficesPage() {
           <div className="mt-10">
             <SourceNote href={city.website} linkLabel="View the official department directory">
               Office names, heads, and contacts come from the City Government of San Fernando. Service counts reflect
-              the Citizens’ Charter listings. Data last verified on {formatDate(city.lastVerified)}.
+              the Citizens’ Charter listings. Check those official directories for changes before visiting.
             </SourceNote>
           </div>
         </div>

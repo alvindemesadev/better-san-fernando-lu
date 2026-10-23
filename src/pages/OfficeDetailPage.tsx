@@ -9,7 +9,7 @@ import { SourceNote } from '../components/SourceNote'
 import { city } from '../data/city'
 import { offices } from '../data/offices'
 import { services } from '../data/services'
-import { formatDate, telHref } from '../lib/utils'
+import { telHref } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 export function OfficeDetailPage() {
@@ -180,8 +180,8 @@ export function OfficeDetailPage() {
             ) : null}
 
             <SourceNote href={office.sourceUrl} linkLabel="View the official office page">
-              Contacts and office details come from the City Government of San Fernando. Data last verified on{' '}
-              {formatDate(city.lastVerified)}.
+              Contacts and office details come from the City Government of San Fernando. Check the official directory
+              for changes before contacting or visiting the office.
             </SourceNote>
           </aside>
         </div>

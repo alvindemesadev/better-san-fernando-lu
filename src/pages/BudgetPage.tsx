@@ -14,7 +14,7 @@ import {
   ilocosCities2024,
   revenueSources2024,
 } from '../data/fiscal'
-import { formatDate, formatNumber, formatPeso } from '../lib/utils'
+import { formatNumber, formatPeso } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 const categories = ['Budget & expenditure', 'Special funds', 'Audit & accountability']
@@ -114,7 +114,7 @@ export function BudgetPage() {
                 </p>
                 <h2 className="mt-2 text-xl font-extrabold tracking-tight text-ink-950">Where the money came from</h2>
               </div>
-              <p className="text-xs font-semibold text-ink-500">BLGF preliminary figures</p>
+              <p className="text-xs font-semibold text-ink-500">BLGF FY2024 figures · preliminary</p>
             </div>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -370,9 +370,20 @@ export function BudgetPage() {
         </div>
 
         <div className="mt-8">
-          <SourceNote href="https://www.sanfernandocity.gov.ph/full-disclosure-policy/" linkLabel="Full Disclosure Policy">
-            Documents open on the official city website or its linked file storage. Figures are for 2024 unless
-            otherwise noted. Data last verified on {formatDate(city.lastVerified)}.
+          <SourceNote
+            href="https://www.sanfernandocity.gov.ph/full-disclosure-policy/"
+            linkLabel="Full Disclosure Policy"
+            links={[
+              { href: 'https://blgf.gov.ph/lgu-fiscal-data/', label: 'BLGF fiscal data portal' },
+              {
+                href: 'https://www.coa.gov.ph/wpfd_file/san-fernando-city-annual-audit-report-2024/',
+                label: 'COA 2024 city audit report',
+              },
+            ]}
+          >
+            The city’s top-line amounts and the BLGF ledger below are FY2024 figures and use different reporting
+            bases. BLGF lists FY2025 quarterly reports, but no verified annual FY2025 row is included here. FY2026
+            budget and investment documents are linked above; source publication dates vary.
           </SourceNote>
         </div>
       </div>

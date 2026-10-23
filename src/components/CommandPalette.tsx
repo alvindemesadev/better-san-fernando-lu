@@ -123,7 +123,7 @@ function CommandPaletteDialog({ onClose }: { onClose: () => void }) {
         transition={{ duration: 0.18 }}
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="flex items-center gap-3 border-b border-line px-4 focus-within:ring-2 focus-within:ring-inset focus-within:ring-brand-500">
+        <div className="flex items-center gap-3 rounded-t-2xl border-b border-line px-4 transition-shadow focus-within:ring-2 focus-within:ring-inset focus-within:ring-brand-500">
           <Search aria-hidden="true" className="size-5 shrink-0 text-ink-400" />
           <input
             ref={inputRef}

@@ -1,7 +1,15 @@
 import { AlertTriangle, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { InfoPageLayout } from '../components/InfoPageLayout'
 import { PageHero } from '../components/PageHero'
 import { usePageMeta } from '../lib/usePageMeta'
+
+const sections = [
+  { id: 'our-approach', label: 'Our approach' },
+  { id: 'what-the-site-does', label: 'What the site does' },
+  { id: 'known-limitations', label: 'Known limitations' },
+  { id: 'reporting-a-barrier', label: 'Reporting a barrier' },
+]
 
 const features = [
   'Semantic landmarks, headings, lists, tables, and a skip-to-content link on every page.',
@@ -27,18 +35,27 @@ export function AccessibilityPage() {
         crumbs={[{ label: 'Accessibility' }]}
       />
 
-      <div className="container-page py-10 sm:py-14">
-        <div className="mx-auto max-w-3xl space-y-8">
-          <section className="rounded-2xl border border-line bg-white p-5 shadow-card sm:p-7">
+      <InfoPageLayout sections={sections}>
+          <section id="our-approach" className="scroll-mt-28 rounded-2xl border border-line bg-white p-5 shadow-card sm:p-7">
             <h2 className="text-xl font-extrabold tracking-tight text-ink-950">Our approach</h2>
             <p className="mt-3 text-[15px] leading-7 text-ink-600">
               Better San Fernando is an independent civic project. We aim to follow the Web Content Accessibility
               Guidelines (WCAG) 2.2 at the AA level, but the site has not been formally audited or certified. This
               page describes the practices in place and the known gaps.
             </p>
+            <dl className="mt-5 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-xl border border-line bg-surface p-4">
+                <dt className="text-[10px] font-bold uppercase tracking-[0.14em] text-ink-500">Target</dt>
+                <dd className="mt-1 text-sm font-extrabold text-ink-950">WCAG 2.2 · Level AA</dd>
+              </div>
+              <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+                <dt className="text-[10px] font-bold uppercase tracking-[0.14em] text-amber-800">Review status</dt>
+                <dd className="mt-1 text-sm font-extrabold text-amber-950">Not formally audited</dd>
+              </div>
+            </dl>
           </section>
 
-          <section>
+          <section id="what-the-site-does" className="scroll-mt-28 rounded-2xl border border-line bg-surface p-5 sm:p-6">
             <h2 className="text-xl font-extrabold tracking-tight text-ink-950">What the site does</h2>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
               {features.map((feature) => (
@@ -53,7 +70,7 @@ export function AccessibilityPage() {
             </ul>
           </section>
 
-          <section className="rounded-2xl border border-amber-200 bg-amber-50 p-5 sm:p-7">
+          <section id="known-limitations" className="scroll-mt-28 rounded-2xl border border-amber-200 bg-amber-50 p-5 sm:p-7">
             <h2 className="inline-flex items-center gap-2 text-lg font-extrabold text-amber-950">
               <AlertTriangle aria-hidden="true" className="size-5 text-amber-700" />
               Known limitations
@@ -75,7 +92,7 @@ export function AccessibilityPage() {
             </ul>
           </section>
 
-          <section className="rounded-2xl border border-line bg-surface p-5 sm:p-7">
+          <section id="reporting-a-barrier" className="scroll-mt-28 rounded-2xl border border-line bg-white p-5 shadow-card sm:p-7">
             <h2 className="text-xl font-extrabold tracking-tight text-ink-950">Reporting a barrier</h2>
             <p className="mt-3 text-[15px] leading-7 text-ink-600">
               This independent project does not yet publish a dedicated support inbox. For barriers in city data or
@@ -92,8 +109,7 @@ export function AccessibilityPage() {
               <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
           </section>
-        </div>
-      </div>
+      </InfoPageLayout>
     </>
   )
 }

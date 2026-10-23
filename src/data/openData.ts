@@ -26,14 +26,14 @@ export const openDataSources: OpenDataSource[] = [
     publisher: 'Bureau of Local Government Finance',
     description:
       'Statements of receipts and expenditures, regular income, disaster funds, and special education fund reports for every LGU.',
-    coverage: 'Philippine LGUs, FY2024 preliminary',
+    coverage: 'Local annual analysis: FY2024; BLGF also lists FY2025 quarterly reports',
     formats: 'XLSX, PDF',
     license: 'Public domain',
     href: 'https://data.bettergov.ph/datasets/9',
     localHref: '/transparency/budget',
     localLabel: 'See the San Fernando fiscal profile',
     group: 'integrated',
-    note: 'The site uses the FY2024 Statement of Receipts and Expenditures and Annual Regular Income reports.',
+    note: 'The local annual analysis uses the FY2024 SRE and ARI snapshots. BLGF now lists an FY2025 quarterly SRE workbook; because it is partial-year and its city row has not been validated here, it is linked separately rather than substituted for annual figures.',
   },
   {
     id: 'barangay-boundaries',
@@ -48,7 +48,7 @@ export const openDataSources: OpenDataSource[] = [
     localHref: '/government/barangays',
     localLabel: 'Open the barangay map',
     group: 'integrated',
-    note: 'The map uses a simplified local extract of the 59 San Fernando barangays.',
+    note: 'The BetterGov package metadata was refreshed June 16, 2026, but its source geometry remains the PSA PSGC snapshot dated October 24, 2023 and NAMRIA boundary release dated November 6, 2023. Current barangay names and count were checked against the PSA PSGC page (September 30, 2026); this does not update the geometry vintage.',
   },
   {
     id: 'openhalalan',
@@ -63,7 +63,7 @@ export const openDataSources: OpenDataSource[] = [
     localHref: '/government/officials',
     localLabel: 'See San Fernando election history',
     group: 'integrated',
-    note: 'The local extract lists city mayors and vice mayors in cycles present in the source data.',
+    note: 'The source dataset page was refreshed July 15, 2026. The local extract lists city mayors and vice mayors in cycles present in the source data; 2025 candidate middle names are incomplete in the upstream dataset.',
   },
   {
     id: 'dpwh',
@@ -78,7 +78,7 @@ export const openDataSources: OpenDataSource[] = [
     localHref: '/transparency/procurement',
     localLabel: 'See local DPWH projects',
     group: 'integrated',
-    note: 'Project tagging relies on DPWH descriptions that reference San Fernando and La Union engineering districts.',
+    note: 'The upstream dataset was last updated December 3, 2025. Project tagging relies on DPWH descriptions that reference San Fernando and La Union engineering districts; no newer snapshot was listed when checked.',
   },
   {
     id: 'philgeps',
@@ -93,7 +93,7 @@ export const openDataSources: OpenDataSource[] = [
     localHref: '/transparency/procurement',
     localLabel: 'See city contract awards',
     group: 'integrated',
-    note: 'The extract covers awards recorded under “CITY OF SAN FERNANDO, LA UNION”; it is not a payment ledger.',
+    note: 'The upstream dataset was last updated November 29, 2025. The extract covers awards recorded under “CITY OF SAN FERNANDO, LA UNION”; it is not a payment ledger, and no newer snapshot was listed when checked.',
   },
   {
     id: 'noah',
@@ -125,6 +125,19 @@ export const openDataSources: OpenDataSource[] = [
     resourceLabel: 'Local government audit agencies',
     group: 'reference',
     note: 'The dataset indexes audit agencies; it does not contain the full audit reports.',
+  },
+  {
+    id: 'coa-san-fernando-2024',
+    name: 'San Fernando City Annual Audit Report 2024',
+    publisher: 'Commission on Audit',
+    description:
+      'Annual audit report for the City Government of San Fernando, La Union.',
+    coverage: 'City annual audit report, CY2024',
+    formats: 'Web page, PDF',
+    license: 'Public domain',
+    href: 'https://www.coa.gov.ph/wpfd_file/san-fernando-city-annual-audit-report-2024/',
+    group: 'reference',
+    note: 'COA has published the city’s 2024 report; the local fiscal charts remain FY2024 city and BLGF figures with separate reporting bases.',
   },
   {
     id: 'bir',

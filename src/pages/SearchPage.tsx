@@ -31,6 +31,7 @@ export function SearchPage() {
             ? `${results.length} ${results.length === 1 ? 'match' : 'matches'} across services, offices, barangays, and pages.`
             : 'Find a service, an office, a barangay, or a page across the guide.'
         }
+        overflowVisible
       >
         <div className="max-w-2xl">
           <SearchBox key={query} defaultValue={query} large />

@@ -4,9 +4,7 @@ import { PageHero } from '../components/PageHero'
 import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
 import { SourceNote } from '../components/SourceNote'
-import { city } from '../data/city'
 import { onlineServices } from '../data/onlineServices'
-import { formatDate } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 export function OnlineServicesPage() {
@@ -114,7 +112,8 @@ export function OnlineServicesPage() {
               linkLabel="Online Services on the city website"
             >
               The city publishes and operates these systems. Accounts, payments, and data are handled by the City
-              Government of San Fernando, not by this guide. Data last verified on {formatDate(city.lastVerified)}.
+              Government of San Fernando, not by this guide. Check the official service page before submitting
+              information or making payments.
             </SourceNote>
           </div>
 

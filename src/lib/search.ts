@@ -101,6 +101,14 @@ const staticPages: SearchResult[] = [
   },
   {
     kind: 'Page',
+    title: 'Places directory',
+    description: 'Find public agencies, hospitals, schools, malls, markets, restaurants, parks, transport, and everyday services.',
+    href: '/city/places',
+    meta: 'City',
+    keywords: 'places directory agencies hospitals schools malls groceries restaurants parks hotels maps government offices',
+  },
+  {
+    kind: 'Page',
     title: 'Business and investment',
     description: 'Competitiveness, costs, permits, and investment opportunities.',
     href: '/city/business',

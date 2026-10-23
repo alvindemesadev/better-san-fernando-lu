@@ -11,7 +11,7 @@ import { city } from '../data/city'
 import { hotlines } from '../data/hotlines'
 import { offices } from '../data/offices'
 import { officials } from '../data/officials'
-import { formatDate, formatNumber, telHref } from '../lib/utils'
+import { formatNumber, telHref } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 const quickLinks = [
@@ -33,7 +33,7 @@ const featuredOfficeSlugs = [
 export function GovernmentPage() {
   usePageMeta(
     'City government',
-    'Meet the mayor and city council, browse city offices and departments, explore all 59 barangays, and find verified hotlines in San Fernando, La Union.',
+    'Meet the mayor and city council, browse city offices and departments, explore all 59 barangays, and find published emergency contacts in San Fernando, La Union.',
   )
 
   const mayor = officials.find((official) => official.role === 'City Mayor')
@@ -215,7 +215,7 @@ export function GovernmentPage() {
                 <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">Emergency contacts</p>
                 <h2 className="mt-2 text-2xl font-extrabold tracking-tight">Help, without the guesswork</h2>
                 <p className="mt-2 text-sm leading-6 text-white/60">
-                  Verified numbers for emergencies, disasters, police, and fire response.
+                  Published contacts for emergencies, disasters, police, and fire response.
                 </p>
 
                 <div className="mt-6 space-y-3">
@@ -236,6 +236,10 @@ export function GovernmentPage() {
                     </div>
                   ))}
                 </div>
+                <p className="mt-4 text-xs leading-5 text-white/55">
+                  Police and fire direct lines come from the city’s 2023 stakeholder directory; confirm they are still
+                  active. Call 911 for immediate emergencies.
+                </p>
 
                 <Link
                   to="/government/hotlines"
@@ -252,7 +256,8 @@ export function GovernmentPage() {
           <div className="mt-8">
             <SourceNote href={city.website} linkLabel="Visit the official city website">
               Official profiles, office contacts, and barangay records are published by the City Government of San
-              Fernando. Data last verified on {formatDate(city.lastVerified)}.
+              Fernando. Office and hotline details can change; use the linked government directories for the latest
+              official information.
             </SourceNote>
           </div>
         </div>

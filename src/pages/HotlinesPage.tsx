@@ -4,7 +4,7 @@ import { PageHero } from '../components/PageHero'
 import { SourceNote } from '../components/SourceNote'
 import { city } from '../data/city'
 import { hotlines } from '../data/hotlines'
-import { formatDate, telHref } from '../lib/utils'
+import { telHref } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 function dialHref(number: string) {
@@ -14,7 +14,7 @@ function dialHref(number: string) {
 export function HotlinesPage() {
   usePageMeta(
     'Emergency hotlines',
-    'Verified emergency, disaster, police, fire, health, and social welfare hotlines for San Fernando, La Union.',
+    'Published emergency, disaster, police, fire, health, and social welfare contact numbers for San Fernando, La Union.',
   )
 
   const primary = hotlines.find((hotline) => hotline.primary)
@@ -25,7 +25,7 @@ export function HotlinesPage() {
       <PageHero
         eyebrow="Emergency contacts"
         title="Hotlines and emergency numbers"
-        description="Call 911 for police, fire, or medical emergencies. For city disaster response, health, and social welfare concerns, use the verified numbers below."
+        description="Call 911 for immediate emergencies. The city and partner agencies publish the contacts below; some police and fire numbers are from the city’s 2023 stakeholder directory."
         crumbs={[{ label: 'Government', href: '/government' }, { label: 'Hotlines' }]}
       />
 
@@ -127,9 +127,20 @@ export function HotlinesPage() {
         </div>
 
         <div className="mt-8">
-          <SourceNote href={city.website} linkLabel="View the official city contacts">
-            Numbers are published by the City Government of San Fernando and its partner agencies. Verify urgent
-            details by phone. Data last verified on {formatDate(city.lastVerified)}.
+          <SourceNote
+            href="https://www.sanfernandocity.gov.ph/city-departments/"
+            linkLabel="Current City Department directory"
+            links={[
+              { href: 'https://launion.gov.ph/contact-us/', label: 'Provincial Government contacts' },
+              {
+                href: 'https://www.sanfernandocity.gov.ph/wp-content/uploads/2023/06/City-of-San-Fernando-LU-Final-1.pdf',
+                label: 'City stakeholder directory (2023)',
+              },
+            ]}
+          >
+            Health, social welfare, public safety, and CDRRMO contacts match the current city directory where listed.
+            Police and fire direct numbers come from the city’s 2023 stakeholder directory; we found no newer official
+            direct-number listing. Confirm them before non-emergency use. Call 911 for immediate emergencies.
           </SourceNote>
         </div>
       </div>

@@ -8,6 +8,24 @@ export const budgetDocs: BudgetDoc[] = [
     "description": "The city's annual spending plan, including the 2026 LEP."
   },
   {
+    "title": "CY 2026 Annual Budget (LEP)",
+    "url": "https://drive.google.com/file/d/1AwgZ8MDJkXNT6dymgqJoEIRqEI-qSwPc/view?usp=sharing",
+    "category": "Budget & expenditure",
+    "description": "Appropriation Ordinance No. 2025-11, the city's CY2026 annual budget."
+  },
+  {
+    "title": "CY 2026 Annual Investment Program",
+    "url": "https://drive.google.com/file/d/1m804eDRh0kJLIFWpgAQJqhhHWmXKPXUG/view?usp=sharing",
+    "category": "Budget & expenditure",
+    "description": "The city's CY2026 Annual Investment Program (full package)."
+  },
+  {
+    "title": "FY 2025 Quarterly Statement of Receipts and Expenditures",
+    "url": "https://blgf.gov.ph/wp-content/uploads/2025/08/SRE-QTR-2025.xlsx",
+    "category": "Budget & expenditure",
+    "description": "BLGF quarterly FY2025 LGU SRE workbook. This partial-year report is not included in the annual FY2024 charts."
+  },
+  {
     "title": "Special Education Fund",
     "url": "https://www.sanfernandocity.gov.ph/csflu_website/quarterly-bid-results-2-3-3-7/",
     "category": "Special funds",
@@ -74,10 +92,16 @@ export const budgetDocs: BudgetDoc[] = [
     "description": "Outstanding cash advances."
   },
   {
-    "title": "Auditor's Report",
+    "title": "San Fernando City Annual Audit Report 2024",
+    "url": "https://www.coa.gov.ph/wpfd_file/san-fernando-city-annual-audit-report-2024/",
+    "category": "Audit & accountability",
+    "description": "Commission on Audit annual audit report for the City of San Fernando, La Union, CY2024."
+  },
+  {
+    "title": "City Auditor's Reports archive",
     "url": "https://www.sanfernandocity.gov.ph/csflu_website/auditors-report",
     "category": "Audit & accountability",
-    "description": "Commission on Audit report on the city."
+    "description": "City-hosted auditor's report index and related files."
   },
   {
     "title": "Annual Procurement Plan",
@@ -92,10 +116,10 @@ export const budgetDocs: BudgetDoc[] = [
     "description": "Results of public bidding."
   },
   {
-    "title": "Bid Documents 2025",
-    "url": "https://www.sanfernandocity.gov.ph/csflu_website/bid-docs-2025/",
+    "title": "Bid Documents and Notices",
+    "url": "https://www.sanfernandocity.gov.ph/bid-docs-2025/",
     "category": "Procurement",
-    "description": "Bid notices and documents published by the city."
+    "description": "Current city index with CY2026 invitations and bulletins; the latest posted bid-result records found are for CY2025."
   },
   {
     "title": "Status of Infrastructure Projects",

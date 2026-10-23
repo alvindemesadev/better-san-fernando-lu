@@ -28,7 +28,7 @@ const staticRoutes: RouteMetadata[] = [
     path: '/government',
     title: 'City government',
     description:
-      'Meet the mayor and city council, browse city offices and departments, explore all 59 barangays, and find verified hotlines in San Fernando, La Union.',
+      'Meet the mayor and city council, browse city offices and departments, explore all 59 barangays, and find published emergency contacts in San Fernando, La Union.',
   },
   {
     path: '/government/officials',
@@ -52,7 +52,7 @@ const staticRoutes: RouteMetadata[] = [
     path: '/government/hotlines',
     title: 'Emergency hotlines',
     description:
-      'Verified emergency, disaster, police, fire, health, and social welfare hotlines for San Fernando, La Union.',
+      'Published emergency, disaster, police, fire, health, and social welfare contacts for San Fernando, La Union. Verify agency direct numbers before use.',
   },
   {
     path: '/government/legislation',
@@ -71,6 +71,12 @@ const staticRoutes: RouteMetadata[] = [
     title: 'Life and tourism',
     description:
       'Things to do in San Fernando, La Union: beach circuits, surfing, marine sanctuaries, heritage sites, festivals, local food, and how to get here.',
+  },
+  {
+    path: '/city/places',
+    title: 'Places directory',
+    description:
+      'Find government agencies, health facilities, schools, shopping, food, hotels, tourism sites, transport, parks, and everyday services in San Fernando, La Union.',
   },
   {
     path: '/city/business',
