@@ -23,7 +23,7 @@ const brandMarks: Array<{ name: string; icon: SimpleIcon }> = [
   { name: 'xiaomi', icon: siXiaomi },
 ]
 
-const imageMarks: Array<{ match: string; src: string; wide?: boolean }> = [
+const imageMarks: Array<{ match: string; src: string; wide?: boolean; dark?: boolean }> = [
   // Local and national public-service identities. Branches share their parent agency's mark.
   // Official assets are bundled locally to avoid third-party image requests in the directory.
   { match: 'bureau of customs', src: '/logos/gov-boc.png' },
@@ -109,9 +109,66 @@ const imageMarks: Array<{ match: string; src: string; wide?: boolean }> = [
   { match: 'philippine navy', src: '/logos/gov-navy.png' },
   { match: 'la union provincial capitol', src: '/logos/provincial-government-la-union.png' },
   { match: 'bethany hospital', src: '/logos/bethany-hospital.png' },
+  { match: 'lorma medical center', src: '/logos/lorma-medical-center.png', wide: true },
   { match: 'lumed', src: '/logos/lumed-hospital.png' },
   { match: 'bpi', src: '/logos/bpi.svg' },
   { match: 'ace hardware', src: '/logos/ace-hardware.png' },
+  { match: 'oxygen', src: '/logos/oxgn.png', wide: true },
+  { match: 'bench', src: '/logos/bench.jpg', wide: true },
+  { match: 'penshoppe', src: '/logos/penshoppe-wordmark.jpg', wide: true },
+  { match: 'puregold', src: '/logos/puregold.png', wide: true },
+  { match: 'miniso', src: '/logos/miniso.png' },
+  { match: 'potato corner', src: '/logos/potato-corner-full.png', wide: true },
+  { match: 'classic savory', src: '/logos/classic-savory.png', wide: true, dark: true },
+  { match: 'shawarma shack', src: '/logos/shawarma-shack.png' },
+  { match: 'siomai house', src: '/logos/siomai-house.png', wide: true, dark: true },
+  { match: 'botejyu', src: '/logos/botejyu.png', wide: true },
+  { match: 'breadtalk', src: '/logos/breadtalk.svg', wide: true },
+  { match: 'gong cha', src: '/logos/gong-cha.png' },
+  { match: 'waffle time', src: '/logos/waffle-time.webp', wide: true },
+  { match: 'mary grace', src: '/logos/mary-grace.webp' },
+  { match: 'robinsons la union', src: '/logos/robinsons.png', wide: true, dark: true },
+  { match: 'robinsons movieworld', src: '/logos/robinsons-movieworld.png', wide: true },
+  { match: 'robinsons department store', src: '/logos/robinsons-department-store.svg', wide: true },
+  { match: 'robinsons supermarket', src: '/logos/robinsons-supermarket.webp', wide: true },
+  { match: 'robinsons easymart', src: '/logos/robinsons-easymart.png', wide: true },
+  { match: 'digital walker', src: '/logos/digital-walker.png', wide: true },
+  { match: 'handyman', src: '/logos/handyman.png', wide: true },
+  { match: 'power mac center', src: '/logos/power-mac-center.jpg' },
+  { match: 'pc express', src: '/logos/pc-express.png', wide: true },
+  { match: 'octagon', src: '/logos/octagon.png', wide: true },
+  { match: 'daiso', src: '/logos/daiso.svg', wide: true },
+  { match: 'sm store', src: '/logos/sm-store.png', wide: true },
+  { match: 'sm supermarket', src: '/logos/sm-supermarket.png' },
+  { match: 'sm appliance center', src: '/logos/sm-appliance-center.jpg' },
+  { match: 'csi mall', src: '/logos/csi-favicon.png' },
+  { match: 'csi supermarket', src: '/logos/csi-favicon.png' },
+  { match: 'picture city', src: '/logos/picture-city.png', wide: true },
+  { match: 'david', src: '/logos/davids-salon.png', wide: true, dark: true },
+  { match: 'conti', src: '/logos/contis.png' },
+  { match: 'mesa', src: '/logos/mesa.svg', wide: true },
+  { match: 'turks', src: '/logos/turks.png', wide: true, dark: true },
+  { match: 'ramen nagi', src: '/logos/ramen-nagi.png' },
+  { match: 'italian', src: '/logos/italianis.png', wide: true },
+  { match: 'tgi fridays', src: '/logos/tgi-fridays.png', wide: true },
+  { match: 'chili', src: '/logos/chilis.png', wide: true },
+  { match: 'gamextreme', src: '/logos/gamextreme.png', wide: true },
+  { match: 'watsons', src: '/logos/watsons.png' },
+  { match: 'aquaflask', src: '/logos/aquaflask.png', wide: true, dark: true },
+  { match: 'mandaue foam', src: '/logos/mandaue-foam.jpg' },
+  { match: 'infinix', src: '/logos/infinix.png', wide: true, dark: true },
+  { match: 'kidzooona', src: '/logos/kidzooona.svg', wide: true },
+  { match: 'anytime fitness', src: '/logos/anytime-fitness.svg', wide: true },
+  { match: 'famous belgian', src: '/logos/famous-belgian-waffles.png' },
+  { match: 'executive optical', src: '/logos/executive-optical.svg', wide: true },
+  { match: 'levi', src: '/logos/levis.svg', wide: true },
+  { match: 'world balance', src: '/logos/world-balance.svg', wide: true },
+  { match: 'surplus', src: '/logos/surplus.png', wide: true, dark: true },
+  { match: 'robinsons appliances', src: '/logos/robinsons-appliances.png' },
+  { match: 'toy kingdom', src: '/logos/toy-kingdom.png', wide: true },
+  { match: 'pet express', src: '/logos/pet-express.png', wide: true },
+  { match: 'sports central', src: '/logos/sports-central.png', wide: true },
+  { match: 'kidzoona', src: '/logos/kidzooona.svg', wide: true },
   { match: 'travelite express hotel', src: '/logos/travelite-express-hotel.png', wide: true },
   { match: 'aureo', src: '/logos/aureo-la-union.png' },
   { match: 'lbc', src: '/logos/lbc-express.png' },
@@ -234,8 +291,16 @@ export function PlaceMark({ item, fallback: Fallback }: { item: PlaceRecord; fal
 
   if (imageMark) {
     return (
-      <span className={`inline-flex ${imageMark.wide ? 'h-10 w-14' : 'size-10'} shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line bg-white p-1.5`} aria-hidden="true">
+      <span className={`inline-flex ${imageMark.wide ? 'h-10 w-14' : 'size-10'} shrink-0 items-center justify-center overflow-hidden rounded-xl border border-line ${imageMark.dark ? 'bg-ink-950' : 'bg-white'} p-1.5`} aria-hidden="true">
         <img src={imageMark.src} alt="" className="size-full object-contain" loading="lazy" />
+      </span>
+    )
+  }
+
+  if (item.id.endsWith('-map') || categoryListingIds.has(item.id)) {
+    return (
+      <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700" aria-hidden="true">
+        <Fallback className="size-5" />
       </span>
     )
   }
@@ -264,14 +329,6 @@ export function PlaceMark({ item, fallback: Fallback }: { item: PlaceRecord; fal
         <svg viewBox="0 0 24 24" className="size-full" role="presentation">
           <path d={brand.path} fill={`#${brand.hex}`} />
         </svg>
-      </span>
-    )
-  }
-
-  if (item.id.endsWith('-map') || categoryListingIds.has(item.id)) {
-    return (
-      <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700" aria-hidden="true">
-        <Fallback className="size-5" />
       </span>
     )
   }

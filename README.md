@@ -15,7 +15,7 @@ This is not an official City Government website. Official sources are linked thr
 - City life and tourism page with city-sourced photography, a visitor-map preview, and expandable activity details
 - Searchable city places directory for public agencies, health, schools, shopping, dining, stays, attractions, transport, and everyday services, with live Google Maps category searches
 - Site-wide search suggestions, sitemap, accessibility, privacy, and terms pages
-- Responsive desktop and mobile navigation with sticky-header-aware in-page links
+- Responsive desktop and mobile navigation with sticky-header-aware in-page links and a site-wide back-to-top control
 
 ## Maps and navigation
 
@@ -23,7 +23,7 @@ The barangay map is rendered with MapLibre GL JS from the checked-in GeoJSON at 
 
 Hover a barangay to preview it. Click or tap one to zoom to it and raise the selected polygon in 3D; select it again or use **Reset map** to return to the city view. The map supports scroll or touch zoom and bounded drag-to-pan. The selected barangay's profile is linked from its preview.
 
-The map implementation lives in `src/components/BarangayMapCanvas.tsx`; the GeoJSON file supplies boundary data, not the rendering code. In-page links such as `#services`, `#news`, and the skip-to-content link account for the sticky header. Smooth scrolling respects the user's reduced-motion preference.
+The map implementation lives in `src/components/BarangayMapCanvas.tsx`; the GeoJSON file supplies boundary data, not the rendering code. In-page links such as `#services`, `#news`, and the skip-to-content link account for the sticky header. Smooth scrolling respects the user's reduced-motion preference. The site-wide **Back to top** button appears after scrolling down and follows the same reduced-motion setting.
 
 ## Development
 
@@ -68,6 +68,8 @@ The workflow caches `scripts/.cache/` between runs and revalidates cached source
 Each production build prints a manual data freshness report. Records with no recorded verification date are listed for review; this report does not claim those records have been rechecked.
 
 The places directory at `/city/places` is a discovery index, not a business-permit census. It includes the site's city-office and 59 barangay profiles, named regional/provincial public-agency offices from La Union's February 27, 2026 roster, tertiary schools from the province's 2026 list, destination entries from its 2023 tourism inventory, and mall/operator listings. Category buttons open live Google Maps searches for additional listings. Check the linked sources and current map/business profile before relying on operating status, hours, or access.
+
+Verified organization and brand marks are bundled locally and attributed in the directory. Listings without a verified, suitable mark use initials or a category symbol; these are directory identifiers, not official logos. See [logo sources and exceptions](public/logos/SOURCES.md).
 
 See [DATA-INVENTORY.md](DATA-INVENTORY.md) for sources and data caveats.
 
