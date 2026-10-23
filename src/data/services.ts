@@ -1276,7 +1276,7 @@ export const services: Service[] = [
   },
   {
     "slug": "granting-and-liquidation-of-petty-cash-advance",
-    "title": "Granting and Liquidation of Petty Cash Advance",
+    "title": "Collection and Remittance Procedure",
     "office": "Office of the City Treasurer",
     "officeCode": "cto",
     "category": "taxes",
@@ -1751,15 +1751,15 @@ export const services: Service[] = [
   },
   {
     "slug": "issuance-of-certificate-of-final-electrical-inspection-for-electric-meter-connection-2",
-    "title": "Issuance of Certificate of Final Electrical Inspection for Electric Meter Connection",
+    "title": "Issuance of Tax Withheld for Creditors, Contractors or Suppliers",
     "office": "Office of the City Accountant",
     "officeCode": "aca",
-    "category": "infrastructure",
+    "category": "taxes",
     "classification": "Simple",
     "transactionType": "G2C – Government to Citizen",
-    "whoMayAvail": "All owners of residential, institutional, commercial, and industrial building in the city.",
-    "description": "As per City Tax Ordinance No. 2009-002, series of 2009, Chapter 3, Article L, the Office of the City Engineer through the Electrical Section conducts electrical safety inspection, testing, and verification of the electrical wirings of residential, institutional, commercial, and industrial building before the installation of electric meters by the electric power service provider to ensure their conformance to the provisions of the Philippine Electrical Code and issue Certificate of Final Electrical Inspection if they are found compliant to the code.",
-    "summary": "Issuance of Certificate of Final Electrical Inspection for Electric Meter Connection at the Office of the City Accountant.",
+    "whoMayAvail": "Creditors, contractors, and suppliers who need certification of taxes withheld from their payments by the city.",
+    "description": "The Office of the City Accountant issues tax-withheld certifications for creditors, contractors, and suppliers.",
+    "summary": "Request a tax-withheld certification from the Office of the City Accountant.",
     "fees": "NO FEES AND CHARGES REQUIRED",
     "pdfs": [
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/Issuance-of-Tax-REQUIREMENTS-ACA.pdf",
@@ -2948,7 +2948,7 @@ export const services: Service[] = [
   },
   {
     "slug": "preparation-and-submission-of-supplemental-budget-s",
-    "title": "Preparation and Submission of Supplemental Budget/s",
+    "title": "Assisting in the Authorization of Annual/Supplemental Budget/s",
     "office": "Office of the City Budget Officer",
     "officeCode": "cbo",
     "category": "health",

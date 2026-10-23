@@ -120,7 +120,8 @@ export function BarangaysPage() {
               id="barangay-search-results"
               role="listbox"
               aria-label="Barangay search results"
-              className="scrollbar-slim absolute left-0 right-0 top-full z-40 mt-2 max-h-80 overflow-y-auto rounded-2xl border border-line bg-white p-2 shadow-hero"
+              data-lenis-prevent
+              className="scrollbar-slim absolute left-0 right-0 top-full z-40 mt-2 max-h-80 overflow-y-auto overscroll-contain rounded-2xl border border-line bg-white p-2 shadow-hero"
             >
               {suggestions.length ? (
                 suggestions.map((barangay, index) => (

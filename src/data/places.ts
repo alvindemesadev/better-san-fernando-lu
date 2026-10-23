@@ -166,6 +166,60 @@ const nisceBranchPhoto: PlaceImage = {
   credit: 'Parlon',
   creditUrl: 'https://www.parlon.ph/parlon/nisce-skin-medispa/nisce-skin-medispa-robinsons-la-union',
 }
+const plazaHotelPhoto: PlaceImage = {
+  src: '/places/plaza-hotel-2018.jpg',
+  alt: 'Plaza Hotel sign on Manila North Road in San Fernando, photographed in 2018',
+  credit: 'Patrickroque01 · Wikimedia Commons · CC BY-SA 4.0',
+  creditUrl: 'https://commons.wikimedia.org/wiki/File:CSFLU_city_center_-_Manila_North_Road_southbound_(San_Fernando,_La_Union)(2018-11-25).jpg',
+}
+const mannaMallPhoto: PlaceImage = {
+  src: '/places/manna-mall.jpg',
+  alt: 'Manna Mall storefront in Pagdaraogan, San Fernando',
+  credit: 'Judgefloro · Wikimedia Commons · CC0 1.0',
+  creditUrl: 'https://commons.wikimedia.org/wiki/File:2117Pagdaraoan,_San_Fernando,_La_Union_03.jpg',
+}
+const blueMarlinPhoto: PlaceImage = {
+  src: '/places/blue-marlin-resort.jpg',
+  alt: 'La Union Blue Marlin Resort facade and sign',
+  credit: 'Tripadvisor listing photo',
+  creditUrl: 'https://www.tripadvisor.com/Hotel_Review-g298454-d8684316-Reviews-La_Union_Blue_Marlin_Resort-San_Fernando_La_Union_La_Union_Province_Ilocos_Region_Luzo.html',
+}
+const jvResortPhoto: PlaceImage = {
+  src: '/places/jv-resort.jpg',
+  alt: 'Interior photo from the J&V Hotel and Resort listing',
+  credit: 'Expedia listing photo',
+  creditUrl: 'https://www.expedia.com.ph/San-Fernando-Hotels-JV-Hotel-And-Resort.h92498179.Hotel-Information',
+}
+const locationOneEightyPhoto: PlaceImage = {
+  src: '/places/location-one-eighty.jpg',
+  alt: 'Exterior photo from the Location One Eighty hotel listing',
+  credit: 'Agoda listing photo',
+  creditUrl: 'https://www.agoda.com/location-one-eighty/hotel/la-union-ph.html',
+}
+const formochaPhoto: PlaceImage = {
+  src: '/places/formocha-taiwan-milk-tea.jpg',
+  alt: 'Formocha Taiwan Milk Tea branded drinks',
+  credit: 'Pinoy Entrepreneur',
+  creditUrl: 'https://www.pinoy-entrepreneur.com/2021/04/22/formocha-taiwan-milktea/',
+}
+const sagatCrustPhoto: PlaceImage = {
+  src: '/places/sagat-crust-food.jpg',
+  alt: 'Food photo from Sagat Crust Food House at Robinsons Place San Fernando La Union',
+  credit: 'Sagat Crust Food House · Foodpanda listing',
+  creditUrl: 'https://www.foodpanda.ph/restaurant/nctu/sagat-crust-food-house-robinsons-place-san-fernando-la-union',
+}
+const takoyakiLabPhoto: PlaceImage = {
+  src: '/places/takoyaki-lab-food.jpg',
+  alt: 'Takoyaki dish from Takoyaki Lab at Robinsons Place San Fernando La Union',
+  credit: 'Takoyaki Lab · Foodpanda listing',
+  creditUrl: 'https://www.foodpanda.ph/restaurant/fpvc/takoyaki-lab-robinsons-place-san-fernando-la-union',
+}
+const avocadoriaPhoto: PlaceImage = {
+  src: '/places/avocadoria-brand-display.jpg',
+  alt: 'Avocadoria.ph branded kiosk and menu display',
+  credit: 'Philippine Franchise Association',
+  creditUrl: 'https://www.pfa.org.ph/product-page/avocadoria-ph',
+}
 
 const placePhotosById: Record<string, PlaceImage> = {
   'city-hall': tourismPhotos['San Fernando City Hall'],
@@ -194,6 +248,11 @@ const placePhotosById: Record<string, PlaceImage> = {
   'ma-cho': tourismPhotos['Ma-Cho Temple'],
   'friendship-pagoda': tourismPhotos['Filipino-Chinese Friendship Pagoda'],
   'pindangan-ruins': tourismPhotos['Pindangan Ruins'],
+  'manna-mall': mannaMallPhoto,
+  'city-plaza-hotel': plazaHotelPhoto,
+  'blue-marlin': blueMarlinPhoto,
+  'jv-resort': jvResortPhoto,
+  'location-180': locationOneEightyPhoto,
 }
 
 const placePhotosByName: Record<string, PlaceImage> = {
@@ -203,6 +262,10 @@ const placePhotosByName: Record<string, PlaceImage> = {
   'Bacsil Ridge Monument and Viewdeck': tourismPhotos['Bacsil Ridge Monument'],
   'Poro Point San Fernando Airport': airportPhoto,
   'Nisce Skin Clinic': nisceBranchPhoto,
+  'Formocha Taiwan Milk Tea': formochaPhoto,
+  'Sagat Crust': sagatCrustPhoto,
+  'Takoyaki Lab': takoyakiLabPhoto,
+  'Avocadoria': avocadoriaPhoto,
 }
 
 function place(
@@ -395,15 +458,18 @@ const agencyPlaces = agencyRows.map(([name, address, category], index) => {
   )
 })
 
-const cityOfficePlaces = offices.map((office) =>
-  place(
-    `city-office-${office.slug}`,
-    office.name,
-    'government',
-    office.address && office.address !== '*' ? office.address : 'City Hall, City of San Fernando, La Union',
-    'City office profile',
-    `/government/offices/${office.slug}`,
-  ),
+// The museum already has a curated Places entry; keep its office detail page, but don't list it twice here.
+const cityOfficePlaces = offices
+  .filter((office) => office.slug !== 'la-union-science-centrum-and-museum')
+  .map((office) =>
+    place(
+      `city-office-${office.slug}`,
+      office.name,
+      'government',
+      office.address && office.address !== '*' ? office.address : 'City Hall, City of San Fernando, La Union',
+      'City office profile',
+      `/government/offices/${office.slug}`,
+    ),
 )
 
 const barangayHallPlaces = barangays.map((barangay) =>
@@ -420,7 +486,6 @@ const barangayHallPlaces = barangays.map((barangay) =>
 const schoolRows = [
   'AMA Computer College – La Union, Inc.',
   'CICOSAT Colleges',
-  'Central Ilocandia College of Science and Technology, Inc.',
   'Don Mariano Marcos Memorial State University – Mid La Union Campus',
   'Don Mariano Marcos Memorial State University – Open University System',
   'Leading Edge International Aviation Academy, Inc.',
@@ -438,26 +503,10 @@ const schoolPlaces = schoolRows.map((name, index) =>
 )
 
 const tourismNames = [
+  // Other tourism records are already represented by their curated place cards or office profiles.
   'Abut Bamboo Craft-making (Basket Making Industry)',
-  'Bacsil Ridge Monument',
-  'Carlatan Surfing Area',
-  'Car-rile Tower (Moro Watchtower)',
-  'Christ the Redeemer',
   'Halo-Halo de Iloko',
-  'Heroes Hill',
   'Ibit’s Farm',
-  'Kasay Marine Sanctuary',
-  'La Union Botanical Garden',
-  'La Union Provincial Capitol',
-  'La Union Science Centrum and Museum',
-  'Lingsat Marine Sanctuary',
-  'Ma-Cho Temple',
-  'Filipino-Chinese Friendship Pagoda',
-  'Pindangan Ruins',
-  'Poro Marine Protected Area',
-  'Poro Point Lighthouse',
-  'San Fernando City Hall',
-  'San Fernando Beach Coast',
   'Tomb of the Unknown Soldier',
 ]
 
@@ -481,7 +530,7 @@ const mallFood = [
   'Monster Wings', 'Mr. Kimbob', 'Pepa Wings', 'Potato Corner', 'Sagat Crust', 'Sam’s Everything on Sticks', 'Seashack',
   'Shawarma Shack', 'Siomai House', 'Sonyda', 'Takoyaki Lab', 'Turks', 'Waffle Time', 'Yeobo Corndog', 'ZYX Katsumaki',
   'Buko Island', 'Citi Bites Pizza & Pasta', 'Don’s Original Spanish Churros', 'Macao Imperial Tea', 'Lutong Bahay ni Manang',
-  'Avocadaria', 'Lechon House',
+  'Avocadoria', 'Lechon House',
 ]
 const mallServices = [
   'Beautederm', 'Booze and Barbers', 'David’s Salon & Topten Nails', 'Dr. Brows', 'iSports', 'Kidzoona', 'Kids Box by Kidzoona', 'Life 4 Cuts',
@@ -504,9 +553,10 @@ const tenantPlaces = [
   ...mallServices.map((name, index) => place(`rob-service-${index + 1}`, name, 'services', mallAddress, 'Robinsons Malls tenant directory', robinsonsDirectory, 'Listed in the mall’s services and leisure directory.')),
   place('rob-authorized-lotto', 'Authorized Lotto Agent – Robinsons La Union', 'finance', mallAddress, 'Robinsons Malls tenant directory', robinsonsDirectory),
   place('rob-bpi', 'BPI – Robinsons La Union', 'finance', mallAddress, 'Robinsons Malls tenant directory', robinsonsDirectory),
-  place('rob-robinsons-bank-bpi', 'Robinsons Bank (BPI) – Robinsons La Union', 'finance', mallAddress, 'Robinsons Malls tenant directory', robinsonsDirectory),
   place('rob-lorma-lifecheck', 'Lorma LifeCheck – Robinsons La Union', 'health', mallAddress, 'Robinsons Malls tenant directory', robinsonsDirectory),
-  ...smRetailers.map((name, index) => place(`sm-shop-${index + 1}`, name, name === 'SM Supermarket' ? 'shopping' : name === 'Watsons' ? 'health' : name === 'Ace Hardware' ? 'everyday' : 'shopping', smMall, 'SM Prime official mall opening directory · Oct. 2025', 'https://www.smprime.com/company_releases/sm-prime-opens-89th-mall-sm-city-la-union-to-feature-sandbox-outdoor-space/')),
+  ...smRetailers.flatMap((name, index) => name === 'SM Supermarket' ? [] : [
+    place(`sm-shop-${index + 1}`, name, name === 'Watsons' ? 'health' : name === 'Ace Hardware' ? 'everyday' : 'shopping', smMall, 'SM Prime official mall opening directory · Oct. 2025', 'https://www.smprime.com/company_releases/sm-prime-opens-89th-mall-sm-city-la-union-to-feature-sandbox-outdoor-space/'),
+  ]),
   ...smFoodHall.map((name, index) => place(`sm-food-${index + 1}`, name, 'food', smMall, 'SM Food Hall launch directory · Oct. 2025', 'https://businessmirror.com.ph/2025/10/21/sm-food-hall-opens-at-sm-city-la-union-and-its-a-destination-for-a-new-wave-of-flavors/')),
   place('sm-italiannis', 'Italianni’s – SM City La Union', 'food', smMall, 'Reported open · Feb. 2026', 'https://businessmirror.com.ph/2026/02/14/surfs-up-italiannis-and-tgifridays-are-now-open-in-sm-city-la-union/'),
   place('sm-tgif', 'TGI Fridays – SM City La Union', 'food', smMall, 'Reported open · Feb. 2026', 'https://businessmirror.com.ph/2026/02/14/surfs-up-italiannis-and-tgifridays-are-now-open-in-sm-city-la-union/'),

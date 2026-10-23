@@ -206,7 +206,8 @@ export function SearchBox({
                 id={listboxId}
                 role="listbox"
                 aria-label="Search suggestions"
-                className="scrollbar-slim max-h-[min(22rem,55vh)] overflow-y-auto p-2"
+                data-lenis-prevent
+                className="scrollbar-slim max-h-[min(22rem,55vh)] overflow-y-auto overscroll-contain p-2"
               >
                 {suggestions.map((result, index) => {
                   const Icon = resultIcons[result.kind]
@@ -268,7 +269,8 @@ export function SearchBox({
                 id={listboxId}
                 role="listbox"
                 aria-label="Popular searches"
-                className="scrollbar-slim max-h-[min(22rem,55vh)] overflow-y-auto p-2 pt-0"
+                data-lenis-prevent
+                className="scrollbar-slim max-h-[min(22rem,55vh)] overflow-y-auto overscroll-contain p-2 pt-0"
               >
                 {defaultSuggestions.map((term, index) => {
                   const isActive = index === selectedDefaultIndex

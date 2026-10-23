@@ -356,9 +356,11 @@ export function BarangayMapCanvas({ resetToken, onSelect, onHover }: BarangayMap
         onClick={clearSelection}
         title="Reset map view"
         aria-label="Reset map view"
-        className="absolute right-2.5 top-[5.5rem] z-10 inline-flex size-11 items-center justify-center rounded-md bg-white text-ink-700 shadow-md ring-1 ring-black/10 transition hover:bg-surface"
+        className="group absolute right-[2.5px] top-[5.5rem] z-10 inline-flex size-11 cursor-pointer items-center justify-center rounded-md text-ink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
       >
-        <RotateCcw aria-hidden="true" className="size-3.5" />
+        <span className="inline-flex size-[29px] items-center justify-center rounded-[4px] bg-white shadow-[0_0_0_2px_rgba(0,0,0,0.1)] transition-colors group-hover:bg-black/5">
+          <RotateCcw aria-hidden="true" className="size-3.5" />
+        </span>
       </button>
     </div>
   )

@@ -12,7 +12,7 @@ This is not an official City Government website. Official sources are linked thr
 - FY2024 revenue, spending, SEF, and LDRRMF data
 - Budget documents, audit reports, procurement records, and a DPWH project map
 - Legislation, election results, and a searchable City Government news archive
-- City life and tourism page with city-sourced photography, a visitor-map preview, and expandable activity details
+- City life and tourism page with a photo-led introduction, credited activity cards, a visitor-map preview, travel guidance, and festival listings
 - Searchable city places directory for public agencies, health, schools, shopping, dining, stays, attractions, transport, and everyday services, with live Google Maps category searches
 - Site-wide search suggestions, sitemap, accessibility, privacy, and terms pages
 - Responsive desktop and mobile navigation with sticky-header-aware in-page links and a site-wide back-to-top control
@@ -42,6 +42,15 @@ npm test
 npm run build
 python -m py_compile scripts/refresh_data.py
 ```
+
+## Contributing and project policies
+
+- [Contributing guide](CONTRIBUTING.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Security reporting](SECURITY.md)
+- [ISC license](LICENSE)
+
+The ISC license applies to the project's software code. Data, photographs, logos, and other third-party assets retain the terms and attribution stated by their respective sources.
 
 ## Production build
 
