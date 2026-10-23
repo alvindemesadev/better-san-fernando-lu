@@ -16,8 +16,8 @@ function routeMetadataPlugin(): Plugin {
     async writeBundle(outputOptions) {
       const outDir = resolve(outputOptions.dir ?? 'dist')
       const template = await readFile(join(outDir, 'index.html'), 'utf8')
-      const configuredOrigin = process.env.VITE_SITE_ORIGIN ?? process.env.CF_PAGES_URL ?? ''
-      const siteOrigin = configuredOrigin ? new URL(configuredOrigin).origin : ''
+      const configuredOrigin = process.env.VITE_SITE_ORIGIN ?? process.env.CF_PAGES_URL ?? 'https://bettersanfernando.pages.dev'
+      const siteOrigin = configuredOrigin ? new URL(configuredOrigin).origin : 'https://bettersanfernando.pages.dev'
       const pages = buildRouteMetadata()
 
       for (const page of pages) {
@@ -29,6 +29,23 @@ function routeMetadataPlugin(): Plugin {
       }
 
       console.info(`Prerendered route metadata for ${pages.length} routes.`)
+
+      const sitemapEntries = pages
+        .map((page) => {
+          const loc = new URL(page.path, siteOrigin).toString()
+          const lastmod = page.lastmod ?? new Date().toISOString().split('T')[0]
+          const changefreq = page.changefreq ?? (page.path === '/' ? 'daily' : page.path.startsWith('/news') ? 'weekly' : 'monthly')
+          const priority = page.priority !== undefined ? page.priority.toFixed(1) : page.path === '/' ? '1.0' : page.path.split('/').length === 2 ? '0.8' : '0.6'
+          return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
+        })
+        .join('\n')
+
+      const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>\n`
+      await writeFile(join(outDir, 'sitemap.xml'), sitemapXml, 'utf8')
+      console.info(`Generated sitemap.xml for ${pages.length} routes.`)
+
+      const robotsTxt = `User-agent: *\nAllow: /\n\nSitemap: ${siteOrigin}/sitemap.xml\n`
+      await writeFile(join(outDir, 'robots.txt'), robotsTxt, 'utf8')
       const freshnessReport = formatDataFreshnessReport()
       console.info(`\n${freshnessReport}`)
 
