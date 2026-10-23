@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PageHero } from '../components/PageHero'
 import { Reveal } from '../components/Reveal'
+import { CustomSelect } from '../components/CustomSelect'
 import { SectionHeading } from '../components/SectionHeading'
 import { SourceNote } from '../components/SourceNote'
 import { StatCard } from '../components/StatCard'
@@ -153,14 +154,12 @@ export function LegislationPage() {
                   </button>
                 ) : null}
               </label>
-              <select
-                aria-label="Filter by record type"
+              <CustomSelect
+                ariaLabel="Filter by record type"
                 value={kind}
-                onChange={(event) => setKind(event.target.value)}
-                className="rounded-xl border border-line bg-surface px-3 py-2.5 text-sm font-semibold text-ink-700 outline-none focus:border-brand-300 focus:ring-2 focus:ring-brand-100"
-              >
-                {kinds.map((item) => <option key={item}>{item}</option>)}
-              </select>
+                options={kinds.map((item) => ({ value: item, label: item }))}
+                onChange={setKind}
+              />
             </div>
 
             {filtered.length ? (

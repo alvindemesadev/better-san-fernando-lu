@@ -46,3 +46,18 @@ The directory bundles locally hosted photos published by local government, place
 | `avocadoria-brand-display.jpg` | Avocadoria.ph | [Philippine Franchise Association listing](https://www.pfa.org.ph/product-page/avocadoria-ph); illustrative brand display, not identified as a photo of the San Fernando branch. |
 
 Photos are optimized locally and displayed with lazy loading. Listings without a verified usable place photo continue to use their available agency/brand mark or a text monogram; those marks are not presented as official logos.
+
+## Festival photos
+
+| Local file | Card | Published image |
+| --- | --- | --- |
+| `public/city/festivals/cityhood-parade.webp` | Cityhood Foundation Anniversary | [City Government 2026 anniversary parade gallery](https://www.sanfernandocity.gov.ph/lolos-and-lolas-celebrated-in-the-senior-citizens-night/) |
+| `public/city/festivals/pindangan-festival.webp` | Pindangan Festival | [City Government 2026 Pindangan Festival street-dancing gallery](https://www.sanfernandocity.gov.ph/cgsflu-opens-agri-tourism-and-community-fair-kicks-off-28th-cityhood-anniversary/) |
+| `public/city/festivals/agri-tourism-fair.webp` | Global Agri-Turismo Festival | [City Government 2026 Agri-Tourism and Community Fair gallery](https://www.sanfernandocity.gov.ph/manong-dong-city-legal-office-staff-attend-explanatory-meeting-on-the-justice-zone-initiative/) |
+| `public/city/festivals/sundown-music-festival.webp` | Sundown Music and Arts Festival | [City Government Sundown Music and Arts Festival gallery](https://www.sanfernandocity.gov.ph/33rd-hawaii-philippines-trade-mission-makes-a-stop-in-san-fernando-la-union/) |
+| `public/city/festivals/mama-ma-cho-feast.webp` | Matzu Festival | [City Government 2025 Feast of Mama Ma-Cho gallery](https://www.sanfernandocity.gov.ph/city-of-san-fernando-exhibits-hospitality-talents-during-raniag-region-1-creative-tour/) |
+| `public/city/festivals/create-city-festival-scene.webp` | CREATE Festival | [City tourism page festival image](https://www.sanfernandocity.gov.ph/life-in-csf/). Representative city festival image; not identified as a CREATE Festival photo. |
+| `public/city/festivals/carlatan-mangrove-planting.webp` | Parakad Festival | [Provincial Government 2019 Carlatan mangrove planting photo](https://launion.gov.ph/luatta-celebrates-anniversary-through-mangrove-planting/). Related mangrove activity, not a photo of the 2024 Parakad Festival. |
+| `public/city/festivals/maykan-mangan-festival.webp` | Maykan Mangan Festival | [City Government 2025 Maykan Mangan opening/event gallery](https://www.sanfernandocity.gov.ph/cgsflu-awarded-with-the-cna-certificate-of-registration/) |
+
+The Feast of St. William card uses the existing Wikimedia Commons photo of the Cathedral of Saint William as the venue image; it is not presented as a photograph of the feast itself.

@@ -4,6 +4,7 @@ The directory uses locally bundled logos or profile imagery, with the source and
 
 | Asset | Organization / brand | Source / attribution |
 | --- | --- | --- |
+| `bettergov-emblem-inversed.svg` | BetterGov.ph | Official BetterGov emblem from the [BetterGov website](https://bettergov.ph/logos/svg/BetterGov_Emblem-Outline-Inversed.svg), used as a linked mark in the civic-project footer. |
 | `gov-boc.png` | Bureau of Customs | [Official Bureau of Customs website](https://customs.gov.ph/) |
 | `gov-bi.png` | Bureau of Immigration | [Official BI eServices portal](https://e-services.immigration.gov.ph/) |
 | `gov-bjmp.png` | Bureau of Jail Management and Penology | Updated to the flat 2D seal in the [official BJMP Brand Identity Manual, BJMP-CDS-MC-147](https://naro.law.upd.edu.ph/issuances/327). The manual identifies the mark using “Safekeeping and Development”; the older ampersand version is marked as outdated. |

@@ -133,7 +133,7 @@ export function TransparencyPage() {
                     Every DPWH project linked to the city
                   </h2>
                   <p className="mt-1 text-sm leading-6 text-ink-600">
-                    Contract values, status, contractors, barangays, and an interactive project map.
+                    Contract values, status, contractors, and locations as published in the source records.
                   </p>
                 </div>
                 <span className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-brand-700">

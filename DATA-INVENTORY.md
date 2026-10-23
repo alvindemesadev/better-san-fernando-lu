@@ -154,10 +154,10 @@ The phase groupings below describe the original proposal from the survey, not a 
 - City: profile, life and tourism, places directory, and business pages.
 - Places directory: searchable place index for agencies, safety and justice, health and recovery, schools, shopping, food, personal services, accommodation, tourism, parks, transport, finance, faith, and everyday essentials. Category links search live Google Maps listings to surface additional candidates.
 - Life and tourism: activity and travel details follow the City Government's [Life in CSF](https://www.sanfernandocity.gov.ph/life-in-csf/) page. The page uses individually credited city and provincial photos, a compressed preview of the official 2022 City AdvenTour map, and prompts visitors to confirm current access, business details, dates, and schedules.
-- Transparency: budget, procurement, DPWH infrastructure projects and project map, and open data.
+- Transparency: budget, procurement, DPWH infrastructure projects, and open data.
 - News: latest updates, archive, and individual stories.
 - Site support: search, sitemap, accessibility, privacy, terms, and FAQ pages.
-- Maps: MapLibre GL barangay boundaries with a selected-area 3D extrusion; project locations are shown separately on the project map. Boundary and population data use different vintages (2023 boundary source and 2024 census population).
+- Maps: MapLibre GL barangay boundaries with a selected-area 3D extrusion; project records show published locations and contract statuses. Boundary and population data use different vintages (2023 boundary source and 2024 census population).
 
 ### Source review — 2026-10-23
 

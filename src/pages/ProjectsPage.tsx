@@ -1,8 +1,8 @@
 import { ArrowRight, ExternalLink, Search, X } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CustomSelect } from '../components/CustomSelect'
 import { PageHero } from '../components/PageHero'
-import { ProjectMap } from '../components/ProjectMap'
 import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
 import { SourceNote } from '../components/SourceNote'
@@ -18,7 +18,7 @@ const years = ['All years', ...Array.from(new Set(dpwhProjects.map((project) => 
 export function ProjectsPage() {
   usePageMeta(
     'Infrastructure projects',
-    'DPWH infrastructure projects linked to San Fernando, La Union: budgets, status, contractors, locations, and a project map.',
+    'DPWH infrastructure projects linked to San Fernando, La Union: budgets, status, contractors, and published locations.',
   )
 
   const [query, setQuery] = useState('')
@@ -40,7 +40,6 @@ export function ProjectsPage() {
       }),
     [category, normalizedQuery, status, year],
   )
-  const mappedCount = dpwhProjects.filter((project) => project.latitude !== null && project.longitude !== null).length
   const completed = dpwhProjects.filter((project) => project.status === 'Completed').length
   const totalBudget = dpwhProjects.reduce((total, project) => total + project.budget, 0)
   const shown = filtered.slice(0, visible)
@@ -93,30 +92,10 @@ export function ProjectsPage() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <StatCard value={formatNumber(dpwhProjects.length)} label="Projects" note="DPWH records linked to the city" />
               <StatCard value={formatPeso(totalBudget)} label="Contract value" note="Not actual payments" />
-              <StatCard value={formatNumber(completed)} label="Completed" note={`${formatNumber(mappedCount)} with map coordinates`} />
+              <StatCard value={formatNumber(completed)} label="Completed" note="Based on DPWH record status" />
               <StatCard value={`${Math.round((completed / dpwhProjects.length) * 100)}%`} label="Completion rate" note="By project count" />
             </div>
           </Reveal>
-
-          <section className="mt-12">
-            <Reveal>
-              <SectionHeading
-                eyebrow="Project map"
-                title="Where the work is"
-                description="Project points are plotted from DPWH latitude and longitude. Select a point to inspect the contract."
-              />
-            </Reveal>
-            <div className="mt-6">
-              <ProjectMap />
-            </div>
-            <div className="mt-4">
-              <SourceNote href="https://data.bettergov.ph/datasets/19" linkLabel="DPWH infrastructure data">
-                Coordinates are approximate and a few projects fall outside the city boundary because the source
-                project description names San Fernando while the work is mapped nearby. Use the table for the exact
-                record.
-              </SourceNote>
-            </div>
-          </section>
 
           <section className="mt-14 border-t border-line pt-10">
             <Reveal>
@@ -144,15 +123,24 @@ export function ProjectsPage() {
                   </button>
                 ) : null}
               </label>
-              <select aria-label="Filter by status" value={status} onChange={(event) => { setStatus(event.target.value); setVisible(30) }} className="rounded-xl border border-line bg-surface px-3 py-2.5 text-sm font-semibold text-ink-700 outline-none focus:border-brand-300 focus:ring-2 focus:ring-brand-100">
-                {statuses.map((item) => <option key={item}>{item}</option>)}
-              </select>
-              <select aria-label="Filter by category" value={category} onChange={(event) => { setCategory(event.target.value); setVisible(30) }} className="rounded-xl border border-line bg-surface px-3 py-2.5 text-sm font-semibold text-ink-700 outline-none focus:border-brand-300 focus:ring-2 focus:ring-brand-100">
-                {categories.map((item) => <option key={item}>{item}</option>)}
-              </select>
-              <select aria-label="Filter by year" value={year} onChange={(event) => { setYear(event.target.value); setVisible(30) }} className="rounded-xl border border-line bg-surface px-3 py-2.5 text-sm font-semibold text-ink-700 outline-none focus:border-brand-300 focus:ring-2 focus:ring-brand-100">
-                {years.map((item) => <option key={item}>{item}</option>)}
-              </select>
+              <CustomSelect
+                ariaLabel="Filter by status"
+                value={status}
+                options={statuses.map((item) => ({ value: item, label: item }))}
+                onChange={(value) => { setStatus(value); setVisible(30) }}
+              />
+              <CustomSelect
+                ariaLabel="Filter by category"
+                value={category}
+                options={categories.map((item) => ({ value: item, label: item }))}
+                onChange={(value) => { setCategory(value); setVisible(30) }}
+              />
+              <CustomSelect
+                ariaLabel="Filter by year"
+                value={year}
+                options={years.map((item) => ({ value: item, label: item }))}
+                onChange={(value) => { setYear(value); setVisible(30) }}
+              />
             </div>
 
             {filtered.length ? (
@@ -181,7 +169,7 @@ export function ProjectsPage() {
                         <tr key={project.contractId} className="align-top transition hover:bg-surface">
                           <th scope="row" className="max-w-md px-4 py-3 font-normal">
                             <span className="block font-bold leading-5 text-ink-950">{project.title}</span>
-                            <span className="mt-0.5 block text-xs font-semibold text-ink-500">{project.contractId} ? {project.category}</span>
+                            <span className="mt-0.5 block text-xs font-semibold text-ink-500">{project.contractId} · {project.category}</span>
                           </th>
                           <td className="whitespace-nowrap px-4 py-3 tabular-nums text-ink-600">{project.year}</td>
                           <td className="whitespace-nowrap px-4 py-3">
@@ -191,7 +179,7 @@ export function ProjectsPage() {
                           </td>
                           <td className="whitespace-nowrap px-4 py-3 text-right font-bold tabular-nums text-ink-950">{project.budget > 0 ? formatPeso(project.budget) : 'Not published'}</td>
                           <td className="px-4 py-3 text-ink-600">{project.contractor || 'Not yet awarded'}</td>
-                          <td className="px-4 py-3 text-ink-600">{project.barangay ?? '?'}</td>
+                          <td className="px-4 py-3 text-ink-600">{project.barangay ?? 'Not specified'}</td>
                         </tr>
                       ))}
                     </tbody>

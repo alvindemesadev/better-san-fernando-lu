@@ -25,7 +25,7 @@ export const categories: ServiceCategory[] = [
       "Real property tax",
       "Tax declaration"
     ],
-    "serviceCount": 14
+    "serviceCount": 15
   },
   {
     "slug": "certificates",
@@ -90,7 +90,7 @@ export const categories: ServiceCategory[] = [
       "Occupancy certificate",
       "Excavation permit"
     ],
-    "serviceCount": 22
+    "serviceCount": 21
   },
   {
     "slug": "environment",

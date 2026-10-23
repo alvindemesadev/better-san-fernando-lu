@@ -11,14 +11,13 @@ import {
 import {
   useEffect,
   useId,
-  useMemo,
   useRef,
   useState,
   type FormEvent,
   type KeyboardEvent,
 } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { searchAll, type SearchResult } from '../lib/search'
+import type { SearchResult } from '../lib/search'
 import { cn, pluralize } from '../lib/utils'
 
 interface SearchBoxProps {
@@ -49,18 +48,39 @@ export function SearchBox({
   const [query, setQuery] = useState(defaultValue)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(0)
+  const [results, setResults] = useState<SearchResult[]>([])
+  const [searchReady, setSearchReady] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const searchModuleRef = useRef<Promise<typeof import('../lib/search')> | null>(null)
   const navigate = useNavigate()
   const baseId = useId()
   const inputId = `${baseId}-input`
   const listboxId = `${baseId}-results`
 
-  const results = useMemo(() => {
-    const value = query.trim()
-    return value ? searchAll(value, 60) : []
-  }, [query])
-  const suggestions = results.slice(0, 6)
+  function updateSearchResults(value: string) {
+    const term = value.trim()
+    if (!term) {
+      setResults([])
+      setSearchReady(false)
+      return
+    }
+
+    setSearchReady(false)
+    searchModuleRef.current ??= import('../lib/search')
+    void searchModuleRef.current
+      .then(({ searchAll }) => {
+        if (inputRef.current?.value.trim() !== term) return
+        setResults(searchAll(term, 60))
+        setSearchReady(true)
+      })
+      .catch(() => {
+        if (inputRef.current?.value.trim() !== term) return
+        setResults([])
+        setSearchReady(true)
+      })
+  }
+  const suggestions = (query.trim() ? results : []).slice(0, 6)
   const hasQuery = query.trim().length > 0
   const showSuggestions = open && hasQuery
   const showDefaults = open && !hasQuery && defaultSuggestions.length > 0
@@ -150,11 +170,16 @@ export function SearchBox({
           type="text"
           value={query}
           onChange={(event) => {
-            setQuery(event.target.value)
+            const nextValue = event.target.value
+            setQuery(nextValue)
+            updateSearchResults(nextValue)
             setActive(0)
             setOpen(true)
           }}
-          onFocus={() => setOpen(true)}
+          onFocus={() => {
+            setOpen(true)
+            updateSearchResults(query)
+          }}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           autoFocus={autoFocus}
@@ -201,7 +226,11 @@ export function SearchBox({
       {showPanel ? (
         <div className="absolute inset-x-0 top-full z-50 mt-2 overflow-hidden rounded-2xl border border-line bg-white shadow-hero">
           {showSuggestions ? (
-            suggestions.length ? (
+            !searchReady ? (
+              <p className="px-4 py-4 text-sm text-ink-500" role="status">
+                Loading matches…
+              </p>
+            ) : suggestions.length ? (
               <ul
                 id={listboxId}
                 role="listbox"

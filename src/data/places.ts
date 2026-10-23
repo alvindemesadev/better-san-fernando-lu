@@ -74,7 +74,7 @@ const provincialPhoto = (src: string, alt: string): PlaceImage => ({
   creditUrl: provincialTourismPage,
 })
 
-const tourismPhotos: Record<string, PlaceImage> = {
+const tourismPhotos = {
   'Abut Bamboo Craft-making (Basket Making Industry)': provincialPhoto('abut-bamboo-craftmaking.webp', 'Bamboo craft-making in Abut'),
   'Bacsil Ridge Monument': provincialPhoto('bacsil-ridge-monument.webp', 'Bacsil Ridge Monument'),
   'Carlatan Surfing Area': provincialPhoto('carlatan-surfing-area.webp', 'Surfing along the Carlatan coast'),
@@ -96,6 +96,12 @@ const tourismPhotos: Record<string, PlaceImage> = {
   'San Fernando City Hall': provincialPhoto('san-fernando-city-hall.webp', 'San Fernando City Hall'),
   'San Fernando Beach Coast': provincialPhoto('san-fernando-beach-coast.webp', 'San Fernando beach coast'),
   'Tomb of the Unknown Soldier': provincialPhoto('tomb-unknown-soldier.webp', 'Tomb of the Unknown Soldier'),
+}
+
+function tourismPhotoForName(name: string) {
+  return Object.hasOwn(tourismPhotos, name)
+    ? tourismPhotos[name as keyof typeof tourismPhotos]
+    : undefined
 }
 
 const airportPhoto: PlaceImage = {
@@ -278,7 +284,7 @@ function place(
   note?: string,
   image?: PlaceImage,
 ): PlaceRecord {
-  const placeImage = image ?? placePhotosById[id] ?? placePhotosByName[name] ?? tourismPhotos[name]
+  const placeImage = image ?? placePhotosById[id] ?? placePhotosByName[name] ?? tourismPhotoForName(name)
   return { id, name, category, address, sourceLabel, sourceUrl, ...(note ? { note } : {}), ...(placeImage ? { image: placeImage } : {}) }
 }
 

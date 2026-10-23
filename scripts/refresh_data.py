@@ -285,6 +285,7 @@ def download_source(
     cache_dir: Path,
     force: bool,
     offline: bool,
+    cached_fallbacks: list[str],
 ) -> Path:
     destination = cache_dir / spec["filename"]
     if offline:
@@ -351,11 +352,13 @@ def download_source(
             return destination
         if destination.exists() and not force:
             print(f"warning: download failed for {key}; using cached copy")
+            cached_fallbacks.append(key)
             return destination
         raise
     except Exception as exc:
         if destination.exists() and not force:
             print(f"warning: download failed for {key}: {exc}; using cached copy")
+            cached_fallbacks.append(key)
             return destination
         raise
 
@@ -488,7 +491,7 @@ def write_news(stories: list[tuple[dict[str, Any], bytes]]) -> None:
     write_text(DATA_DIR / "news.ts", "\n".join(lines))
 
 
-def refresh_news(offline: bool) -> int | None:
+def refresh_news(offline: bool, cached_fallbacks: list[str]) -> int | None:
     if offline:
         print("news: offline; keeping existing snapshot")
         return None
@@ -497,6 +500,7 @@ def refresh_news(offline: bool) -> int | None:
         write_news(stories)
     except Exception as exc:
         print(f"warning: news refresh failed: {exc}; keeping existing snapshot")
+        cached_fallbacks.append("news")
         return None
     print(f"refreshed {len(stories)} news stories")
     return len(stories)
@@ -985,7 +989,14 @@ def write_projects(records: list[dict[str, Any]], bounds: tuple[float, float, fl
 def generate_barangay_map(
     path: Path,
     detailed_city_path: Path | None = None,
-) -> tuple[list[dict[str, Any]], str, tuple[float, float, float, float], str, list[dict[str, Any]]]:
+) -> tuple[
+    list[dict[str, Any]],
+    str,
+    tuple[float, float, float, float],
+    str,
+    list[dict[str, Any]],
+    dict[str, float],
+]:
     source_text = (DATA_DIR / "barangays.ts").read_text(encoding="utf-8")
     declaration = source_text.index("export const barangays")
     array_start = source_text.index("[", source_text.index("= [", declaration))
@@ -1162,6 +1173,13 @@ def generate_barangay_map(
         (minx, miny, maxx, maxy),
         city_outline,
         tiles,
+        {
+            "originX": x0,
+            "originY": y0,
+            "scaleX": scale_x,
+            "scaleY": scale_y,
+            "padding": padding,
+        },
     )
 
 
@@ -1404,6 +1422,7 @@ def write_barangay_map(
     view_box: str,
     city_outline: str,
     tiles: list[dict[str, Any]],
+    projection: dict[str, float],
 ) -> None:
     lines = [
         "export interface BarangayMapFeature {",
@@ -1413,6 +1432,14 @@ def write_barangay_map(
         "  labelX: number",
         "  labelY: number",
         "  path: string",
+        "}",
+        "",
+        "export interface BarangayMapProjection {",
+        "  originX: number",
+        "  originY: number",
+        "  scaleX: number",
+        "  scaleY: number",
+        "  padding: number",
         "}",
         "",
         "export interface BarangayMapTile {",
@@ -1428,6 +1455,13 @@ def write_barangay_map(
         "export const barangayMap = {",
         f"  viewBox: {quote(view_box)},",
         f"  cityOutline: {quote(city_outline)},",
+        "  projection: {",
+        f"    originX: {projection['originX']:.12f},",
+        f"    originY: {projection['originY']:.12f},",
+        f"    scaleX: {projection['scaleX']:.12f},",
+        f"    scaleY: {projection['scaleY']:.12f},",
+        f"    padding: {projection['padding']:.1f},",
+        "  },",
         "  tiles: [",
     ]
     for tile in tiles:
@@ -1490,8 +1524,10 @@ def main() -> None:
     args = parser.parse_args()
     if args.force and args.offline:
         parser.error("--force and --offline cannot be used together")
+    cached_fallbacks: list[str] = []
     if args.news_only:
-        news_count = refresh_news(args.offline)
+        news_count = refresh_news(args.offline, cached_fallbacks)
+        write_refresh_status(cached_fallbacks)
         print(f"refreshed {news_count or 0} news stories")
         return
     cache_dir = args.cache_dir.resolve()
@@ -1499,7 +1535,7 @@ def main() -> None:
 
     sources = resolve_sources(args.offline)
     paths = {
-        key: download_source(key, spec, cache_dir, args.force, args.offline)
+        key: download_source(key, spec, cache_dir, args.force, args.offline, cached_fallbacks)
         for key, spec in sources.items()
     }
 
@@ -1510,7 +1546,7 @@ def main() -> None:
     elections = parse_elections(paths["elections"])
     dpwh = parse_dpwh(paths["dpwh"])
     philgeps = parse_philgeps(paths["philgeps"])
-    map_features, view_box, map_bounds, city_outline, map_tiles = generate_barangay_map(
+    map_features, view_box, map_bounds, city_outline, map_tiles, map_projection = generate_barangay_map(
         paths["boundaries"], CITY_BOUNDARIES_PATH
     )
 
@@ -1519,8 +1555,8 @@ def main() -> None:
     write_elections(elections)
     write_contracts(dpwh, philgeps)
     write_projects(dpwh["records"], map_bounds)
-    write_barangay_map(map_features, view_box, city_outline, map_tiles)
-    news_count = refresh_news(args.offline)
+    write_barangay_map(map_features, view_box, city_outline, map_tiles, map_projection)
+    news_count = refresh_news(args.offline, cached_fallbacks)
 
     summary = (
         "refreshed "
@@ -1533,6 +1569,31 @@ def main() -> None:
     if news_count is not None:
         summary += f", {news_count} news stories"
     print(summary)
+    write_refresh_status(cached_fallbacks)
+
+
+def write_refresh_status(cached_fallbacks: list[str]) -> None:
+    cached_fallbacks = list(dict.fromkeys(cached_fallbacks))
+    output_path = os.environ.get("GITHUB_OUTPUT")
+    if output_path:
+        with open(output_path, "a", encoding="utf-8") as output:
+            output.write(f"cached_fallbacks={','.join(cached_fallbacks)}\n")
+
+    if not cached_fallbacks:
+        return
+
+    names = ", ".join(f"`{name}`" for name in cached_fallbacks)
+    print(f"warning: refresh used cached data after source failures: {', '.join(cached_fallbacks)}")
+    summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary_path:
+        with open(summary_path, "a", encoding="utf-8") as summary:
+            summary.write(
+                "### Cached source fallback\n\n"
+                f"The refresh reused cached data for {names}. No refresh PR will be opened for this run.\n"
+            )
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        for name in cached_fallbacks:
+            print(f"::warning title=Cached source used::{name} used its cached copy after a refresh failure")
 
 
 if __name__ == "__main__":

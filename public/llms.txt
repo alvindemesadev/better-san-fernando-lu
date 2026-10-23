@@ -1,0 +1,22 @@
+# Better San Fernando, La Union
+
+> An independent civic guide to the City of San Fernando, La Union. It helps residents find city services, government contacts, barangay information, public records, and local places. It is not the official city government website.
+
+Information comes from published city and government sources. Source dates vary by dataset; follow the linked source and verify time-sensitive details directly before acting.
+
+## Main sections
+
+- [City services](/services): Requirements, fees, and official forms from the Citizens’ Charter.
+- [City offices](/government/offices): Departments, contacts, and the services they handle.
+- [City officials](/government/officials): Elected city officials and election history.
+- [Barangays](/government/barangays): All 59 barangays, population data, and an interactive map.
+- [Emergency hotlines](/government/hotlines): Published emergency and public-service contacts.
+- [Ordinances and executive orders](/government/legislation): Recent city legislation with links to source documents.
+- [Transparency](/transparency): Budgets, audit reports, procurement records, and open datasets.
+- [Projects and public spending](/transparency/projects): Published city projects and related records.
+- [News and updates](/news): Recent local updates and announcements.
+- [Places directory](/city/places): Public services, health facilities, schools, businesses, and visitor destinations.
+
+## Official source
+
+- [City of San Fernando official website](https://www.sanfernandocity.gov.ph/): Verify government announcements, services, and source records.

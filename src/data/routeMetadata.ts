@@ -112,7 +112,7 @@ const staticRoutes: RouteMetadata[] = [
     path: '/transparency/projects',
     title: 'Infrastructure projects',
     description:
-      'DPWH infrastructure projects linked to San Fernando, La Union, with contract values, status, contractors, locations, and a project map.',
+      'DPWH infrastructure projects linked to San Fernando, La Union, with contract values, status, contractors, and published locations.',
   },
   {
     path: '/transparency/open-data',

@@ -23,8 +23,9 @@ Before opening a pull request, run the project checks:
 ```bash
 npm run lint
 npm test
+python -m unittest discover -s scripts -p test_refresh_data.py
 npm run build
-python -m py_compile scripts/refresh_data.py
+python -m py_compile scripts/refresh_data.py scripts/test_refresh_data.py
 ```
 
 ## Pull requests

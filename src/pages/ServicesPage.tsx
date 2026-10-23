@@ -2,6 +2,7 @@ import { ArrowRight, ArrowUpRight, ChevronDown, MonitorSmartphone, SlidersHorizo
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CategoryCard } from '../components/CategoryCard'
+import { CustomSelect } from '../components/CustomSelect'
 import { PageHero } from '../components/PageHero'
 import { Reveal } from '../components/Reveal'
 import { SearchBox } from '../components/SearchBox'
@@ -151,19 +152,16 @@ export function ServicesPage() {
                 >
                   Office
                 </label>
-                <select
+                <CustomSelect
                   id="office-filter"
+                  label="Office"
                   value={officeCode}
-                  onChange={(event) => setOfficeCode(event.target.value)}
-                  className="h-11 w-full rounded-xl border border-line bg-white px-3 text-sm font-semibold text-ink-800 outline-none transition focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
-                >
-                  <option value="">All offices</option>
-                  {officeOptions.map((office) => (
-                    <option key={office.slug} value={office.code ?? ''}>
-                      {office.name}
-                    </option>
-                  ))}
-                </select>
+                  options={[
+                    { value: '', label: 'All offices' },
+                    ...officeOptions.map((office) => ({ value: office.code ?? '', label: office.name })),
+                  ]}
+                  onChange={setOfficeCode}
+                />
               </div>
 
               <div className="flex min-w-[13rem] flex-1 flex-col gap-1.5">
@@ -173,19 +171,16 @@ export function ServicesPage() {
                 >
                   Transaction type
                 </label>
-                <select
+                <CustomSelect
                   id="channel-filter"
+                  label="Transaction type"
                   value={channel}
-                  onChange={(event) => setChannel(event.target.value)}
-                  className="h-11 w-full rounded-xl border border-line bg-white px-3 text-sm font-semibold text-ink-800 outline-none transition focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
-                >
-                  <option value="">All transaction types</option>
-                  {channelOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
+                  options={[
+                    { value: '', label: 'All transaction types' },
+                    ...channelOptions,
+                  ]}
+                  onChange={setChannel}
+                />
               </div>
 
               <label className="inline-flex h-11 items-center gap-2 rounded-xl border border-line bg-white px-3.5 text-sm font-semibold text-ink-700">

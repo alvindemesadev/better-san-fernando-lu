@@ -386,11 +386,14 @@ describe('search index', () => {
 describe('prerender metadata', () => {
   it('covers every static and data-driven route exactly once', () => {
     const pages = buildRouteMetadata()
+    const firstService = services[0]
     expect(unique(pages.map((page) => page.path))).toBe(true)
-    expect(pages).toHaveLength(27 + categories.length + services.length + offices.length + barangays.length + news.length)
+    expect(pages).toHaveLength(28 + categories.length + services.length + offices.length + barangays.length + news.length)
     expect(pages.find((page) => page.path === '/services')?.description).toContain(`${services.length} city services`)
-    expect(pages.find((page) => page.path === `/services/${services[0].category}/${services[0].slug}`)?.title).toBe(
-      services[0].title,
+    expect(firstService).toBeDefined()
+    if (!firstService) throw new Error('Service catalog must contain at least one service.')
+    expect(pages.find((page) => page.path === `/services/${firstService.category}/${firstService.slug}`)?.title).toBe(
+      firstService.title,
     )
   })
 

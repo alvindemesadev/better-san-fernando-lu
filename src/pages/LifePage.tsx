@@ -2,16 +2,16 @@ import {
   ArrowRight,
   Camera,
   Car,
-  ChevronDown,
   ExternalLink,
   Flower2,
   Landmark,
   Plane,
   Ship,
-  Sparkles,
   Utensils,
   Waves,
+  X,
 } from 'lucide-react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Breadcrumbs } from '../components/Breadcrumbs'
 import { Reveal } from '../components/Reveal'
@@ -96,16 +96,83 @@ const experiences = [
   },
 ]
 
-const festivals = [
-  'Feast of St. William the Hermit',
-  'Cityhood Foundation Anniversary',
-  'Pindangan Festival',
-  'Global Agri-Turismo Festival',
-  'Sundown Music and Arts Festival',
-  'Matzu Festival',
-  'CREATE Festival',
-  'Parakad Festival',
-  'Maykan Mangan Festival',
+type FestivalCard = {
+  title: string
+  image: string
+  imageAlt: string
+  photoCredit: string
+  sourceUrl: string
+  imageNote?: string
+}
+
+const festivals: FestivalCard[] = [
+  {
+    title: 'Feast of St. William the Hermit',
+    image: '/places/saint-william-cathedral.webp',
+    imageAlt: 'Cathedral of Saint William the Hermit, the parish church associated with the city patronal feast.',
+    photoCredit: 'Cathedral venue · Wikimedia Commons',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Cathedral_of_Saint_William_the_Hermit_LU_(Gomez_Street,_San_Fernando,_La_Union;_02-24-2023).jpg',
+    imageNote: 'Venue photo; a photo of the feast itself was not verified.',
+  },
+  {
+    title: 'Cityhood Foundation Anniversary',
+    image: '/city/festivals/cityhood-parade.webp',
+    imageAlt: 'A cityhood anniversary parade performer walks among spectators in San Fernando.',
+    photoCredit: 'Cityhood parade · City Government',
+    sourceUrl: 'https://www.sanfernandocity.gov.ph/lolos-and-lolas-celebrated-in-the-senior-citizens-night/',
+  },
+  {
+    title: 'Pindangan Festival',
+    image: '/city/festivals/pindangan-festival.webp',
+    imageAlt: 'A costumed Pindangan Festival street dancer performs with the festival statue.',
+    photoCredit: 'Pindangan Festival · City Government',
+    sourceUrl: 'https://www.sanfernandocity.gov.ph/cgsflu-opens-agri-tourism-and-community-fair-kicks-off-28th-cityhood-anniversary/',
+  },
+  {
+    title: 'Global Agri-Turismo Festival',
+    image: '/city/festivals/agri-tourism-fair.webp',
+    imageAlt: 'Local produce and food are presented at the 2026 Agri-Tourism and Community Fair.',
+    photoCredit: 'Agri-Tourism Fair · City Government',
+    sourceUrl: 'https://www.sanfernandocity.gov.ph/manong-dong-city-legal-office-staff-attend-explanatory-meeting-on-the-justice-zone-initiative/',
+    imageNote: 'Photo from the 2026 Agri-Tourism and Community Fair; a Global Agri-Turismo Festival photo was not verified.',
+  },
+  {
+    title: 'Sundown Music and Arts Festival',
+    image: '/city/festivals/sundown-music-festival.webp',
+    imageAlt: 'A singer performs on the Sundown Music and Arts Festival stage.',
+    photoCredit: 'Sundown Festival · City Government',
+    sourceUrl: 'https://www.sanfernandocity.gov.ph/33rd-hawaii-philippines-trade-mission-makes-a-stop-in-san-fernando-la-union/',
+  },
+  {
+    title: 'Matzu Festival',
+    image: '/city/festivals/mama-ma-cho-feast.webp',
+    imageAlt: 'Devotees gather inside Ma-Cho Temple for the Feast of Mama Ma-Cho in 2025.',
+    photoCredit: 'Feast of Mama Ma-Cho · City Government',
+    sourceUrl: 'https://www.sanfernandocity.gov.ph/city-of-san-fernando-exhibits-hospitality-talents-during-raniag-region-1-creative-tour/',
+  },
+  {
+    title: 'CREATE Festival',
+    image: '/city/festivals/create-city-festival-scene.webp',
+    imageAlt: 'Festival dancers in a representative photo published on the city tourism page; the event is not identified as CREATE Festival.',
+    photoCredit: 'City festival scene · City tourism page',
+    sourceUrl: cityTourismUrl,
+    imageNote: 'Representative city festival photo; not identified as a CREATE Festival photo.',
+  },
+  {
+    title: 'Parakad Festival',
+    image: '/city/festivals/carlatan-mangrove-planting.webp',
+    imageAlt: 'A mangrove planting activity in Carlatan, San Fernando, photographed in 2019.',
+    photoCredit: 'Carlatan mangrove planting · PGLU',
+    sourceUrl: 'https://launion.gov.ph/luatta-celebrates-anniversary-through-mangrove-planting/',
+    imageNote: 'Related Carlatan activity from 2019; not a photo of the 2024 Parakad Festival.',
+  },
+  {
+    title: 'Maykan Mangan Festival',
+    image: '/city/festivals/maykan-mangan-festival.webp',
+    imageAlt: 'Visitors gather beside food stalls at the Maykan Mangan Festival in 2025.',
+    photoCredit: 'Maykan Mangan event · City Government',
+    sourceUrl: 'https://www.sanfernandocity.gov.ph/cgsflu-awarded-with-the-cna-certificate-of-registration/',
+  },
 ]
 
 const visitorLinks = [
@@ -170,6 +237,9 @@ const gettingHere = [
 ]
 
 export function LifePage() {
+  const [activeExperience, setActiveExperience] = useState<(typeof experiences)[number] | null>(null)
+  const experienceDialogRef = useRef<HTMLDialogElement>(null)
+
   usePageMeta(
     'Life and tourism',
     'Things to do in San Fernando, La Union: beach circuits, surfing, marine sanctuaries, heritage sites, festivals, local food, and how to get here.',
@@ -366,17 +436,20 @@ export function LifePage() {
                       </span>
                       <h3 className="mt-4 text-lg font-extrabold tracking-tight text-ink-950">{experience.title}</h3>
                       <p className="mt-2 text-sm leading-6 text-ink-600">{experience.summary}</p>
-                      <details className="group mt-4 border-t border-line pt-3">
-                        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 rounded-lg text-sm font-bold text-brand-700 outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2">
+                      <div className="mt-4 border-t border-line pt-3">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setActiveExperience(experience)
+                            experienceDialogRef.current?.showModal()
+                          }}
+                          className="flex min-h-8 w-full items-center justify-between gap-3 rounded-lg text-left text-sm font-bold text-brand-700 outline-none transition hover:text-brand-800 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                          aria-haspopup="dialog"
+                        >
                           <span>See places and activities</span>
-                          <ChevronDown aria-hidden="true" className="size-4 shrink-0 transition-transform group-open:rotate-180" />
-                        </summary>
-                        <ul className="mt-3 list-disc space-y-2 pl-4 text-sm leading-6 text-ink-600">
-                          {experience.items.map((item) => (
-                            <li key={item}>{item}</li>
-                          ))}
-                        </ul>
-                      </details>
+                          <ArrowRight aria-hidden="true" className="size-4 shrink-0" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </Reveal>
@@ -396,16 +469,35 @@ export function LifePage() {
             />
           </Reveal>
 
-          <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {festivals.map((festival) => (
               <li
-                key={festival}
-                className="flex min-h-16 items-center gap-3 rounded-2xl border border-line bg-white p-3 shadow-card transition hover:border-brand-200 hover:shadow-float sm:p-3"
+                key={festival.title}
+                className="overflow-hidden rounded-2xl border border-line bg-white shadow-card transition hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-float"
               >
-                <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
-                  <Sparkles aria-hidden="true" className="size-4" />
-                </span>
-                <span className="text-sm font-bold leading-5 text-ink-900">{festival}</span>
+                <figure className="relative aspect-[16/9] overflow-hidden bg-brand-50">
+                  <img
+                    src={festival.image}
+                    alt={festival.imageAlt}
+                    loading="lazy"
+                    decoding="async"
+                    className="size-full object-cover"
+                  />
+                  <figcaption className="absolute inset-x-0 bottom-0 flex justify-end bg-gradient-to-t from-ink-950/75 to-transparent px-3 pb-2 pt-7">
+                    <a
+                      href={festival.sourceUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-right text-[10px] font-semibold text-white underline decoration-white/50 underline-offset-2 sm:text-[11px]"
+                    >
+                      Photo: {festival.photoCredit}
+                    </a>
+                  </figcaption>
+                </figure>
+                <div className="p-4">
+                  <h3 className="text-sm font-extrabold leading-5 text-ink-900 sm:text-base">{festival.title}</h3>
+                  {festival.imageNote ? <p className="mt-1.5 text-xs leading-5 text-ink-500">{festival.imageNote}</p> : null}
+                </div>
               </li>
             ))}
           </ul>
@@ -451,6 +543,74 @@ export function LifePage() {
           </div>
         </div>
       </section>
+
+      <dialog
+        ref={experienceDialogRef}
+        aria-labelledby="experience-dialog-title"
+        onClose={() => setActiveExperience(null)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) experienceDialogRef.current?.close()
+        }}
+        className="m-auto max-h-[90dvh] w-[min(92vw,44rem)] max-w-none overflow-hidden rounded-2xl border border-line bg-white p-0 text-ink-900 shadow-float backdrop:bg-ink-950/60"
+      >
+        {activeExperience ? (
+          <div className="max-h-[90dvh] overflow-y-auto">
+            {activeExperience.photo ? (
+              <figure className="relative aspect-[16/7] overflow-hidden bg-surface">
+                <img
+                  src={activeExperience.photo.src}
+                  alt={activeExperience.photo.alt}
+                  className="size-full object-cover"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 flex justify-end bg-gradient-to-t from-ink-950/75 to-transparent px-3 pb-2 pt-6">
+                  <a
+                    href={activeExperience.photo.creditUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[11px] font-semibold text-white underline decoration-white/50 underline-offset-2"
+                  >
+                    Photo: {activeExperience.photo.credit}
+                  </a>
+                </figcaption>
+                <button
+                  type="button"
+                  onClick={() => experienceDialogRef.current?.close()}
+                  aria-label={`Close ${activeExperience.title} details`}
+                  className="absolute right-3 top-3 inline-flex size-10 items-center justify-center rounded-full bg-white text-ink-800 shadow-card transition hover:bg-brand-50 hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  <X aria-hidden="true" className="size-5" />
+                </button>
+              </figure>
+            ) : null}
+            <div className="p-5 sm:p-7">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-700">Places and activities</p>
+                  <h2 id="experience-dialog-title" className="mt-1 text-xl font-extrabold tracking-tight text-ink-950 sm:text-2xl">
+                    {activeExperience.title}
+                  </h2>
+                </div>
+                {!activeExperience.photo ? (
+                  <button
+                    type="button"
+                    onClick={() => experienceDialogRef.current?.close()}
+                    aria-label={`Close ${activeExperience.title} details`}
+                    className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl border border-line text-ink-700 transition hover:bg-brand-50 hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+                  >
+                    <X aria-hidden="true" className="size-5" />
+                  </button>
+                ) : null}
+              </div>
+              <p className="mt-3 text-sm leading-6 text-ink-600">{activeExperience.summary}</p>
+              <ul className="mt-5 list-disc space-y-3 pl-5 text-sm leading-6 text-ink-700 marker:text-brand-600">
+                {activeExperience.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : null}
+      </dialog>
     </>
   )
 }

@@ -53,7 +53,7 @@ export default defineConfig({
     routeMetadataPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.png', 'apple-touch-icon.png', 'og.png'],
+      includeAssets: ['favicon.png', 'apple-touch-icon.png', 'og.png', 'pwa-192.png', 'pwa-512.png'],
       manifest: {
         name: 'Better San Fernando, La Union',
         short_name: 'Better SF',
@@ -73,7 +73,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,svg,woff2}'],
+        globPatterns: ['**/*.{js,css,html,woff2}'],
         navigateFallback: '/index.html',
         runtimeCaching: [
           {
@@ -89,12 +89,37 @@ export default defineConfig({
               expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
             },
           },
+          {
+            urlPattern: /^https:\/\/tiles\.openfreemap\.org\/fonts\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'openfreemap-glyphs',
+              cacheableResponse: { statuses: [0, 200] },
+              expiration: { maxEntries: 300, maxAgeSeconds: 60 * 60 * 24 * 90 },
+            },
+          },
+          {
+            urlPattern: /\/assets\/[^/]+\.geojson$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'barangay-boundaries',
+              expiration: { maxEntries: 2, maxAgeSeconds: 60 * 60 * 24 * 365 },
+            },
+          },
+          {
+            urlPattern: /\/(?:assets|city|logos|news|officials|places)\/.*\.(?:avif|gif|jpe?g|png|svg|webp|ico)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'local-images',
+              expiration: { maxEntries: 250, maxAgeSeconds: 60 * 60 * 24 * 30 },
+            },
+          },
         ],
       },
     }),
   ],
   test: {
     environment: 'node',
-    include: ['src/**/*.test.ts'],
+    include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
   },
 })

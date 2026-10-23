@@ -45,10 +45,14 @@ jobs:
       - name: Install Python dependencies
         run: python -m pip install -r scripts/requirements.txt
 
+      - name: Test refresh data pipeline
+        run: python -m unittest discover -s scripts -p test_refresh_data.py
+
       - name: Install Node dependencies
         run: npm ci
 
       - name: Refresh data and news snapshots
+        id: refresh_data
         run: npm run refresh:data
 
       - name: Save public source data cache
@@ -68,6 +72,7 @@ jobs:
 
       - name: Open or update data refresh PR
         uses: peter-evans/create-pull-request@v8
+        if: steps.refresh_data.outputs.cached_fallbacks == ''
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: chore/refresh-public-data

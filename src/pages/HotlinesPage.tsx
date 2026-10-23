@@ -18,6 +18,7 @@ export function HotlinesPage() {
   )
 
   const primary = hotlines.find((hotline) => hotline.primary)
+  const primaryNumber = primary?.numbers[0]
   const others = hotlines.filter((hotline) => !hotline.primary)
 
   return (
@@ -30,7 +31,7 @@ export function HotlinesPage() {
       />
 
       <div className="container-page py-10 sm:py-14">
-        {primary ? (
+        {primary && primaryNumber ? (
           <div className="relative isolate overflow-hidden rounded-3xl bg-ink-950 p-6 text-white shadow-hero sm:p-9">
             <div aria-hidden="true" className="hero-grid absolute inset-0 opacity-60" />
             <div
@@ -44,15 +45,15 @@ export function HotlinesPage() {
                   {primary.label}
                 </p>
                 <a
-                  href={dialHref(primary.numbers[0])}
+                  href={dialHref(primaryNumber)}
                   className="mt-3 block text-6xl font-extrabold tracking-[-0.05em] transition hover:text-brand-200 sm:text-7xl"
                 >
-                  {primary.numbers[0]}
+                  {primaryNumber}
                 </a>
                 <p className="mt-2 max-w-md text-sm leading-6 text-white/60">{primary.note}</p>
               </div>
               <a
-                href={dialHref(primary.numbers[0])}
+                href={dialHref(primaryNumber)}
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-4 text-sm font-extrabold text-ink-950 transition hover:bg-white"
               >
                 <PhoneCall aria-hidden="true" className="size-4" />

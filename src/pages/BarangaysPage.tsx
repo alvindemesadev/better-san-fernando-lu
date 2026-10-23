@@ -84,7 +84,8 @@ export function BarangaysPage() {
                   setActiveSuggestion((index) => Math.max(index - 1, 0))
                 } else if (event.key === 'Enter' && suggestions.length) {
                   event.preventDefault()
-                  navigate(`/government/barangays/${suggestions[activeSuggestion]?.slug ?? suggestions[0].slug}`)
+                  const suggestion = suggestions[activeSuggestion] ?? suggestions[0]
+                  if (suggestion) navigate(`/government/barangays/${suggestion.slug}`)
                 } else if (event.key === 'Escape' && query) {
                   setQuery('')
                   setActiveSuggestion(0)

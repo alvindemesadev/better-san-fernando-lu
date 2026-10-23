@@ -10,7 +10,7 @@ This is not an official City Government website. Official sources are linked thr
 - City officials, offices, hotlines, and all 59 barangays
 - Barangay profiles and an interactive MapLibre map with population shading and a 3D selected-area view
 - FY2024 revenue, spending, SEF, and LDRRMF data
-- Budget documents, audit reports, procurement records, and a DPWH project map
+- Budget documents, audit reports, procurement records, and DPWH infrastructure project records
 - Legislation, election results, and a searchable City Government news archive
 - City life and tourism page with a photo-led introduction, credited activity cards, a visitor-map preview, travel guidance, and festival listings
 - Searchable city places directory for public agencies, health, schools, shopping, dining, stays, attractions, transport, and everyday services, with live Google Maps category searches
@@ -34,13 +34,14 @@ npm install
 npm run dev
 ```
 
-The GitHub Actions CI workflow runs linting, tests, the production build, and a Python syntax check on pushes to `main` and on pull requests. Run the same checks locally with:
+The GitHub Actions CI workflow runs linting, app and data-refresh tests, the production build, and a Python syntax check on pushes to `main` and on pull requests. Run the same checks locally with:
 
 ```bash
 npm run lint
 npm test
+python -m unittest discover -s scripts -p test_refresh_data.py
 npm run build
-python -m py_compile scripts/refresh_data.py
+python -m py_compile scripts/refresh_data.py scripts/test_refresh_data.py
 ```
 
 ## Contributing and project policies
@@ -73,6 +74,8 @@ The refresh script updates the checked-in snapshots for fiscal data, elections, 
 `.github/workflows/refresh-data.yml` runs monthly and opens a pull request with the updated snapshots. To enable it, allow GitHub Actions to create pull requests under **Settings → Actions → General**.
 
 The workflow caches `scripts/.cache/` between runs and revalidates cached sources with their HTTP validators. The production build also prerenders route-specific titles and descriptions. Set `VITE_SITE_ORIGIN` to the site's public origin in the Cloudflare Pages build environment so canonical and social URLs use the production domain; without it, route paths are used as relative URLs.
+
+If a source refresh fails and the script has to reuse a cached copy, the workflow reports the affected source and skips opening a refresh pull request. This keeps a partial refresh from being presented for review as a complete update.
 
 Each production build prints a manual data freshness report. Records with no recorded verification date are listed for review; this report does not claim those records have been rechecked.
 
