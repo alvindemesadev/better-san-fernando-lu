@@ -42,12 +42,22 @@ export function telHref(value: string) {
   return `tel:${value.replace(/[^\d+]/g, '')}`
 }
 
+const nameSuffixes = new Set(['JR', 'SR', 'II', 'III', 'IV', 'V'])
+
 export function initials(name: string) {
-  return name
+  const parts = name
     .replace(/^(Hon\.|Atty\.|Dr\.|Ms\.|Mr\.|Engr\.)\s*/i, '')
     .split(/\s+/)
     .filter((part) => /^[A-Za-zÑñ]/.test(part))
-    .slice(0, 2)
+
+  if (parts.length === 0) return ''
+
+  const lastName = [...parts]
+    .reverse()
+    .find((part) => !nameSuffixes.has(part.replace(/[^a-z]/gi, '').toUpperCase()))
+
+  return [parts[0], parts.length > 1 ? lastName : undefined]
+    .filter((part): part is string => Boolean(part))
     .map((part) => part[0]?.toUpperCase() ?? '')
     .join('')
 }

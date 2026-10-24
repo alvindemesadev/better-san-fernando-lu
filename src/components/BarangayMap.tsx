@@ -164,7 +164,7 @@ export function BarangayMap() {
           href="https://data.bettergov.ph/datasets/22"
           target="_blank"
           rel="noreferrer"
-          className="mt-auto flex items-start gap-2 border-t border-line pt-4 text-xs font-semibold leading-5 text-ink-600 transition hover:text-brand-700"
+          className="mt-8 flex items-start gap-2 border-t border-line pt-4 text-xs font-semibold leading-5 text-ink-600 transition hover:text-brand-700 lg:mt-auto"
         >
           <ExternalLink aria-hidden="true" className="mt-0.5 size-3.5 shrink-0" />
           <span>
