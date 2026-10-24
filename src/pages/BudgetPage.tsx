@@ -28,6 +28,7 @@ export function BudgetPage() {
   const budgetDocsOnly = budgetDocs.filter((doc) => doc.category !== 'Procurement')
   const maxFigure = Math.max(city.revenue2024, city.expenditures2024)
   const surplus = city.revenue2024 - city.expenditures2024
+  const revenueBasisDifference = fiscal2024.totalIncome - city.revenue2024
   const bars = [
     { label: 'Revenue', value: city.revenue2024, tone: 'bg-brand-600' },
     { label: 'Expenditures', value: city.expenditures2024, tone: 'bg-ink-900' },
@@ -96,6 +97,13 @@ export function BudgetPage() {
                 </div>
               ))}
             </dl>
+
+            <p className="mt-4 text-xs leading-5 text-ink-600">
+              The City Government facts page reports revenue of {formatPeso(city.revenue2024)}. The BLGF FY2024
+              Statement of Receipts and Expenditures snapshot reports total income of {formatPeso(fiscal2024.totalIncome)},
+              a difference of {formatPeso(revenueBasisDifference)}. These are separate source-reported totals with
+              different reporting categories; they are shown separately and are not treated as a reconciled figure.
+            </p>
 
             <p className="mt-4 text-xs leading-5 text-ink-500">
               Revenue exceeded expenditures by {formatPeso(surplus)} in 2024. Totals cover the whole city government;

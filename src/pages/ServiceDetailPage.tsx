@@ -120,6 +120,16 @@ export function ServiceDetailPage() {
       <div className="container-page py-10 sm:py-14">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div className="space-y-5">
+            {service.dataNote ? (
+              <aside
+                aria-label="Source note"
+                className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-950"
+              >
+                <p className="font-bold">Source note</p>
+                <p className="mt-1">{service.dataNote}</p>
+              </aside>
+            ) : null}
+
             {eligibilityLeadsIntoDescription ? null : (
               <Reveal>
                 <section className="rounded-2xl border border-line bg-white p-5 shadow-card sm:p-7">

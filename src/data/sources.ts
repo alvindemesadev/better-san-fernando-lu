@@ -127,6 +127,11 @@ export const sources: Source[] = [
     "note": "Published police, fire, and emergency contacts; confirm direct numbers remain active"
   },
   {
+    "name": "BetterGov Open Data Portal",
+    "url": "https://data.bettergov.ph",
+    "note": "Curated national infrastructure (DPWH) and procurement (PhilGEPS) open datasets"
+  },
+  {
     "name": "Commission on Audit",
     "url": "https://www.coa.gov.ph",
     "note": "Annual audit reports"

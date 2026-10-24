@@ -25,7 +25,11 @@ export function CityProfilePage() {
         crumbs={[{ label: 'City' }]}
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard value={`${city.landAreaKm2} km²`} label="Land area" note="PSA and PhilAtlas figure" />
+          <StatCard
+            value={`${city.landAreaKm2} km²`}
+            label="Land area · PSA/PhilAtlas"
+            note="Published figures differ: City Government 105.26 km²; provincial profile 106.88 km²."
+          />
           <StatCard
             value={formatNumber(city.population2024)}
             label="Population (2024)"

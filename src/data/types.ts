@@ -17,6 +17,7 @@ export interface Service {
   pdfs: string[];
   sourceUrl: string;
   lastVerified: string;
+  dataNote?: string;
 }
 
 export interface ServiceCategory {

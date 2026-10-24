@@ -1,4 +1,4 @@
-import type { Hotline } from './types';
+import type { Hotline } from './types.ts';
 
 export const hotlines: Hotline[] = [
   {
@@ -20,30 +20,24 @@ export const hotlines: Hotline[] = [
     "label": "City Disaster Risk Reduction and Management Office",
     "numbers": [
       "(072) 607-04-24",
-      "(072) 700-51-00",
-      "0917-676-7673",
-      "0928-522-0622"
+      "(072) 700-51-00"
     ],
     "email": "cdrrmo@sanfernandocity.gov.ph",
-    "note": "The city directory lists the first two numbers for operations and administration. Mobile numbers are from the city’s 2023 stakeholder directory."
+    "note": "Operations and administration lines listed in the city department directory. Mobile numbers from the 2023 stakeholder directory are omitted because they could not be confirmed as current."
   },
   {
     "label": "San Fernando City Police Station",
     "numbers": [
-      "(072) 607-8954",
-      "0915-558-8888",
-      "0939-812-6888"
+      "911"
     ],
-    "note": "Numbers are from the city’s 2023 stakeholder directory; confirm they remain active. Call 911 for immediate emergencies."
+    "note": "A current direct station number could not be verified from an official source. Call 911 for emergencies or City Hall for a non-emergency referral."
   },
   {
     "label": "San Fernando City Fire Station",
     "numbers": [
-      "(072) 687-7880",
-      "0917-183-8711",
-      "0950-122-5008"
+      "911"
     ],
-    "note": "Numbers are from the city’s 2023 stakeholder directory; confirm they remain active. Call 911 for immediate emergencies."
+    "note": "A current direct station number could not be verified from an official source. Call 911 for emergencies or City Hall for a non-emergency referral."
   },
   {
     "label": "Provincial DRRMO (La Union)",

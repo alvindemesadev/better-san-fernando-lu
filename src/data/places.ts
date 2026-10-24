@@ -1,5 +1,5 @@
-import { barangays } from './barangays'
-import { offices } from './offices'
+import { barangays } from './barangays.ts'
+import { offices } from './offices.ts'
 
 export type PlaceCategoryId =
   | 'government'

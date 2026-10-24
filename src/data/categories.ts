@@ -25,7 +25,7 @@ export const categories: ServiceCategory[] = [
       "Real property tax",
       "Tax declaration"
     ],
-    "serviceCount": 15
+    "serviceCount": 16
   },
   {
     "slug": "certificates",
@@ -64,7 +64,7 @@ export const categories: ServiceCategory[] = [
       "PWD assistance",
       "Solo parent ID"
     ],
-    "serviceCount": 32
+    "serviceCount": 33
   },
   {
     "slug": "agriculture",
@@ -90,7 +90,7 @@ export const categories: ServiceCategory[] = [
       "Occupancy certificate",
       "Excavation permit"
     ],
-    "serviceCount": 21
+    "serviceCount": 23
   },
   {
     "slug": "environment",
@@ -116,7 +116,7 @@ export const categories: ServiceCategory[] = [
       "Disaster training",
       "Safety clearance"
     ],
-    "serviceCount": 14
+    "serviceCount": 15
   },
   {
     "slug": "employment",
@@ -155,6 +155,6 @@ export const categories: ServiceCategory[] = [
       "Employment verification",
       "Legal assistance"
     ],
-    "serviceCount": 33
+    "serviceCount": 35
   }
 ];

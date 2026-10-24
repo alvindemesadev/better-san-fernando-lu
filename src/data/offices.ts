@@ -237,7 +237,7 @@ export const offices: Office[] = [
     "email": "oca@sanfernandocity.gov.ph",
     "address": "Ground Floor Annex, City Hall Building, City of San Fernando, La Union",
     "locals": "126 / 153",
-    "serviceCount": 7,
+    "serviceCount": 8,
     "ccUrl": "https://cc.sanfernandocity.gov.ph/oca/",
     "sourceUrl": "https://www.sanfernandocity.gov.ph/city-departments/"
   },
@@ -417,7 +417,7 @@ export const offices: Office[] = [
     "email": "oce@sanfernandocity.gov.ph",
     "address": "Tanqui, City of San Fernando, La Union",
     "locals": "687-1914",
-    "serviceCount": 8,
+    "serviceCount": 11,
     "ccUrl": "https://cc.sanfernandocity.gov.ph/oce/",
     "sourceUrl": "https://www.sanfernandocity.gov.ph/city-departments/"
   },
@@ -477,7 +477,7 @@ export const offices: Office[] = [
     "email": "gad@sanfernandocity.gov.ph",
     "address": "Ground Floor, City Hall Building, City of San Fernando, La Union",
     "locals": "142 / 121",
-    "serviceCount": 0,
+    "serviceCount": 3,
     "ccUrl": "https://cc.sanfernandocity.gov.ph/gad/",
     "sourceUrl": "https://www.sanfernandocity.gov.ph/city-departments/"
   },
@@ -552,7 +552,7 @@ export const offices: Office[] = [
     "email": "ops@sanfernandocity.gov.ph",
     "address": "City Hall Annex Building, City of San Fernando, La Union",
     "locals": "151 / 159",
-    "serviceCount": 7,
+    "serviceCount": 6,
     "ccUrl": "https://cc.sanfernandocity.gov.ph/ops/",
     "sourceUrl": "https://www.sanfernandocity.gov.ph/city-departments/"
   },

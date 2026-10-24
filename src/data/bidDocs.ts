@@ -1,64 +1,64 @@
-import type { BidBulletin, BidResult } from './types';
+import type { BidBulletin, BidResult } from './types.ts';
 
 export const bidResults: BidResult[] = [
   {
     "date": "2025-12-19",
     "reference": "PB-25-079",
-    "title": "Project details in the official result file",
+    "title": "Project title not listed in city index — see result file",
     "url": "https://drive.google.com/file/d/10mA7EnY-Tx0XMpjx_O4rZrT4KP_9NihW/view?usp=sharing"
   },
   {
     "date": "2025-12-18",
     "reference": "PB-25-083",
-    "title": "Project details in the official result file",
+    "title": "Project title not listed in city index — see result file",
     "url": "https://drive.google.com/file/d/1rjAqs5rZNpZSElvlOzt0oZMj-0m7HOXf/view?usp=sharing"
   },
   {
     "date": "2025-12-15",
     "reference": "PB-25-073",
-    "title": "Project details in the official result file",
+    "title": "Project title not listed in city index — see result file",
     "url": "https://drive.google.com/file/d/1q_D0c2TkLHzTz3dnOMnrsfzfB09R8RWd/view?usp=sharing"
   },
   {
     "date": "2025-12-11",
     "reference": "PB-25-068",
-    "title": "Project details in the official result file",
+    "title": "Project title not listed in city index — see result file",
     "url": "https://drive.google.com/file/d/1Q3P1Suc_BW7mWN2mGJXn5E7Ul2uPxr5-/view?usp=sharing"
   },
   {
     "date": "2025-12-10",
     "reference": "PB-25-062-1",
-    "title": "Project details in the official result file",
+    "title": "Project title not listed in city index — see result file",
     "url": "https://drive.google.com/file/d/1DdEo_vgfqOjYTnGwiHxSkEEvE9QAMZzr/view?usp=sharing"
   },
   {
     "date": "2025-12-10",
     "reference": "PB-25-071",
-    "title": "Project details in the official result file",
+    "title": "Project title not listed in city index — see result file",
     "url": "https://drive.google.com/file/d/1yb8WLAcUfCtgHi_5g51H6kOkYa8NUbPF/view?usp=sharing"
   },
   {
     "date": "2025-12-04",
     "reference": "PB-25-072",
-    "title": "Project details in the official result file",
+    "title": "Project title not listed in city index — see result file",
     "url": "https://drive.google.com/file/d/1mEmfXmWj8zIG0fJyrLkwVtV_-udT9lnV/view?usp=sharing"
   },
   {
     "date": "2025-12-03",
     "reference": "PB-25-015-1",
-    "title": "Project details in the official result file",
+    "title": "Project title not listed in city index — see result file",
     "url": "https://drive.google.com/file/d/1TTG7-fB1z4FqNgAaw3oJ8ch-OYycGEJc/view?usp=sharing"
   },
   {
     "date": "2025-12-03",
     "reference": "PB-25-066",
-    "title": "Project details in the official result file",
+    "title": "Project title not listed in city index — see result file",
     "url": "https://drive.google.com/file/d/1_NZLVZI-mGxccUzm5RszQ9cJh1q94lB6/view?usp=sharing"
   },
   {
     "date": "2025-12-03",
     "reference": "PB-25-075",
-    "title": "Project details in the official result file",
+    "title": "Project title not listed in city index — see result file",
     "url": "https://drive.google.com/file/d/16PUcLu8PimVboQeypnG3-KxlC_tI7uCy/view?usp=sharing"
   },
   {

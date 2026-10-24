@@ -1328,8 +1328,9 @@ export const services: Service[] = [
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/10/Untitled3.pdf",
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/10/Untitled4.pdf"
     ],
-    "sourceUrl": "https://cc.sanfernandocity.gov.ph/wordpress/2024/05/06/granting-of-business-permits/",
-    "lastVerified": "2026-10-21"
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/2024/09/27/granting-of-business-permits/",
+    "lastVerified": "2026-10-24",
+    "dataNote": "The official page heading says “Granting of Business Permits,” but its body describes building permits and the National Building Code. The service details here follow that body; confirm the page heading with the Office of the City Engineer."
   },
   {
     "slug": "granting-of-certificate-of-occupancy",
@@ -1765,8 +1766,9 @@ export const services: Service[] = [
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/Issuance-of-Tax-REQUIREMENTS-ACA.pdf",
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/Issuance-of-Tax-STEPS-ACA.pdf"
     ],
-    "sourceUrl": "https://cc.sanfernandocity.gov.ph/wordpress/2024/05/06/issuance-of-tax-withheld-of-creditors-contractors-or-suppliers/",
-    "lastVerified": "2026-10-21"
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/aca/",
+    "lastVerified": "2026-10-24",
+    "dataNote": "The specific charter post associated with this title currently displays an Office of the City Engineer electrical-inspection record. The City Accountant’s index lists the service; confirm requirements and fees with the City Accountant."
   },
   {
     "slug": "issuance-of-certificate-of-unavailability-of-stock-of-common-use-supplies",
@@ -1841,8 +1843,8 @@ export const services: Service[] = [
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/Issuance-of-Certifications-and-Clearances-REQUIREMENTS-HRMO.pdf",
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/Issuance-of-Certifications-and-Clearances-STEPS-HRMO.pdf"
     ],
-    "sourceUrl": "https://cc.sanfernandocity.gov.ph/wordpress/2024/05/25/issuance-of-service-record/",
-    "lastVerified": "2026-10-21"
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/2024/05/25/issuance-of-certifications-and-clearances/",
+    "lastVerified": "2026-10-24"
   },
   {
     "slug": "issuance-of-certified-true-copy-photocopy-of-business-permit-and-othe-documents",
@@ -2240,8 +2242,8 @@ export const services: Service[] = [
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/Issuance-of-Service-Record-REQUIREMENTS-HRMO.pdf",
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/Issuance-of-Service-Record-STEPS-HRMO-1.pdf"
     ],
-    "sourceUrl": "https://cc.sanfernandocity.gov.ph/wordpress/2024/05/25/issuance-of-certifications-and-clearances/",
-    "lastVerified": "2026-10-21"
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/2024/05/25/issuance-of-service-record/",
+    "lastVerified": "2026-10-24"
   },
   {
     "slug": "issuance-of-smear-card-pink-card",
@@ -2894,7 +2896,7 @@ export const services: Service[] = [
     "title": "Pre-audit of Payrolls, Vouchers and Other Financial Claims",
     "office": "Office of the City Accountant",
     "officeCode": "aca",
-    "category": "social",
+    "category": "governance",
     "classification": "Simple",
     "transactionType": "G2G – Government to Government",
     "whoMayAvail": "City Budget Office (CBO), Respective Offices/Departments of the City Government of San Fernando, La Union",
@@ -2905,8 +2907,8 @@ export const services: Service[] = [
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/Pre-audit-of-payrolls-REQUIREMENTS-ACA.pdf",
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/Pre-audit-of-payrolls-STEPS-ACA.pdf"
     ],
-    "sourceUrl": "https://cc.sanfernandocity.gov.ph/wordpress/2024/05/15/preparation-and-processing-of-payrolls-and-vouchers-for-salaries-and-other-remunerations/",
-    "lastVerified": "2026-10-21"
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/2024/05/06/pre-audit-of-payrolls-vouchers-and-other-financial-claims/",
+    "lastVerified": "2026-10-24"
   },
   {
     "slug": "preparation-and-processing-of-payrolls-and-vouchers-for-salaries-and-other-remunerations",
@@ -2924,8 +2926,8 @@ export const services: Service[] = [
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/Preparation-and-processing-REQUIREMENTS-ACA.pdf",
       "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/Preparation-and-processing-STEPS-ACA.pdf"
     ],
-    "sourceUrl": "https://cc.sanfernandocity.gov.ph/wordpress/2024/05/06/pre-audit-of-payrolls-vouchers-and-other-financial-claims/",
-    "lastVerified": "2026-10-21"
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/2024/05/15/preparation-and-processing-of-payrolls-and-vouchers-for-salaries-and-other-remunerations/",
+    "lastVerified": "2026-10-24"
   },
   {
     "slug": "preparation-and-submission-of-annual-budget",
@@ -4598,5 +4600,141 @@ export const services: Service[] = [
     ],
     "sourceUrl": "https://cc.sanfernandocity.gov.ph/wordpress/2024/05/27/youth-organization-and-youth-serving-organization-registration/",
     "lastVerified": "2026-10-21"
+  },
+  {
+    "slug": "provision-of-gad-related-data",
+    "title": "Provision of GAD-related Data",
+    "office": "Gender and Development Office",
+    "officeCode": "gad",
+    "category": "governance",
+    "classification": "Simple",
+    "transactionType": "G2C – Government to Citizen; G2G – Government to Government",
+    "whoMayAvail": "General public, private sectors, and government instrumentalities",
+    "description": "The Citizens’ Charter lists the provision of GAD-related data. Its detail page repeats generic GAD information-request text; ask the Gender and Development Office to confirm what information is available and any request limits.",
+    "summary": "Request GAD-related data from the Gender and Development Office.",
+    "fees": "NO FEES TO BE PAID.",
+    "pdfs": [
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2025/05/Provision-of-GAD-related-Data-Requirement.pdf"
+    ],
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/2025/05/20/provision-of-gad-related-data/",
+    "lastVerified": "2026-10-24",
+    "dataNote": "The detail page uses generic GAD text, and its steps attachment is titled for gender-sensitivity training. Only the requirements PDF is linked here; confirm the process with the GAD Office."
+  },
+  {
+    "slug": "provision-of-gender-sensitivity-training",
+    "title": "Provision of Gender Sensitivity Training",
+    "office": "Gender and Development Office",
+    "officeCode": "gad",
+    "category": "social",
+    "classification": "Simple",
+    "transactionType": "G2C – Government to Citizen; G2G – Government to Government",
+    "whoMayAvail": "General public, private sectors, and government instrumentalities",
+    "description": "The Citizens’ Charter lists the provision of gender-sensitivity training. The detail page repeats generic GAD information-request text; ask the Gender and Development Office to confirm training scope, schedule, and delivery details.",
+    "summary": "Ask the Gender and Development Office about gender-sensitivity training.",
+    "fees": "NO FEES TO BE PAID.",
+    "pdfs": [
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2025/05/Provision-of-Gender-Sensitivity-Training-Requirements.pdf",
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2025/05/Provision-of-Gender-Sensitivity-Training-Steps.pdf"
+    ],
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/2025/05/20/provision-of-gender-sensitivity-training/",
+    "lastVerified": "2026-10-24",
+    "dataNote": "The detail page does not describe the training itself. Confirm scope and scheduling with the GAD Office before relying on the linked steps."
+  },
+  {
+    "slug": "referral-to-service-providers-regarding-concerns-on-womens-rights",
+    "title": "Referral to Service Providers regarding Concerns on Women’s Rights",
+    "office": "Gender and Development Office",
+    "officeCode": "gad",
+    "category": "social",
+    "classification": "Simple",
+    "transactionType": "G2C – Government to Citizen; G2G – Government to Government",
+    "whoMayAvail": "General public, private sectors, and government instrumentalities",
+    "description": "The Citizens’ Charter lists referrals to service providers for concerns on women’s rights. Its detail page repeats generic GAD information-request text; contact the Gender and Development Office to confirm referral options and eligibility.",
+    "summary": "Contact the Gender and Development Office for referrals about women’s rights concerns.",
+    "fees": "NO FEES TO BE PAID.",
+    "pdfs": [
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2025/05/Referral-to-Service-Providers-regarding-Concerns-on-Womens-Rights-Requirements.pdf",
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2025/05/Referral-to-Service-Providers-regarding-Concerns-on-Womens-Rights-Steps.pdf"
+    ],
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/2025/05/26/referral-to-service-providers-regarding-concerns-on-womens-rights/",
+    "lastVerified": "2026-10-24",
+    "dataNote": "The detail page does not explain the referral pathway. Confirm available providers and eligibility with the GAD Office."
+  },
+  {
+    "slug": "repair-of-city-vehicles-and-heavy-equipment",
+    "title": "Repair of City Vehicles and Heavy Equipment",
+    "office": "Office of the City Engineer",
+    "officeCode": "oce",
+    "category": "infrastructure",
+    "classification": "Complex",
+    "transactionType": "G2G – Government to Government",
+    "whoMayAvail": "All city departments with issued city vehicles and heavy equipment",
+    "description": "The Office of the City Engineer repairs city vehicles and heavy equipment issued to city departments.",
+    "summary": "Request repair of a city-issued vehicle or heavy equipment through the Office of the City Engineer.",
+    "fees": "NO FEES TO BE PAID.",
+    "pdfs": [
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/10/Untitled19.pdf",
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/10/Untitled20.pdf"
+    ],
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/2024/10/04/repair-of-city-vehicles-and-heavy-equipment/",
+    "lastVerified": "2026-10-24"
+  },
+  {
+    "slug": "preparation-of-individual-program-of-works",
+    "title": "PREPARATION OF INDIVIDUAL PROGRAM OF WORKS",
+    "office": "Office of the City Engineer",
+    "officeCode": "oce",
+    "category": "infrastructure",
+    "classification": "Simple",
+    "transactionType": "G2C – Government to Citizen; G2G – Government to Government",
+    "whoMayAvail": "City officials and all barangays within the city",
+    "description": "The Office of the City Engineer helps barangay officials and city departments prepare programs of work and detailed estimates for infrastructure projects.",
+    "summary": "Request help preparing a program of work and detailed estimate for an infrastructure project.",
+    "fees": "NO FEES TO BE PAID.",
+    "pdfs": [
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/10/Untitled17.pdf",
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/10/Untitled18.pdf"
+    ],
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/2024/10/04/preparation-of-individual-program-of-works/",
+    "lastVerified": "2026-10-24"
+  },
+  {
+    "slug": "issuance-of-motorized-tricycle-inspection-report-for-permit-to-operate-and-franchise",
+    "title": "Issuance of Motorized Tricycle Inspection Report for Permit to Operate and Franchise",
+    "office": "Office of the City Engineer",
+    "officeCode": "oce",
+    "category": "safety",
+    "classification": "Simple",
+    "transactionType": "G2C – Government to Citizen",
+    "whoMayAvail": "All owners of motorized tricycles for hire",
+    "description": "The Office of the City Engineer inspects motorized tricycles for roadworthiness and issues an inspection report for a permit to operate and franchise under City Ordinance No. 2011-07.",
+    "summary": "Request the required inspection report for a motorized tricycle for hire.",
+    "fees": "Fee not reliably stated on the charter page; confirm any applicable fee with the Office of the City Engineer.",
+    "pdfs": [
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/10/Untitled1.pdf",
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/10/Untitled2.pdf"
+    ],
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/2024/09/27/issuance-of-motorized-tricycle-inspection-report-for-permit-to-operate-and-franchise/",
+    "lastVerified": "2026-10-24",
+    "dataNote": "The charter page shows building occupancy fees alongside this service. Those fees do not appear to apply to tricycle inspection."
+  },
+  {
+    "slug": "issuance-of-real-property-related-certifications",
+    "title": "Issuance of Real Property Related Certifications",
+    "office": "Office of the City Assessor",
+    "officeCode": "oca",
+    "category": "taxes",
+    "classification": "Simple",
+    "transactionType": "G2C – Government to Citizen",
+    "whoMayAvail": "All persons, entities, and corporations who need certifications",
+    "description": "The Office of the City Assessor issues real-property-related certifications requested by clients for legal purposes.",
+    "summary": "Request a real-property-related certification from the Office of the City Assessor.",
+    "fees": "Certification fee: PhP 90.00 per certification.",
+    "pdfs": [
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/Issuance-of-Real-Property-Related-Certifications-REQUIREMENTS-OCA.pdf",
+      "https://cc.sanfernandocity.gov.ph/wp-content/uploads/2024/05/STEPS-Issuance-of-Real-Property-Related-Certifications-OCA.pdf"
+    ],
+    "sourceUrl": "https://cc.sanfernandocity.gov.ph/2024/05/27/issuance-of-real-property-related-certifications/",
+    "lastVerified": "2026-10-24"
   }
 ];

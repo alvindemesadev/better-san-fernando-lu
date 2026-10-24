@@ -116,15 +116,18 @@ export function AboutPage() {
           <dl className="mt-8 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
             {[
               ['Official name', city.officialName],
+              ['Cityhood', 'March 20, 1998 (RA 8509)'],
               ['City type', city.type],
               ['Province', city.province],
               ['Region', city.region],
               ['Congressional district', city.district],
+              ['Barangays', `${city.barangayCount} barangays (12 districts)`],
               ['Land area', `${city.landAreaKm2} km² (PSA/PhilAtlas)`],
               ['Population (2024)', formatNumber(city.population2024)],
               ['Households (2024)', formatNumber(city.households2024)],
               ['Average household size', String(city.averageHouseholdSize)],
               ['Elevation', `${city.elevationM} m`],
+              ['Major languages (city profile)', 'Ilokano, Bisaya, Bicol, Ilonggo, Cebuano, Chinese, Bago'],
               ['ZIP code', city.zip],
               ['Coordinates', `${city.coordinates.lat}° N, ${city.coordinates.lng}° E`],
             ].map(([label, value]) => (
@@ -206,6 +209,7 @@ export function AboutPage() {
               links={[
                 { href: 'https://psa.gov.ph/system/files/psy/2025%20PSY%20Final_signed.pdf', label: 'PSA Statistical Yearbook: population and land area' },
                 { href: 'https://rsso01.psa.gov.ph/content/highlights-population-la-union-2024-census-population', label: 'PSA 2024 Census: La Union population' },
+                { href: 'https://data.bettergov.ph', label: 'BetterGov.ph open data catalog' },
                 { href: 'https://www.philatlas.com/luzon/r01/la-union/san-fernando.html', label: 'PhilAtlas city profile' },
                 { href: 'https://launion.gov.ph/city-of-san-fernando/', label: 'La Union provincial profile' },
               ]}
@@ -213,7 +217,7 @@ export function AboutPage() {
               Better San Fernando is an independent project, not affiliated with the City Government of San
               Fernando. The displayed land area is the PSA/PhilAtlas figure; published area figures differ between the
               PSA/PhilAtlas (102.72 km²), City (105.26 km²), and Province (106.88 km²) profiles. Core city profile facts
-              were checked against cited public records on October 23, 2026; each dataset has its own source date.
+              were checked against cited public records on October 24, 2026; each dataset has its own source date.
               For official transactions, always use the city’s own channels.
             </SourceNote>
           </div>

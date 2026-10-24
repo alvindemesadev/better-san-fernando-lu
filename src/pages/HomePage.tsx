@@ -66,10 +66,13 @@ export function HomePage() {
         <div className="container-page relative grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-24">
           <div className="min-w-0">
             <Reveal>
-              <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white/65">
-                <span className="size-1.5 rounded-full bg-accent" />
-                Independent civic guide
-              </p>
+              <div className="flex flex-wrap items-center gap-2 text-xs text-white/65">
+                <span className="font-semibold text-white/90">Independent civic guide</span>
+                <span className="text-white/30" aria-hidden="true">•</span>
+                <Link to="/about" viewTransition className="underline underline-offset-4 transition hover:text-white">
+                  How this project works
+                </Link>
+              </div>
             </Reveal>
 
             <Reveal delay={0.06}>

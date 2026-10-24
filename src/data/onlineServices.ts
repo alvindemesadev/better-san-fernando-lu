@@ -1,4 +1,4 @@
-import type { OnlineService } from './types';
+import type { OnlineService } from './types.ts';
 
 export const onlineServiceSlugs: string[] = [
   'issuance-of-business-permits-online-application',

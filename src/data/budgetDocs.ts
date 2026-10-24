@@ -1,4 +1,4 @@
-import type { BudgetDoc } from './types';
+import type { BudgetDoc } from './types.ts';
 
 export const budgetDocs: BudgetDoc[] = [
   {

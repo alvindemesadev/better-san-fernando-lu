@@ -148,7 +148,19 @@ export function BarangayDetailPage() {
                     <p className="mt-1 text-sm font-bold leading-5 text-ink-900">{barangay.skChairperson}</p>
                   </div>
                 </div>
-              ) : null}
+              ) : (
+                <div className="mt-5 border-t border-line pt-5">
+                  <div className="rounded-xl border border-amber-200 bg-amber-50 p-3">
+                    <p className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-amber-900">
+                      <UserRound aria-hidden="true" className="size-3.5" />
+                      SK chairperson
+                    </p>
+                    <p className="mt-1 text-sm leading-5 text-amber-950">
+                      Not verified in the current official roster available to this project.
+                    </p>
+                  </div>
+                </div>
+              )}
             </section>
           </Reveal>
         </div>

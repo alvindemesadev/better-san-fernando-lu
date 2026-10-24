@@ -181,4 +181,26 @@ export const legislation: LegislationItem[] = [
       'Amends Executive Order No. 11-2025 to reconstitute the Technical Working Group and Joint Inspection and Compliance Monitoring Unit.',
     sourceUrl: 'https://drive.google.com/file/d/15AARDg5EgAUt6kFbasyFnEzYPP4l1x5p/view?usp=drive_link',
   },
+  {
+    id: 'executive-order-54-2026',
+    number: 'Executive Order No. 54-2026',
+    title: 'City Scholarship Board reorganization',
+    kind: 'Executive Order',
+    status: 'Issued',
+    year: 2026,
+    summary:
+      'Reorganizes the City Scholarship Board of the City of San Fernando, La Union.',
+    sourceUrl: 'https://drive.google.com/file/d/1zly2ygxebAwt8NWUzR0j9vq3lizfVYjU/view?usp=drive_link',
+  },
+  {
+    id: 'executive-order-53-2026',
+    number: 'Executive Order No. 53-2026',
+    title: 'PRAISE Committee composition',
+    kind: 'Executive Order',
+    status: 'Issued',
+    year: 2026,
+    summary:
+      'Amends the composition of the city’s Program on Awards and Incentives for Service Excellence (PRAISE) Committee.',
+    sourceUrl: 'https://drive.google.com/file/d/1GY5r591tIh5BEKOeJnsFoyZDFNUcSl9n/view?usp=drive_link',
+  },
 ]

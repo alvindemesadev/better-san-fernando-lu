@@ -121,7 +121,7 @@ export function LegislationPage() {
         <div className="container-page py-10 sm:py-14">
           <Reveal>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <StatCard value={formatNumber(legislation.length)} label="Recent records" note="2025–2026 sample · executive orders checked Oct 23, 2026" />
+              <StatCard value={formatNumber(legislation.length)} label="Recent records" note="2025–2026 sample · executive orders checked Oct 24, 2026" />
               <StatCard value={formatNumber(enacted)} label="Enacted ordinances" note="Official copies linked" />
               <StatCard value={formatNumber(issued)} label="Executive orders" note="Issued by the City Mayor" />
               <StatCard value={formatNumber(proposed)} label="Proposed ordinance" note="Still before the SP" />

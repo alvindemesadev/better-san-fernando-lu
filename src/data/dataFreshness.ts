@@ -3,6 +3,16 @@ import { city } from './city.ts'
 import { offices } from './offices.ts'
 import { officials } from './officials.ts'
 import { services } from './services.ts'
+import { bidResults } from './bidDocs.ts'
+import { budgetDocs } from './budgetDocs.ts'
+import { cityElections } from './elections.ts'
+import { hotlines } from './hotlines.ts'
+import { legislation } from './legislation.ts'
+import { news, newsLastVerified } from './news.ts'
+import { onlineServices } from './onlineServices.ts'
+import { openDataSources } from './openData.ts'
+import { places } from './places.ts'
+import { dpwhSanFernando, philgepsSanFernando } from './contracts.ts'
 
 export interface DataFreshnessRow {
   dataset: string
@@ -78,6 +88,83 @@ export const manuallyMaintainedData: DataFreshnessRow[] = [
     lastVerified: city.lastVerified,
     reviewEveryDays: 365,
   },
+  {
+    dataset: 'City election history',
+    source: 'BetterGov OpenHalalan dataset and COMELEC election results; 2025 middle names are incomplete upstream',
+    recordCount: cityElections.length,
+    lastVerified: '2026-10-23',
+    reviewEveryDays: 365,
+  },
+  {
+    dataset: 'News snapshot',
+    source: 'Latest 30 posts from the City Government news feed',
+    recordCount: news.length,
+    lastVerified: newsLastVerified,
+    reviewEveryDays: 14,
+  },
+  {
+    dataset: 'Online city services',
+    source: 'Official city online-services directory; destination links checked October 23, 2026',
+    recordCount: onlineServices.length,
+    lastVerified: '2026-10-23',
+    reviewEveryDays: 90,
+  },
+  {
+    dataset: 'Legislation sample',
+    source: 'City executive-order index and Sangguniang Panlungsod sources; sample, not a complete archive',
+    recordCount: legislation.length,
+    lastVerified: '2026-10-24',
+    reviewEveryDays: 30,
+  },
+  {
+    dataset: 'Emergency hotline directory',
+    source: 'Current city department directory for City Hall and CDRRMO; police/fire use 911 because direct numbers were not recently verified',
+    recordCount: hotlines.length,
+    lastVerified: '2026-10-24',
+    reviewEveryDays: 90,
+  },
+  {
+    dataset: 'Bid result sample',
+    source: 'City bid-results index and linked official files; project titles omitted where the index gives reference numbers only',
+    recordCount: bidResults.length,
+    lastVerified: '2026-10-23',
+    reviewEveryDays: 90,
+  },
+  {
+    dataset: 'Budget document links',
+    source: 'City Full Disclosure Policy and linked official budget and audit documents',
+    recordCount: budgetDocs.length,
+    lastVerified: null,
+    reviewEveryDays: 180,
+  },
+  {
+    dataset: 'DPWH project snapshot',
+    source: 'BetterGov extract from DPWH; upstream last updated December 3, 2025, with no newer snapshot listed when checked',
+    recordCount: dpwhSanFernando.totalProjects,
+    lastVerified: '2026-10-23',
+    reviewEveryDays: 180,
+  },
+  {
+    dataset: 'PhilGEPS award snapshot',
+    source: 'BetterGov extract of city-tagged PhilGEPS awards; upstream last updated November 29, 2025, with no newer snapshot listed when checked',
+    recordCount: philgepsSanFernando.totalAwards,
+    lastVerified: '2026-10-23',
+    reviewEveryDays: 180,
+  },
+  {
+    dataset: 'Place directory',
+    source: 'Mixed government, institutional, and map listings; many commercial records do not have a current permit-roster source',
+    recordCount: places.length,
+    lastVerified: null,
+    reviewEveryDays: 90,
+  },
+  {
+    dataset: 'Open-data source registry',
+    source: 'Source pages retain their own upstream dates and coverage notes',
+    recordCount: openDataSources.length,
+    lastVerified: '2026-10-23',
+    reviewEveryDays: 180,
+  },
 ]
 
 export function getDataFreshness(asOf = new Date()): DataFreshnessResult[] {
@@ -104,7 +191,8 @@ export function formatDataFreshnessReport(asOf = new Date()) {
     'Manual data freshness',
     ...report.map((row) => {
       const verified = row.lastVerified ? `${row.lastVerified} (${row.ageDays} days ago)` : 'not recorded'
-      return `- ${row.status.toUpperCase()}: ${row.dataset} — ${row.recordCount} records; verified ${verified}; source: ${row.source}`
+      const count = `${row.recordCount} ${row.recordCount === 1 ? 'record' : 'records'}`
+      return `- ${row.status.toUpperCase()}: ${row.dataset} — ${count}; verified ${verified}; source: ${row.source}`
     }),
   ]
   return lines.join('\n')

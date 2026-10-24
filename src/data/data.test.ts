@@ -56,8 +56,8 @@ describe('cities and categories', () => {
 })
 
 describe('services', () => {
-  it('has 242 services with unique category and slug pairs', () => {
-    expect(services).toHaveLength(242)
+  it('has 249 services with unique category and slug pairs', () => {
+    expect(services).toHaveLength(249)
     expect(unique(services.map((service) => `${service.category}/${service.slug}`))).toBe(true)
   })
 
@@ -289,12 +289,12 @@ describe('open data extracts', () => {
   })
 
   it('has a verified legislation extract', () => {
-    expect(legislation).toHaveLength(12)
+    expect(legislation).toHaveLength(14)
     expect(legislationSources).toHaveLength(5)
     expect(unique(legislation.map((item) => item.id))).toBe(true)
     expect(unique(legislation.map((item) => item.number))).toBe(true)
     expect(legislation.filter((item) => item.status === 'Enacted')).toHaveLength(5)
-    expect(legislation.filter((item) => item.status === 'Issued')).toHaveLength(6)
+    expect(legislation.filter((item) => item.status === 'Issued')).toHaveLength(8)
     expect(legislation.filter((item) => item.status === 'Proposed')).toHaveLength(1)
     for (const item of legislation) {
       expect(item.number.trim()).not.toBe('')
