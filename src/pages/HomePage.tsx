@@ -24,6 +24,7 @@ import { city } from '../data/city'
 import { news } from '../data/news'
 import { stats } from '../data/stats'
 import { removeSavedService, useSavedServices } from '../lib/savedServices'
+import { usePageMeta } from '../lib/usePageMeta'
 import { telHref } from '../lib/utils'
 
 const featuredCategories = categories.slice(0, 6)
@@ -58,6 +59,11 @@ const exploreLinks = [
 ]
 
 export function HomePage() {
+  usePageMeta(
+    'Better San Fernando',
+    'A clearer, independent guide to City of San Fernando, La Union services, officials, barangays, budgets, and public records.',
+  )
+
   const savedServices = useSavedServices()
 
   return (
