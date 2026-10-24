@@ -32,7 +32,8 @@ import {
   X,
   type LucideIcon,
 } from 'lucide-react'
-import { AnimatePresence, motion } from 'motion/react'
+import { useLenis } from 'lenis/react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Suspense, lazy, useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/logo.png'
@@ -230,6 +231,8 @@ function MenuLinkTile({ item, onNavigate }: { item: MenuLink; onNavigate: () => 
 
 export function SiteHeader() {
   const { translate } = useLanguage()
+  const lenis = useLenis()
+  const reduceMotion = useReducedMotion()
   const [menuPath, setMenuPath] = useState<string | null>(null)
   const [mobileSection, setMobileSection] = useState('')
   const [mobileMenuTop, setMobileMenuTop] = useState(0)
@@ -335,7 +338,20 @@ export function SiteHeader() {
     <>
       <header ref={headerRef} className="sticky top-0 z-50 border-b border-line bg-white">
         <div className="container-page flex h-[4.5rem] items-center justify-between gap-4 lg:h-20">
-          <Link to="/" viewTransition className="group flex min-w-0 items-center">
+          <Link
+            to="/"
+            viewTransition
+            onClick={() => {
+              if (location.pathname !== '/') return
+
+              if (lenis) {
+                lenis.scrollTo(0, { immediate: Boolean(reduceMotion) })
+              } else {
+                window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
+              }
+            }}
+            className="group flex min-w-0 items-center"
+          >
             <img
               src={logo}
               alt="Better San Fernando"
