@@ -73,7 +73,7 @@ export default defineConfig({
       includeAssets: ['favicon.png', 'apple-touch-icon.png', 'og.png', 'pwa-192.png', 'pwa-512.png'],
       manifest: {
         name: 'Better San Fernando, La Union',
-        short_name: 'Better SF',
+        short_name: 'Better SFC',
         description:
           'A clearer, independent guide to City of San Fernando, La Union services, officials, barangays, budgets, and public records.',
         lang: 'en',
