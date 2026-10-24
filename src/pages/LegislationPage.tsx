@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import { ExternalLink, FileText, Landmark, Search, X } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -13,7 +14,8 @@ import {
   legislationSources,
   type LegislationItem,
 } from '../data/legislation'
-import { formatNumber, normalize, pluralize } from '../lib/utils'
+import { useLanguage } from '../i18n/language'
+import { formatNumber, normalize } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 const kinds = ['All records', 'Ordinance', 'Executive Order', 'Proposed Ordinance']
@@ -24,31 +26,27 @@ const statusStyles: Record<string, string> = {
   Proposed: 'bg-amber-50 text-amber-700',
 }
 
-const kindLabels: Record<string, string> = {
-  Ordinance: 'Ordinance',
-  'Executive Order': 'Executive order',
-  'Proposed Ordinance': 'Proposed ordinance',
-}
-
 function LegislationCard({ item }: { item: LegislationItem }) {
+  const { translate } = useLanguage()
+
   return (
     <article className="flex h-full flex-col rounded-2xl border border-line bg-white p-5 shadow-card transition hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-float sm:p-6">
       <div className="flex flex-wrap items-center gap-2">
         <span className={`inline-flex rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] ${statusStyles[item.status]}`}>
-          {item.status}
+          {translate(item.status)}
         </span>
-        <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-ink-400">{kindLabels[item.kind]}</span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-ink-400">{translate(item.kind)}</span>
       </div>
       <p className="mt-4 text-xs font-bold uppercase tracking-[0.12em] text-brand-700">{item.number}</p>
       <h3 className="mt-1 text-lg font-extrabold leading-snug tracking-tight text-ink-950">{item.title}</h3>
-      <p className="mt-2 flex-1 text-sm leading-6 text-ink-600">{item.summary}</p>
+      <p className="mt-2 flex-1 text-sm leading-6 text-ink-600"><LocalizedText text={item.summary} /></p>
       <a
         href={item.sourceUrl}
         target="_blank"
         rel="noreferrer"
         className="mt-5 inline-flex items-center gap-2 border-t border-line pt-4 text-sm font-bold text-brand-700 transition hover:text-brand-800"
       >
-        {item.status === 'Proposed' ? 'Read the proposal' : 'Open the official copy'}
+        {translate(item.status === 'Proposed' ? 'Read the proposal' : 'Open the official copy')}
         <ExternalLink aria-hidden="true" className="size-4" />
       </a>
     </article>
@@ -56,6 +54,7 @@ function LegislationCard({ item }: { item: LegislationItem }) {
 }
 
 export function LegislationPage() {
+  const { translate } = useLanguage()
   usePageMeta(
     'Ordinances and executive orders',
     'Recent ordinances, resolutions, and executive orders from the San Fernando City Government and Sangguniang Panlungsod, with links to official copies.',
@@ -104,16 +103,14 @@ export function LegislationPage() {
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-xl bg-brand-700 px-3.5 py-2 text-xs font-bold text-white transition hover:bg-brand-800"
           >
-            SP ordinance index
-            <ExternalLink aria-hidden="true" className="size-3.5" />
+            <LocalizedText text={"SP ordinance index"} /><ExternalLink aria-hidden="true" className="size-3.5" />
           </a>
           <Link
             to="/government/officials"
             viewTransition
             className="inline-flex items-center gap-2 rounded-xl border border-line bg-white px-3.5 py-2 text-xs font-bold text-ink-700 transition hover:border-brand-200 hover:text-brand-700"
           >
-            City officials
-          </Link>
+            <LocalizedText text={"City officials"} /></Link>
         </div>
       </PageHero>
 
@@ -139,25 +136,25 @@ export function LegislationPage() {
 
             <div className="mt-6 grid gap-3 rounded-2xl border border-line bg-white p-4 shadow-card sm:grid-cols-[1.6fr_1fr]">
               <label className="relative block">
-                <span className="sr-only">Search legislation</span>
+                <span className="sr-only">{translate('Search legislation')}</span>
                 <Search aria-hidden="true" className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-400" />
                 <input
                   type="search"
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Search by number, title, or year?"
+                  placeholder={translate('Search by number, title, or year?')}
                   className="w-full rounded-xl border border-line bg-surface py-2.5 pl-9 pr-9 text-sm text-ink-900 outline-none transition focus:border-brand-300 focus:ring-2 focus:ring-brand-100"
                 />
                 {query ? (
-                  <button type="button" onClick={() => setQuery('')} aria-label="Clear legislation search" className="absolute right-1 top-1/2 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-lg text-ink-600 hover:bg-white hover:text-ink-700">
+                  <button type="button" onClick={() => setQuery('')} aria-label={translate('Clear legislation search')} className="absolute right-1 top-1/2 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-lg text-ink-600 hover:bg-white hover:text-ink-700">
                     <X aria-hidden="true" className="size-4" />
                   </button>
                 ) : null}
               </label>
               <CustomSelect
-                ariaLabel="Filter by record type"
+                ariaLabel={translate('Filter by record type')}
                 value={kind}
-                options={kinds.map((item) => ({ value: item, label: item }))}
+                options={kinds.map((item) => ({ value: item, label: translate(item) }))}
                 onChange={setKind}
               />
             </div>
@@ -171,7 +168,7 @@ export function LegislationPage() {
                       <div className="flex items-center gap-3">
                         <h3 className="text-2xl font-extrabold tracking-tight text-ink-950">{year}</h3>
                         <span className="h-px flex-1 bg-line" />
-                        <span className="text-xs font-bold uppercase tracking-[0.1em] text-ink-400">{pluralize(items.length, 'record')}</span>
+                        <span className="text-xs font-bold uppercase tracking-[0.1em] text-ink-400">{formatNumber(items.length)} {translate(items.length === 1 ? 'record' : 'records')}</span>
                       </div>
                       <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                         {items.map((item) => <LegislationCard key={item.id} item={item} />)}
@@ -182,11 +179,11 @@ export function LegislationPage() {
               </div>
             ) : (
               <div className="mt-8 rounded-2xl border border-line bg-white p-8 text-center shadow-card">
-                <h3 className="text-lg font-extrabold text-ink-950">No records match this search</h3>
-                <p className="mt-2 text-sm text-ink-600">Try a different number, title, year, or record type.</p>
+                <h3 className="text-lg font-extrabold text-ink-950">{translate('No records match this search')}</h3>
+                <p className="mt-2 text-sm text-ink-600">{translate('Try a different number, title, year, or record type.')}</p>
                 {hasFilters ? (
                   <button type="button" onClick={resetFilters} className="mt-4 rounded-xl bg-brand-700 px-4 py-2 text-sm font-bold text-white transition hover:bg-brand-800">
-                    Clear filters
+                    {translate('Clear filters')}
                   </button>
                 ) : null}
               </div>
@@ -214,10 +211,10 @@ export function LegislationPage() {
                     {source.label === 'Executive orders' ? <Landmark aria-hidden="true" className="size-5" /> : <FileText aria-hidden="true" className="size-5" />}
                   </span>
                   <h3 className="mt-4 inline-flex items-center gap-2 text-base font-extrabold text-ink-950 group-hover:text-brand-700">
-                    {source.label}
+                    <LocalizedText text={source.label} />
                     <ExternalLink aria-hidden="true" className="size-3.5 text-ink-400 group-hover:text-brand-700" />
                   </h3>
-                  <p className="mt-1 text-sm leading-6 text-ink-600">{source.coverage}</p>
+                  <p className="mt-1 text-sm leading-6 text-ink-600"><LocalizedText text={source.coverage} /></p>
                 </a>
               ))}
             </div>
@@ -225,19 +222,13 @@ export function LegislationPage() {
 
           <div className="mt-10 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
             <SourceNote href={legislationSourceUrl} linkLabel="Sangguniang Panlungsod ordinances">
-              This page lists recent records with official copies where available. It is not a substitute for the
-              official ordinance archive or the published minutes of the Sangguniang Panlungsod.
-            </SourceNote>
+              <LocalizedText text={"This page lists recent records with official copies where available. It is not a substitute for the official ordinance archive or the published minutes of the Sangguniang Panlungsod."} /></SourceNote>
             <div className="rounded-2xl border border-line bg-surface p-5">
-              <h2 className="text-sm font-bold text-ink-950">How laws move through the city</h2>
+              <h2 className="text-sm font-bold text-ink-950"><LocalizedText text={"How laws move through the city"} /></h2>
               <p className="mt-2 text-sm leading-6 text-ink-600">
-                City ordinances are enacted by the Sangguniang Panlungsod, reviewed under national law, and published
-                by the city. Executive orders are issued by the City Mayor. Proposed ordinances remain drafts until
-                the council acts.
-              </p>
+                <LocalizedText text={"City ordinances are enacted by the Sangguniang Panlungsod, reviewed under national law, and published by the city. Executive orders are issued by the City Mayor. Proposed ordinances remain drafts until the council acts."} /></p>
               <Link to="/contact" viewTransition className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-brand-700 hover:text-brand-800">
-                Ask for a public record
-                <ExternalLink aria-hidden="true" className="size-3.5" />
+                <LocalizedText text={"Ask for a public record"} /><ExternalLink aria-hidden="true" className="size-3.5" />
               </Link>
             </div>
           </div>

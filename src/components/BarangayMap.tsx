@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { barangayMap } from '../data/barangayMap'
 import { barangays } from '../data/barangays'
 import { city } from '../data/city'
+import { useLanguage } from '../i18n/language'
 import { formatNumber } from '../lib/utils'
 
 const barangayBySlug = new Map(barangays.map((barangay) => [barangay.slug, barangay]))
@@ -25,6 +26,7 @@ const populationBands = [
 ]
 
 export function BarangayMap() {
+  const { translate } = useLanguage()
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null)
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null)
   const [resetToken, setResetToken] = useState(0)
@@ -44,16 +46,16 @@ export function BarangayMap() {
         className="overflow-hidden rounded-3xl border border-[#d7e2ea] bg-[#e9eff1] p-2.5 shadow-[0_12px_35px_-24px_rgba(28,55,76,0.45)] sm:p-4"
       >
         <Suspense
-          fallback={<div className="h-[27rem] animate-pulse rounded-2xl bg-surface sm:h-[32rem]" aria-label="Loading map" />}
+          fallback={<div className="h-[27rem] animate-pulse rounded-2xl bg-surface sm:h-[32rem]" aria-label={translate('Loading map')} />}
         >
           <BarangayMapCanvas resetToken={resetToken} onSelect={setSelectedSlug} onHover={setHoveredSlug} />
         </Suspense>
         <div className="mt-3 rounded-xl border border-line bg-white px-3 py-3">
           <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-            <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-600">Population · 2024 census</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-600">{translate('Population · 2024 census')}</span>
             <span className="inline-flex items-center gap-1.5 text-[10px] font-medium text-ink-500">
               <span className="size-3 rounded-sm ring-1 ring-black/5" style={{ backgroundColor: colors.selected }} aria-hidden="true" />
-              Selected
+              {translate('Selected')}
             </span>
           </div>
           <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1.5 text-[10px] font-medium text-ink-500">
@@ -72,9 +74,9 @@ export function BarangayMap() {
             rel="noreferrer"
             className="underline decoration-ink-300 underline-offset-2 transition hover:text-brand-700"
           >
-            Boundary shapes · PSA / NAMRIA 2023
+            {translate('Boundary shapes · PSA / NAMRIA 2023')}
           </a>
-          <span>{barangayMap.features.length} barangays · {city.districtCount} districts</span>
+            <span>{barangayMap.features.length} {translate('barangays')} · {city.districtCount} {translate('districts')}</span>
         </figcaption>
       </figure>
 
@@ -84,32 +86,32 @@ export function BarangayMap() {
             <div className="flex items-center justify-between gap-3">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-700">{preview.district}</p>
               <span className="rounded-full bg-surface px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-ink-500">
-                {isPinned ? 'Selected' : 'Preview'}
+                {translate(isPinned ? 'Selected' : 'Preview')}
               </span>
             </div>
             <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-ink-950">{preview.name}</h3>
             <p className="mt-2 text-sm leading-6 text-ink-600">
-              Barangay profile and 2024 census details for this part of San Fernando.
+              {translate('Barangay profile and 2024 census details for this part of San Fernando.')}
             </p>
             <dl className="mt-5 grid grid-cols-2 gap-3">
               <div className="rounded-xl bg-surface p-3">
-                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">Population 2024</dt>
+                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">{translate('Population 2024')}</dt>
                 <dd className="mt-1 text-base font-extrabold tabular-nums text-ink-950">
                   {formatNumber(preview.population2024)}
                 </dd>
               </div>
               <div className="rounded-xl bg-surface p-3">
-                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">City rank</dt>
+                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">{translate('City rank')}</dt>
                 <dd className="mt-1 text-base font-extrabold tabular-nums text-ink-950">#{preview.rank}</dd>
               </div>
               <div className="rounded-xl bg-surface p-3">
-                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">Land area</dt>
+                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">{translate('Land area')}</dt>
                 <dd className="mt-1 text-base font-extrabold tabular-nums text-ink-950">
                   {previewMapFeature ? `${previewMapFeature.areaSqKm.toFixed(1)} km²` : '—'}
                 </dd>
               </div>
               <div className="rounded-xl bg-surface p-3">
-                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">Punong Barangay</dt>
+                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">{translate('Punong Barangay')}</dt>
                 <dd className="mt-1 line-clamp-2 text-xs font-bold leading-5 text-ink-900">{preview.punongBarangay}</dd>
               </div>
             </dl>
@@ -120,11 +122,11 @@ export function BarangayMap() {
                   viewTransition
                   className="inline-flex items-center gap-2 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-brand-800"
                 >
-                  View barangay profile
+                  {translate('View barangay profile')}
                   <ArrowRight aria-hidden="true" className="size-4" />
                 </Link>
               ) : (
-                <p className="self-center text-xs font-medium text-ink-500">Click a barangay to zoom to and select it.</p>
+                <p className="self-center text-xs font-medium text-ink-500">{translate('Click a barangay to zoom to and select it.')}</p>
               )}
               {selectedSlug ? (
                 <button
@@ -132,7 +134,7 @@ export function BarangayMap() {
                   onClick={resetMap}
                   className="rounded-xl border border-line bg-white px-4 py-2.5 text-sm font-semibold text-ink-700 transition hover:border-brand-200 hover:text-brand-700"
                 >
-                  Reset map
+                  {translate('Reset map')}
                 </button>
               ) : null}
             </div>
@@ -142,18 +144,17 @@ export function BarangayMap() {
             <span className="inline-flex size-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
               <MapPin aria-hidden="true" className="size-5" />
             </span>
-            <h3 className="mt-4 text-2xl font-extrabold tracking-tight text-ink-950">Explore San Fernando</h3>
+            <h3 className="mt-4 text-2xl font-extrabold tracking-tight text-ink-950">{translate('Explore San Fernando')}</h3>
             <p className="mt-2 text-sm leading-6 text-ink-600">
-              Click a barangay to zoom in and lift it above the map. Drag to explore nearby boundaries; hover to preview
-              another community.
+              {translate('Click a barangay to zoom in and lift it above the map. Drag to explore nearby boundaries; hover to preview another community.')}
             </p>
             <dl className="mt-5 grid grid-cols-2 gap-3">
               <div className="rounded-xl bg-surface p-3">
-                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">Barangays</dt>
+                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">{translate('Barangays')}</dt>
                 <dd className="mt-1 text-base font-extrabold tabular-nums text-ink-950">{city.barangayCount}</dd>
               </div>
               <div className="rounded-xl bg-surface p-3">
-                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">Districts</dt>
+                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">{translate('Districts')}</dt>
                 <dd className="mt-1 text-base font-extrabold tabular-nums text-ink-950">{city.districtCount}</dd>
               </div>
             </dl>
@@ -168,8 +169,8 @@ export function BarangayMap() {
         >
           <ExternalLink aria-hidden="true" className="mt-0.5 size-3.5 shrink-0" />
           <span>
-            Explore Project NOAH hazard maps
-            <span className="mt-0.5 block font-normal text-ink-500">National hazard layers are linked, not embedded.</span>
+            {translate('Explore Project NOAH hazard maps')}
+            <span className="mt-0.5 block font-normal text-ink-500">{translate('National hazard layers are linked, not embedded.')}</span>
           </span>
         </a>
       </div>

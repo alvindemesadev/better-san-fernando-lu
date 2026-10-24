@@ -1,12 +1,15 @@
 import { ArrowRight, Building2, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { Office } from '../data/types'
+import { LocalizedText } from '../i18n/LocalizedText'
+import { useLanguage } from '../i18n/language'
 
 interface OfficeCardProps {
   office: Office
 }
 
 export function OfficeCard({ office }: OfficeCardProps) {
+  const { translate } = useLanguage()
   return (
     <Link
       to={`/government/offices/${office.slug}`}
@@ -25,15 +28,15 @@ export function OfficeCard({ office }: OfficeCardProps) {
       <h3 className="mt-4 line-clamp-2 text-[15px] font-bold leading-6 text-ink-950 group-hover:text-brand-700">
         {office.name}
       </h3>
-      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.1em] text-ink-400">{office.sector}</p>
+      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.1em] text-ink-400"><LocalizedText text={office.sector} /></p>
       <div className="mt-4 flex-1 space-y-1.5 text-sm leading-6 text-ink-600">
         {office.head ? (
           <p className="line-clamp-2">
             <span className="font-medium text-ink-700">{office.head}</span>
-            {office.position ? <span className="text-ink-500"> · {office.position}</span> : null}
+            {office.position ? <span className="text-ink-500"> · <LocalizedText text={office.position} /></span> : null}
           </p>
         ) : (
-          <p className="text-ink-400">Head not listed</p>
+          <p className="text-ink-400">{translate('Head not listed')}</p>
         )}
         {office.contact ? (
           <p className="flex min-w-0 items-center gap-1.5 text-xs text-ink-500">
@@ -43,7 +46,7 @@ export function OfficeCard({ office }: OfficeCardProps) {
         ) : null}
       </div>
       <p className="mt-4 border-t border-line pt-3 text-xs font-semibold text-brand-700">
-        {office.serviceCount} {office.serviceCount === 1 ? 'service' : 'services'}
+        {office.serviceCount} {translate(office.serviceCount === 1 ? 'service' : 'services')}
       </p>
     </Link>
   )

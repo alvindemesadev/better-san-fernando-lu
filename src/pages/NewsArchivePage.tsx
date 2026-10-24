@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import { Link } from 'react-router-dom'
 import { NewsCard } from '../components/NewsCard'
 import { PageHero } from '../components/PageHero'
@@ -24,15 +25,13 @@ export function NewsArchivePage() {
       >
         <div className="flex flex-wrap items-center gap-2">
           <span className="rounded-full border border-line bg-white/80 px-3 py-1.5 text-xs font-semibold text-ink-600 shadow-card">
-            {news.length} {news.length === 1 ? 'story' : 'stories'} tracked
-          </span>
+            {news.length} {news.length === 1 ? 'story' : 'stories'} <LocalizedText text={"tracked"} /></span>
           <Link
             to="/news"
             viewTransition
             className="rounded-full border border-line bg-white/80 px-3 py-1.5 text-xs font-semibold text-brand-700 shadow-card transition hover:border-brand-200"
           >
-            Recent updates
-          </Link>
+            <LocalizedText text={"Recent updates"} /></Link>
         </div>
       </PageHero>
 
@@ -51,14 +50,12 @@ export function NewsArchivePage() {
             </div>
           ) : (
             <p className="rounded-2xl border border-line bg-white p-6 text-sm leading-6 text-ink-600">
-              No stories are currently indexed. Visit the official city website for recent announcements.
-            </p>
+              <LocalizedText text={"No stories are currently indexed. Visit the official city website for recent announcements."} /></p>
           )}
 
           <div className="mt-10">
             <SourceNote href={city.website} linkLabel="Visit the official city website">
-              This archive contains the stories currently tracked by the guide; it may not include every city
-              announcement. Stories last verified on {formatDate(newsLastVerified)}.
+              <LocalizedText text={"This archive contains the stories currently tracked by the guide; it may not include every city announcement. Stories last verified on"} trailingSpace />{formatDate(newsLastVerified)}.
             </SourceNote>
           </div>
         </div>

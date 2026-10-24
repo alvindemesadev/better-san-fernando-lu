@@ -14,9 +14,22 @@ interface CustomSelectProps {
   options: CustomSelectOption[]
   value: string
   onChange: (value: string) => void
+  className?: string
+  buttonClassName?: string
+  menuClassName?: string
 }
 
-export function CustomSelect({ id, ariaLabel, label, options, value, onChange }: CustomSelectProps) {
+export function CustomSelect({
+  id,
+  ariaLabel,
+  label,
+  options,
+  value,
+  onChange,
+  className,
+  buttonClassName,
+  menuClassName,
+}: CustomSelectProps) {
   const generatedId = useId()
   const selectId = id ?? generatedId
   const listboxId = `${selectId}-listbox`
@@ -133,7 +146,7 @@ export function CustomSelect({ id, ariaLabel, label, options, value, onChange }:
   }
 
   return (
-    <div ref={rootRef} className="relative min-w-0">
+    <div ref={rootRef} className={cn('relative min-w-0', className)}>
       <button
         id={selectId}
         type="button"
@@ -154,6 +167,7 @@ export function CustomSelect({ id, ariaLabel, label, options, value, onChange }:
         className={cn(
           'flex h-11 w-full items-center justify-between gap-3 rounded-xl border bg-white px-3.5 text-left text-sm font-semibold text-ink-800 shadow-sm outline-none transition focus-visible:border-brand-400 focus-visible:ring-4 focus-visible:ring-brand-100',
           open ? 'border-brand-300 ring-4 ring-brand-100' : 'border-line hover:border-line-dark',
+          buttonClassName,
         )}
       >
         <span className="min-w-0 flex-1 truncate">
@@ -168,7 +182,10 @@ export function CustomSelect({ id, ariaLabel, label, options, value, onChange }:
         aria-label={ariaLabel ?? label ?? 'Options'}
         data-lenis-prevent
         hidden={!open}
-        className="scrollbar-slim absolute left-0 right-0 top-full z-50 mt-2 max-h-[min(20rem,50vh)] overflow-y-auto overscroll-contain rounded-2xl border border-line bg-white p-1.5 shadow-hero"
+        className={cn(
+          'scrollbar-slim absolute left-0 right-0 top-full z-50 mt-2 max-h-[min(20rem,50vh)] overflow-y-auto overscroll-contain rounded-2xl border border-line bg-white p-1.5 shadow-hero',
+          menuClassName,
+        )}
       >
         {options.map((option, index) => {
           const active = index === activeIndex

@@ -70,6 +70,7 @@ export default defineConfig({
     routeMetadataPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: null,
       includeAssets: ['favicon.png', 'apple-touch-icon.png', 'og.png', 'pwa-192.png', 'pwa-512.png'],
       manifest: {
         name: 'Better San Fernando, La Union',

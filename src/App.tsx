@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ScrollToTop } from './components/ScrollToTop'
 import { SiteLayout } from './components/SiteLayout'
 import { SmoothScroll } from './components/SmoothScroll'
+import { LanguageProvider } from './i18n/language'
 import { HomePage } from './pages/HomePage'
 import { NotFoundPage } from './pages/NotFoundPage'
 
@@ -77,49 +78,51 @@ const TransparencyPage = lazy(() =>
 export default function App() {
   return (
     <MotionConfig reducedMotion="user">
-      <SmoothScroll>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route element={<SiteLayout />}>
-              <Route index element={<HomePage />} />
-              <Route path="services" element={<ServicesPage />} />
-              <Route path="services/:category" element={<ServiceCategoryPage />} />
-              <Route path="services/:category/:slug" element={<ServiceDetailPage />} />
-              <Route path="government" element={<GovernmentPage />} />
-              <Route path="government/officials" element={<OfficialsPage />} />
-              <Route path="government/offices" element={<OfficesPage />} />
-              <Route path="government/offices/:slug" element={<OfficeDetailPage />} />
-              <Route path="government/barangays" element={<BarangaysPage />} />
-              <Route path="government/barangays/:slug" element={<BarangayDetailPage />} />
-              <Route path="government/hotlines" element={<HotlinesPage />} />
-              <Route path="government/legislation" element={<LegislationPage />} />
-              <Route path="city" element={<CityProfilePage />} />
-              <Route path="city/life" element={<LifePage />} />
-              <Route path="city/places" element={<PlacesPage />} />
-              <Route path="city/business" element={<BusinessPage />} />
-              <Route path="online-services" element={<OnlineServicesPage />} />
-              <Route path="transparency" element={<TransparencyPage />} />
-              <Route path="transparency/budget" element={<BudgetPage />} />
-              <Route path="transparency/procurement" element={<ProcurementPage />} />
-              <Route path="transparency/open-data" element={<OpenDataPage />} />
-              <Route path="transparency/projects" element={<ProjectsPage />} />
-              <Route path="news" element={<NewsPage />} />
-              <Route path="news/archive" element={<NewsArchivePage />} />
-              <Route path="news/:slug" element={<NewsDetailPage />} />
-              <Route path="about" element={<AboutPage />} />
-              <Route path="contact" element={<ContactPage />} />
-              <Route path="faq" element={<FaqPage />} />
-              <Route path="search" element={<SearchPage />} />
-              <Route path="sitemap" element={<SitemapPage />} />
-              <Route path="accessibility" element={<AccessibilityPage />} />
-              <Route path="privacy" element={<PrivacyPage />} />
-              <Route path="terms" element={<TermsPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </SmoothScroll>
+      <LanguageProvider>
+        <SmoothScroll>
+          <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+              <Route element={<SiteLayout />}>
+                <Route index element={<HomePage />} />
+                <Route path="services" element={<ServicesPage />} />
+                <Route path="services/:category" element={<ServiceCategoryPage />} />
+                <Route path="services/:category/:slug" element={<ServiceDetailPage />} />
+                <Route path="government" element={<GovernmentPage />} />
+                <Route path="government/officials" element={<OfficialsPage />} />
+                <Route path="government/offices" element={<OfficesPage />} />
+                <Route path="government/offices/:slug" element={<OfficeDetailPage />} />
+                <Route path="government/barangays" element={<BarangaysPage />} />
+                <Route path="government/barangays/:slug" element={<BarangayDetailPage />} />
+                <Route path="government/hotlines" element={<HotlinesPage />} />
+                <Route path="government/legislation" element={<LegislationPage />} />
+                <Route path="city" element={<CityProfilePage />} />
+                <Route path="city/life" element={<LifePage />} />
+                <Route path="city/places" element={<PlacesPage />} />
+                <Route path="city/business" element={<BusinessPage />} />
+                <Route path="online-services" element={<OnlineServicesPage />} />
+                <Route path="transparency" element={<TransparencyPage />} />
+                <Route path="transparency/budget" element={<BudgetPage />} />
+                <Route path="transparency/procurement" element={<ProcurementPage />} />
+                <Route path="transparency/open-data" element={<OpenDataPage />} />
+                <Route path="transparency/projects" element={<ProjectsPage />} />
+                <Route path="news" element={<NewsPage />} />
+                <Route path="news/archive" element={<NewsArchivePage />} />
+                <Route path="news/:slug" element={<NewsDetailPage />} />
+                <Route path="about" element={<AboutPage />} />
+                <Route path="contact" element={<ContactPage />} />
+                <Route path="faq" element={<FaqPage />} />
+                <Route path="search" element={<SearchPage />} />
+                <Route path="sitemap" element={<SitemapPage />} />
+                <Route path="accessibility" element={<AccessibilityPage />} />
+                <Route path="privacy" element={<PrivacyPage />} />
+                <Route path="terms" element={<TermsPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </SmoothScroll>
+      </LanguageProvider>
     </MotionConfig>
   )
 }

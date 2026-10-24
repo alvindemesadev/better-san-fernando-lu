@@ -18,6 +18,54 @@ export interface SearchResult {
 
 const categoryName = new Map(categories.map((category) => [category.slug, category.name]))
 
+const searchAliases: Record<string, string> = {
+  serbisyo: 'service',
+  serbisio: 'service',
+  opisina: 'office',
+  opisyal: 'official',
+  opisiales: 'official',
+  pamahalaan: 'government',
+  gobierno: 'government',
+  emerhensiya: 'emergency',
+  emerhensia: 'emergency',
+  pulisya: 'police',
+  pulis: 'police',
+  bumbero: 'fire',
+  sunog: 'fire',
+  buwis: 'tax',
+  badyet: 'budget',
+  gastos: 'expenditure',
+  kalusugan: 'health',
+  salunat: 'health',
+  ospital: 'hospital',
+  dokumeno: 'document',
+  dokumento: 'document',
+  tulong: 'assistance',
+  kapanganakan: 'birth',
+  sertipiko: 'certificate',
+  kasal: 'marriage',
+  pagkamatay: 'death',
+  trabaho: 'job',
+  kabuhayan: 'livelihood',
+  paaralan: 'school',
+  edukasyon: 'education',
+  edukasion: 'education',
+  scholarship: 'scholarship',
+  iskolarship: 'scholarship',
+  agrikultura: 'agriculture',
+  panagkalap: 'fisheries',
+  ordinansa: 'ordinance',
+  sakuna: 'disaster',
+  didigra: 'disaster',
+  kalsada: 'road',
+  siudad: 'city',
+  lungsod: 'city',
+  pagnaedan: 'accommodation',
+  bangko: 'bank',
+}
+
+const searchStopWords = new Set(['ang', 'ng', 'sa', 'at', 'mga', 'para', 'na', 'ti', 'iti', 'dagiti', 'ken', 'nga', 'a'])
+
 const staticPages: SearchResult[] = [
   {
     kind: 'Page',
@@ -289,7 +337,10 @@ function scoreResult(result: SearchResult, terms: string[]) {
 }
 
 export function searchAll(query: string, limit = 40) {
-  const terms = normalize(query).split(/\s+/).filter(Boolean)
+  const terms = normalize(query)
+    .split(/\s+/)
+    .filter((term) => term && !searchStopWords.has(term))
+    .map((term) => searchAliases[term] ?? term)
   if (terms.length === 0) return []
 
   return searchIndex

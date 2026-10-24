@@ -6,12 +6,15 @@ import { city } from '../data/city'
 import { hotlines } from '../data/hotlines'
 import { telHref } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
+import { useLanguage } from '../i18n/language'
 
 function dialHref(number: string) {
   return telHref(number.replace(/\s+local\s+.*$/i, ''))
 }
 
 export function HotlinesPage() {
+  const { language, translate, hasTranslation } = useLanguage()
+
   usePageMeta(
     'Emergency hotlines',
     'Published emergency, disaster, police, fire, health, and social welfare contact numbers for San Fernando, La Union.',
@@ -42,7 +45,7 @@ export function HotlinesPage() {
               <div>
                 <p className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-brand-300">
                   <AlertTriangle aria-hidden="true" className="size-4" />
-                  {primary.label}
+                  {translate(primary.label)}
                 </p>
                 <a
                   href={dialHref(primaryNumber)}
@@ -50,14 +53,14 @@ export function HotlinesPage() {
                 >
                   {primaryNumber}
                 </a>
-                <p className="mt-2 max-w-md text-sm leading-6 text-white/60">{primary.note}</p>
+                <p lang={hasTranslation(primary.note) ? language : 'en'} className="mt-2 max-w-md text-sm leading-6 text-white/60">{translate(primary.note)}</p>
               </div>
               <a
                 href={dialHref(primaryNumber)}
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-4 text-sm font-extrabold text-ink-950 transition hover:bg-white"
               >
                 <PhoneCall aria-hidden="true" className="size-4" />
-                Call 911
+                {translate('Call 911')}
               </a>
             </div>
           </div>
@@ -73,9 +76,9 @@ export function HotlinesPage() {
                 <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700">
                   <Phone aria-hidden="true" className="size-4" />
                 </span>
-                <h2 className="text-[15px] font-bold leading-6 text-ink-950">{hotline.label}</h2>
+                <h2 lang={hasTranslation(hotline.label) ? language : 'en'} className="text-[15px] font-bold leading-6 text-ink-950">{translate(hotline.label)}</h2>
               </div>
-              <p className="mt-3 flex-1 text-sm leading-6 text-ink-600">{hotline.note}</p>
+              <p lang={hasTranslation(hotline.note) ? language : 'en'} className="mt-3 flex-1 text-sm leading-6 text-ink-600">{translate(hotline.note)}</p>
               <div className="mt-4 space-y-1.5 border-t border-line pt-4">
                 {hotline.numbers.map((number) => (
                   <a
@@ -102,16 +105,15 @@ export function HotlinesPage() {
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           <div className="rounded-2xl border border-line bg-surface p-5">
-            <h2 className="text-sm font-bold text-ink-950">When calling an emergency line</h2>
-            <p className="mt-2 text-sm leading-6 text-ink-600">
-              State your location, the nature of the emergency, and whether anyone is injured. Stay on the line and
-              follow the dispatcher’s instructions.
+            <h2 lang={language} className="text-sm font-bold text-ink-950">{translate('When calling an emergency line')}</h2>
+            <p lang={language} className="mt-2 text-sm leading-6 text-ink-600">
+              {translate('State your location, the nature of the emergency, and whether anyone is injured. Stay on the line and follow the dispatcher’s instructions.')}
             </p>
           </div>
           <div className="rounded-2xl border border-line bg-surface p-5">
-            <h2 className="text-sm font-bold text-ink-950">Need a city office instead?</h2>
-            <p className="mt-2 text-sm leading-6 text-ink-600">
-              Browse the office directory for department contacts, or call the City Hall trunkline at{' '}
+            <h2 lang={language} className="text-sm font-bold text-ink-950">{translate('Need a city office instead?')}</h2>
+            <p lang={language} className="mt-2 text-sm leading-6 text-ink-600">
+              {translate('Browse the office directory for department contacts, or call the City Hall trunkline at')}{' '}
               <a href={telHref(city.trunkline)} className="font-semibold text-brand-700 hover:text-brand-800">
                 {city.trunkline}
               </a>
@@ -122,7 +124,7 @@ export function HotlinesPage() {
               viewTransition
               className="mt-3 inline-flex text-sm font-bold text-brand-700 hover:text-brand-800"
             >
-              City offices
+              {translate('City offices')}
             </Link>
           </div>
         </div>
@@ -139,9 +141,7 @@ export function HotlinesPage() {
               },
             ]}
           >
-            Health, social welfare, public safety, and CDRRMO contacts match the current city directory where listed.
-            Police and fire direct numbers come from the city’s 2023 stakeholder directory; we found no newer official
-            direct-number listing. Confirm them before non-emergency use. Call 911 for immediate emergencies.
+            {translate('Health, social welfare, public safety, and CDRRMO contacts match the current city directory where listed. Police and fire direct numbers come from the city’s 2023 stakeholder directory; we found no newer official direct-number listing. Confirm them before non-emergency use. Call 911 for immediate emergencies.')}
           </SourceNote>
         </div>
       </div>

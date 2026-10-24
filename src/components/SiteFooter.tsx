@@ -5,6 +5,7 @@ import logoLight from '../assets/logo-light.png'
 import { categories } from '../data/categories'
 import { city } from '../data/city'
 import { telHref } from '../lib/utils'
+import { useLanguage } from '../i18n/language'
 import { BackToTopButton } from './BackToTopButton'
 
 function FooterGroup({ title, children }: { title: string; children: ReactNode }) {
@@ -36,6 +37,8 @@ function FooterGroup({ title, children }: { title: string; children: ReactNode }
 }
 
 export function SiteFooter() {
+  const { language, translate } = useLanguage()
+
   return (
     <>
       <footer className="mt-auto bg-ink-950 text-white">
@@ -51,16 +54,15 @@ export function SiteFooter() {
                   className="h-10 w-auto"
                 />
                 <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">
-                  La Union · Civic guide
+                  {translate('La Union · Civic guide')}
                 </p>
               </div>
               <p className="mt-5 max-w-sm text-sm leading-6 text-white/60">
-                A clearer, independent guide to city services, public officials, barangays, and public money.
-                Built with open data and links to official sources.
+                {translate('A clearer, independent guide to city services, public officials, barangays, and public money. Built with open data and links to official sources.')}
               </p>
             </div>
 
-            <FooterGroup title="Explore">
+            <FooterGroup title={translate('Explore')}>
               <ul className="space-y-2.5 text-sm">
                 {[
                   { label: 'All services', href: '/services' },
@@ -80,14 +82,14 @@ export function SiteFooter() {
                 ].map(({ label, href }) => (
                   <li key={href}>
                     <Link to={href} viewTransition className="text-white/70 transition hover:text-white">
-                      {label}
+                      {translate(label)}
                     </Link>
                   </li>
                 ))}
               </ul>
             </FooterGroup>
 
-            <FooterGroup title="Service categories">
+            <FooterGroup title={translate('Service categories')}>
               <ul className="space-y-2.5 text-sm">
                 {categories.slice(0, 6).map((category) => (
                   <li key={category.slug}>
@@ -96,14 +98,14 @@ export function SiteFooter() {
                       viewTransition
                       className="text-white/70 transition hover:text-white"
                     >
-                      {category.shortName}
+                      {translate(category.shortName)}
                     </Link>
                   </li>
                 ))}
               </ul>
             </FooterGroup>
 
-            <FooterGroup title="City Hall">
+            <FooterGroup title={translate('City Hall')}>
               <ul className="space-y-3 text-sm text-white/70">
                 <li className="flex gap-2.5">
                   <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-brand-300" />
@@ -130,7 +132,7 @@ export function SiteFooter() {
           </div>
 
           <section
-            aria-label="Official links and project contributions"
+            aria-label={translate('Official and broader civic ecosystem')}
             className="mt-10 grid gap-8 border-t border-white/10 py-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center"
           >
             <div className="flex items-start gap-4">
@@ -138,7 +140,7 @@ export function SiteFooter() {
                 href="https://bettergov.ph/"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="BetterGov.ph national civic portal (opens in a new tab)"
+                aria-label={translate('BetterGov.ph national civic portal (opens in a new tab)')}
                 className="inline-flex size-12 shrink-0 items-center justify-center rounded-2xl bg-white p-1.5 shadow-xs transition hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
               >
                 <img
@@ -150,43 +152,43 @@ export function SiteFooter() {
                 />
               </a>
               <div className="min-w-0">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/60">
-                  Official &amp; broader ecosystem
+                <p lang={language} className="text-xs font-bold uppercase tracking-[0.16em] text-white/60">
+                  {translate('Official & broader ecosystem')}
                 </p>
-                <nav aria-label="Official and broader civic ecosystem" className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+                <nav aria-label={translate('Official and broader civic ecosystem')} className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
                   <a href={city.website} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-white/85 transition hover:text-white">
-                    Official city portal
+                    {translate('Official city portal')}
                     <ArrowUpRight aria-hidden="true" className="size-3.5" />
                   </a>
                   <a href="https://bettergov.ph/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-white/85 transition hover:text-white">
-                    National services — BetterGov
+                    {translate('National services — BetterGov')}
                     <ArrowUpRight aria-hidden="true" className="size-3.5" />
                   </a>
                   <a href="https://lgu.bettergov.ph/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-white/85 transition hover:text-white">
-                    Other LGUs — BetterLGU
+                    {translate('Other LGUs — BetterLGU')}
                     <ArrowUpRight aria-hidden="true" className="size-3.5" />
                   </a>
                 </nav>
-                <p className="mt-3 text-xs leading-5 text-white/55">
-                  Better San Fernando is an independent civic project, not the official City Government website.
+                <p lang={language} className="mt-3 text-xs leading-5 text-white/55">
+                  {translate('Better San Fernando is an independent civic project, not the official City Government website.')}
                 </p>
               </div>
             </div>
 
             <div>
-              <p className="text-sm font-semibold text-white/75">
-                Cost to the people of San Fernando <span className="ml-1 font-extrabold text-emerald-300">₱0</span>
+              <p lang={language} className="text-sm font-semibold text-white/75">
+                {translate('Cost to the people of San Fernando')} <span className="ml-1 font-extrabold text-emerald-300">₱0</span>
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 <a
                   href="https://github.com/alvindemesadev/better-san-fernando-lu/issues/new"
                   target="_blank"
                   rel="noreferrer"
-                  title="Offer to help or suggest an improvement"
+                  title={translate('Offer to help or suggest an improvement')}
                   className="inline-flex min-h-10 items-center gap-2 rounded-full bg-white/10 px-3.5 py-2 text-sm font-semibold text-white/85 transition hover:bg-white/15 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
                 >
                   <HandHeart aria-hidden="true" className="size-4" />
-                  Volunteer with us
+                  {translate('Volunteer with us')}
                 </a>
                 <a
                   href="https://github.com/alvindemesadev/better-san-fernando-lu"
@@ -195,7 +197,7 @@ export function SiteFooter() {
                   className="inline-flex min-h-10 items-center gap-2 rounded-full bg-white/10 px-3.5 py-2 text-sm font-semibold text-white/85 transition hover:bg-white/15 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
                 >
                   <ExternalLink aria-hidden="true" className="size-4" />
-                  Open-source on GitHub
+                  {translate('Open-source on GitHub')}
                 </a>
                 <a
                   href="https://github.com/alvindemesadev/better-san-fernando-lu/blob/main/CONTRIBUTING.md"
@@ -203,7 +205,7 @@ export function SiteFooter() {
                   rel="noreferrer"
                   className="inline-flex min-h-10 items-center gap-2 rounded-full bg-white/10 px-3.5 py-2 text-sm font-semibold text-white/85 transition hover:bg-white/15 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
                 >
-                  Contribute code with us
+                  {translate('Contribute code with us')}
                   <ArrowUpRight aria-hidden="true" className="size-3.5" />
                 </a>
               </div>
@@ -212,9 +214,9 @@ export function SiteFooter() {
 
           <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/60 lg:flex-row lg:items-center lg:justify-between">
             <p>
-              © 2026 Better San Fernando. Independent civic project. Source dates vary by dataset; see page citations.
+              {translate('© 2026 Better San Fernando. Independent civic project. Source dates vary by dataset; see page citations.')}
             </p>
-            <nav aria-label="Legal and site links" className="flex flex-wrap gap-x-5 gap-y-2">
+            <nav aria-label={translate('Legal and site links')} className="flex flex-wrap gap-x-5 gap-y-2">
               {[
                 { label: 'Sitemap', href: '/sitemap' },
                 { label: 'Accessibility', href: '/accessibility' },
@@ -223,7 +225,7 @@ export function SiteFooter() {
                 { label: 'Contact', href: '/contact' },
               ].map(({ label, href }) => (
                 <Link key={href} to={href} viewTransition className="transition hover:text-white">
-                  {label}
+                  {translate(label)}
                 </Link>
               ))}
             </nav>

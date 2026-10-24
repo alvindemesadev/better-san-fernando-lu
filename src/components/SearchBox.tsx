@@ -17,8 +17,9 @@ import {
   type KeyboardEvent,
 } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useLanguage } from '../i18n/language'
 import type { SearchResult } from '../lib/search'
-import { cn, pluralize } from '../lib/utils'
+import { cn } from '../lib/utils'
 
 interface SearchBoxProps {
   defaultValue?: string
@@ -54,6 +55,7 @@ export function SearchBox({
   const inputRef = useRef<HTMLInputElement>(null)
   const searchModuleRef = useRef<Promise<typeof import('../lib/search')> | null>(null)
   const navigate = useNavigate()
+  const { language, translate, hasTranslation } = useLanguage()
   const baseId = useId()
   const inputId = `${baseId}-input`
   const listboxId = `${baseId}-results`
@@ -161,8 +163,8 @@ export function SearchBox({
         )}
       >
         <Search aria-hidden="true" className={cn('ml-2 shrink-0 text-ink-400', large ? 'size-5' : 'size-4')} />
-        <label htmlFor={inputId} className="sr-only">
-          Search this site
+        <label htmlFor={inputId} className="sr-only" lang={hasTranslation('Search this site') ? language : 'en'}>
+          {translate('Search this site')}
         </label>
         <input
           ref={inputRef}
@@ -181,7 +183,7 @@ export function SearchBox({
             updateSearchResults(query)
           }}
           onKeyDown={handleKeyDown}
-          placeholder={placeholder}
+          placeholder={translate(placeholder)}
           autoFocus={autoFocus}
           autoComplete="off"
           role="combobox"
@@ -203,7 +205,7 @@ export function SearchBox({
               setActive(0)
               inputRef.current?.focus()
             }}
-            aria-label="Clear search"
+            aria-label={translate('Clear search')}
             className={cn(
               'inline-flex shrink-0 items-center justify-center rounded-lg text-ink-600 transition hover:bg-surface hover:text-ink-700',
               large ? 'size-10' : 'size-9',
@@ -219,7 +221,7 @@ export function SearchBox({
             large ? 'px-4 py-2.5 text-sm sm:px-6 sm:py-3 sm:text-base' : 'px-3 py-2 text-xs',
           )}
         >
-          Search
+          {translate('Search')}
         </button>
       </form>
 
@@ -228,13 +230,13 @@ export function SearchBox({
           {showSuggestions ? (
             !searchReady ? (
               <p className="px-4 py-4 text-sm text-ink-500" role="status">
-                Loading matches…
+                {translate('Loading matches…')}
               </p>
             ) : suggestions.length ? (
               <ul
                 id={listboxId}
                 role="listbox"
-                aria-label="Search suggestions"
+                aria-label={translate('Search suggestions')}
                 data-lenis-prevent
                 className="scrollbar-slim max-h-[min(22rem,55vh)] overflow-y-auto overscroll-contain p-2"
               >
@@ -268,14 +270,14 @@ export function SearchBox({
                         </span>
                         <span className="min-w-0 flex-1">
                           <span className="flex items-center gap-2">
-                            <span className="min-w-0 flex-1 truncate text-sm font-bold text-ink-950">
+                            <span lang="en" className="min-w-0 flex-1 truncate text-sm font-bold text-ink-950">
                               {result.title}
                             </span>
                             <span className="shrink-0 rounded-full bg-surface px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-brand-700">
-                              {result.kind}
+                              {translate(result.kind)}
                             </span>
                           </span>
-                          <span className="mt-0.5 block truncate text-xs text-ink-500">{description}</span>
+                          <span lang="en" className="mt-0.5 block truncate text-xs text-ink-500">{description}</span>
                         </span>
                         <ArrowRight aria-hidden="true" className="size-4 shrink-0 text-ink-400" />
                       </button>
@@ -285,19 +287,19 @@ export function SearchBox({
               </ul>
             ) : (
               <p className="px-4 py-4 text-sm leading-6 text-ink-500" role="status">
-                <span className="block text-sm font-bold text-ink-950">No quick matches</span>
-                Press Enter to search every page for your query.
+                <span className="block text-sm font-bold text-ink-950">{translate('No quick matches')}</span>
+                {translate('Press Enter to search every page for your query.')}
               </p>
             )
           ) : (
             <>
               <p className="px-4 pb-1 pt-3 text-[10px] font-bold uppercase tracking-[0.14em] text-ink-400">
-                Popular searches
+                {translate('Popular searches')}
               </p>
               <ul
                 id={listboxId}
                 role="listbox"
-                aria-label="Popular searches"
+                aria-label={translate('Popular searches')}
                 data-lenis-prevent
                 className="scrollbar-slim max-h-[min(22rem,55vh)] overflow-y-auto overscroll-contain p-2 pt-0"
               >
@@ -327,9 +329,9 @@ export function SearchBox({
                           <Search aria-hidden="true" className="size-4" />
                         </span>
                         <span className="min-w-0 flex-1">
-                          <span className="block truncate text-sm font-bold text-ink-950">{term}</span>
+                          <span lang={hasTranslation(term) ? language : 'en'} className="block truncate text-sm font-bold text-ink-950">{translate(term)}</span>
                           <span className="mt-0.5 block truncate text-xs text-ink-500">
-                            Search across the city guide
+                            {translate('Search across the city guide')}
                           </span>
                         </span>
                         <ArrowRight aria-hidden="true" className="size-4 shrink-0 text-ink-400" />
@@ -345,23 +347,23 @@ export function SearchBox({
             {showSuggestions ? (
               <>
                 <span aria-live="polite">
-                  {results.length ? pluralize(results.length, 'match', 'matches') : 'No matches'}
+                  {results.length ? `${results.length} ${translate(results.length === 1 ? 'match' : 'matches')}` : translate('No matches')}
                 </span>
                 <button
                   type="button"
                   onClick={() => submitSearch(query)}
                   className="inline-flex shrink-0 items-center gap-1 font-bold text-brand-700 transition hover:text-brand-800"
                 >
-                  See all results
+                  {translate('See all results')}
                   <ArrowRight aria-hidden="true" className="size-3.5" />
                 </button>
               </>
             ) : (
               <>
                 <span aria-live="polite">
-                  {pluralize(defaultSuggestions.length, 'popular search', 'popular searches')}
+                  {translate('Popular searches')}
                 </span>
-                <span className="hidden sm:inline">Type to narrow results</span>
+                <span className="hidden sm:inline">{translate('Type to narrow results')}</span>
               </>
             )}
           </div>

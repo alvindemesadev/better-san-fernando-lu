@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import { ArrowRight, ArrowUpRight, Database, ExternalLink, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { PageHero } from '../components/PageHero'
@@ -38,30 +39,23 @@ export function AboutPage() {
                   description="This is not the official city website. It is an independent civic project that organizes public information and links back to the government sources behind every dataset."
                 />
                 <p className="mt-5 text-[15px] leading-7 text-ink-600">
-                  The guide covers city services from the Citizens’ Charter, the elected mayor and city council, all
-                  59 barangays, and the budget and procurement records published under the Full Disclosure Policy.
-                  It does not process transactions, issue permits, or speak for the city government.
-                </p>
+                  <LocalizedText text={"The guide covers city services from the Citizens’ Charter, the elected mayor and city council, all 59 barangays, and the budget and procurement records published under the Full Disclosure Policy. It does not process transactions, issue permits, or speak for the city government."} /></p>
                 <p className="mt-4 text-[15px] leading-7 text-ink-600">
-                  Where records conflict or change, the official source takes precedence. Each dataset is dated so
-                  you can see when it was last checked.
-                </p>
+                  <LocalizedText text={"Where records conflict or change, the official source takes precedence. Each dataset is dated so you can see when it was last checked."} /></p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link
                     to="/services"
                     viewTransition
                     className="inline-flex items-center gap-2 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-brand-800"
                   >
-                    Browse services
-                    <ArrowRight aria-hidden="true" className="size-4" />
+                    <LocalizedText text={"Browse services"} /><ArrowRight aria-hidden="true" className="size-4" />
                   </Link>
                   <Link
                     to="/contact"
                     viewTransition
                     className="inline-flex items-center gap-2 rounded-xl border border-line bg-white px-4 py-2.5 text-sm font-bold text-ink-700 transition hover:border-brand-200 hover:text-brand-700"
                   >
-                    Contact and sources
-                  </Link>
+                    <LocalizedText text={"Contact and sources"} /></Link>
                 </div>
               </div>
             </Reveal>
@@ -78,27 +72,21 @@ export function AboutPage() {
           <div className="mt-12 grid gap-4 sm:grid-cols-3">
             <div className="rounded-2xl border border-line bg-white p-5 shadow-card">
               <Database aria-hidden="true" className="size-5 text-brand-700" />
-              <h2 className="mt-3 text-base font-extrabold text-ink-950">Structured public data</h2>
+              <h2 className="mt-3 text-base font-extrabold text-ink-950"><LocalizedText text={"Structured public data"} /></h2>
               <p className="mt-2 text-sm leading-6 text-ink-600">
-                242 services, 38 offices, 59 barangays, 15 officials, and the city’s budget and procurement
-                documents.
-              </p>
+                <LocalizedText text={"242 services, 38 offices, 59 barangays, 15 officials, and the city’s budget and procurement documents."} /></p>
             </div>
             <div className="rounded-2xl border border-line bg-white p-5 shadow-card">
               <ExternalLink aria-hidden="true" className="size-5 text-brand-700" />
-              <h2 className="mt-3 text-base font-extrabold text-ink-950">Links to the source</h2>
+              <h2 className="mt-3 text-base font-extrabold text-ink-950"><LocalizedText text={"Links to the source"} /></h2>
               <p className="mt-2 text-sm leading-6 text-ink-600">
-                Every service, office, barangay, news item, and financial document points back to an official city
-                or national source.
-              </p>
+                <LocalizedText text={"Every service, office, barangay, news item, and financial document points back to an official city or national source."} /></p>
             </div>
             <div className="rounded-2xl border border-line bg-white p-5 shadow-card">
               <MapPin aria-hidden="true" className="size-5 text-brand-700" />
-              <h2 className="mt-3 text-base font-extrabold text-ink-950">Local by design</h2>
+              <h2 className="mt-3 text-base font-extrabold text-ink-950"><LocalizedText text={"Local by design"} /></h2>
               <p className="mt-2 text-sm leading-6 text-ink-600">
-                Written around the way people actually use City Hall: by transaction, office, barangay, and public
-                record.
-              </p>
+                <LocalizedText text={"Written around the way people actually use City Hall: by transaction, office, barangay, and public record."} /></p>
             </div>
           </div>
         </div>
@@ -161,8 +149,8 @@ export function AboutPage() {
                 />
                 <p className="text-sm font-extrabold text-brand-700">{item.year}</p>
                 <div>
-                  <h3 className="text-base font-bold text-ink-950">{item.title}</h3>
-                  <p className="mt-1 max-w-3xl text-sm leading-6 text-ink-600">{item.text}</p>
+                  <h3 className="text-base font-bold text-ink-950"><LocalizedText text={item.title} /></h3>
+                <p className="mt-1 max-w-3xl text-sm leading-6 text-ink-600"><LocalizedText text={item.text} /></p>
                 </div>
               </li>
             ))}
@@ -190,14 +178,14 @@ export function AboutPage() {
               >
                 <div className="flex items-start justify-between gap-3">
                   <h3 className="text-sm font-bold leading-6 text-ink-950 group-hover:text-brand-700">
-                    {source.name}
+                    <LocalizedText text={source.name} />
                   </h3>
                   <ArrowUpRight
                     aria-hidden="true"
                     className="size-4 shrink-0 text-ink-400 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-700"
                   />
                 </div>
-                <p className="mt-1 flex-1 text-xs leading-5 text-ink-500">{source.note}</p>
+                <p className="mt-1 flex-1 text-xs leading-5 text-ink-500"><LocalizedText text={source.note} /></p>
               </a>
             ))}
           </div>
@@ -214,12 +202,7 @@ export function AboutPage() {
                 { href: 'https://launion.gov.ph/city-of-san-fernando/', label: 'La Union provincial profile' },
               ]}
             >
-              Better San Fernando is an independent project, not affiliated with the City Government of San
-              Fernando. The displayed land area is the PSA/PhilAtlas figure; published area figures differ between the
-              PSA/PhilAtlas (102.72 km²), City (105.26 km²), and Province (106.88 km²) profiles. Core city profile facts
-              were checked against cited public records on October 24, 2026; each dataset has its own source date.
-              For official transactions, always use the city’s own channels.
-            </SourceNote>
+              <LocalizedText text={"Better San Fernando is an independent project, not affiliated with the City Government of San Fernando. The displayed land area is the PSA/PhilAtlas figure; published area figures differ between the PSA/PhilAtlas (102.72 km²), City (105.26 km²), and Province (106.88 km²) profiles. Core city profile facts were checked against cited public records on October 24, 2026; each dataset has its own source date. For official transactions, always use the city’s own channels."} /></SourceNote>
           </div>
         </div>
       </section>

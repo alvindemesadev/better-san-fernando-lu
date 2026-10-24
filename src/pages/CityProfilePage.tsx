@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import { ArrowRight, ExternalLink, Map, Milestone, ShieldCheck, Sparkles, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { PageHero } from '../components/PageHero'
@@ -46,35 +47,21 @@ export function CityProfilePage() {
             <Reveal>
               <div className="space-y-4 text-[15px] leading-7 text-ink-600">
                 <p>
-                  San Fernando is a bustling commercial and administrative hub at the center of La Union. It hosts
-                  regional and field offices of national government agencies, regional branches of government
-                  financial institutions, and some government-owned corporations, making it the seat of government
-                  and economic activity in Region I.
-                </p>
+                  <LocalizedText text={"San Fernando is a bustling commercial and administrative hub at the center of La Union. It hosts regional and field offices of national government agencies, regional branches of government financial institutions, and some government-owned corporations, making it the seat of government and economic activity in Region I."} /></p>
                 <p>
-                  It is home to some of the region’s best educational and medical institutions, including the Ilocos
-                  Training and Regional Medical Center (ITRMC), acknowledged as the heart of public health and
-                  medical care in Northern Luzon. Urban services, trade, commerce, agriculture, and tourism continue
-                  to drive the city’s economy.
-                </p>
+                  <LocalizedText text={"It is home to some of the region’s best educational and medical institutions, including the Ilocos Training and Regional Medical Center (ITRMC), acknowledged as the heart of public health and medical care in Northern Luzon. Urban services, trade, commerce, agriculture, and tourism continue to drive the city’s economy."} /></p>
                 <p>
-                  San Fernando is also a transient city. Workers, students, and people transacting business or
-                  government matters swell the daytime population — the city government estimates an increase of
-                  about 38% — before commuters return home to nearby municipalities and provinces.
-                </p>
+                  <LocalizedText text={"San Fernando is also a transient city. Workers, students, and people transacting business or government matters swell the daytime population — the city government estimates an increase of about 38% — before commuters return home to nearby municipalities and provinces."} /></p>
               </div>
             </Reveal>
 
             <Reveal delay={0.08}>
               <div className="rounded-2xl border border-line bg-surface p-6">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-700">Strategic vision</p>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-700"><LocalizedText text={"Strategic vision"} /></p>
                 <h2 className="mt-2 text-xl font-extrabold tracking-tight text-ink-950">
-                  Four pillars of development
-                </h2>
+                  <LocalizedText text={"Four pillars of development"} /></h2>
                 <p className="mt-2 text-sm leading-6 text-ink-600">
-                  The city focuses its inter-sectoral plans on four pillars, with the welfare of residents at the
-                  center.
-                </p>
+                  <LocalizedText text={"The city focuses its inter-sectoral plans on four pillars, with the welfare of residents at the center."} /></p>
                 <ul className="mt-5 space-y-4">
                   {pillars.map((pillar) => (
                     <li key={pillar.title} className="flex gap-3">
@@ -82,8 +69,8 @@ export function CityProfilePage() {
                         <ShieldCheck aria-hidden="true" className="size-4" />
                       </span>
                       <span>
-                        <span className="block text-sm font-bold text-ink-950">{pillar.title}</span>
-                        <span className="mt-0.5 block text-sm leading-6 text-ink-600">{pillar.description}</span>
+                        <span className="block text-sm font-bold text-ink-950"><LocalizedText text={pillar.title} /></span>
+                        <span className="mt-0.5 block text-sm leading-6 text-ink-600"><LocalizedText text={pillar.description} /></span>
                       </span>
                     </li>
                   ))}
@@ -110,14 +97,14 @@ export function CityProfilePage() {
                 <div className="h-full rounded-2xl border border-line bg-white p-5 shadow-card">
                   <h3 className="flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.1em] text-ink-950">
                     <Sparkles aria-hidden="true" className="size-4 text-brand-700" />
-                    {group.title}
+                    <LocalizedText text={group.title} />
                   </h3>
                   <dl className="mt-4 space-y-3 text-sm">
                     {group.facts.map((fact) => (
                       <div key={fact.label} className="border-b border-line pb-3 last:border-b-0 last:pb-0">
-                        <dt className="text-xs font-semibold text-ink-500">{fact.label}</dt>
-                        <dd className="mt-0.5 font-semibold leading-6 text-ink-900">{fact.value}</dd>
-                        {fact.note ? <dd className="mt-0.5 text-xs leading-5 text-ink-500">{fact.note}</dd> : null}
+                        <dt className="text-xs font-semibold text-ink-500"><LocalizedText text={fact.label} /></dt>
+                        <dd className="mt-0.5 font-semibold leading-6 text-ink-900"><LocalizedText text={fact.value} /></dd>
+                        {fact.note ? <dd className="mt-0.5 text-xs leading-5 text-ink-500"><LocalizedText text={fact.note} /></dd> : null}
                       </div>
                     ))}
                   </dl>
@@ -142,8 +129,7 @@ export function CityProfilePage() {
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
                 >
-                  Complete archival history
-                  <ExternalLink aria-hidden="true" className="size-4" />
+                  <LocalizedText text={"Complete archival history"} /><ExternalLink aria-hidden="true" className="size-4" />
                 </a>
               }
             />
@@ -157,8 +143,8 @@ export function CityProfilePage() {
                   className="absolute -left-[31px] top-1 size-3 rounded-full border-2 border-white bg-brand-600 sm:-left-[39px]"
                 />
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-700">{item.year}</p>
-                <h3 className="mt-1 text-lg font-extrabold tracking-tight text-ink-950">{item.title}</h3>
-                <p className="mt-1.5 text-sm leading-6 text-ink-600">{item.text}</p>
+                <h3 className="mt-1 text-lg font-extrabold tracking-tight text-ink-950"><LocalizedText text={item.title} /></h3>
+                <p className="mt-1.5 text-sm leading-6 text-ink-600"><LocalizedText text={item.text} /></p>
               </li>
             ))}
           </ol>
@@ -186,7 +172,7 @@ export function CityProfilePage() {
                 >
                   <span className="inline-flex items-center gap-2">
                     <Map aria-hidden="true" className="size-4 shrink-0 text-brand-700" />
-                    {mapLink.label}
+                    <LocalizedText text={mapLink.label} />
                   </span>
                   <ExternalLink
                     aria-hidden="true"
@@ -220,14 +206,11 @@ export function CityProfilePage() {
                   <Milestone aria-hidden="true" className="size-5" />
                 </span>
                 <h3 className="mt-4 text-lg font-extrabold tracking-tight text-ink-950 group-hover:text-brand-700">
-                  Life and tourism
-                </h3>
+                  <LocalizedText text={"Life and tourism"} /></h3>
                 <p className="mt-2 flex-1 text-sm leading-6 text-ink-600">
-                  Beach circuits, heritage sites, festivals, local food, and everything you need to plan a visit.
-                </p>
+                  <LocalizedText text={"Beach circuits, heritage sites, festivals, local food, and everything you need to plan a visit."} /></p>
                 <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-700">
-                  Explore the city
-                  <ArrowRight aria-hidden="true" className="size-4 transition group-hover:translate-x-0.5" />
+                  <LocalizedText text={"Explore the city"} /><ArrowRight aria-hidden="true" className="size-4 transition group-hover:translate-x-0.5" />
                 </span>
               </Link>
             </Reveal>
@@ -242,14 +225,11 @@ export function CityProfilePage() {
                   <Users aria-hidden="true" className="size-5" />
                 </span>
                 <h3 className="mt-4 text-lg font-extrabold tracking-tight text-ink-950 group-hover:text-brand-700">
-                  Business and investment
-                </h3>
+                  <LocalizedText text={"Business and investment"} /></h3>
                 <p className="mt-2 flex-1 text-sm leading-6 text-ink-600">
-                  Competitive rankings, priority sectors, cost of doing business, and the permits you need to start.
-                </p>
+                  <LocalizedText text={"Competitive rankings, priority sectors, cost of doing business, and the permits you need to start."} /></p>
                 <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-700">
-                  See the business profile
-                  <ArrowRight aria-hidden="true" className="size-4 transition group-hover:translate-x-0.5" />
+                  <LocalizedText text={"See the business profile"} /><ArrowRight aria-hidden="true" className="size-4 transition group-hover:translate-x-0.5" />
                 </span>
               </Link>
             </Reveal>
@@ -274,10 +254,7 @@ export function CityProfilePage() {
                 },
               ]}
             >
-              City profile, facts, maps, and history are published by the City Government of San Fernando, with
-              figures from the Philippine Statistics Authority and the La Union Ecological Profile. Core city-profile
-              sources were checked on {formatDate(city.lastVerified)}; each linked dataset carries its own source date.
-            </SourceNote>
+              <LocalizedText text={"City profile, facts, maps, and history are published by the City Government of San Fernando, with figures from the Philippine Statistics Authority and the La Union Ecological Profile. Core city-profile sources were checked on"} trailingSpace />{formatDate(city.lastVerified)}<LocalizedText text={"; each linked dataset carries its own source date."} /></SourceNote>
           </div>
         </div>
       </section>

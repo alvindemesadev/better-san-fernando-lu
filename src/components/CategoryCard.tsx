@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../i18n/language'
 import type { ServiceCategory } from '../data/types'
 import { CategoryIcon } from './CategoryIcon'
 
@@ -9,6 +10,8 @@ interface CategoryCardProps {
 }
 
 export function CategoryCard({ category, count }: CategoryCardProps) {
+  const { language, translate, hasTranslation } = useLanguage()
+
   return (
     <Link
       to={`/services/${category.slug}`}
@@ -24,10 +27,10 @@ export function CategoryCard({ category, count }: CategoryCardProps) {
           className="size-4 text-ink-400 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-700"
         />
       </div>
-      <h3 className="mt-5 text-lg font-bold tracking-tight text-ink-950">{category.name}</h3>
-      <p className="mt-1.5 flex-1 text-sm leading-6 text-ink-600">{category.description}</p>
-      <p className="mt-4 text-xs font-semibold uppercase tracking-[0.12em] text-ink-400">
-        {count} services
+      <h3 lang={hasTranslation(category.name) ? language : 'en'} className="mt-5 text-lg font-bold tracking-tight text-ink-950">{translate(category.name)}</h3>
+      <p lang={hasTranslation(category.description) ? language : 'en'} className="mt-1.5 flex-1 text-sm leading-6 text-ink-600">{translate(category.description)}</p>
+      <p lang={language} className="mt-4 text-xs font-semibold uppercase tracking-[0.12em] text-ink-400">
+        {count} {translate('services')}
       </p>
     </Link>
   )

@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import { AlertTriangle, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { InfoPageLayout } from '../components/InfoPageLayout'
@@ -37,26 +38,23 @@ export function AccessibilityPage() {
 
       <InfoPageLayout sections={sections}>
           <section id="our-approach" className="scroll-mt-28 rounded-2xl border border-line bg-white p-5 shadow-card sm:p-7">
-            <h2 className="text-xl font-extrabold tracking-tight text-ink-950">Our approach</h2>
+            <h2 className="text-xl font-extrabold tracking-tight text-ink-950"><LocalizedText text={"Our approach"} /></h2>
             <p className="mt-3 text-[15px] leading-7 text-ink-600">
-              Better San Fernando is an independent civic project. We aim to follow the Web Content Accessibility
-              Guidelines (WCAG) 2.2 at the AA level, but the site has not been formally audited or certified. This
-              page describes the practices in place and the known gaps.
-            </p>
+              <LocalizedText text={"Better San Fernando is an independent civic project. We aim to follow the Web Content Accessibility Guidelines (WCAG) 2.2 at the AA level, but the site has not been formally audited or certified. This page describes the practices in place and the known gaps."} /></p>
             <dl className="mt-5 grid gap-3 sm:grid-cols-2">
               <div className="rounded-xl border border-line bg-surface p-4">
-                <dt className="text-[10px] font-bold uppercase tracking-[0.14em] text-ink-500">Target</dt>
-                <dd className="mt-1 text-sm font-extrabold text-ink-950">WCAG 2.2 · Level AA</dd>
+                <dt className="text-[10px] font-bold uppercase tracking-[0.14em] text-ink-500"><LocalizedText text={"Target"} /></dt>
+                <dd className="mt-1 text-sm font-extrabold text-ink-950"><LocalizedText text={"WCAG 2.2 · Level AA"} /></dd>
               </div>
               <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
-                <dt className="text-[10px] font-bold uppercase tracking-[0.14em] text-amber-800">Review status</dt>
-                <dd className="mt-1 text-sm font-extrabold text-amber-950">Not formally audited</dd>
+                <dt className="text-[10px] font-bold uppercase tracking-[0.14em] text-amber-800"><LocalizedText text={"Review status"} /></dt>
+                <dd className="mt-1 text-sm font-extrabold text-amber-950"><LocalizedText text={"Not formally audited"} /></dd>
               </div>
             </dl>
           </section>
 
           <section id="what-the-site-does" className="scroll-mt-28 rounded-2xl border border-line bg-surface p-5 sm:p-6">
-            <h2 className="text-xl font-extrabold tracking-tight text-ink-950">What the site does</h2>
+            <h2 className="text-xl font-extrabold tracking-tight text-ink-950"><LocalizedText text={"What the site does"} /></h2>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
               {features.map((feature) => (
                 <li
@@ -73,40 +71,27 @@ export function AccessibilityPage() {
           <section id="known-limitations" className="scroll-mt-28 rounded-2xl border border-amber-200 bg-amber-50 p-5 sm:p-7">
             <h2 className="inline-flex items-center gap-2 text-lg font-extrabold text-amber-950">
               <AlertTriangle aria-hidden="true" className="size-5 text-amber-700" />
-              Known limitations
-            </h2>
+              <LocalizedText text={"Known limitations"} /></h2>
             <ul className="mt-3 space-y-2 text-sm leading-6 text-amber-900/80">
               <li>
-                Official PDFs, Google Drive files, and pages on the city website are outside this project’s control
-                and may not be fully accessible. If a document is a barrier, contact the issuing office for an
-                alternative format.
-              </li>
+                <LocalizedText text={"Official PDFs, Google Drive files, and pages on the city website are outside this project’s control and may not be fully accessible. If a document is a barrier, contact the issuing office for an alternative format."} /></li>
               <li>
-                Some public records are published as scanned images or inconsistently formatted tables. We summarize
-                them, but the original document remains the authoritative version.
-              </li>
+                <LocalizedText text={"Some public records are published as scanned images or inconsistently formatted tables. We summarize them, but the original document remains the authoritative version."} /></li>
               <li>
-                External profile and news pages may have their own accessibility practices, which this guide cannot
-                change.
-              </li>
+                <LocalizedText text={"External profile and news pages may have their own accessibility practices, which this guide cannot change."} /></li>
             </ul>
           </section>
 
           <section id="reporting-a-barrier" className="scroll-mt-28 rounded-2xl border border-line bg-white p-5 shadow-card sm:p-7">
-            <h2 className="text-xl font-extrabold tracking-tight text-ink-950">Reporting a barrier</h2>
+            <h2 className="text-xl font-extrabold tracking-tight text-ink-950"><LocalizedText text={"Reporting a barrier"} /></h2>
             <p className="mt-3 text-[15px] leading-7 text-ink-600">
-              This independent project does not yet publish a dedicated support inbox. For barriers in city data or
-              official documents, use the contact page to find the right city channel. For a problem with this
-              site’s layout or navigation, note the page address and the assistive technology you use so it can be
-              reviewed.
-            </p>
+              <LocalizedText text={"This independent project does not yet publish a dedicated support inbox. For barriers in city data or official documents, use the contact page to find the right city channel. For a problem with this site’s layout or navigation, note the page address and the assistive technology you use so it can be reviewed."} /></p>
             <Link
               to="/contact"
               viewTransition
               className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-700 hover:text-brand-800"
             >
-              Contact and official channels
-              <ArrowRight aria-hidden="true" className="size-4" />
+              <LocalizedText text={"Contact and official channels"} /><ArrowRight aria-hidden="true" className="size-4" />
             </Link>
           </section>
       </InfoPageLayout>

@@ -7,10 +7,12 @@ import { SectionHeading } from '../components/SectionHeading'
 import { SourceNote } from '../components/SourceNote'
 import { city } from '../data/city'
 import { news, newsLastVerified } from '../data/news'
+import { useLanguage } from '../i18n/language'
 import { formatDate, formatNumber } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 export function NewsPage() {
+  const { translate } = useLanguage()
   usePageMeta(
     'News',
     'Recent announcements from the City Government of San Fernando, La Union, with links to the official source.',
@@ -40,23 +42,22 @@ export function NewsPage() {
 
           <div className="mt-8 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-line bg-white p-5 shadow-card">
             <div>
-              <p className="text-sm font-extrabold text-ink-950">Looking for an older update?</p>
-              <p className="mt-0.5 text-sm text-ink-600">Browse {formatNumber(news.length)} recent city stories in the archive.</p>
+              <p className="text-sm font-extrabold text-ink-950">{translate('Looking for an older update?')}</p>
+              <p className="mt-0.5 text-sm text-ink-600">{formatNumber(news.length)} {translate('recent city stories in the archive.')}</p>
             </div>
             <Link
               to="/news/archive"
               viewTransition
               className="inline-flex items-center gap-2 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-brand-800"
             >
-              Open the news archive
+              {translate('Open the news archive')}
               <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
           </div>
 
           <div className="mt-10">
-            <SourceNote href={city.website} linkLabel="Visit the official city website">
-              News summaries and images come from the City Government of San Fernando. Read the full story on the
-              official website. News last verified on {formatDate(newsLastVerified)}.
+          <SourceNote href={city.website} linkLabel={translate('Visit the official city website')}>
+            {translate('News summaries and images are from the city. Open its official site for full stories. Last checked')} {formatDate(newsLastVerified)}.
             </SourceNote>
           </div>
         </div>

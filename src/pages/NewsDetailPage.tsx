@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import { ArrowLeft, ArrowUpRight, CalendarDays, ExternalLink } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { NotFoundPage } from './NotFoundPage'
@@ -64,17 +65,14 @@ export function NewsDetailPage() {
               />
               <p className="mt-6 text-[15px] leading-7 text-ink-700">{item.excerpt}</p>
               <p className="mt-4 text-sm leading-6 text-ink-500">
-                This is a summary. Read the complete article, including the full text and photos, on the official city
-                website.
-              </p>
+                <LocalizedText text={"This is a summary. Read the complete article, including the full text and photos, on the official city website."} /></p>
               <a
                 href={item.sourceUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-brand-800"
               >
-                Read on the official city website
-                <ArrowUpRight aria-hidden="true" className="size-4" />
+                <LocalizedText text={"Read on the official city website"} /><ArrowUpRight aria-hidden="true" className="size-4" />
               </a>
               <div className="mt-8">
                 <Link
@@ -83,21 +81,20 @@ export function NewsDetailPage() {
                   className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
                 >
                   <ArrowLeft aria-hidden="true" className="size-4" />
-                  All news
-                </Link>
+                  <LocalizedText text={"All news"} /></Link>
               </div>
             </article>
 
             <aside className="space-y-4">
               <div className="rounded-2xl border border-line bg-surface p-5">
-                <h2 className="text-sm font-bold text-ink-950">About this story</h2>
+                <h2 className="text-sm font-bold text-ink-950"><LocalizedText text={"About this story"} /></h2>
                 <dl className="mt-3 space-y-3 text-sm">
                   <div>
-                    <dt className="text-xs font-semibold text-ink-500">Published</dt>
+                    <dt className="text-xs font-semibold text-ink-500"><LocalizedText text={"Published"} /></dt>
                     <dd className="mt-0.5 font-semibold text-ink-900">{formatDate(item.date)}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs font-semibold text-ink-500">Source</dt>
+                    <dt className="text-xs font-semibold text-ink-500"><LocalizedText text={"Source"} /></dt>
                     <dd className="mt-0.5">
                       <a
                         href={item.sourceUrl}
@@ -105,8 +102,7 @@ export function NewsDetailPage() {
                         rel="noreferrer"
                         className="inline-flex items-start gap-1.5 font-semibold leading-6 text-brand-700 hover:text-brand-800"
                       >
-                        City Government of San Fernando
-                        <ExternalLink aria-hidden="true" className="mt-1 size-3.5 shrink-0" />
+                        <LocalizedText text={"City Government of San Fernando"} /><ExternalLink aria-hidden="true" className="mt-1 size-3.5 shrink-0" />
                       </a>
                     </dd>
                   </div>
@@ -114,8 +110,7 @@ export function NewsDetailPage() {
               </div>
 
               <SourceNote href={item.sourceUrl} linkLabel="Open the official story">
-                Text and images belong to the City Government of San Fernando. This page summarizes the published
-                story and links to the original. News last verified on {formatDate(newsLastVerified)}.
+                <LocalizedText text={"Text and images belong to the City Government of San Fernando. This page summarizes the published story and links to the original. News last verified on"} trailingSpace />{formatDate(newsLastVerified)}.
               </SourceNote>
             </aside>
           </div>

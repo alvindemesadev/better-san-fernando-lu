@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import { ArrowRight } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { NotFoundPage } from './NotFoundPage'
@@ -52,8 +53,7 @@ export function ServiceCategoryPage() {
                   viewTransition
                   className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
                 >
-                  All categories
-                  <ArrowRight aria-hidden="true" className="size-4" />
+                  <LocalizedText text={"All categories"} /><ArrowRight aria-hidden="true" className="size-4" />
                 </Link>
               }
             />
@@ -67,10 +67,7 @@ export function ServiceCategoryPage() {
 
           <div className="mt-8">
             <SourceNote href={city.citizensCharter} linkLabel="Open the official Citizens’ Charter">
-              Service details are summarized from the City Government’s Citizens’ Charter. Requirements, fees, and
-              processing times can change. Confirm with the issuing office before your visit; each service record has
-              its own verification date.
-            </SourceNote>
+              <LocalizedText text={"Service details are summarized from the City Government’s Citizens’ Charter. Requirements, fees, and processing times can change. Confirm with the issuing office before your visit; each service record has its own verification date."} /></SourceNote>
           </div>
         </div>
       </section>

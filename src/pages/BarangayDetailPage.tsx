@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import { ArrowLeft, ArrowUpRight, MapPin, UserRound, Users } from 'lucide-react'
 import { motion } from 'motion/react'
 import { Link, useParams } from 'react-router-dom'
@@ -53,12 +54,10 @@ export function BarangayDetailPage() {
             {barangay.district}
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-700 px-3 py-1.5 text-xs font-bold text-white">
-            Rank {barangay.rank} of 59
-          </span>
+            <LocalizedText text={"Rank"} trailingSpace />{barangay.rank} <LocalizedText text={"of 59"} /></span>
           {barangay.poblacion ? (
             <span className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-semibold text-ink-700">
-              Poblacion
-            </span>
+              <LocalizedText text={"Poblacion"} /></span>
           ) : null}
         </div>
       </PageHero>
@@ -99,9 +98,8 @@ export function BarangayDetailPage() {
                 ))}
               </div>
               <p className="mt-5 text-xs leading-5 text-ink-500">
-                City-wide population was {formatNumber(city.population2024)} in 2024, compared with{' '}
-                {formatNumber(city.population2020)} in 2020.
-              </p>
+                <LocalizedText text={"City-wide population was"} trailingSpace />{formatNumber(city.population2024)} <LocalizedText text={"in 2024, compared with"} />{' '}
+                {formatNumber(city.population2020)} <LocalizedText text={"in 2020."} /></p>
             </section>
           </Reveal>
 
@@ -110,7 +108,7 @@ export function BarangayDetailPage() {
               <SectionHeading eyebrow="Barangay officials" title="Your barangay council" />
               <div className="mt-6 rounded-2xl bg-brand-700 p-4 text-white">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-200">Punong Barangay</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-200"><LocalizedText text={"Punong Barangay"} /></p>
                   <p className="mt-0.5 text-lg font-extrabold leading-tight">{barangay.punongBarangay}</p>
                 </div>
               </div>
@@ -118,8 +116,7 @@ export function BarangayDetailPage() {
               <div className="mt-5">
                 <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-ink-400">
                   <Users aria-hidden="true" className="size-3.5" />
-                  Sangguniang Barangay members
-                </p>
+                  <LocalizedText text={"Sangguniang Barangay members"} /></p>
                 <ul className="mt-3 grid gap-2 sm:grid-cols-2">
                   {barangay.kagawads.map((kagawad, index) => (
                     <li
@@ -137,8 +134,7 @@ export function BarangayDetailPage() {
                   <div className="rounded-xl border border-line bg-surface p-3">
                     <p className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500">
                       <UserRound aria-hidden="true" className="size-3.5" />
-                      SK chairperson
-                    </p>
+                      <LocalizedText text={"SK chairperson"} /></p>
                     <p className="mt-1 text-sm font-bold leading-5 text-ink-900">{barangay.skChairperson}</p>
                   </div>
                 </div>
@@ -147,11 +143,9 @@ export function BarangayDetailPage() {
                   <div className="rounded-xl border border-amber-200 bg-amber-50 p-3">
                     <p className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-amber-900">
                       <UserRound aria-hidden="true" className="size-3.5" />
-                      SK chairperson
-                    </p>
+                      <LocalizedText text={"SK chairperson"} /></p>
                     <p className="mt-1 text-sm leading-5 text-amber-950">
-                      Not verified in the current official roster available to this project.
-                    </p>
+                      <LocalizedText text={"Not verified in the current official roster available to this project."} /></p>
                   </div>
                 </div>
               )}
@@ -169,8 +163,7 @@ export function BarangayDetailPage() {
                 viewTransition
                 className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
               >
-                All barangays
-                <ArrowUpRight aria-hidden="true" className="size-4" />
+                <LocalizedText text={"All barangays"} /><ArrowUpRight aria-hidden="true" className="size-4" />
               </Link>
             }
           />
@@ -184,7 +177,7 @@ export function BarangayDetailPage() {
               >
                 <span className="block text-sm font-bold text-ink-950 group-hover:text-brand-700">{item.name}</span>
                 <span className="mt-1 block text-xs text-ink-500">
-                  {formatNumber(item.population2024)} residents · Rank {item.rank}
+                  {formatNumber(item.population2024)} <LocalizedText text={"residents · Rank"} trailingSpace />{item.rank}
                 </span>
               </Link>
             ))}
@@ -201,13 +194,7 @@ export function BarangayDetailPage() {
               { href: 'https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/103013', label: 'Republic Act No. 12326' },
             ]}
           >
-            Population figures use the 2024 Census of Population. The punong barangay and council come from the city
-            government’s published directory. SK chairperson names were previously entered from the DILG Barangay
-            Information System, but its records request failed with a 502 error during the October 23, 2026 review.
-            The local roster has 58 names; Puspus has no verified entry, and the rest could not be rechecked. Confirm
-            SK names with DILG before relying on them. The next regular barangay and SK elections are scheduled for
-            November 2028 under Republic Act No. 12326. Facilities are not yet published in a citywide dataset.
-          </SourceNote>
+            <LocalizedText text={"Population figures use the 2024 Census of Population. The punong barangay and council come from the city government’s published directory. SK chairperson names were previously entered from the DILG Barangay Information System, but its records request failed with a 502 error during the October 23, 2026 review. The local roster has 58 names; Puspus has no verified entry, and the rest could not be rechecked. Confirm SK names with DILG before relying on them. The next regular barangay and SK elections are scheduled for November 2028 under Republic Act No. 12326. Facilities are not yet published in a citywide dataset."} /></SourceNote>
         </div>
 
         <div className="mt-6">
@@ -217,8 +204,7 @@ export function BarangayDetailPage() {
             className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
           >
             <ArrowLeft aria-hidden="true" className="size-4" />
-            Back to all barangays
-          </Link>
+            <LocalizedText text={"Back to all barangays"} /></Link>
         </div>
       </div>
     </>

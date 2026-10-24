@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import { ArrowUpRight, CheckCircle2, ExternalLink, MonitorSmartphone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { PageHero } from '../components/PageHero'
@@ -5,9 +6,11 @@ import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
 import { SourceNote } from '../components/SourceNote'
 import { onlineServices } from '../data/onlineServices'
+import { useLanguage } from '../i18n/language'
 import { usePageMeta } from '../lib/usePageMeta'
 
 export function OnlineServicesPage() {
+  const { translate } = useLanguage()
   usePageMeta(
     'Online services',
     'Apply, track, and pay online: San Fernando’s e-business permits, cedula application, work permits, job applications, food handler records, and city portals.',
@@ -23,10 +26,10 @@ export function OnlineServicesPage() {
       >
         <div className="flex flex-wrap gap-2">
           <span className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-semibold text-ink-700">
-            {onlineServices.length} official systems
+            {onlineServices.length} {translate('official systems')}
           </span>
           <span className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-semibold text-ink-700">
-            Accounts and fees are handled by the city
+            {translate('Accounts and fees are handled by the city')}
           </span>
         </div>
       </PageHero>
@@ -50,18 +53,18 @@ export function OnlineServicesPage() {
                       <MonitorSmartphone aria-hidden="true" className="size-5" />
                     </span>
                     <span className="rounded-full bg-surface px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-ink-500">
-                      {service.category}
+                      <LocalizedText text={service.category} />
                     </span>
                   </div>
                   <h3 className="mt-4 text-base font-extrabold tracking-tight text-ink-950">{service.name}</h3>
                   <p className="mt-1 text-xs font-bold uppercase tracking-[0.1em] text-brand-700">
                     {service.shortName}
                   </p>
-                  <p className="mt-2 flex-1 text-sm leading-6 text-ink-600">{service.description}</p>
+                  <p className="mt-2 flex-1 text-sm leading-6 text-ink-600"><LocalizedText text={service.description} /></p>
                   {service.note ? (
                     <p className="mt-2 inline-flex items-start gap-1.5 text-xs leading-5 text-ink-500">
                       <CheckCircle2 aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 text-ink-400" />
-                      {service.note}
+                      <LocalizedText text={service.note} />
                     </p>
                   ) : null}
                   <a
@@ -70,7 +73,7 @@ export function OnlineServicesPage() {
                     rel="noreferrer"
                     className="group mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
                   >
-                    Open {service.shortName}
+                    {translate('Open')} {service.shortName}
                     <ArrowUpRight
                       aria-hidden="true"
                       className="size-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -82,27 +85,23 @@ export function OnlineServicesPage() {
           </div>
 
           <div className="mt-10 rounded-2xl border border-line bg-surface p-5 sm:p-6">
-            <h2 className="text-base font-extrabold tracking-tight text-ink-950">Prefer to transact in person?</h2>
+            <h2 className="text-base font-extrabold tracking-tight text-ink-950">{translate('Prefer to transact in person?')}</h2>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-ink-600">
-              The Citizens’ Charter lists the requirements, fees, and steps for all 242 city services, including the
-              office that handles each one.
-            </p>
+              <LocalizedText text={"The Citizens’ Charter lists the requirements, fees, and steps for all 242 city services, including the office that handles each one."} /></p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Link
                 to="/services"
                 viewTransition
                 className="inline-flex items-center gap-2 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-brand-800"
               >
-                Browse city services
-                <ArrowUpRight aria-hidden="true" className="size-4" />
+                <LocalizedText text={"Browse city services"} /><ArrowUpRight aria-hidden="true" className="size-4" />
               </Link>
               <Link
                 to="/government/hotlines"
                 viewTransition
                 className="inline-flex items-center gap-2 rounded-xl border border-line bg-white px-4 py-2.5 text-sm font-bold text-ink-700 transition hover:border-brand-200 hover:text-brand-700"
               >
-                Call an office
-              </Link>
+                <LocalizedText text={"Call an office"} /></Link>
             </div>
           </div>
 
@@ -111,16 +110,12 @@ export function OnlineServicesPage() {
               href="https://www.sanfernandocity.gov.ph/online-services/"
               linkLabel="Online Services on the city website"
             >
-              The city publishes and operates these systems. Accounts, payments, and data are handled by the City
-              Government of San Fernando, not by this guide. Check the official service page before submitting
-              information or making payments.
-            </SourceNote>
+              <LocalizedText text={"The city publishes and operates these systems. Accounts, payments, and data are handled by the City Government of San Fernando, not by this guide. Check the official service page before submitting information or making payments."} /></SourceNote>
           </div>
 
           <p className="mt-6 inline-flex items-start gap-2 text-xs leading-5 text-ink-500">
             <ExternalLink aria-hidden="true" className="mt-0.5 size-3.5 shrink-0" />
-            Links open the official portals of the City Government of San Fernando in a new tab.
-          </p>
+            <LocalizedText text={"Links open the official portals of the City Government of San Fernando in a new tab."} /></p>
         </div>
       </section>
     </>

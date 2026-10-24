@@ -15,7 +15,10 @@ This is not an official City Government website. Official sources are linked thr
 - City life and tourism page with a photo-led introduction, credited activity cards, a visitor-map preview, travel guidance, and festival listings
 - Searchable city places directory for public agencies, health, schools, shopping, dining, stays, attractions, transport, and everyday services, with live Google Maps category searches
 - Site-wide search suggestions, sitemap, accessibility, privacy, and terms pages
+- English, Filipino, and Iloko translations for site navigation, page copy, summaries, and accessibility labels
 - Responsive desktop and mobile navigation with sticky-header-aware in-page links and a site-wide back-to-top control
+
+The language selector localizes the site interface and its concise, project-written explanations. Official names, document titles, source citations, and detailed records stay in their published language when translating them could alter the record. The site labels this source-language content so readers can tell it apart from translated interface text.
 
 ## Maps and navigation
 

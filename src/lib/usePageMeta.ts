@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useLanguage } from '../i18n/language'
 
 const SITE_NAME = 'Better San Fernando'
 
@@ -36,11 +37,14 @@ function absoluteUrl(value: string) {
 }
 
 export function usePageMeta(title: string, description?: string, options: PageMetaOptions = {}) {
+  const { translate, language } = useLanguage()
   const { path, image = '/og.png', type = 'website', jsonLd } = options
   const json = jsonLd ? JSON.stringify(jsonLd) : ''
+  const localizedTitle = translate(title)
+  const localizedDescription = description ? translate(description) : undefined
 
   useEffect(() => {
-    const fullTitle = title === SITE_NAME ? title : `${title} | ${SITE_NAME}`
+    const fullTitle = localizedTitle === SITE_NAME ? localizedTitle : `${localizedTitle} | ${SITE_NAME}`
     document.title = fullTitle
 
     const url = absoluteUrl(path ?? window.location.pathname)
@@ -56,10 +60,10 @@ export function usePageMeta(title: string, description?: string, options: PageMe
     setMeta('name', 'twitter:image', imageUrl)
     setCanonical(url)
 
-    if (description) {
-      setMeta('name', 'description', description)
-      setMeta('property', 'og:description', description)
-      setMeta('name', 'twitter:description', description)
+    if (localizedDescription) {
+      setMeta('name', 'description', localizedDescription)
+      setMeta('property', 'og:description', localizedDescription)
+      setMeta('name', 'twitter:description', localizedDescription)
     }
 
     let script = document.getElementById('page-jsonld') as HTMLScriptElement | null
@@ -74,5 +78,5 @@ export function usePageMeta(title: string, description?: string, options: PageMe
     } else if (script) {
       script.remove()
     }
-  }, [title, description, path, image, type, json])
+  }, [localizedTitle, localizedDescription, language, path, image, type, json])
 }

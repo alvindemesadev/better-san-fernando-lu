@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import { ArrowRight, ArrowUpRight, Building2, MapPin, Phone, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { OfficeCard } from '../components/OfficeCard'
@@ -15,10 +16,10 @@ import { formatNumber, telHref } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 const quickLinks = [
-  { label: 'City officials', note: `${officials.length} profiles`, href: '/government/officials', icon: Users },
-  { label: 'Offices', note: `${offices.length} departments`, href: '/government/offices', icon: Building2 },
-  { label: 'Barangays', note: `${barangays.length} communities`, href: '/government/barangays', icon: MapPin },
-  { label: 'Hotlines', note: 'Emergency contacts', href: '/government/hotlines', icon: Phone },
+  { label: 'City officials', count: officials.length, note: 'profiles', href: '/government/officials', icon: Users },
+  { label: 'Offices', count: offices.length, note: 'departments', href: '/government/offices', icon: Building2 },
+  { label: 'Barangays', count: barangays.length, note: 'communities', href: '/government/barangays', icon: MapPin },
+  { label: 'Hotlines', count: undefined, note: 'Emergency contacts', href: '/government/hotlines', icon: Phone },
 ]
 
 const featuredOfficeSlugs = [
@@ -76,9 +77,9 @@ export function GovernmentPage() {
                   </span>
                   <span>
                     <span className="block text-sm font-bold text-ink-950 group-hover:text-brand-700">
-                      {item.label}
+                      <LocalizedText text={item.label} />
                     </span>
-                    <span className="block text-xs text-ink-500">{item.note}</span>
+                    <span className="block text-xs text-ink-500">{item.count ? <>{item.count} </> : null}<LocalizedText text={item.note} /></span>
                   </span>
                 </span>
                 <ArrowUpRight
@@ -104,8 +105,7 @@ export function GovernmentPage() {
                   viewTransition
                   className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
                 >
-                  All officials
-                  <ArrowRight aria-hidden="true" className="size-4" />
+                  <LocalizedText text={"All officials"} /><ArrowRight aria-hidden="true" className="size-4" />
                 </Link>
               }
             />
@@ -145,8 +145,7 @@ export function GovernmentPage() {
                   viewTransition
                   className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
                 >
-                  All {offices.length} offices
-                  <ArrowRight aria-hidden="true" className="size-4" />
+                  <LocalizedText text={"All"} trailingSpace />{offices.length} <LocalizedText text={"offices"} /><ArrowRight aria-hidden="true" className="size-4" />
                 </Link>
               }
             />
@@ -175,8 +174,7 @@ export function GovernmentPage() {
                       viewTransition
                       className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
                     >
-                      All barangays
-                      <ArrowRight aria-hidden="true" className="size-4" />
+                      <LocalizedText text={"All barangays"} /><ArrowRight aria-hidden="true" className="size-4" />
                     </Link>
                   }
                 />
@@ -198,8 +196,7 @@ export function GovernmentPage() {
                           {barangay.name}
                         </span>
                         <span className="block text-xs text-ink-500">
-                          {barangay.district} · Rank {barangay.rank} of 59
-                        </span>
+                          {barangay.district} <LocalizedText text={"· Rank"} trailingSpace />{barangay.rank} <LocalizedText text={"of 59"} /></span>
                       </span>
                       <span className="shrink-0 text-sm font-bold text-ink-700">
                         {formatNumber(barangay.population2024)}
@@ -212,16 +209,15 @@ export function GovernmentPage() {
 
             <Reveal delay={0.08}>
               <div className="h-full rounded-2xl border border-line bg-ink-950 p-6 text-white shadow-card sm:p-7">
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">Emergency contacts</p>
-                <h2 className="mt-2 text-2xl font-extrabold tracking-tight">Help, without the guesswork</h2>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/60"><LocalizedText text={"Emergency contacts"} /></p>
+                <h2 className="mt-2 text-2xl font-extrabold tracking-tight"><LocalizedText text={"Help, without the guesswork"} /></h2>
                 <p className="mt-2 text-sm leading-6 text-white/60">
-                  Published contacts for emergencies, disasters, police, and fire response.
-                </p>
+                  <LocalizedText text={"Published contacts for emergencies, disasters, police, and fire response."} /></p>
 
                 <div className="mt-6 space-y-3">
                   {keyHotlines.map((hotline) => (
                     <div key={hotline.label} className="rounded-xl border border-white/10 bg-white/5 p-4">
-                      <p className="text-xs font-bold uppercase tracking-[0.1em] text-brand-300">{hotline.label}</p>
+                      <p className="text-xs font-bold uppercase tracking-[0.1em] text-brand-300"><LocalizedText text={hotline.label} /></p>
                       <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">
                         {hotline.numbers.map((number) => (
                           <a
@@ -237,17 +233,14 @@ export function GovernmentPage() {
                   ))}
                 </div>
                 <p className="mt-4 text-xs leading-5 text-white/55">
-                  Police and fire direct lines come from the city’s 2023 stakeholder directory; confirm they are still
-                  active. Call 911 for immediate emergencies.
-                </p>
+                  <LocalizedText text={"Police and fire direct lines come from the city’s 2023 stakeholder directory; confirm they are still active. Call 911 for immediate emergencies."} /></p>
 
                 <Link
                   to="/government/hotlines"
                   viewTransition
                   className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand-300 transition hover:text-white"
                 >
-                  All hotlines
-                  <ArrowRight aria-hidden="true" className="size-4" />
+                  <LocalizedText text={"All hotlines"} /><ArrowRight aria-hidden="true" className="size-4" />
                 </Link>
               </div>
             </Reveal>
@@ -255,10 +248,7 @@ export function GovernmentPage() {
 
           <div className="mt-8">
             <SourceNote href={city.website} linkLabel="Visit the official city website">
-              Official profiles, office contacts, and barangay records are published by the City Government of San
-              Fernando. Office and hotline details can change; use the linked government directories for the latest
-              official information.
-            </SourceNote>
+              <LocalizedText text={"Official profiles, office contacts, and barangay records are published by the City Government of San Fernando. Office and hotline details can change; use the linked government directories for the latest official information."} /></SourceNote>
           </div>
         </div>
       </section>

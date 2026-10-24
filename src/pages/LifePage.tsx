@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import {
   ArrowRight,
   Camera,
@@ -18,6 +19,7 @@ import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
 import { SourceNote } from '../components/SourceNote'
 import type { PlaceImage } from '../data/places'
+import { useLanguage } from '../i18n/language'
 import { usePageMeta } from '../lib/usePageMeta'
 
 const cityTourismUrl = 'https://www.sanfernandocity.gov.ph/life-in-csf/'
@@ -237,6 +239,7 @@ const gettingHere = [
 ]
 
 export function LifePage() {
+  const { translate } = useLanguage()
   const [activeExperience, setActiveExperience] = useState<(typeof experiences)[number] | null>(null)
   const experienceDialogRef = useRef<HTMLDialogElement>(null)
 
@@ -252,27 +255,24 @@ export function LifePage() {
         <div className="container-page grid gap-8 py-8 sm:py-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-12 lg:py-14">
           <div>
             <Breadcrumbs items={[{ label: 'City', href: '/city' }, { label: 'Life and tourism' }]} className="mb-7" />
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">Life in the city · TAYO</p>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-700"><LocalizedText text={"Life in the city · TAYO"} /></p>
             <h1 className="max-w-2xl text-balance text-3xl font-extrabold leading-[1.08] tracking-[-0.035em] text-ink-950 sm:text-4xl lg:text-[3.25rem]">
-              Coast, culture, and city life
-            </h1>
+              <LocalizedText text={"Coast, culture, and city life"} /></h1>
             <p className="mt-4 max-w-2xl text-pretty text-base leading-7 text-ink-600 sm:text-lg">
-              Explore San Fernando’s coastal spots, heritage landmarks, Ilocano food, green spaces, and community celebrations.
-            </p>
+              <LocalizedText text={"Explore San Fernando’s coastal spots, heritage landmarks, Ilocano food, green spaces, and community celebrations."} /></p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 to="/city/places"
                 viewTransition
                 className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-brand-700 px-4 text-sm font-bold text-white transition hover:bg-brand-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
               >
-                Browse city places <ArrowRight aria-hidden="true" className="size-4" />
+                <LocalizedText text={"Browse city places"} trailingSpace /><ArrowRight aria-hidden="true" className="size-4" />
               </Link>
               <a
                 href="#visit-map-title"
                 className="inline-flex min-h-11 items-center rounded-xl border border-line-dark bg-white px-4 text-sm font-bold text-ink-800 transition hover:border-brand-300 hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
               >
-                Plan a visit
-              </a>
+                <LocalizedText text={"Plan a visit"} /></a>
             </div>
           </div>
 
@@ -286,15 +286,14 @@ export function LifePage() {
             />
             <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/5 to-transparent" />
             <figcaption className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-3 p-4 sm:p-5">
-              <span className="text-lg font-extrabold text-white sm:text-xl">Along the San Fernando coast</span>
+              <span className="text-lg font-extrabold text-white sm:text-xl"><LocalizedText text={"Along the San Fernando coast"} /></span>
               <a
                 href={cityTourismUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full bg-ink-950/55 px-3 py-1.5 text-[11px] font-semibold text-white underline decoration-white/50 underline-offset-2 backdrop-blur-sm hover:bg-ink-950/75"
               >
-                Photo: City Government
-              </a>
+                <LocalizedText text={"Photo: City Government"} /></a>
             </figcaption>
           </figure>
         </div>
@@ -303,33 +302,30 @@ export function LifePage() {
       <section aria-labelledby="visit-map-title" className="border-b border-line bg-surface">
         <div className="container-page grid gap-6 py-8 sm:py-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center lg:gap-10">
           <div>
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-700">Plan your visit</p>
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-700"><LocalizedText text={"Plan your visit"} /></p>
             <h2 id="visit-map-title" className="scroll-mt-28 text-2xl font-extrabold tracking-tight text-ink-950 sm:text-3xl">
-              Find your way around the city
-            </h2>
+              <LocalizedText text={"Find your way around the city"} /></h2>
             <p className="mt-3 max-w-xl text-sm leading-6 text-ink-600 sm:text-base sm:leading-7">
-              Preview the City AdvenTour map for visitor spots, food, places to stay, and travel routes. It is the
-              city’s 2022 edition, so confirm current access and business details before you go.
-            </p>
+              <LocalizedText text={"Preview the City AdvenTour map for visitor spots, food, places to stay, and travel routes. It is the city’s 2022 edition, so confirm current access and business details before you go."} /></p>
 
-            <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3" role="group" aria-label="Tourism highlights">
+            <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3" role="group" aria-label={translate('Tourism highlights')}>
               {tourismPhotos.map((photo) => (
                 <figure key={photo.src} className="min-w-0 overflow-hidden rounded-xl border border-line bg-white">
                   <img
                     src={photo.src}
-                    alt={photo.alt}
+                    alt={translate(photo.alt)}
                     loading="lazy"
                     decoding="async"
                     className="aspect-[4/3] w-full object-cover"
                   />
                   <figcaption className="px-2 py-1.5 text-center text-[11px] font-semibold text-ink-700 sm:px-3 sm:py-2 sm:text-xs">
-                    {photo.label}
+                    <LocalizedText text={photo.label} />
                   </figcaption>
                 </figure>
               ))}
             </div>
             <p className="mt-2 text-[11px] text-ink-500">
-              Photos: <a href={cityTourismUrl} target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-brand-700">City Government of San Fernando</a>
+              <LocalizedText text={"Photos:"} trailingSpace /><a href={cityTourismUrl} target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-brand-700"><LocalizedText text={"City Government of San Fernando"} /></a>
             </p>
           </div>
 
@@ -337,13 +333,13 @@ export function LifePage() {
             href={adventureMapUrl}
             target="_blank"
             rel="noreferrer"
-            aria-label="Open the full City AdvenTour 2022 map in a new tab"
+            aria-label={translate('Open the full City AdvenTour 2022 map in a new tab')}
             className="group block overflow-hidden rounded-2xl border border-line bg-white shadow-card transition hover:border-brand-200 hover:shadow-float focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
             <div className="flex min-h-48 items-center justify-center bg-[#168ca3] p-2 sm:min-h-64 sm:p-3">
               <img
                 src={adventureMapPreviewUrl}
-                alt="Preview of the official City AdvenTour map, showing visitor trails, attractions, food, lodging, services, and travel routes."
+                alt={translate('Preview of the official City AdvenTour map, showing visitor trails, attractions, food, lodging, services, and travel routes.')}
                 loading="lazy"
                 decoding="async"
                 className="max-h-[360px] w-full object-contain"
@@ -351,8 +347,8 @@ export function LifePage() {
             </div>
             <div className="flex items-center justify-between gap-3 px-4 py-3">
               <span>
-                <span className="block text-sm font-bold text-ink-950">City AdvenTour map · 2022</span>
-                <span className="mt-0.5 block text-xs text-ink-500">Open the full-size map</span>
+                <span className="block text-sm font-bold text-ink-950"><LocalizedText text={"City AdvenTour map · 2022"} /></span>
+                <span className="mt-0.5 block text-xs text-ink-500"><LocalizedText text={"Open the full-size map"} /></span>
               </span>
               <ExternalLink aria-hidden="true" className="size-4 shrink-0 text-brand-700 transition group-hover:translate-x-0.5" />
             </div>
@@ -379,10 +375,10 @@ export function LifePage() {
                     <span className="inline-flex size-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
                       <Icon aria-hidden="true" className="size-5" />
                     </span>
-                    <h3 className="mt-4 text-lg font-extrabold tracking-tight text-ink-950">{option.title}</h3>
+                    <h3 className="mt-4 text-lg font-extrabold tracking-tight text-ink-950"><LocalizedText text={option.title} /></h3>
                     <ul className="mt-3 list-disc space-y-2 pl-4 text-sm leading-6 text-ink-600">
                       {option.lines.map((line) => (
-                        <li key={line}>{line}</li>
+                        <li key={line}><LocalizedText text={line} /></li>
                       ))}
                     </ul>
                   </div>
@@ -413,7 +409,7 @@ export function LifePage() {
                       <figure className="relative aspect-[16/8] overflow-hidden bg-surface">
                         <img
                           src={experience.photo.src}
-                          alt={experience.photo.alt}
+                          alt={translate(experience.photo.alt)}
                           loading="lazy"
                           decoding="async"
                           className="size-full object-cover transition duration-500 group-hover:scale-[1.03]"
@@ -425,7 +421,7 @@ export function LifePage() {
                             rel="noreferrer"
                             className="text-[10px] font-semibold text-white underline decoration-white/50 underline-offset-2 sm:text-[11px]"
                           >
-                            Photo: {experience.photo.credit}
+                            <LocalizedText text={"Photo:"} trailingSpace />{experience.photo.credit}
                           </a>
                         </figcaption>
                       </figure>
@@ -434,8 +430,8 @@ export function LifePage() {
                       <span className="inline-flex size-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
                         <Icon aria-hidden="true" className="size-5" />
                       </span>
-                      <h3 className="mt-4 text-lg font-extrabold tracking-tight text-ink-950">{experience.title}</h3>
-                      <p className="mt-2 text-sm leading-6 text-ink-600">{experience.summary}</p>
+                      <h3 className="mt-4 text-lg font-extrabold tracking-tight text-ink-950"><LocalizedText text={experience.title} /></h3>
+                      <p className="mt-2 text-sm leading-6 text-ink-600"><LocalizedText text={experience.summary} /></p>
                       <div className="mt-4 border-t border-line pt-3">
                         <button
                           type="button"
@@ -446,7 +442,7 @@ export function LifePage() {
                           className="flex min-h-8 w-full items-center justify-between gap-3 rounded-lg text-left text-sm font-bold text-brand-700 outline-none transition hover:text-brand-800 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
                           aria-haspopup="dialog"
                         >
-                          <span>See places and activities</span>
+                          <span><LocalizedText text={"See places and activities"} /></span>
                           <ArrowRight aria-hidden="true" className="size-4 shrink-0" />
                         </button>
                       </div>
@@ -478,7 +474,7 @@ export function LifePage() {
                 <figure className="relative aspect-[16/9] overflow-hidden bg-brand-50">
                   <img
                     src={festival.image}
-                    alt={festival.imageAlt}
+                    alt={translate(festival.imageAlt)}
                     loading="lazy"
                     decoding="async"
                     className="size-full object-cover"
@@ -490,13 +486,13 @@ export function LifePage() {
                       rel="noreferrer"
                       className="text-right text-[10px] font-semibold text-white underline decoration-white/50 underline-offset-2 sm:text-[11px]"
                     >
-                      Photo: {festival.photoCredit}
+                      <LocalizedText text={"Photo:"} trailingSpace />{festival.photoCredit}
                     </a>
                   </figcaption>
                 </figure>
                 <div className="p-4">
                   <h3 className="text-sm font-extrabold leading-5 text-ink-900 sm:text-base">{festival.title}</h3>
-                  {festival.imageNote ? <p className="mt-1.5 text-xs leading-5 text-ink-500">{festival.imageNote}</p> : null}
+                  {festival.imageNote ? <p className="mt-1.5 text-xs leading-5 text-ink-500"><LocalizedText text={festival.imageNote} /></p> : null}
                 </div>
               </li>
             ))}
@@ -511,7 +507,7 @@ export function LifePage() {
                 rel="noreferrer"
                 className="group flex items-center justify-between gap-3 rounded-2xl border border-line bg-white p-4 text-sm font-semibold text-ink-800 shadow-card transition hover:-translate-y-0.5 hover:border-brand-200 hover:text-brand-700 hover:shadow-float"
               >
-                {link.label}
+                <LocalizedText text={link.label} />
                 <ExternalLink
                   aria-hidden="true"
                   className="size-3.5 shrink-0 text-ink-400 transition group-hover:text-brand-700"
@@ -525,10 +521,7 @@ export function LifePage() {
               href="https://www.sanfernandocity.gov.ph/life-in-csf/"
               linkLabel="Life in CSF on the city website"
             >
-              Tourism information and maps are published by the City Government of San Fernando. The provincial
-              tourism plan covers San Fernando and the wider La Union circuits. Confirm current schedules and access
-              with the city tourism office; source pages publish their own update dates.
-            </SourceNote>
+              <LocalizedText text={"Tourism information and maps are published by the City Government of San Fernando. The provincial tourism plan covers San Fernando and the wider La Union circuits. Confirm current schedules and access with the city tourism office; source pages publish their own update dates."} /></SourceNote>
           </div>
 
           <div className="mt-8">
@@ -537,8 +530,7 @@ export function LifePage() {
               viewTransition
               className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
             >
-              See the business and investment profile
-              <ArrowRight aria-hidden="true" className="size-4" />
+              <LocalizedText text={"See the business and investment profile"} /><ArrowRight aria-hidden="true" className="size-4" />
             </Link>
           </div>
         </div>
@@ -559,7 +551,7 @@ export function LifePage() {
               <figure className="relative aspect-[16/7] overflow-hidden bg-surface">
                 <img
                   src={activeExperience.photo.src}
-                  alt={activeExperience.photo.alt}
+                  alt={translate(activeExperience.photo.alt)}
                   className="size-full object-cover"
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 flex justify-end bg-gradient-to-t from-ink-950/75 to-transparent px-3 pb-2 pt-6">
@@ -569,13 +561,13 @@ export function LifePage() {
                     rel="noreferrer"
                     className="text-[11px] font-semibold text-white underline decoration-white/50 underline-offset-2"
                   >
-                    Photo: {activeExperience.photo.credit}
+                    <LocalizedText text={"Photo:"} trailingSpace />{activeExperience.photo.credit}
                   </a>
                 </figcaption>
                 <button
                   type="button"
                   onClick={() => experienceDialogRef.current?.close()}
-                  aria-label={`Close ${activeExperience.title} details`}
+                  aria-label={translate('Close experience details')}
                   className="absolute right-3 top-3 inline-flex size-10 items-center justify-center rounded-full bg-white text-ink-800 shadow-card transition hover:bg-brand-50 hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   <X aria-hidden="true" className="size-5" />
@@ -585,26 +577,26 @@ export function LifePage() {
             <div className="p-5 sm:p-7">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-700">Places and activities</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-700"><LocalizedText text={"Places and activities"} /></p>
                   <h2 id="experience-dialog-title" className="mt-1 text-xl font-extrabold tracking-tight text-ink-950 sm:text-2xl">
-                    {activeExperience.title}
+                    <LocalizedText text={activeExperience.title} />
                   </h2>
                 </div>
                 {!activeExperience.photo ? (
                   <button
                     type="button"
                     onClick={() => experienceDialogRef.current?.close()}
-                    aria-label={`Close ${activeExperience.title} details`}
+                    aria-label={translate('Close experience details')}
                     className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl border border-line text-ink-700 transition hover:bg-brand-50 hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
                   >
                     <X aria-hidden="true" className="size-5" />
                   </button>
                 ) : null}
               </div>
-              <p className="mt-3 text-sm leading-6 text-ink-600">{activeExperience.summary}</p>
+              <p className="mt-3 text-sm leading-6 text-ink-600"><LocalizedText text={activeExperience.summary} /></p>
               <ul className="mt-5 list-disc space-y-3 pl-5 text-sm leading-6 text-ink-700 marker:text-brand-600">
                 {activeExperience.items.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item}><LocalizedText text={item} /></li>
                 ))}
               </ul>
             </div>

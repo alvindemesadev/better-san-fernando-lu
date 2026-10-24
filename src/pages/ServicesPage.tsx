@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import { ArrowRight, ArrowUpRight, ChevronDown, MonitorSmartphone, SlidersHorizontal } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -13,6 +14,7 @@ import { city } from '../data/city'
 import { offices } from '../data/offices'
 import { onlineServiceSlugs } from '../data/onlineServices'
 import { services } from '../data/services'
+import { useLanguage } from '../i18n/language'
 import { usePageMeta } from '../lib/usePageMeta'
 
 const scenarios = [
@@ -35,6 +37,7 @@ const channelOptions = [
 ]
 
 export function ServicesPage() {
+  const { translate } = useLanguage()
   const [officeCode, setOfficeCode] = useState('')
   const [channel, setChannel] = useState('')
   const [onlineOnly, setOnlineOnly] = useState(false)
@@ -75,7 +78,7 @@ export function ServicesPage() {
         <div className="max-w-2xl">
           <SearchBox large placeholder="Search services, offices, barangays…" />
           <div className="mt-4 flex flex-wrap items-center gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-ink-400">Common situations</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-ink-400">{translate('Common situations')}</span>
             {scenarios.map((scenario) => (
               <Link
                 key={scenario.href}
@@ -83,7 +86,7 @@ export function ServicesPage() {
                 viewTransition
                 className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-semibold text-ink-700 transition hover:border-brand-200 hover:text-brand-700"
               >
-                {scenario.label}
+                {translate(scenario.label)}
               </Link>
             ))}
           </div>
@@ -116,9 +119,9 @@ export function ServicesPage() {
               <MonitorSmartphone aria-hidden="true" className="size-5" />
             </span>
             <div>
-              <h2 className="text-base font-extrabold tracking-tight">Some services can be done online</h2>
+              <h2 className="text-base font-extrabold tracking-tight">{translate('Some services can be done online')}</h2>
               <p className="mt-1 text-sm text-white/60">
-                Business permits, cedula, work permits, jobs, and records have official city portals.
+                {translate('Business permits, cedula, work permits, jobs, and records have official city portals.')}
               </p>
             </div>
           </div>
@@ -127,7 +130,7 @@ export function ServicesPage() {
             viewTransition
             className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white/10 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-white/15"
           >
-            Open online services
+            {translate('Open online services')}
             <ArrowRight aria-hidden="true" className="size-4" />
           </Link>
         </div>
@@ -150,14 +153,14 @@ export function ServicesPage() {
                   htmlFor="office-filter"
                   className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500"
                 >
-                  Office
+                  {translate('Office')}
                 </label>
                 <CustomSelect
                   id="office-filter"
-                  label="Office"
+                  label={translate('Office')}
                   value={officeCode}
                   options={[
-                    { value: '', label: 'All offices' },
+                    { value: '', label: translate('All offices') },
                     ...officeOptions.map((office) => ({ value: office.code ?? '', label: office.name })),
                   ]}
                   onChange={setOfficeCode}
@@ -169,14 +172,14 @@ export function ServicesPage() {
                   htmlFor="channel-filter"
                   className="text-[10px] font-bold uppercase tracking-[0.12em] text-ink-500"
                 >
-                  Transaction type
+                  {translate('Transaction type')}
                 </label>
                 <CustomSelect
                   id="channel-filter"
-                  label="Transaction type"
+                  label={translate('Transaction type')}
                   value={channel}
                   options={[
-                    { value: '', label: 'All transaction types' },
+                    { value: '', label: translate('All transaction types') },
                     ...channelOptions,
                   ]}
                   onChange={setChannel}
@@ -190,7 +193,7 @@ export function ServicesPage() {
                   onChange={(event) => setOnlineOnly(event.target.checked)}
                   className="size-4 accent-brand-700"
                 />
-                Online available
+                {translate('Online available')}
               </label>
 
               {hasFilters ? (
@@ -199,26 +202,26 @@ export function ServicesPage() {
                   onClick={clearFilters}
                   className="inline-flex h-11 items-center gap-1.5 rounded-xl border border-line bg-white px-3.5 text-sm font-bold text-ink-600 transition hover:border-brand-200 hover:text-brand-700"
                 >
-                  Clear
+                  {translate('Clear')}
                 </button>
               ) : null}
             </div>
             <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-ink-500" role="status">
               <SlidersHorizontal aria-hidden="true" className="size-3.5" />
-              {filteredServices.length} of {services.length} services shown
+              {filteredServices.length} {translate('of')} {services.length} {translate('services')} {translate('shown')}
             </p>
           </div>
 
           {filteredServices.length === 0 ? (
             <div className="mt-8 rounded-2xl border border-dashed border-line bg-white p-8 text-center">
-              <p className="text-sm font-bold text-ink-800">No services match these filters.</p>
-              <p className="mt-1 text-sm text-ink-500">Try a different office or transaction type.</p>
+              <p className="text-sm font-bold text-ink-800">{translate('No services match these filters.')}</p>
+              <p className="mt-1 text-sm text-ink-500">{translate('Try a different office or transaction type.')}</p>
               <button
                 type="button"
                 onClick={clearFilters}
                 className="mt-4 inline-flex items-center gap-2 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-brand-800"
               >
-                Clear filters
+                {translate('Clear filters')}
               </button>
             </div>
           ) : (
@@ -236,11 +239,11 @@ export function ServicesPage() {
                       <div className="min-w-0">
                         <h3 className="text-base font-bold text-ink-950">{category.name}</h3>
                         <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.1em] text-ink-400">
-                          {items.length} {items.length === 1 ? 'service' : 'services'}
+                          {items.length} {translate(items.length === 1 ? 'service' : 'services')}
                         </p>
                       </div>
                       <span className="flex shrink-0 items-center gap-2 text-xs font-bold text-brand-700">
-                        Open
+                        {translate('Open')}
                         <ChevronDown
                           aria-hidden="true"
                           className="size-4 transition duration-200 group-open:rotate-180"
@@ -270,8 +273,7 @@ export function ServicesPage() {
                           viewTransition
                           className="text-xs font-bold text-brand-700 hover:text-brand-800"
                         >
-                          View {category.shortName} category
-                        </Link>
+                          <LocalizedText text={"View"} trailingSpace />{category.shortName} <LocalizedText text={"category"} /></Link>
                       </div>
                     </div>
                   </details>
@@ -282,10 +284,7 @@ export function ServicesPage() {
 
           <div className="mt-8">
             <SourceNote href={city.citizensCharter} linkLabel="Open the official Citizens’ Charter">
-              Service details are summarized from the City Government’s Citizens’ Charter. Requirements, fees, and
-              processing times can change. Confirm with the issuing office before your visit; each service record has
-              its own verification date.
-            </SourceNote>
+              <LocalizedText text={"Service details are summarized from the City Government’s Citizens’ Charter. Requirements, fees, and processing times can change. Confirm with the issuing office before your visit; each service record has its own verification date."} /></SourceNote>
           </div>
         </div>
       </section>

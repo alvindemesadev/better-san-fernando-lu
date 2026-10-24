@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import {
   ArrowRight,
   Building2,
@@ -158,7 +159,7 @@ export function BusinessPage() {
                     <Icon aria-hidden="true" className="size-4" />
                   </span>
                   <span className="min-w-0 text-left">{sector.title}</span>
-                  <span className="sr-only">Priority sector {index + 1}</span>
+                  <span className="sr-only"><LocalizedText text={"Priority sector"} trailingSpace />{index + 1}</span>
                 </li>
               )
             })}
@@ -182,13 +183,12 @@ export function BusinessPage() {
                 <span className="inline-flex size-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
                   <Wallet aria-hidden="true" className="size-5" />
                 </span>
-                <h3 className="mt-4 text-base font-extrabold tracking-tight text-ink-950">Wage rates</h3>
+                <h3 className="mt-4 text-base font-extrabold tracking-tight text-ink-950"><LocalizedText text={"Wage rates"} /></h3>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-[0.1em] text-ink-400">
-                  Wage Order No. RB1-24 · effective November 19, 2025
-                </p>
+                  <LocalizedText text={"Wage Order No. RB1-24 · effective November 19, 2025"} /></p>
                 <ul className="mt-3 space-y-2 text-sm leading-6 text-ink-600">
-                  <li>₱505.00 per day — non-agriculture, 10 or more employees</li>
-                  <li>₱480.00 per day — agriculture and non-agriculture, fewer than 10 employees</li>
+                  <li><LocalizedText text={"₱505.00 per day — non-agriculture, 10 or more employees"} /></li>
+                  <li><LocalizedText text={"₱480.00 per day — agriculture and non-agriculture, fewer than 10 employees"} /></li>
                 </ul>
                 <a
                   href="https://nwpc.dole.gov.ph/region-i/"
@@ -196,8 +196,7 @@ export function BusinessPage() {
                   rel="noreferrer"
                   className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 hover:text-brand-800"
                 >
-                  See the current Region I wage order
-                  <ExternalLink aria-hidden="true" className="size-3.5" />
+                  <LocalizedText text={"See the current Region I wage order"} /><ExternalLink aria-hidden="true" className="size-3.5" />
                 </a>
               </div>
             </Reveal>
@@ -207,16 +206,15 @@ export function BusinessPage() {
                 <span className="inline-flex size-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
                   <Building2 aria-hidden="true" className="size-5" />
                 </span>
-                <h3 className="mt-4 text-base font-extrabold tracking-tight text-ink-950">Rental and lease rates</h3>
+                <h3 className="mt-4 text-base font-extrabold tracking-tight text-ink-950"><LocalizedText text={"Rental and lease rates"} /></h3>
                 <p className="mt-1 text-xs leading-5 text-ink-500">
-                  City-published reference ranges; no effective date or rental period is stated.
-                </p>
+                  <LocalizedText text={"City-published reference ranges; no effective date or rental period is stated."} /></p>
                 <ul className="mt-3 space-y-2 text-sm leading-6 text-ink-600">
-                  <li>Commercial space: ₱200 to ₱550 per square meter</li>
-                  <li>1-bedroom condo or apartment: ₱5,000 to ₱8,000</li>
-                  <li>2–3 bedroom condo or apartment: ₱7,000 to ₱10,000</li>
-                  <li>4-bedroom house: ₱8,000 to ₱15,000</li>
-                  <li>Land: ₱4,000 to ₱60,000 per square meter</li>
+                  <li><LocalizedText text={"Commercial space: ₱200 to ₱550 per square meter"} /></li>
+                  <li><LocalizedText text={"1-bedroom condo or apartment: ₱5,000 to ₱8,000"} /></li>
+                  <li><LocalizedText text={"2–3 bedroom condo or apartment: ₱7,000 to ₱10,000"} /></li>
+                  <li><LocalizedText text={"4-bedroom house: ₱8,000 to ₱15,000"} /></li>
+                  <li><LocalizedText text={"Land: ₱4,000 to ₱60,000 per square meter"} /></li>
                 </ul>
               </div>
             </Reveal>
@@ -226,28 +224,23 @@ export function BusinessPage() {
                 <span className="inline-flex size-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
                   <Zap aria-hidden="true" className="size-5" />
                 </span>
-                <h3 className="mt-4 text-base font-extrabold tracking-tight text-ink-950">Electricity tariffs</h3>
+                <h3 className="mt-4 text-base font-extrabold tracking-tight text-ink-950"><LocalizedText text={"Electricity tariffs"} /></h3>
                 <p className="mt-2 text-sm leading-6 text-ink-600">
-                  LUECO publishes a tariff schedule by billing period. Check the latest schedule and the rate class
-                  that applies to your account.
-                </p>
+                  <LocalizedText text={"LUECO publishes a tariff schedule by billing period. Check the latest schedule and the rate class that applies to your account."} /></p>
                 <a
                   href="https://www.luecoinc.com/rates/"
                   target="_blank"
                   rel="noreferrer"
                   className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-brand-800"
                 >
-                  View current LUECO rates
-                  <ExternalLink aria-hidden="true" className="size-3.5" />
+                  <LocalizedText text={"View current LUECO rates"} /><ExternalLink aria-hidden="true" className="size-3.5" />
                 </a>
               </div>
             </Reveal>
           </div>
 
           <p className="mt-4 text-xs leading-5 text-ink-500">
-            Confirm the city’s undated rental estimates with the provider before making a decision. Water and
-            telecommunications prices are not listed in the city profile.
-          </p>
+            <LocalizedText text={"Confirm the city’s undated rental estimates with the provider before making a decision. Water and telecommunications prices are not listed in the city profile."} /></p>
         </div>
       </section>
 
@@ -265,8 +258,7 @@ export function BusinessPage() {
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
                 >
-                  All forms on the official page
-                  <ExternalLink aria-hidden="true" className="size-4" />
+                  <LocalizedText text={"All forms on the official page"} /><ExternalLink aria-hidden="true" className="size-4" />
                 </a>
               }
             />
@@ -294,8 +286,7 @@ export function BusinessPage() {
               rel="noreferrer"
               className="group flex items-center justify-between gap-3 rounded-2xl border border-line bg-white p-4 text-sm font-semibold text-ink-800 shadow-card transition hover:-translate-y-0.5 hover:border-brand-200 hover:text-brand-700 hover:shadow-float"
             >
-              Business Permit: Unified Application Form
-              <ExternalLink
+              <LocalizedText text={"Business Permit: Unified Application Form"} /><ExternalLink
                 aria-hidden="true"
                 className="size-3.5 shrink-0 text-ink-400 transition group-hover:text-brand-700"
               />
@@ -308,8 +299,7 @@ export function BusinessPage() {
               viewTransition
               className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
             >
-              Apply online through the e-Business Permits and Licensing System
-              <ArrowRight aria-hidden="true" className="size-4" />
+              <LocalizedText text={"Apply online through the e-Business Permits and Licensing System"} /><ArrowRight aria-hidden="true" className="size-4" />
             </Link>
           </div>
         </div>
@@ -328,48 +318,40 @@ export function BusinessPage() {
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
             <Reveal className="h-full">
               <div className="h-full rounded-2xl border border-line bg-white p-5 shadow-card">
-                <h3 className="text-base font-extrabold tracking-tight text-ink-950">Poro Point Freeport Zone</h3>
+                <h3 className="text-base font-extrabold tracking-tight text-ink-950"><LocalizedText text={"Poro Point Freeport Zone"} /></h3>
                 <p className="mt-2 text-sm leading-6 text-ink-600">
-                  An economic zone in Poro with infrastructure, incentives, an airport, a seaport, mixed-use
-                  development, and a 65.5-hectare tourism complex anchored by Thunderbird Resorts.
-                </p>
+                  <LocalizedText text={"An economic zone in Poro with infrastructure, incentives, an airport, a seaport, mixed-use development, and a 65.5-hectare tourism complex anchored by Thunderbird Resorts."} /></p>
               </div>
             </Reveal>
 
             <Reveal delay={0.05} className="h-full">
               <div className="h-full rounded-2xl border border-line bg-white p-5 shadow-card">
-                <h3 className="text-base font-extrabold tracking-tight text-ink-950">Central Business District — Biday</h3>
+                <h3 className="text-base font-extrabold tracking-tight text-ink-950"><LocalizedText text={"Central Business District — Biday"} /></h3>
                 <p className="mt-2 text-sm leading-6 text-ink-600">
-                  Barangay Biday is anchored by CSI Mall and Manna Mall. SM City La Union opened on October 17, 2025,
-                  adding to the area’s commercial activity.
-                </p>
+                  <LocalizedText text={"Barangay Biday is anchored by CSI Mall and Manna Mall. SM City La Union opened on October 17, 2025, adding to the area’s commercial activity."} /></p>
                 <a
                   href="https://www.smprime.com/company_releases/sm-prime-opens-89th-mall-sm-city-la-union-to-feature-sandbox-outdoor-space/"
                   target="_blank"
                   rel="noreferrer"
                   className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-brand-800"
                 >
-                  SM Prime opening announcement
-                  <ExternalLink aria-hidden="true" className="size-3.5" />
+                  <LocalizedText text={"SM Prime opening announcement"} /><ExternalLink aria-hidden="true" className="size-3.5" />
                 </a>
               </div>
             </Reveal>
 
             <Reveal delay={0.1} className="h-full">
               <div className="h-full rounded-2xl border border-line bg-white p-5 shadow-card">
-                <h3 className="text-base font-extrabold tracking-tight text-ink-950">Digital Cities PH</h3>
+                <h3 className="text-base font-extrabold tracking-tight text-ink-950"><LocalizedText text={"Digital Cities PH"} /></h3>
                 <p className="mt-2 text-sm leading-6 text-ink-600">
-                  Recognized by DICT, IBPAP, and Leechiu as a prime countryside hub for IT-BPM, digital services, and
-                  innovation-driven enterprises.
-                </p>
+                  <LocalizedText text={"Recognized by DICT, IBPAP, and Leechiu as a prime countryside hub for IT-BPM, digital services, and innovation-driven enterprises."} /></p>
                 <a
                   href="https://drive.google.com/file/d/19eNjHV_bP7iRi9c5mBSSCtcxmjwUyTo2/view?usp=sharing"
                   target="_blank"
                   rel="noreferrer"
                   className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-brand-700 hover:text-brand-800"
                 >
-                  View the roadmap
-                  <ExternalLink aria-hidden="true" className="size-3.5" />
+                  <LocalizedText text={"View the roadmap"} /><ExternalLink aria-hidden="true" className="size-3.5" />
                 </a>
               </div>
             </Reveal>
@@ -378,13 +360,11 @@ export function BusinessPage() {
           <Reveal>
             <div className="mt-8 flex flex-col gap-4 rounded-2xl border border-line bg-ink-950 p-6 text-white shadow-card sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">Incentives</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/60"><LocalizedText text={"Incentives"} /></p>
                 <h3 className="mt-1.5 text-lg font-extrabold tracking-tight">
-                  Investments and Incentives Code — Ordinance No. 2024-41
-                </h3>
+                  <LocalizedText text={"Investments and Incentives Code — Ordinance No. 2024-41"} /></h3>
                 <p className="mt-1.5 text-sm text-white/60">
-                  The city’s incentive framework for qualified investments.
-                </p>
+                  <LocalizedText text={"The city’s incentive framework for qualified investments."} /></p>
               </div>
               <a
                 href="https://drive.google.com/file/d/1S5q2HOklGy4O692uYMgHrZNNXOpYqZ69/view?usp=sharing"
@@ -393,8 +373,7 @@ export function BusinessPage() {
                 className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white/10 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-white/15"
               >
                 <Download aria-hidden="true" className="size-3.5" />
-                Download the code
-              </a>
+                <LocalizedText text={"Download the code"} /></a>
             </div>
           </Reveal>
 
@@ -411,10 +390,7 @@ export function BusinessPage() {
                 },
               ]}
             >
-              Investment priorities, rankings, and rental reference ranges are published by the City Government of San
-              Fernando. The city’s wage figures were outdated, so the current NWPC order is used above; LUECO tariffs
-              are linked to its live schedule. Rental figures have no stated effective date.
-            </SourceNote>
+              <LocalizedText text={"Investment priorities, rankings, and rental reference ranges are published by the City Government of San Fernando. The city’s wage figures were outdated, so the current NWPC order is used above; LUECO tariffs are linked to its live schedule. Rental figures have no stated effective date."} /></SourceNote>
           </div>
         </div>
       </section>
@@ -424,12 +400,10 @@ export function BusinessPage() {
           <div className="flex items-center gap-3 text-sm text-ink-600">
             <HeartPulse aria-hidden="true" className="size-4 shrink-0 text-brand-700" />
             <p>
-              Doing business in the city also means being part of its community. Explore{' '}
+              <LocalizedText text={"Doing business in the city also means being part of its community. Explore"} />{' '}
               <Link to="/city/life" viewTransition className="font-bold text-brand-700 hover:text-brand-800">
-                life and tourism in San Fernando
-              </Link>{' '}
-              to see what makes the city livable.
-            </p>
+                <LocalizedText text={"life and tourism in San Fernando"} /></Link>{' '}
+              <LocalizedText text={"to see what makes the city livable."} /></p>
           </div>
         </div>
       </section>

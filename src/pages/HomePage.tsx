@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import {
   ArrowRight,
   Bookmark,
@@ -26,6 +27,7 @@ import { stats } from '../data/stats'
 import { removeSavedService, useSavedServices } from '../lib/savedServices'
 import { usePageMeta } from '../lib/usePageMeta'
 import { telHref } from '../lib/utils'
+import { useLanguage } from '../i18n/language'
 
 const featuredCategories = categories.slice(0, 6)
 const latestNews = news.slice(0, 3)
@@ -59,6 +61,8 @@ const exploreLinks = [
 ]
 
 export function HomePage() {
+  const { language, translate, hasTranslation } = useLanguage()
+
   usePageMeta(
     'Better San Fernando',
     'A clearer, independent guide to City of San Fernando, La Union services, officials, barangays, budgets, and public records.',
@@ -73,24 +77,23 @@ export function HomePage() {
           <div className="min-w-0">
             <Reveal>
               <div className="flex flex-wrap items-center gap-2 text-xs text-white/65">
-                <span className="font-semibold text-white/90">Independent civic guide</span>
+                <span lang={language} className="font-semibold text-white/90">{translate('Independent civic guide')}</span>
                 <span className="text-white/30" aria-hidden="true">•</span>
                 <Link to="/about" viewTransition className="underline underline-offset-4 transition hover:text-white">
-                  How this project works
+                  {translate('How this project works')}
                 </Link>
               </div>
             </Reveal>
 
             <Reveal delay={0.06}>
-              <h1 className="mt-6 max-w-3xl text-balance text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-                San Fernando, <span className="text-brand-300">made clearer.</span>
+              <h1 lang={hasTranslation('San Fernando, made clearer.') ? language : 'en'} className="mt-6 max-w-3xl text-balance text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+                {translate('San Fernando, made clearer.')}
               </h1>
             </Reveal>
 
             <Reveal delay={0.12}>
-              <p className="mt-5 max-w-2xl text-pretty text-base leading-7 text-white/65 sm:text-lg">
-                Find city services, meet your officials, explore all 59 barangays, and follow public money — with
-                links back to the official sources.
+              <p lang={hasTranslation('Find city services, meet your officials, explore all 59 barangays, and follow public money — with links back to the official sources.') ? language : 'en'} className="mt-5 max-w-2xl text-pretty text-base leading-7 text-white/65 sm:text-lg">
+                {translate('Find city services, meet your officials, explore all 59 barangays, and follow public money — with links back to the official sources.')}
               </p>
             </Reveal>
 
@@ -113,7 +116,7 @@ export function HomePage() {
                     viewTransition
                     className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-white/65 transition hover:border-white/30 hover:text-white"
                   >
-                    {term}
+                    {translate(term)}
                   </Link>
                 ))}
               </div>
@@ -125,14 +128,14 @@ export function HomePage() {
                   href="#services"
                   className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-ink-950 transition hover:bg-white"
                 >
-                  Browse services
+                  {translate('Browse services')}
                   <ArrowRight aria-hidden="true" className="size-4" />
                 </a>
                 <a
                   href="#news"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-white/70 transition hover:text-white"
                 >
-                  Latest updates
+                  {translate('Latest updates')}
                   <ArrowRight aria-hidden="true" className="size-4" />
                 </a>
               </div>
@@ -144,9 +147,8 @@ export function HomePage() {
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">
-                    San Fernando, La Union
-                  </p>
-                  <p className="mt-1 text-xl font-extrabold tracking-tight">City at a glance</p>
+                    <LocalizedText text={"San Fernando, La Union"} /></p>
+                  <p lang={language} className="mt-1 text-xl font-extrabold tracking-tight">{translate('City at a glance')}</p>
                 </div>
                 <img
                   src={logoMark}
@@ -190,14 +192,14 @@ export function HomePage() {
             <div id="saved" className="scroll-mt-24 flex flex-wrap items-center justify-between gap-3">
               <h2 className="inline-flex items-center gap-2 text-lg font-extrabold tracking-tight text-ink-950">
                 <Bookmark aria-hidden="true" className="size-4 text-brand-700" />
-                Your saved services
+                {translate('Your saved services')}
               </h2>
               <Link
                 to="/services"
                 viewTransition
                 className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 transition hover:text-brand-800"
               >
-                All services
+                {translate('All services')}
                 <ArrowRight aria-hidden="true" className="size-4" />
               </Link>
             </div>
@@ -224,7 +226,7 @@ export function HomePage() {
                   <button
                     type="button"
                     onClick={() => removeSavedService(service)}
-                    aria-label={`Remove ${service.title} from saved services`}
+                    aria-label={`${translate('Remove from saved services')}: ${service.title}`}
                     className="inline-flex w-11 shrink-0 items-center justify-center rounded-xl border border-line bg-white text-ink-400 transition hover:border-red-200 hover:text-red-600"
                   >
                     <X aria-hidden="true" className="size-4" />
@@ -233,7 +235,7 @@ export function HomePage() {
               ))}
             </ul>
 
-            <p className="mt-3 text-xs text-ink-500">Saved in this browser only — no account needed.</p>
+            <p lang={language} className="mt-3 text-xs text-ink-500">{translate('Saved in this browser only — no account needed.')}</p>
           </div>
         </section>
       ) : null}
@@ -252,7 +254,7 @@ export function HomePage() {
                     viewTransition
                     className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
                   >
-                    All services
+                    {translate('All services')}
                     <ArrowRight aria-hidden="true" className="size-4" />
                   </Link>
                 }
@@ -315,10 +317,10 @@ export function HomePage() {
                     <span className="inline-flex size-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
                       <Icon aria-hidden="true" className="size-5" />
                     </span>
-                    <h3 className="mt-4 text-base font-extrabold tracking-tight text-ink-950">{link.title}</h3>
-                    <p className="mt-2 flex-1 text-sm leading-6 text-ink-600">{link.description}</p>
+                    <h3 lang={hasTranslation(link.title) ? language : 'en'} className="mt-4 text-base font-extrabold tracking-tight text-ink-950">{translate(link.title)}</h3>
+                    <p lang={hasTranslation(link.description) ? language : 'en'} className="mt-2 flex-1 text-sm leading-6 text-ink-600">{translate(link.description)}</p>
                     <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-700">
-                      Explore
+                      {translate('Explore')}
                       <ArrowRight
                         aria-hidden="true"
                         className="size-4 transition group-hover:translate-x-0.5"
@@ -335,9 +337,7 @@ export function HomePage() {
       <div className="container-page py-10 sm:py-12">
         <Reveal>
           <SourceNote href={city.website} linkLabel="Visit the official city website">
-            Better San Fernando is an independent civic project, not the official city website. Population figures
-            use the 2024 Census of Population. Source dates vary by dataset; follow the linked publishers for updates.
-          </SourceNote>
+            <LocalizedText text={"This is an independent guide. Population figures use the 2024 Census; dataset dates vary."} /></SourceNote>
         </Reveal>
       </div>
     </>

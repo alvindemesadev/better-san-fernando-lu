@@ -1,3 +1,4 @@
+import { LocalizedText } from '../i18n/LocalizedText'
 import { ArrowLeft, ArrowUpRight, Bookmark, BookmarkCheck, Download, ExternalLink, MonitorSmartphone } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { NotFoundPage } from './NotFoundPage'
@@ -10,6 +11,7 @@ import { offices } from '../data/offices'
 import { onlineServiceSlugs } from '../data/onlineServices'
 import { services } from '../data/services'
 import { useSavedServices, toggleSavedService } from '../lib/savedServices'
+import { useLanguage } from '../i18n/language'
 import { formatDate } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
@@ -19,6 +21,7 @@ function pdfLabel(url: string) {
 }
 
 export function ServiceDetailPage() {
+  const { translate } = useLanguage()
   const { category: categorySlug, slug } = useParams<{ category: string; slug: string }>()
   const category = categories.find((item) => item.slug === categorySlug)
   const service = services.find((item) => item.slug === slug && item.category === categorySlug)
@@ -87,7 +90,7 @@ export function ServiceDetailPage() {
               className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-brand-50 px-3 py-1.5 text-xs font-bold text-brand-700 transition hover:bg-brand-100"
             >
               <MonitorSmartphone aria-hidden="true" className="size-3.5" />
-              Available online
+              {translate('Available online')}
             </Link>
           ) : null}
           <button
@@ -112,7 +115,7 @@ export function ServiceDetailPage() {
             ) : (
               <Bookmark aria-hidden="true" className="size-3.5" />
             )}
-            {saved ? 'Saved' : 'Save service'}
+            {translate(saved ? 'Saved' : 'Save service')}
           </button>
         </div>
       </PageHero>
@@ -122,10 +125,10 @@ export function ServiceDetailPage() {
           <div className="space-y-5">
             {service.dataNote ? (
               <aside
-                aria-label="Source note"
+                aria-label={translate('Source note')}
                 className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-950"
               >
-                <p className="font-bold">Source note</p>
+                <p className="font-bold">{translate('Source note')}</p>
                 <p className="mt-1">{service.dataNote}</p>
               </aside>
             ) : null}
@@ -133,9 +136,9 @@ export function ServiceDetailPage() {
             {eligibilityLeadsIntoDescription ? null : (
               <Reveal>
                 <section className="rounded-2xl border border-line bg-white p-5 shadow-card sm:p-7">
-                  <h2 className="text-xl font-extrabold tracking-tight text-ink-950">Who may avail</h2>
+                  <h2 className="text-xl font-extrabold tracking-tight text-ink-950">{translate('Who may avail')}</h2>
                   <p className="mt-3 whitespace-pre-line text-[15px] leading-7 text-ink-700">
-                    {service.whoMayAvail || 'Eligibility is not listed in the charter. Confirm with the issuing office.'}
+                    {service.whoMayAvail || translate('Eligibility is not listed in the charter. Confirm with the issuing office.')}
                   </p>
                 </section>
               </Reveal>
@@ -144,26 +147,26 @@ export function ServiceDetailPage() {
             <Reveal>
               <section className="rounded-2xl border border-line bg-white p-5 shadow-card sm:p-7">
                 <h2 className="text-xl font-extrabold tracking-tight text-ink-950">
-                  {eligibilityLeadsIntoDescription ? 'Who may avail and service details' : 'About this service'}
+                  {translate(eligibilityLeadsIntoDescription ? 'Who may avail and service details' : 'About this service')}
                 </h2>
                 <p className="mt-3 whitespace-pre-line break-words text-[15px] leading-7 text-ink-700">
-                  {aboutDescription || 'A full description is not listed in the charter.'}
+                  {aboutDescription || translate('A full description is not listed in the charter.')}
                 </p>
               </section>
             </Reveal>
 
             <Reveal>
               <section className="rounded-2xl border border-line bg-white p-5 shadow-card sm:p-7">
-                <h2 className="text-xl font-extrabold tracking-tight text-ink-950">Fees</h2>
+                <h2 className="text-xl font-extrabold tracking-tight text-ink-950">{translate('Fees')}</h2>
                 <p className="mt-3 whitespace-pre-line break-words text-[15px] leading-7 text-ink-700">
-                  {service.fees || 'No fees are listed for this service.'}
+                  {service.fees || translate('No fees are listed for this service.')}
                 </p>
               </section>
             </Reveal>
 
             <Reveal>
               <section className="rounded-2xl border border-line bg-white p-5 shadow-card sm:p-7">
-                <h2 className="text-xl font-extrabold tracking-tight text-ink-950">Downloadable forms</h2>
+                <h2 className="text-xl font-extrabold tracking-tight text-ink-950">{translate('Downloadable forms')}</h2>
                 {service.pdfs.length ? (
                   <ul className="mt-4 space-y-2">
                     {service.pdfs.map((file) => (
@@ -182,7 +185,7 @@ export function ServiceDetailPage() {
                               {pdfLabel(file)}
                             </span>
                             <span className="mt-0.5 block text-[11px] font-bold uppercase tracking-[0.12em] text-ink-400">
-                              PDF · Official charter form
+                              {translate('PDF · Official charter form')}
                             </span>
                           </span>
                         </a>
@@ -191,7 +194,7 @@ export function ServiceDetailPage() {
                   </ul>
                 ) : (
                   <p className="mt-3 text-sm leading-6 text-ink-500">
-                    No downloadable forms are listed for this service.
+                    {translate('No downloadable forms are listed for this service.')}
                   </p>
                 )}
               </section>
@@ -204,17 +207,17 @@ export function ServiceDetailPage() {
                 className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-800"
               >
                 <ArrowLeft aria-hidden="true" className="size-4" />
-                Back to {category.shortName}
+                {translate('Back to')} {translate(category.shortName)}
               </Link>
             </div>
           </div>
 
           <aside className="space-y-4 lg:sticky lg:top-28 lg:self-start">
             <div className="rounded-2xl border border-line bg-white p-5 shadow-card">
-              <h2 className="text-[11px] font-bold uppercase tracking-[0.16em] text-ink-400">At a glance</h2>
+              <h2 className="text-[11px] font-bold uppercase tracking-[0.16em] text-ink-400">{translate('At a glance')}</h2>
               <dl className="mt-4 space-y-3 text-sm">
                 <div className="border-b border-line pb-3">
-                  <dt className="text-xs font-semibold text-ink-500">Issuing office</dt>
+                  <dt className="text-xs font-semibold text-ink-500">{translate('Issuing office')}</dt>
                   <dd className="mt-1 font-semibold leading-6 text-ink-900">
                     {office ? (
                       <Link
@@ -230,15 +233,15 @@ export function ServiceDetailPage() {
                   </dd>
                 </div>
                 <div className="border-b border-line pb-3">
-                  <dt className="text-xs font-semibold text-ink-500">Classification</dt>
+                  <dt className="text-xs font-semibold text-ink-500">{translate('Classification')}</dt>
                   <dd className="mt-1 font-semibold leading-6 text-ink-900">{service.classification}</dd>
                 </div>
                 <div className="border-b border-line pb-3">
-                  <dt className="text-xs font-semibold text-ink-500">Transaction type</dt>
+                  <dt className="text-xs font-semibold text-ink-500">{translate('Transaction type')}</dt>
                   <dd className="mt-1 font-semibold leading-6 text-ink-900">{service.transactionType}</dd>
                 </div>
                 <div>
-                  <dt className="text-xs font-semibold text-ink-500">Last verified</dt>
+                  <dt className="text-xs font-semibold text-ink-500">{translate('Last verified')}</dt>
                   <dd className="mt-1 font-semibold leading-6 text-ink-900">{formatDate(service.lastVerified)}</dd>
                 </div>
               </dl>
@@ -252,7 +255,7 @@ export function ServiceDetailPage() {
             >
               <span className="inline-flex items-center gap-2">
                 <ExternalLink aria-hidden="true" className="size-4" />
-                Official charter entry
+                {translate('Official charter entry')}
               </span>
               <ArrowUpRight
                 aria-hidden="true"
@@ -261,10 +264,7 @@ export function ServiceDetailPage() {
             </a>
 
             <SourceNote href={service.sourceUrl} linkLabel="Open the official entry">
-              This page summarizes the published service record. Requirements and fees can change without notice.
-              Confirm details with the {office?.name ?? service.office} before your visit. The verification date
-              above applies to this service record only.
-            </SourceNote>
+              <LocalizedText text={"This page summarizes the published service record. Requirements and fees can change without notice. Confirm details with the"} trailingSpace />{office?.name ?? service.office} <LocalizedText text={"before your visit. The verification date above applies to this service record only."} /></SourceNote>
           </aside>
         </div>
       </div>
