@@ -39,7 +39,7 @@ The directory bundles locally hosted photos published by local government, place
 | `jv-resort.jpg` | J&V Hotel and Resort | [Expedia listing photo](https://www.expedia.com.ph/San-Fernando-Hotels-JV-Hotel-And-Resort.h92498179.Hotel-Information). |
 | `location-one-eighty.jpg` | Location One Eighty | [Agoda listing photo](https://www.agoda.com/location-one-eighty/hotel/la-union-ph.html). |
 
-Photos are optimized locally and displayed with lazy loading. Listings without a verified usable place photo continue to use their available agency/brand mark or a text monogram; those marks are not presented as official logos.
+Photos are optimized locally and displayed with lazy loading. Listings without a verified usable place photo display a mapped agency or brand mark where available; otherwise, they show no substitute initials or category icon.
 
 ## Festival photos
 

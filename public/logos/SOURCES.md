@@ -1,6 +1,6 @@
 # Logo sources
 
-The directory uses locally bundled logos or profile imagery, with the source and context recorded below. Some entries use third-party mall, business, franchise, or booking directories that publish the matching brand image; those sources are identified as such. Branch listings share a parent mark only when the organization identity matches. Listings without a verified image show no substitute initials or category icon.
+This register records attribution for current and legacy logo assets in the repository. The places directory displays only marks mapped in `src/components/PlaceMark.tsx` or photos attached to listing records; legacy assets listed below may remain in `public/logos` but are no longer displayed. Listings without a verified image show no substitute initials or category icon. Some entries use third-party mall, business, franchise, or booking directories that publish the matching brand image; those sources are identified as such. Branch listings share a parent mark only when the organization identity matches.
 
 | Asset | Organization / brand | Source / attribution |
 | --- | --- | --- |
