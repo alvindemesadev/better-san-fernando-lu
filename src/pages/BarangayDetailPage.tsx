@@ -9,7 +9,7 @@ import { SourceNote } from '../components/SourceNote'
 import { StatCard } from '../components/StatCard'
 import { barangayDilgSourceUrl, barangays } from '../data/barangays'
 import { city } from '../data/city'
-import { formatNumber, initials } from '../lib/utils'
+import { formatNumber } from '../lib/utils'
 import { usePageMeta } from '../lib/usePageMeta'
 
 export function BarangayDetailPage() {
@@ -108,10 +108,7 @@ export function BarangayDetailPage() {
           <Reveal delay={0.06}>
             <section className="h-full rounded-2xl border border-line bg-white p-5 shadow-card sm:p-7">
               <SectionHeading eyebrow="Barangay officials" title="Your barangay council" />
-              <div className="mt-6 flex items-center gap-4 rounded-2xl bg-brand-700 p-4 text-white">
-                <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-sm font-extrabold">
-                  {initials(barangay.punongBarangay)}
-                </span>
+              <div className="mt-6 rounded-2xl bg-brand-700 p-4 text-white">
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-200">Punong Barangay</p>
                   <p className="mt-0.5 text-lg font-extrabold leading-tight">{barangay.punongBarangay}</p>
@@ -127,11 +124,8 @@ export function BarangayDetailPage() {
                   {barangay.kagawads.map((kagawad, index) => (
                     <li
                       key={`${kagawad}-${index}`}
-                      className="flex items-center gap-2.5 rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ink-700"
+                      className="rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ink-700"
                     >
-                      <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-white text-[10px] font-extrabold text-brand-700 shadow-sm">
-                        {initials(kagawad)}
-                      </span>
                       <span className="leading-5">{kagawad}</span>
                     </li>
                   ))}

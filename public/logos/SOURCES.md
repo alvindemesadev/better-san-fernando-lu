@@ -1,6 +1,6 @@
 # Logo sources
 
-The directory uses locally bundled logos or profile imagery, with the source and context recorded below. Some entries use third-party mall, business, franchise, or booking directories that publish the matching brand image; those sources are identified as such. Branch listings share a parent mark only when the organization identity matches; initials remain when a distinct mark cannot be verified.
+The directory uses locally bundled logos or profile imagery, with the source and context recorded below. Some entries use third-party mall, business, franchise, or booking directories that publish the matching brand image; those sources are identified as such. Branch listings share a parent mark only when the organization identity matches. Listings without a verified image show no substitute initials or category icon.
 
 | Asset | Organization / brand | Source / attribution |
 | --- | --- | --- |
@@ -134,28 +134,23 @@ The directory uses locally bundled logos or profile imagery, with the source and
 | `pepa-wings.png` | Pepa Wings | Logo from the [official Pepa Wings website](https://pepawings.com/); the local Robinsons tenant directory lists the brand. |
 | `monster-wings.jpg` | Monster Wings | Brand image from [Mall Stores Directory](https://mallstoresdirectory.com/monster-wings); the local Robinsons tenant directory lists the brand. |
 
-These source images are bundled locally for the directory. A missing asset in the mapping still falls back to initials; it does not mean the agency or business has no logo.
+These source images are bundled locally for the directory. A missing asset in the mapping means the card has no mark; it does not mean the agency or business has no logo.
 
-## Listings intentionally shown with initials or category icons
+## Listings with no mapped mark
 
-- **Land Bank of the Philippines and BDO**: their official site terms prohibit reproducing or displaying their logos outside their sites without written permission. No permission is recorded for this project, so their cards keep the LBP/BDO monograms. See [LANDBANK terms](https://landbank.com/terms-of-site) and [BDO terms](https://www.bdo.com.ph/terms-and-conditions).
+- **Land Bank of the Philippines and BDO**: their official site terms prohibit reproducing or displaying their logos outside their sites without written permission. No permission is recorded for this project, so their cards show no substitute mark. See [LANDBANK terms](https://landbank.com/terms-of-site) and [BDO terms](https://www.bdo.com.ph/terms-and-conditions).
 - **Poro Point Industrial Corporation (PPIC)**: no distinct current logo was verified. Do not reuse the separate PPMC logo. The [La Union 2024 Ecological Profile](https://launion.gov.ph/wp-content/uploads/2025/11/1-La-Union-Ecological-Profile-2024-Final.pdf) records PPIC managing the seaport from January through November 2024 and BCDA/PPMC taking over from December 2024; the directory entry should be checked for current status.
-- **Northern Philippines College for Maritime Science and Technology**: its official site image URL is indexed, but the `npcmst.edu.ph` domain returned DNS `NXDOMAIN` during verification on Oct. 23, 2026, so the image could not be fetched and bundled. **Saint John Bosco College of Northern Luzon** and **Sea and Sky College** still have no official, usable logo file verified from their first-party sources. Keep school initials until accessible, verified assets are available.
+- **Northern Philippines College for Maritime Science and Technology**: its official site image URL is indexed, but the `npcmst.edu.ph` domain returned DNS `NXDOMAIN` during verification on Oct. 23, 2026, so the image could not be fetched and bundled. **Saint John Bosco College of Northern Luzon** and **Sea and Sky College** still have no official, usable logo file verified from their first-party sources. These cards show no substitute mark.
 - **CICOSAT Hospital**: no distinct, verifiable hospital image was found; the available CICOSAT Colleges seal is a different institution identity and is not reused.
-- **Authorized Lotto Agent – Robinsons La Union** has no separately verified operator identity or logo; the card uses the finance category icon rather than Robinsons Mall branding. Generic map/search cards also use category icons because they represent a type of place, not one organization.
-- San Fernando Public Market keeps initials because older market imagery may be misleading after the 2024 fire; no current image was verified.
-- Attractions, parks, hotels, airport, food and transport listings use source-attributed place or brand imagery where available rather than organization logos.
+- **Authorized Lotto Agent – Robinsons La Union** has no separately verified operator identity or logo; the card shows no substitute icon or Robinsons Mall branding. Generic map/search cards also have no substitute icon because they represent a type of place, not one organization.
+- Attractions, parks, hotels, the airport and transport listings use source-attributed place imagery where available rather than organization logos.
 
-## Directory entries still using initials
+## Directory entries still missing a mapped image
 
-The listings below still use initials or category icons because a distinct, usable source asset has not been verified and bundled. This does not mean the organization has no logo; initials are only listing identifiers.
+The listings below have no mapped image because a distinct, usable source asset has not been verified and bundled. This does not mean the organization has no logo.
 
-- **Finance (2):** Land Bank of the Philippines – La Union Branch; BDO – SM City La Union. Their logos remain monograms because the project has no recorded permission to reuse them; see the linked terms above.
+- **Finance:** bank and payment listings without an approved local logo asset show no mark. Bank branding is not implied.
 - **Government (1):** Poro Point Industrial Corporation. No current distinct mark was verified; do not substitute the separate PPMC logo.
 - **Education (3):** Northern Philippines College for Maritime Science and Technology, Inc.; Saint John Bosco College of Northern Luzon; Sea and Sky College.
-- **Health:** CICOSAT Hospital.
-- **Shopping:** Argentée; CY7 Cellphone & Accessories; Denim Hub; G&G; Mobile Care; NCAT; Si-Gabrillo Optical; Sprinto; Synchro; Tech101; Time Check; OTH Tech; Repair Me; San Fernando Public Market.
-- **Food:** Chia’s Lechon House; Fruity Blends; Gem’s Empanada; Hongkong Style Noodles & Dimsum; Lemon Hub; Lemon Life; Seashack; Sonyda; Yeobo Corndog; ZYX Katsumaki; Buko Island; Citi Bites Pizza & Pasta; Lutong Bahay ni Manang; Lechon House; Lechon Belly House; Kain; Kayu; Krisp; Steak and Gravy; Sook Thai; Seoul Good; Shibuya; Xie Xie; Seawadeeka; Go Berry; Malabar; The Matcha Tokyo – SM City La Union; FantasyWorld – SM City La Union.
-- **Personal and family services:** Booze and Barbers; iSports; Life 4 Cuts; Luxederm Face and Body; Nail Cocktales; Ricsjen Beauty & Wellness; Tronix; Zion; Transfer It; SM Cinema – SM City La Union.
-
-Plaza Hotel, La Union Blue Marlin Resort, J&V Hotel and Resort, Location One Eighty, Manna Mall, Formocha Taiwan Milk Tea, Sagat Crust, Takoyaki Lab, and Avocadoria now use credited place or brand photos. The 11 generic listings shown with category icons are: Authorized Lotto Agent – Robinsons La Union; Other intercity bus terminals; EV charging and fuel stops; Banks, ATMs and remittance centers; More restaurants and fast-food branches; Pharmacies and drugstores; Public and private elementary and high schools; Clinics, dentists and diagnostic centers; More hotels, inns and homestays; More personal and household services; and Post, internet, utilities and essential services. These cards are directory shortcuts, not claims about one named operator.
+- **Health:** CICOSAT Hospital has no mapped mark because no distinct, verifiable hospital image was found.
+The directory now has 11 categories. Generic cards link to map results or another directory when maintaining a complete static listing is not reliable; they are discovery shortcuts, not claims about one named operator. Shopping and groceries, food and coffee, and personal and family services are no longer directory categories.

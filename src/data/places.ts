@@ -6,9 +6,6 @@ export type PlaceCategoryId =
   | 'safety'
   | 'health'
   | 'education'
-  | 'shopping'
-  | 'food'
-  | 'services'
   | 'stay'
   | 'attractions'
   | 'parks'
@@ -47,14 +44,11 @@ export const placeCategories: PlaceCategory[] = [
   { id: 'safety', label: 'Safety and justice', mapQuery: 'police fire emergency court', description: 'Police, fire, corrections, courts and emergency-response offices.' },
   { id: 'health', label: 'Health and recovery', mapQuery: 'hospitals clinics laboratories pharmacies treatment rehabilitation centers', description: 'Hospitals, clinics, laboratories, pharmacies and recovery services.' },
   { id: 'education', label: 'Schools and learning', mapQuery: 'schools colleges universities', description: 'Colleges, universities, schools, libraries and learning centers.' },
-  { id: 'shopping', label: 'Shopping and groceries', mapQuery: 'malls supermarkets grocery stores public market', description: 'Malls, markets, supermarkets, groceries and everyday retail.' },
-  { id: 'food', label: 'Food and coffee', mapQuery: 'restaurants fast food cafes coffee shops', description: 'Restaurants, fast-food chains, cafés, bakeries and food parks.' },
-  { id: 'services', label: 'Personal and family services', mapQuery: 'salons barbers gyms cinemas family entertainment', description: 'Salons, wellness, fitness, cinemas and family activities.' },
-  { id: 'stay', label: 'Places to stay', mapQuery: 'hotels resorts inns accommodation', description: 'Hotels, resorts, inns and visitor accommodation.' },
+  { id: 'stay', label: 'Places to stay', mapQuery: 'hotels resorts inns hostels apartments transient houses homestays accommodation', description: 'The 2024 La Union Ecological Profile counted 129 accommodation establishments in the city. Named listings draw from that inventory and Google Maps; confirm current operation and availability.' },
   { id: 'attractions', label: 'Tourism and heritage', mapQuery: 'tourist attractions historical sites museums', description: 'Officially listed destinations, heritage sites, museums and visitor spots.' },
   { id: 'parks', label: 'Parks and outdoors', mapQuery: 'parks playgrounds beaches outdoor recreation', description: 'Public parks, beaches, gardens, baywalks and outdoor recreation.' },
-  { id: 'transport', label: 'Transport and mobility', mapQuery: 'bus terminals airport seaport transport', description: 'Bus terminals, airport, seaport, parking and mobility services.' },
-  { id: 'finance', label: 'Banks and payments', mapQuery: 'banks ATMs remittance pawnshops', description: 'Banks, ATMs, remittance, money services and payment centers.' },
+  { id: 'transport', label: 'Transport and mobility', mapQuery: 'bus terminals jeepney terminals tricycle terminals vans airport seaport transport', description: 'Bus and jeepney terminals, local public transport, airport, seaport and mobility services.' },
+  { id: 'finance', label: 'Banks and payments', mapQuery: 'banks ATMs remittance pawnshops money transfer payment centers', description: 'Bank branches, ATMs, remittance, money services and payment centers.' },
   { id: 'faith', label: 'Churches and faith', mapQuery: 'churches chapels temples mosques', description: 'Churches, chapels, temples and other places of worship.' },
   { id: 'everyday', label: 'Utilities and essentials', mapQuery: 'post office utilities internet service centers gas stations', description: 'Utilities, postal, telecom, fuel, auto and other day-to-day services.' },
 ]
@@ -80,7 +74,6 @@ const tourismPhotos = {
   'Carlatan Surfing Area': provincialPhoto('carlatan-surfing-area.webp', 'Surfing along the Carlatan coast'),
   'Car-rile Tower (Moro Watchtower)': provincialPhoto('carrile-tower.webp', 'Car-rile Moro Watchtower'),
   'Christ the Redeemer': provincialPhoto('christ-the-redeemer.webp', 'Christ the Redeemer statue'),
-  'Halo-Halo de Iloko': provincialPhoto('halo-halo-de-iloko.webp', 'Halo-Halo de Iloko specialty halo-halo'),
   'Heroes Hill': provincialPhoto('heroes-hill.webp', 'Heroes Hill'),
   'Ibit’s Farm': provincialPhoto('ibits-farm.webp', 'Ibit’s Farm'),
   'Kasay Marine Sanctuary': provincialPhoto('kasay-marine-sanctuary.webp', 'Kasay Marine Sanctuary'),
@@ -154,12 +147,6 @@ const seaportPhoto: PlaceImage = {
   credit: 'Poro Point Management Corporation · Annual Report 2024',
   creditUrl: 'https://poropointfreeport.gov.ph/wp-content/uploads/2023/02/PPMC-Annual-Report-CY-2024.pdf',
 }
-const smCityPhoto: PlaceImage = {
-  src: '/places/sm-city-la-union-exterior.webp',
-  alt: 'SM City La Union mall exterior along Diversion Road',
-  credit: 'SM Supermalls',
-  creditUrl: 'https://www.smsupermalls.com/whats-new/lifestyle/sm-city-la-union-opens-as-the-new-gen-z-destination-up-north',
-}
 const smSandboxPhoto: PlaceImage = {
   src: '/places/sm-city-la-union-sandbox.jpg',
   alt: 'Sandbox outdoor volleyball space at SM City La Union',
@@ -177,12 +164,6 @@ const plazaHotelPhoto: PlaceImage = {
   alt: 'Plaza Hotel sign on Manila North Road in San Fernando, photographed in 2018',
   credit: 'Patrickroque01 · Wikimedia Commons · CC BY-SA 4.0',
   creditUrl: 'https://commons.wikimedia.org/wiki/File:CSFLU_city_center_-_Manila_North_Road_southbound_(San_Fernando,_La_Union)(2018-11-25).jpg',
-}
-const mannaMallPhoto: PlaceImage = {
-  src: '/places/manna-mall.jpg',
-  alt: 'Manna Mall storefront in Pagdaraogan, San Fernando',
-  credit: 'Judgefloro · Wikimedia Commons · CC0 1.0',
-  creditUrl: 'https://commons.wikimedia.org/wiki/File:2117Pagdaraoan,_San_Fernando,_La_Union_03.jpg',
 }
 const blueMarlinPhoto: PlaceImage = {
   src: '/places/blue-marlin-resort.jpg',
@@ -202,31 +183,6 @@ const locationOneEightyPhoto: PlaceImage = {
   credit: 'Agoda listing photo',
   creditUrl: 'https://www.agoda.com/location-one-eighty/hotel/la-union-ph.html',
 }
-const formochaPhoto: PlaceImage = {
-  src: '/places/formocha-taiwan-milk-tea.jpg',
-  alt: 'Formocha Taiwan Milk Tea branded drinks',
-  credit: 'Pinoy Entrepreneur',
-  creditUrl: 'https://www.pinoy-entrepreneur.com/2021/04/22/formocha-taiwan-milktea/',
-}
-const sagatCrustPhoto: PlaceImage = {
-  src: '/places/sagat-crust-food.jpg',
-  alt: 'Food photo from Sagat Crust Food House at Robinsons Place San Fernando La Union',
-  credit: 'Sagat Crust Food House · Foodpanda listing',
-  creditUrl: 'https://www.foodpanda.ph/restaurant/nctu/sagat-crust-food-house-robinsons-place-san-fernando-la-union',
-}
-const takoyakiLabPhoto: PlaceImage = {
-  src: '/places/takoyaki-lab-food.jpg',
-  alt: 'Takoyaki dish from Takoyaki Lab at Robinsons Place San Fernando La Union',
-  credit: 'Takoyaki Lab · Foodpanda listing',
-  creditUrl: 'https://www.foodpanda.ph/restaurant/fpvc/takoyaki-lab-robinsons-place-san-fernando-la-union',
-}
-const avocadoriaPhoto: PlaceImage = {
-  src: '/places/avocadoria-brand-display.jpg',
-  alt: 'Avocadoria.ph branded kiosk and menu display',
-  credit: 'Philippine Franchise Association',
-  creditUrl: 'https://www.pfa.org.ph/product-page/avocadoria-ph',
-}
-
 const placePhotosById: Record<string, PlaceImage> = {
   'city-hall': tourismPhotos['San Fernando City Hall'],
   'airport': airportPhoto,
@@ -235,7 +191,6 @@ const placePhotosById: Record<string, PlaceImage> = {
   'sillag-park': sillagParkPhoto,
   'poro-baywalk': poroBaywalkPhoto,
   'seaport': seaportPhoto,
-  'sm-city': smCityPhoto,
   'sm-sandbox': smSandboxPhoto,
   'sfc-cathedral': cathedralPhoto,
   'thunderbird': thunderbirdPhoto,
@@ -254,7 +209,6 @@ const placePhotosById: Record<string, PlaceImage> = {
   'ma-cho': tourismPhotos['Ma-Cho Temple'],
   'friendship-pagoda': tourismPhotos['Filipino-Chinese Friendship Pagoda'],
   'pindangan-ruins': tourismPhotos['Pindangan Ruins'],
-  'manna-mall': mannaMallPhoto,
   'city-plaza-hotel': plazaHotelPhoto,
   'blue-marlin': blueMarlinPhoto,
   'jv-resort': jvResortPhoto,
@@ -268,10 +222,6 @@ const placePhotosByName: Record<string, PlaceImage> = {
   'Bacsil Ridge Monument and Viewdeck': tourismPhotos['Bacsil Ridge Monument'],
   'Poro Point San Fernando Airport': airportPhoto,
   'Nisce Skin Clinic': nisceBranchPhoto,
-  'Formocha Taiwan Milk Tea': formochaPhoto,
-  'Sagat Crust': sagatCrustPhoto,
-  'Takoyaki Lab': takoyakiLabPhoto,
-  'Avocadoria': avocadoriaPhoto,
 }
 
 function place(
@@ -511,67 +461,336 @@ const schoolPlaces = schoolRows.map((name, index) =>
 const tourismNames = [
   // Other tourism records are already represented by their curated place cards or office profiles.
   'Abut Bamboo Craft-making (Basket Making Industry)',
-  'Halo-Halo de Iloko',
   'Ibit’s Farm',
   'Tomb of the Unknown Soldier',
 ]
 
 const tourismPlaces = tourismNames.map((name, index) =>
-  place(`tourism-${index + 1}`, name, ['Halo-Halo de Iloko'].includes(name) ? 'food' : 'attractions', 'City of San Fernando, La Union', 'Provincial tourism destination list', tourismSource),
+  place(`tourism-${index + 1}`, name, 'attractions', 'City of San Fernando, La Union', 'Provincial tourism destination list', tourismSource),
 )
 
 const mallAddress = 'Robinsons La Union, MacArthur Highway, Barangay Sevilla'
-const mallRetailers = [
-  '@TOKYO', 'AAP', 'Aficionado', 'Aquaflask', 'Argentée', 'Bench', 'Broadway Gems', 'Core Pacific', 'CY7 Cellphone & Accessories',
-  'Daiso Japan', 'Denim Hub', 'Digital Walker', 'Executive Optical', 'G&G', 'GameXtreme', 'Guanzon Mobitek', 'Handyman',
-  'Ian Darcy', 'Infinix', 'LBC', 'Levi’s', 'Manjaru', 'Mandaue Foam and Home Store', 'Mobile Care', 'National Book Store', 'NCAT', 'Octagon',
-  'Oxygen', 'PC Express', 'Penshoppe', 'Picture City', 'Power Mac Center', 'Robinsons Appliances', 'Robinsons Department Store',
-  'Robinsons Supermarket', 'Samsung', 'Si-Gabrillo Optical', 'Smart', 'Smile City Dental Essentials', 'Sprinto', 'Synchro',
-  'Tech101', 'Time Check', 'Watsons', 'World Balance', 'Xiaomi', 'OTH Tech', 'Repair Me', 'Super50',
-]
-const mallFood = [
-  'Beanleaf Coffee & Tea', 'Ben’s Halo Halo', 'Botejyu', 'BreadTalk', 'Candy Corner', 'Chapo’s Grill & Sizzlers', 'Chia’s Lechon House',
-  'Classic Savory', 'Chizmozza', 'Dunkin’', 'Famous Belgian', 'Famous Belgian Waffle', 'Formocha Taiwan Milk Tea', 'Fruity Blends', 'Gem’s Empanada',
-  'Gong Cha', 'Hongkong Style Noodles & Dimsum', 'Jollibee', 'Kettle Korn', 'KFC', 'Lemon Hub', 'Lemon Life', 'Mary Grace Cafe',
-  'Monster Wings', 'Mr. Kimbob', 'Pepa Wings', 'Potato Corner', 'Sagat Crust', 'Sam’s Everything on Sticks', 'Seashack',
-  'Shawarma Shack', 'Siomai House', 'Sonyda', 'Takoyaki Lab', 'Turks', 'Waffle Time', 'Yeobo Corndog', 'ZYX Katsumaki',
-  'Buko Island', 'Citi Bites Pizza & Pasta', 'Don’s Original Spanish Churros', 'Macao Imperial Tea', 'Lutong Bahay ni Manang',
-  'Avocadoria', 'Lechon House',
-]
-const mallServices = [
-  'Beautederm', 'Booze and Barbers', 'David’s Salon & Topten Nails', 'Dr. Brows', 'iSports', 'Kidzoona', 'Kids Box by Kidzoona', 'Life 4 Cuts',
-  'Luxederm Face and Body', 'Nail Cocktales', 'Nailandia', 'Nisce Skin Clinic', 'Ricsjen Beauty & Wellness', 'Robinsons Movieworld',
-  'Tom’s World', 'Tronix', 'Zion', 'Transfer It',
-]
 const smMall = 'SM City La Union, Diversion Road, Barangay Biday'
-const smRetailers = [
-  'SM Store', 'SM Supermarket', 'Ace Hardware', 'Toy Kingdom', 'Levi’s', 'Watsons', 'Surplus', 'Pet Express', 'Adidas', 'Miniso',
-  'Sports Central', 'SM Appliance Center', 'Puma', 'UNIQLO', 'National Book Store',
-]
-const smFoodHall = [
-  'Lechon Belly House', 'Kain', 'Kayu', 'Krisp', 'Steak and Gravy', 'Potato Corner', 'Turks', 'Sook Thai', 'Seoul Good', 'Shibuya',
-  'Xie Xie', 'Seawadeeka', 'Bebo’s Bombay Burritos', 'Go Berry', 'Malabar',
-]
 
 const tenantPlaces = [
-  ...mallRetailers.map((name, index) => place(`rob-shop-${index + 1}`, name, 'shopping', mallAddress, 'Robinsons Malls tenant directory', robinsonsDirectory, `Listed at Robinsons La Union${name === 'Robinsons Supermarket' ? ' · Level 1' : ''}.`)),
-  ...mallFood.map((name, index) => place(`rob-food-${index + 1}`, name, 'food', mallAddress, 'Robinsons Malls tenant directory', robinsonsDirectory, 'Listed in the mall’s dining directory; check the mall listing for current floor and hours.')),
-  ...mallServices.map((name, index) => place(`rob-service-${index + 1}`, name, 'services', mallAddress, 'Robinsons Malls tenant directory', robinsonsDirectory, 'Listed in the mall’s services and leisure directory.')),
   place('rob-authorized-lotto', 'Authorized Lotto Agent – Robinsons La Union', 'finance', mallAddress, 'Robinsons Malls tenant directory', robinsonsDirectory),
   place('rob-bpi', 'BPI – Robinsons La Union', 'finance', mallAddress, 'Robinsons Malls tenant directory', robinsonsDirectory),
   place('rob-lorma-lifecheck', 'Lorma LifeCheck – Robinsons La Union', 'health', mallAddress, 'Robinsons Malls tenant directory', robinsonsDirectory),
-  ...smRetailers.flatMap((name, index) => name === 'SM Supermarket' ? [] : [
-    place(`sm-shop-${index + 1}`, name, name === 'Watsons' ? 'health' : name === 'Ace Hardware' ? 'everyday' : 'shopping', smMall, 'SM Prime official mall opening directory · Oct. 2025', 'https://www.smprime.com/company_releases/sm-prime-opens-89th-mall-sm-city-la-union-to-feature-sandbox-outdoor-space/'),
-  ]),
-  ...smFoodHall.map((name, index) => place(`sm-food-${index + 1}`, name, 'food', smMall, 'SM Food Hall launch directory · Oct. 2025', 'https://businessmirror.com.ph/2025/10/21/sm-food-hall-opens-at-sm-city-la-union-and-its-a-destination-for-a-new-wave-of-flavors/')),
-  place('sm-italiannis', 'Italianni’s – SM City La Union', 'food', smMall, 'Reported open · Feb. 2026', 'https://businessmirror.com.ph/2026/02/14/surfs-up-italiannis-and-tgifridays-are-now-open-in-sm-city-la-union/'),
-  place('sm-tgif', 'TGI Fridays – SM City La Union', 'food', smMall, 'Reported open · Feb. 2026', 'https://businessmirror.com.ph/2026/02/14/surfs-up-italiannis-and-tgifridays-are-now-open-in-sm-city-la-union/'),
   place('sm-bdo', 'BDO – SM City La Union', 'finance', smMall, 'SM Prime official mall opening directory', 'https://www.smprime.com/company_releases/sm-prime-opens-89th-mall-sm-city-la-union-to-feature-sandbox-outdoor-space/'),
-  ...['Ramen Nagi', 'Chili’s', 'Starbucks', 'The Matcha Tokyo', 'Anytime Fitness', 'FantasyWorld', 'Conti’s Bakeshop and Restaurant', 'Mesa'].map((name, index) =>
-    place(`sm-current-${index + 1}`, `${name} – SM City La Union`, name === 'Anytime Fitness' ? 'services' : 'food', smMall, 'SM City La Union social updates · 2026', 'https://www.findglocal.com/PH/San-Fernando/373216039218904/SM-City-La-Union'),
-  ),
-  place('sm-cinema', 'SM Cinema – SM City La Union', 'services', smMall, 'SM Prime official mall opening directory', 'https://www.smprime.com/company_releases/sm-prime-opens-89th-mall-sm-city-la-union-to-feature-sandbox-outdoor-space/'),
   place('sm-sandbox', 'Sandbox outdoor event space and bike lane', 'parks', smMall, 'SM Prime official mall opening directory', 'https://www.smprime.com/company_releases/sm-prime-opens-89th-mall-sm-city-la-union-to-feature-sandbox-outdoor-space/'),
+]
+
+const bankRegisterUrl = 'https://bir-cdn.bir.gov.ph/local/pdf/RDO%203_2023.pdf'
+const localFinanceDirectoryUrl = 'https://www.lookph.com/city-of-san-fernando-la-union/banks/'
+const bpiBranchDirectoryUrl = 'https://www.bpi.com.ph/sme-banking/contact-us'
+const rcbcBranchDirectoryUrl = 'https://rcbc.com.ph/branch-finder'
+const pbbCollectionListUrl = 'https://www.philhealth.gov.ph/partners/collecting/aca_PhilippineBusinessBank.pdf'
+const luecoPaymentChannelsUrl = 'https://www.luecoinc.com/payment-channels/'
+const bdoBranchListUrl = 'https://www.bdo.com.ph/content/dam/bdounibank/en-ph/about-bdo/disclosures/all-disclosures/2024/preliminary-information-statement-2024-asm.pdf'
+const cebuanaBranchListUrl = 'https://www.metrobankcard.com/Content/documents/card-services/Cebuana-Lhuillier-Branches.pdf'
+const mlhuillierBranchListUrl = 'https://www.bpi.com.ph/personal/bank/digital-banking/mobile/vybe/mhluillier-branch-directory'
+const accommodationInventoryUrl = 'https://iriceea.org/wp-content/uploads/2024/11/La-Union-Accommodation-Establishments.pdf'
+type PlaceRow = [id: string, name: string, address: string]
+
+const financePlaces: PlaceRecord[] = [
+  ...([
+    ['philtrust', 'Philippine Trust Company – San Fernando', 'P. Gomez Street, Barangay IV'],
+    ['chinabank', 'China Banking Corporation – La Union', 'Quezon Avenue, National Highway'],
+    ['bank-of-commerce', 'Bank of Commerce – La Union', 'Rizal Avenue, San Fernando City'],
+    ['pbcom', 'PBCOM – San Fernando', 'Ground Floor, CJ Arch Building, Quezon Avenue'],
+    ['pnb-quezon', 'Philippine National Bank – Quezon Avenue', 'Quezon Avenue, San Fernando City'],
+    ['pnb-612', 'Philippine National Bank – 612 Quezon Avenue', '612 Quezon Avenue, San Fernando City'],
+    ['bpi-south', 'BPI – San Fernando South', '500 Quezon Avenue, San Fernando City'],
+    ['security-bank', 'Security Bank – La Union', 'Ground Floor, Kenny Plaza, Quezon Avenue'],
+    ['unionbank', 'UnionBank – San Fernando', 'Ground Floor, Shania Tower, Quezon Avenue'],
+    ['eastwest', 'EastWest Bank – La Union', 'Kenny Plaza, Quezon Avenue, Catbangen'],
+    ['metrobank-kenny', 'Metrobank – Kenny Plaza', 'Kenny Plaza, Quezon Avenue'],
+    ['metrobank-sevilla', 'Metrobank – Sevilla Monumento', 'Tan Building, Quezon Avenue, National Highway'],
+    ['landbank-south', 'LandBank – San Fernando South', 'Nisce Business Center, Quezon Avenue, Catbangen'],
+  ] satisfies PlaceRow[]).map(([id, name, address]) => place(
+    `bank-${id}`,
+    name,
+    'finance',
+    address,
+    id === 'eastwest' || id === 'unionbank' ? 'Google Maps listing · checked Oct. 24, 2026'
+      : id === 'bank-of-commerce' ? 'LUECO authorized collecting banks · current listing'
+      : id === 'bpi-south' ? 'BPI official branch directory'
+      : 'BIR RDO 3 bank list · May 2023',
+    id === 'eastwest' || id === 'unionbank'
+      ? `${maps}${encodeURIComponent(`${name}, San Fernando City, La Union`)}`
+      : id === 'bank-of-commerce' ? luecoPaymentChannelsUrl
+      : id === 'bpi-south' ? bpiBranchDirectoryUrl
+      : bankRegisterUrl,
+    'Branch names and addresses can change; verify current status and hours on the live map or the bank’s locator.',
+  )),
+  place('bank-bpi-north', 'BPI – San Fernando North', 'finance', 'Quezon Avenue, Barangay III, San Fernando City', 'BPI official branch directory', bpiBranchDirectoryUrl, 'Check the branch locator for current operating status and hours.'),
+  place('bank-pbb', 'Philippine Business Bank – La Union', 'finance', 'Ground Floor, Virginia Building, Quezon Avenue corner Flores Street', 'PhilHealth collecting agent list', pbbCollectionListUrl, 'The list confirms a payment collection location; check the live map for current branch status and services.'),
+  place('bank-rcbc', 'RCBC – La Union Branch and ATM', 'finance', 'Quezon Avenue corner P. Burgos Street', 'RCBC official branch finder', rcbcBranchDirectoryUrl, 'Check the branch locator for current operating status and hours.'),
+  ...([
+    ['veterans-bank', 'Philippine Veterans Bank – La Union', 'P. Burgos Street, San Fernando City'],
+    ['china-bank-savings', 'China Bank Savings – San Fernando', 'North Quezon Avenue, San Fernando City'],
+    ['sterling-bank', 'Sterling Bank – San Fernando', 'South Quezon Avenue, San Fernando City'],
+  ] satisfies PlaceRow[]).map(([id, name, address]) => place(
+    `bank-${id}`,
+    name,
+    'finance',
+    address,
+    'Local bank and payment-channel directories',
+    luecoPaymentChannelsUrl,
+    'Directory details and branch availability can change; confirm on the live map before visiting.',
+  )),
+  place('bank-of-makati', 'Bank of Makati – San Fernando', 'finance', 'San Fernando City, La Union', 'Google Maps listing · checked Oct. 24, 2026; city directory · 2023', `${maps}${encodeURIComponent('Bank of Makati San Fernando La Union')}`, 'Google Maps has no current hours or phone number for this branch; confirm it is operating before visiting.'),
+  place('bank-asia-united', 'Asia United Bank – San Fernando', 'finance', 'Kenny Plaza, Quezon Avenue, Catbangen', 'Google Maps listing · checked Oct. 24, 2026; city directory · 2023', `${maps}${encodeURIComponent('Asia United Bank, San Fernando City, La Union')}`, 'Current Maps listing found; verify branch hours before visiting.'),
+  place('bank-card-bank', 'CARD Bank – La Union Branch', 'finance', 'J888+97H, San Fernando City, La Union', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('CARD Bank Inc. La Union Branch, San Fernando City, La Union')}`, 'The map listing has limited business details; confirm current hours and services before visiting.'),
+  place('bank-producers', 'Producers Bank – San Fernando', 'finance', 'G/F Nebres Building, Quezon Avenue, Downtown Commercial Center', 'Producers Bank branch directory · updated Aug. 6, 2026', 'https://www.producersbank.com.ph/branch-directory/', 'Verify current hours and services with the bank.'),
+  place('rangay-main', 'Rang-ay Bank – Main Branch', 'finance', 'Nisce-Querol Building, 67 Governor Luna Street, Barangay IV', 'Rang-ay Bank official network directory', 'https://rangaybank.com/network/'),
+  place('rangay-downtown', 'Rang-ay Bank – San Fernando Downtown', 'finance', 'Rang-ay Bank Building, Ortega Street, Barangay III', 'Rang-ay Bank official network directory', 'https://rangaybank.com/network/'),
+  place('rangay-highway', 'Rang-ay Bank – San Fernando Highway', 'finance', 'Quezon Avenue, National Highway, Barangay II', 'Rang-ay Bank official network directory', 'https://rangaybank.com/network/'),
+  place('bank-pafcpic', 'PAFCPIC – San Fernando', 'finance', '351 Pennsylvania Avenue, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('PAFCPIC San Fernando La Union')}`, 'Map categorizes this as a cooperative bank; confirm services and hours.'),
+  place('bank-banco-san-juan', 'Banco San Juan – San Fernando', 'finance', 'Poblacion, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Banco San Juan San Fernando La Union')}`, 'Map identifies this as a bank in San Fernando City; confirm current hours and services.'),
+  place('bank-metrobank-atm-widdoes', 'Metrobank ATM – Widdoes Street', 'finance', 'Widdoes Street, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Metrobank ATM Widdoes Street San Fernando City La Union')}`, 'ATM listing; verify availability on the live map.'),
+  place('bank-metrobank-atm-slc', 'Metrobank ATM – Saint Louis College', 'finance', 'Saint Louis College, Lingsat, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Metrobank ATM Saint Louis College Lingsat San Fernando City La Union')}`, 'ATM listing; verify availability on the live map.'),
+  place('bank-psbank-atm', 'PSBank BancNet ATM – Anes Atrium', 'finance', 'Anes Atrium, Rizal Avenue, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('PSBank BancNet ATM Anes Atrium Rizal Avenue San Fernando City La Union')}`, 'ATM listing; verify availability on the live map.'),
+  place('bank-bdo-savemore-atm', 'BDO ATM – Savemore San Fernando', 'finance', 'Ground Floor, Savemore selling area, Rizal Avenue', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('BDO Savemore San Fernando La Union ATM')}`, 'ATM listing; verify availability on the live map.'),
+  place('bank-moneygram-dona-paca', 'MoneyGram – Cebuana Lhuillier, Dona Paca Street', 'finance', 'Inside Cebuana Lhuillier, Dona Paca Street, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('MoneyGram Cebuana Lhuillier Dona Paca Street San Fernando La Union')}`, 'Money-transfer agent listing; confirm current services and hours.'),
+  place('bank-moneygram-villarica', 'MoneyGram – Villarica Pawnshop', 'finance', '71 Governor Ortega Street, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('MoneyGram Villarica Pawnshop Governor Ortega Street San Fernando La Union')}`, 'Money-transfer agent listing; confirm current services and hours.'),
+  place('bank-moneygram-sm-city', 'MoneyGram – SM City La Union', 'finance', 'Inside Supervalue Inc., SM City La Union, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('MoneyGram SM City La Union San Fernando')}`, 'Money-transfer agent listing; confirm current services and hours.'),
+  place('bank-gcash-carlatan', 'GCash Outlet – Carlatan Bridge', 'finance', 'Carlatan Bridge, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('GCash outlet Carlatan Bridge San Fernando La Union')}`, 'Google Maps listing for a payment agent; confirm cash-in, cash-out and other services before visiting.'),
+  place('bank-metrocard-payments', 'Metrocard Bill Payments – Asia United Bank', 'finance', 'MacArthur Highway corner Guerrero Road, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Metrocard Bill Payments Asia United Bank San Fernando La Union')}`, 'Payment-service listing; confirm supported billers and hours before visiting.'),
+  place('bank-western-union-esonice', 'Western Union – Esonice Galleria', 'finance', 'GF Units 7–8, Esonice Galleria, Governor Luna Street', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Western Union Esonice Galleria San Fernando La Union')}`, 'Money-transfer branch listing; confirm current hours and services.'),
+  place('bank-western-union-rangay', 'Western Union – Rang-ay Bank', 'finance', '67 Governor Luna Street, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Western Union Rang-ay Bank San Fernando La Union')}`, 'Money-transfer listing at the Rang-ay Bank address; confirm current hours and services.'),
+  place('bank-cvm-pawnshop', 'CVM Pawnshop and Money Changer', 'finance', 'Governor Ortega Street, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('CVM Pawnshop and Money Changer San Fernando La Union')}`, 'Map listing; confirm current services and hours.'),
+  place('bank-bhf-pawnshop', 'BHF Pawnshop & Gemline', 'finance', 'J898+967, P. Burgos Street, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('BHF Pawnshop Gemline San Fernando La Union')}`, 'Map categorizes this listing as a jewelry store; confirm pawn and payment services before visiting.'),
+  place('bank-wu-timetested', 'Western Union – Timetested Pawnshop', 'finance', 'South Paseo Building, Rizal Avenue, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Western Union Timetested Pawnshop San Fernando La Union')}`, 'Money-transfer listing; confirm current hours and services.'),
+  place('bank-wu-hlhuillier', 'Western Union – H. Lhuillier Pawnshop', 'finance', 'Ortigas Street, Ilocanos Sur, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Western Union H Lhuillier Pawnshop Ortigas Street San Fernando La Union')}`, 'Money-transfer listing; confirm current hours and services.'),
+  place('bank-palawan-macarthur', 'Palawan Pawnshop – MacArthur Highway', 'finance', 'Magdalena Peralta Building, MacArthur Highway, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Palawan Pawnshop Magdalena Peralta Building MacArthur Highway San Fernando La Union')}`, 'Map listing; confirm current branch and services.'),
+  place('bank-palawan-ortega', 'Palawan Pawnshop – F. Ortega Highway', 'finance', 'J889+FC3, F. Ortega Highway, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Palawan Pawnshop F Ortega Highway San Fernando La Union')}`, 'Map listing; confirm current branch and services.'),
+  place('bank-truemoney', 'TrueMoney Philippines – Aguila Road', 'finance', 'Era Street, Barangay II, Aguila Road, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('TrueMoney Philippines Era Street Aguila Road San Fernando La Union')}`, 'Money-transfer listing; confirm current agent services and hours.'),
+  place('bank-juanpay', 'JuanPay – San Fernando', 'finance', 'Purok 3, Sevilla, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('JuanPay San Fernando La Union')}`, 'Map categorizes this as a financial institution; confirm available services and hours.'),
+  place('bank-eastwest-rural-atm', 'EastWest Rural Bank ATM', 'finance', 'J8G9+VHX, San Fernando City, La Union', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('EastWest Rural Bank ATM San Fernando La Union')}`, 'ATM listing; confirm availability on the live map.'),
+  place('bank-suyo-coop', 'Suyo Multi-Purpose Cooperative', 'finance', 'Mabini Street, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Suyo Multi-Purpose Cooperative San Fernando La Union')}`, 'Google Maps categorizes this cooperative as a bank; confirm its financial services and hours.'),
+  ...([
+    ['bdo-rizal', 'BDO – Rizal Avenue Branch', 'Rizal Avenue corner Gov. Ortega Street'],
+    ['bdo-manna', 'BDO – Manna Mall Branch', 'Manna Mall, Pagdaraogan-Biday Road'],
+    ['bdo-quezon', 'BDO – Quezon Avenue Branch', 'Quezon Avenue, San Fernando City'],
+  ] satisfies PlaceRow[]).map(([id, name, address]) => place(
+    `bank-${id}`,
+    name,
+    'finance',
+    address,
+    id === 'bdo-quezon' ? 'Local bank directory' : 'BDO 2024 branch disclosure',
+    id === 'bdo-quezon' ? localFinanceDirectoryUrl : bdoBranchListUrl,
+    'Check the live map result for current operating status and hours.',
+  )),
+  ...([
+    ['cebuana-csi', 'Cebuana Lhuillier – CSI Mall', 'Unit 104A, Ground Floor, CSI Mall, Biday'],
+    ['cebuana-glassworld', 'Cebuana Lhuillier – Glassworld Building', 'J.P. Rizal Avenue, Glassworld Building'],
+    ['cebuana-pburgos', 'Cebuana Lhuillier – P. Burgos Street', 'P. Burgos Street, San Fernando City'],
+    ['cebuana-ortega', 'Cebuana Lhuillier – Barangay 3', 'Osmeña Street corner Ortega Street, Barangay 3'],
+    ['cebuana-catagbangan', 'Cebuana Lhuillier – Catbangen', 'National Road, Bolong, Catbangen'],
+    ['cebuana-quezon', 'Cebuana Lhuillier – Barangay 1', 'Quezon Avenue, Barangay 1'],
+  ] satisfies PlaceRow[]).map(([id, name, address]) => place(
+    `finance-${id}`,
+    name,
+    'finance',
+    address,
+    'Cebuana Lhuillier branch list',
+    cebuanaBranchListUrl,
+    'Branch hours and services can change; confirm on the live map before visiting.',
+  )),
+  ...([
+    ['mlhuillier-manna', 'M Lhuillier – Manna Mall', 'Diversion Road, Pagdaraoan'],
+    ['mlhuillier-catbangen', 'M Lhuillier – San Fernando 2', 'Quezon Avenue, Catbangen'],
+  ] satisfies PlaceRow[]).map(([id, name, address]) => place(
+    `finance-${id}`,
+    name,
+    'finance',
+    address,
+    'M Lhuillier branch directory',
+    mlhuillierBranchListUrl,
+    'Branch hours and services can change; confirm on the live map before visiting.',
+  )),
+  ...([
+    ['western-union-banco-filipino', 'Western Union – Banco Filipino, La Union Branch', 'Quezon Avenue, near the Fire Department'],
+    ['western-union-rural-bank', 'Western Union – Rural Bank of Naguilian', 'Rizal Avenue, Barangay IV'],
+    ['western-union-veterans', 'Western Union – Philippine Veterans Bank', 'P. Burgos Street, San Fernando City'],
+    ['western-union-santa-cruz', 'Western Union – Santa Cruz Multi-Purpose Cooperative', 'Parammata Building, Biday'],
+    ['ussc-western-union', 'USSC Western Union – Bayad Center', 'Gov. Juan Luna Street, San Fernando City'],
+  ] satisfies PlaceRow[]).map(([id, name, address]) => place(
+    `finance-${id}`,
+    name,
+    'finance',
+    address,
+    'Local financial-services directory',
+    localFinanceDirectoryUrl,
+    'Confirm the branch and service availability on the live map before visiting.',
+  )),
+  ...([
+    ['asialink', 'Asialink Finance Corporation – La Union', 'M.L. Aquino Realty Building, Quezon Avenue'],
+    ['silver-finance', 'Silver Finance Inc. – La Union', 'Rudel Building, Ancheta Street'],
+    ['active-alliance', 'Active Alliance Finance Corporation – La Union', 'Lasam Building, Governor Gen. Luna Street'],
+    ['fundline', 'Fundline Finance Corporation – La Union', 'Ocampo Building, Quezon Avenue, Sevilla Norte'],
+  ] satisfies PlaceRow[]).map(([id, name, address]) => place(
+    `finance-${id}`,
+    name,
+    'finance',
+    address,
+    'Local financial-services directory',
+    localFinanceDirectoryUrl,
+    'Confirm the branch and service availability on the live map before visiting.',
+  )),
+]
+
+const accommodationRows: PlaceRow[] = [
+  ['4tune8-realty', '4tune8 Realty', 'Barangay I (Poblacion)'],
+  ['ariannas-transient', "Arianna’s Transient House", 'Dalumpinas Oeste'],
+  ['arvi-scenery', 'Arvi Scenery Resort', 'Cadaclan'],
+  ['balay-manuel-maria', 'Balay ni Manuel ken Maria', '2 Almeida Street, Tanqui'],
+  ['balay-tapaw', 'Balay Tapaw Transient House', 'Padua Street, Dalumpinas Oeste'],
+  ['brendas-house', "Brenda’s House Space Rental", 'Dalumpinas Oeste'],
+  ['canaoay-villas', 'Canaoay Villas', 'Airport Road, Canaoay'],
+  ['cardonas-apartment', "Cardona’s Apartment", 'Dalumpinas Oeste'],
+  ['casa-de-lourdes', 'Casa de Lourdes Homestay', 'Sitio Purok 4, Canaoay'],
+  ['dalum-homestay', 'Dalum Homestay', 'Holy Gardens'],
+  ['elyu-backpackers', "Elyu Backpackers’ Transient House", 'Dalumpinas Oeste'],
+  ['gaspar-transient', 'Gaspar Transient House', '34 Beach Homes Suba, Lingsat'],
+  ['go-inn-san-vicente', 'Go Inn Corporation – San Vicente', 'San Vicente'],
+  ['go-inn-pagdalagan', 'Go Inn Corporation II – Pagdalagan', 'Pagdalagan'],
+  ['green-patio', 'Green Patio Bed and Bath', 'Dalumpinas Oeste'],
+  ['hardin-de-corales', 'Hardin de Corales Resort', 'Coral Point Properties, Canaoay'],
+  ['hobbitat-lodge', 'Hobbitat Forest Lodge', 'Purok 6, Bangcusay'],
+  ['hotel-almira', 'Hotel Almira', 'Lucina Building, Mabini Street, Catbangen'],
+  ['humble-haven', 'Humble Haven House Space Rental', 'Dalumpinas Oeste'],
+  ['ika-apartment', 'Ika Apartment', 'Lingsat'],
+  ['jb-baltazar', 'JB Baltazar Apartelle', 'Rizal Avenue, Barangay Poblacion'],
+  ['jonkris-apartelle', 'Jonkris Apartelle Co.', 'Pagudpud'],
+  ['kuartos-lodge', 'Kuartos Lodge', 'Pagudpud'],
+  ['m7th-bayfront', 'M7th Bayfront View Transient House', 'Martinez Street, Lingsat'],
+  ['mikka-hotel', 'Hotel Mikka', 'Barangay III'],
+  ['new-lorenza', 'New Lorenza Lodge (Lorenza Apartelle)', 'San Vicente'],
+  ['oceana-apartments', 'Oceana Apartments', 'Carrile Road, Carlatan'],
+  ['oceanaire-apartment', 'Oceanaire Apartment', 'San Agustin'],
+  ['pearl-drive-inn', 'Pearl Drive Inn – Plaza Branch', 'Oreal Building, Gov. Luna Street, Barangay IV'],
+  ['ritz-apartelle', 'PR & A’s Ritz Apartelle', 'Canaoay'],
+  ['ramon-delfina', 'Ramon & Delfina Beach Resort', 'Pagudpud'],
+  ['rjaan-resort', 'RJAAN Resort', 'Dalumpinas Oeste'],
+  ['smyleinn-farm', 'Smyleinn Farm Resort OPC', 'Dallangayan Este'],
+  ['subli-subli-lodge', 'Subli-Subli Lodge', 'Gov. Joaquin Ortega Street, Poro'],
+  ['sunset-bay', 'Sunset Bay Beach Resort', 'Canaoay'],
+  ['crowne-resort', 'The Crowne Resort', 'Pagudpud'],
+  ['trunks-inn', "Trunk’s Inn (Former Branz Cottage Co.)", 'California Avenue, Pagudpud'],
+  ['vi-la-dahl', 'Vi-La-Dahl Inn', 'Sevilla'],
+  ['vittorios-transient', "Vittorio’s Transient House", 'Dalumpinas Oeste'],
+  ['wind-residence', 'Wind Residence – Space Rental', 'Madayegdeg'],
+  ['woods-way-inn', 'Woods Way Inn', 'Canaoay'],
+  ['yapchiongco-apartment', 'Yapchiongco Apartment', 'Squareville, Zone VI, Lingsat'],
+  ['ynads-place', 'Ynad’s Place Hotel and Resort', 'Namtutan'],
+]
+
+const accommodationPlaces = accommodationRows.map(([id, name, address]) => place(
+  `stay-${id}`,
+  name,
+  'stay',
+  `${address}, San Fernando City, La Union`,
+  'La Union accommodation inventory · 2024',
+  accommodationInventoryUrl,
+  'Recorded in a 2024 provincial inventory; verify that the property is still operating and confirm details before booking.',
+))
+
+const mapAccommodationRows: PlaceRow[] = [
+  ['an-overnight-stay', 'A&N’s Overnight Stay', 'Manga Road'],
+  ['a-residences', 'A Residences', 'San Fernando City'],
+  ['zenaida-agtarap-transient', 'Zenaida Martinez Agtarap Transient House', 'Zone 6, DPWH Road'],
+  ['cvbnb-bed-and-bath', 'CVBNB Bed and Bath La Union', 'San Fernando City'],
+  ['elyu-buddies-transient', 'Elyu Buddies Transient', 'San Fernando City'],
+  ['hotelelegant-solaya', 'Hotelelegant Solaya & Restaurant', 'J8GF+GV, Biday'],
+  ['igid-puttot-guest-cabins', 'Igid Puttot Guest Cabins', 'San Fernando City'],
+  ['kadangyan-3bu-hostel', 'Kadangyan by 3Bu Hostel', 'J898+R4M, Rivera Street, Barangay III'],
+  ['hidden-transient', 'Hidden Transient House – La Union', 'J8R6+JFQ'],
+  ['lupato-transient', 'Lupato Transient House', 'San Fernando City'],
+  ['casa-isla-transient', 'Casa Isla – La Union Transient', 'MacArthur Highway'],
+  ['shirleys-place-transient', "Shirley’s Place Transient House", 'San Fernando City'],
+  ['lr-beachfront-transient', 'L & R Beachfront Transient House Elyu', 'San Fernando City'],
+  ['sj-transient', 'SJ Transient House', 'San Fernando City'],
+  ['auroras-lodging', "Aurora’s Lodging House", 'Governor Rivera Street'],
+  ['paulinos-transient', "Paulino’s Transient House", 'M828+CFF'],
+  ['safehouse-elyu', 'SafeHouse Elyu – Transient House', 'San Fernando City'],
+  ['gline-homestay', 'Gline Home Stay and Transient', 'Zone 5, Parian, near Rufina Subdivision'],
+  ['sissiwit-travellers', 'Sissiwit Travellers Inn', 'San Fernando City'],
+  ['villa-norte-guest-house', 'Villa Norte Guest House', 'San Fernando City'],
+  ['jaq-elyu-transient', 'JAQ-Elyu Transient House', 'Zone 7B'],
+  ['tigreal-transient', 'Tigreal Transient House', 'San Fernando City'],
+  ['jms-transient-rooms', 'JMS Transient Rooms', 'San Fernando City'],
+  ['moms-transient-1', 'Moms Transient 1', 'San Fernando City'],
+  ['locsin-transient-room', 'Locsin Residence Transient Room', 'San Fernando City'],
+  ['sea-and-sky-hotel', 'Sea and Sky Hotel and Restaurant', 'San Fernando City'],
+  ['glass-palace', 'Glass Palace', 'San Fernando City'],
+  ['ajen-overview', 'AJEN Overview Transient House', 'Zone 3, Barangay Cabaroan Amianan'],
+  ['jzeth-elyu-transient', "J’zeth Elyu Transient Rooms", 'San Fernando City'],
+  ['waterville-transient', 'Waterville Transient House', 'Purok 2'],
+  ['moms-elyu-el-classico', 'Moms Elyu Homestay (El Classico 2)', '83 Manila North Road'],
+  ['mjh-transient', 'MJH Transient House', 'No. 2, Squareville'],
+  ['j2-transient', 'J2 Transient', '256 California Avenue'],
+  ['casa-ysabelle-apartment', 'Casa Ysabelle Apartment', 'San Fernando City'],
+  ['ikas-apartment', 'Ikas Apartment', 'J8R7+624'],
+  ['fredo-ann-rest-house', 'Fredo & Ann’s Rest House (formerly Rocky’s Travellers Home)', 'San Fernando City'],
+  ['williams-residence-transient', 'Williams Residence Transient (L.U Divers)', 'Dalumpinas Oeste'],
+  ['casa-ma-elena-staycation', 'Casa Ma. Elena Staycation', 'Block 16, Lot 6, Bethlehem Street, Manna Residences'],
+  ['sixrs-boarding-house', '6Rs Boarding House', 'General Luna Street'],
+  ['elyu-hans-henry-townhouse', 'Elyu Hans Henry Townhouse', 'San Fernando City'],
+  ['race-townhouse', 'Race Townhouse', 'Northville Subdivision'],
+  ['casa-nostra-elyu', 'Casa Nostra Elyu', '16B Langka Road'],
+  ['ph-homes', 'PH HOMES', 'San Fernando City'],
+  ['da-homestay', 'D.A’s Homestay', 'M829+G2Q'],
+  ['je-transient-residences', 'J&E Transient Residences', 'J8R6+R25'],
+  ['gkrr-beachfront-transient', 'GKRR Beachfront Transient House', 'San Fernando City'],
+  ['sea-the-waves-transient', 'Sea the Waves Transient House', 'San Fernando City'],
+  ['jepoys-elyu-transient', 'Jepoy’s Elyu Transient House', 'J8X9+Q9F'],
+  ['transient-boarding-house', 'Transient/Boarding House', 'San Fernando City'],
+  ['ezekiah-transient', 'Ezekiah Transient House', 'No. 100, Zone II, MacArthur Highway'],
+  ['porion-transient', 'Porion Transient', 'Sitio 5, Barangay Biday'],
+  ['brendas-transient', 'Brenda’s Transient House – La Union', '47 MacArthur Highway'],
+  ['calderon-transient', 'Calderon Transient House', 'Zone 5'],
+  ['ejar-transient', 'EJAR House Transient', 'Northville Subdivision, Narra Street'],
+  ['tontons-place-transient', 'Tonton’s Place Apartment and Transient', 'J8Q6+4GC'],
+  ['utopia-transient', 'Utopia Transient House', '39 Manga Road'],
+  ['dela-cruz-transient', 'Dela Cruz Transient Home', 'San Fernando City'],
+  ['munars-home-transient', 'Munar’s Home and Transient', 'J8CG+V3W'],
+  ['angi-mar-transient', 'Angi-Mar Transient/Boarding House', '24-A Hufano Street'],
+  ['cozy-beach-side-retreat', 'Cozy Beach Side Retreat', 'San Fernando City'],
+  ['felicitys-place', 'Felicity’s Place Residence and Accommodations', 'Purok 6, FMPIII Building'],
+  ['sdm-homestay', 'SDM Homestay', 'J8PJ+VM4'],
+  ['clara-homestay', 'Clara’s Homestay', 'Purok 4'],
+  ['hccl-transient', 'HCCL Transient House', 'Beside the barangay hall'],
+  ['baladad-transient', 'Baladad Transient House', 'Purok 5, Pindangan'],
+  ['zeajustin-boarding-house', 'ZEAJUSTIN Boarding House', 'J8M6+XM9'],
+  ['rivero-transient', 'Rivero Transient House', 'San Fernando City'],
+  ['wanderers-nook', 'Wanderers Nook', 'Lubiano Road'],
+  ['victorias-transient', 'Victoria’s Transient House', 'J8X9+Q5P'],
+  ['casa-gizel', 'Casa GiZel', 'Purok 7, San Francisco'],
+  ['rrd-transient', 'RRD Transient House', 'San Fernando Bypass Road'],
+  ['hill-breeze-inn', 'Hill Breeze Inn', 'J8X9+P93'],
+]
+
+const mapAccommodationPlaces = mapAccommodationRows.map(([id, name, address]) => place(
+  `stay-map-${id}`,
+  name,
+  'stay',
+  `${address}, San Fernando City, La Union`,
+  'Google Maps listing · checked Oct. 24, 2026',
+  `${maps}${encodeURIComponent(`${name}, ${address}, San Fernando City, La Union`)}`,
+  'Google Maps listing observed on Oct. 24, 2026; confirm the exact address, current operation and availability before booking.',
+))
+
+const transportPlaces: PlaceRecord[] = [
+  place('viron-terminal', 'Viron Transit – San Fernando Terminal', 'transport', 'MacArthur Highway, San Fernando City', 'Viron Transit terminal directory', 'https://virontransit.com/terminal'),
+  place('bataan-transit-terminal', 'Bataan Transit – La Union Terminal', 'transport', 'Purok 4, Barangay Pagdaraoan, San Fernando City', 'Bataan Transit operator update · Sept. 2026', 'https://www.findglocal.com/PH/Quezon-City/420522404642887/Bataan-Transit-Bus-Co.'),
+  place('tanqui-jeepney-terminal', 'Tanqui Public Utility Jeepney Terminal', 'transport', 'In front of the PNP Main Station, Barangay Tanqui', 'City Government terminal notice', 'https://www.sanfernandocity.gov.ph/tanqui-terminal-is-now-the-central-loading-and-unloading-area-of-pujs/'),
+  place('partas-terminal-biday', 'Partas Bus Terminal – Biday Bridge', 'transport', 'Biday Bridge, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Partas Bus Terminal Biday Bridge San Fernando La Union')}`, 'Confirm your route and boarding point with Partas before travel.'),
+  place('partas-terminal-macarthur', 'Partas Bus Terminal – MacArthur Highway', 'transport', 'MacArthur Highway, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('Partas Bus Terminal MacArthur Highway San Fernando La Union')}`, 'Google Maps shows a second Partas terminal listing; confirm your route and boarding point with the operator.'),
+  place('lu-pangasinan-terminal', 'La Union–Pangasinan Transport Station', 'transport', 'J829+Q2W, San Fernando City, La Union', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('La Union Pangasinan Transport San Fernando City Station')}`, 'Google Maps shows duplicate station names at this location and varying hours; verify the boarding point and service with the operator.'),
+  place('sm-transport-terminal', 'SM City La Union Transport Terminal', 'transport', 'J8GF+Q5M, San Fernando City, La Union', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('SM City La Union Transport Terminal San Fernando La Union')}`, 'Transport terminal listing; confirm routes and current service locally.'),
+  place('plaza-waiting-shed', 'San Fernando Plaza Waiting Shed', 'transport', 'Governor Ortega Street, San Fernando City', 'Google Maps listing · checked Oct. 24, 2026', `${maps}${encodeURIComponent('San Fernando Plaza Waiting Shed La Union')}`, 'Google Maps listing for a public transport waiting point; routes may change.'),
 ]
 
 const namedPlaces: PlaceRecord[] = [
@@ -585,16 +804,10 @@ const namedPlaces: PlaceRecord[] = [
   place('medisense', 'Medisense Laboratory Center – La Union', 'health', '2nd Floor, Parammata Building, Diversion Road, Biday', 'Current provider directory · reviewed Aug. 2026', 'https://medidocph.online/providers/medisense-laboratory-center-inc-la-union-branch/'),
   place('healthpro', 'HealthPro Multi-Specialty Center – La Union', 'health', 'National Highway, Catbangen', 'Accredited provider directory', 'https://dev.chmf.coop/accredited-providers-2/'),
   ...schoolPlaces,
-  place('sm-city', 'SM City La Union', 'shopping', 'Along Diversion Road, Barangay Biday', 'SM Prime official opening release · Oct. 2025', 'https://www.smprime.com/company_releases/sm-prime-opens-89th-mall-sm-city-la-union-to-feature-sandbox-outdoor-space/'),
-  place('robinsons-la-union', 'Robinsons La Union', 'shopping', mallAddress, 'Robinsons Malls official directory', robinsonsDirectory),
-  place('csi-mall', 'CSI Mall La Union', 'shopping', 'Pagdaraogan-Biday Road', 'Google Maps shopping results', `${maps}${encodeURIComponent('CSI Mall La Union, San Fernando City, La Union')}`),
-  place('manna-mall', 'Manna Mall', 'shopping', 'Pagdaraogan-Biday Road, Pagdaraogan', 'Google Maps shopping results; business listing updated Sep. 2026', `${maps}${encodeURIComponent('Manna Mall, San Fernando City, La Union')}`),
-  place('san-fernando-market', 'San Fernando Public Market', 'shopping', 'Rizal Avenue', 'Google Maps and current local directory listings', `${maps}${encodeURIComponent('San Fernando Public Market, San Fernando City, La Union')}`),
-  place('savemore', 'Savemore Market – San Fernando', 'shopping', 'Rizal Avenue, Barangay IV', 'Watsons store locator at Savemore Market', 'https://www.watsons.com.ph/store/wtcph_1483_EN/watsons-savemore-san-fernando'),
-  place('puregold', 'Puregold – La Union', 'shopping', 'Manna Mall, Pagdaraogan-Biday Road', 'Map listing and recent local directory listing', `${maps}${encodeURIComponent('Puregold La Union, San Fernando City, La Union')}`),
-  place('robinsons-easymart', 'Robinsons Easymart – Lingsat', 'shopping', 'Manila North Road, Lingsat', 'Recent local travel directory listing', 'https://en.wikivoyage.org/wiki/San_Fernando_(La_Union)'),
-  place('sm-supermarket', 'SM Supermarket – SM City La Union', 'shopping', 'SM City La Union, Diversion Road, Biday', 'SM Prime official mall release', 'https://www.smprime.com/company_releases/sm-prime-opens-89th-mall-sm-city-la-union-to-feature-sandbox-outdoor-space/'),
-  place('csi-supermarket', 'CSI Supermarket', 'shopping', 'CSI Mall La Union', 'Google Maps and business directory listings', `${maps}${encodeURIComponent('CSI Supermarket, San Fernando City, La Union')}`),
+  ...financePlaces,
+  ...accommodationPlaces,
+  ...mapAccommodationPlaces,
+  ...transportPlaces,
   place('sillag-park', 'SILLAG Park', 'parks', 'Poro Point Baywalk', 'Philippine Information Agency · opened June 12, 2026', 'https://pia.gov.ph/news/families-gain-new-space-for-bonding-fitness-as-sillag-park-opens-in-la-union/'),
   place('plaza', 'San Fernando City Plaza', 'parks', 'City center', 'City Government life and tourism page', 'https://www.sanfernandocity.gov.ph/life-in-csf/'),
   place('people-park', 'City Fountain and People’s Park', 'parks', 'City center', 'City Government life and tourism page', 'https://www.sanfernandocity.gov.ph/life-in-csf/'),
@@ -604,9 +817,7 @@ const namedPlaces: PlaceRecord[] = [
   place('airport', 'Poro Point San Fernando Airport', 'transport', 'California Avenue, Barangay Canaoay', 'La Union provincial agency directory · Feb. 27, 2026', agencyDirectory),
   place('seaport', 'San Fernando International Seaport', 'transport', 'Poro Point Freeport Zone', 'Poro Point Management Corporation seaport overview', 'https://poropointfreeport.gov.ph/investment/san-fernando-international-seaport/'),
   place('city-plaza-hotel', 'Plaza Hotel', 'stay', 'City center, San Fernando City', 'Google Hotels listing', 'https://www.google.com/travel/hotels/entity/ChcIutOGtvLN6uxxGgsvZy8xdGhjcHdkdhAB'),
-  place('travelite', 'Travelite Express Hotel', 'stay', 'San Fernando City, La Union', 'Google Hotels listing', 'https://www.google.com/travel/hotels/entity/CgsIie2euvHg38qfARAB?gsas=1'),
   place('blue-marlin', 'La Union Blue Marlin Resort', 'stay', 'Airport Road, San Fernando City', 'Google Hotels listing', 'https://www.google.com/travel/hotels/entity/ChkI5_n_5biqgM8wGg0vZy8xMWNsbWY4dG1tEAE?gsas=1'),
-  place('aureo', 'Aureo La Union', 'stay', 'Munar Residence Road, San Fernando City', 'Google Hotels listing', 'https://www.google.com/travel/hotels/entity/ChkI9YuKu7nm4rp9Gg0vZy8xMWM0MjhwNjkxEAE?gsas=1'),
   place('jv-resort', 'J&V Hotel and Resort', 'stay', 'Purok 5, Barangay Sevilla', 'Google Hotels listing', 'https://www.google.com/travel/hotels/entity/ChoInMPWw9WRyuDSARoNL2cvMTFycGQ5emJkeBAB?gsas=1'),
   place('location-180', 'Location One Eighty', 'stay', 'Carlatan', 'Google Hotels listing', 'https://www.google.com/travel/hotels/entity/ChkIheTBweS0ku5sGg0vZy8xMWcyNHkweDV2EAE?gsas=1'),
   place('thunderbird', 'Thunderbird Resorts and Casinos Poro Point', 'stay', 'Poro Point Freeport Zone', 'Google Hotels listing', 'https://www.google.com/travel/hotels/entity/CgoIqeaItYPZ15x2EAE?gsas=1'),
@@ -614,8 +825,7 @@ const namedPlaces: PlaceRecord[] = [
   place('ma-cho', 'Ma-Cho Temple', 'faith', 'Barangay I', 'Provincial tourism destination list', tourismSource),
   place('friendship-pagoda', 'Filipino-Chinese Friendship Pagoda', 'faith', 'City of San Fernando', 'Provincial tourism destination list', tourismSource),
   place('pindangan-ruins', 'Pindangan Ruins', 'faith', 'Barangay Parian', 'City Government destination page', 'https://www.sanfernandocity.gov.ph/pindangan-ruins/'),
-  place('partas-terminal', 'Partas Bus Terminal – San Fernando', 'transport', 'San Fernando City, La Union', 'Google Maps search; confirm route and terminal before travel', `${maps}${encodeURIComponent('Partas Bus Terminal San Fernando La Union')}`),
-  place('city-bus-terminals', 'Other intercity bus terminals', 'transport', 'San Fernando City, La Union', 'Live Google Maps category search', `${maps}${encodeURIComponent('bus terminals San Fernando City La Union')}`, 'Use the current map results to compare operators and confirm boarding points.'),
+  place('city-bus-terminals', 'More buses, jeepneys and local transport', 'transport', 'San Fernando City, La Union', 'Live Google Maps category search', `${maps}${encodeURIComponent('bus terminals jeepney terminals tricycle terminals van transport San Fernando City La Union')}`, 'Use live map results to check additional operators, boarding points and current service.'),
   place('bacsil-ridge', 'Bacsil Ridge Monument and Viewdeck', 'attractions', 'Barangay Bacsil', 'Provincial tourism destination list', tourismSource),
   place('carrile-tower', 'Car-rile Tower (Moro Watchtower)', 'attractions', 'City of San Fernando', 'Provincial tourism destination list', tourismSource),
   place('christ-redeemer', 'Christ the Redeemer', 'attractions', 'City of San Fernando', 'Provincial tourism destination list', tourismSource),
@@ -629,13 +839,11 @@ const namedPlaces: PlaceRecord[] = [
   place('city-offices-link', 'City government departments and offices', 'government', 'San Fernando City Hall', 'Official city departments directory', cityDepartments, 'Open the linked directory for individual city departments and service contacts.'),
   place('barangay-halls-link', 'All 59 barangay halls and profiles', 'government', 'All city barangays', 'Better San Fernando barangay directory', '/government/barangays', 'Open the city’s interactive barangay directory for each barangay and its profile.'),
   place('ev-charging', 'EV charging and fuel stops', 'everyday', 'San Fernando City, La Union', 'Live Google Maps category search', `${maps}${encodeURIComponent('EV charging stations gas stations San Fernando City La Union')}`),
-  place('banking-map', 'Banks, ATMs and remittance centers', 'finance', 'San Fernando City, La Union', 'Live Google Maps category search', `${maps}${encodeURIComponent('banks ATMs remittance San Fernando City La Union')}`),
-  place('restaurants-map', 'More restaurants and fast-food branches', 'food', 'San Fernando City, La Union', 'Live Google Maps category search', `${maps}${encodeURIComponent('restaurants fast food San Fernando City La Union')}`),
+  place('banking-map', 'More banks, ATMs, remittance and payment centers', 'finance', 'San Fernando City, La Union', 'Live Google Maps category search', `${maps}${encodeURIComponent('banks ATMs remittance pawnshops money transfer payment centers San Fernando City La Union')}`, 'Open the live map results for additional branches and payment agents; check current hours and service availability.'),
   place('pharmacies-map', 'Pharmacies and drugstores', 'health', 'San Fernando City, La Union', 'Live Google Maps category search', `${maps}${encodeURIComponent('pharmacies drugstores San Fernando City La Union')}`),
   place('schools-map', 'Public and private elementary and high schools', 'education', 'San Fernando City, La Union', 'DepEd Region 1 school registry and Google Maps', 'https://deped.ro1apps.com/schoolreg', 'The 2026 provincial list covers tertiary schools; use the DepEd registry for basic education schools.'),
   place('city-clinics-map', 'Clinics, dentists and diagnostic centers', 'health', 'San Fernando City, La Union', 'Live Google Maps category search', `${maps}${encodeURIComponent('clinics dentists diagnostic centers San Fernando City La Union')}`),
-  place('city-hotel-map', 'More hotels, inns and homestays', 'stay', 'San Fernando City, La Union', 'Live Google Maps category search', `${maps}${encodeURIComponent('hotels inns homestays San Fernando City La Union')}`),
-  place('city-services-map', 'More personal and household services', 'services', 'San Fernando City, La Union', 'Live Google Maps category search', `${maps}${encodeURIComponent('salons gyms repair services San Fernando City La Union')}`),
+  place('city-hotel-map', 'More hotels, resorts, inns and homestays', 'stay', 'San Fernando City, La Union', 'Live Google Maps search · 2024 city profile reports 129 accommodation establishments', `${maps}${encodeURIComponent('hotels resorts inns hostels apartments transient houses homestays San Fernando City La Union')}`, 'The named list combines a 2024 accommodation inventory and current map results, but does not represent all 129 establishments. Map results may include nearby municipalities; verify location, current operation and availability before booking.'),
   place('city-everyday-map', 'Post, internet, utilities and essential services', 'everyday', 'San Fernando City, La Union', 'Live Google Maps category search', `${maps}${encodeURIComponent('post office internet providers utilities San Fernando City La Union')}`),
 ]
 

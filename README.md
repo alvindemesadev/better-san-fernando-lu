@@ -81,7 +81,7 @@ Each production build prints a manual data freshness report. Records with no rec
 
 The places directory at `/city/places` is a discovery index, not a business-permit census. It includes the site's city-office and 59 barangay profiles, named regional/provincial public-agency offices from La Union's February 27, 2026 roster, tertiary schools from the province's 2026 list, destination entries from its 2023 tourism inventory, and mall/operator listings. Category buttons open live Google Maps searches for additional listings. Check the linked sources and current map/business profile before relying on operating status, hours, or access.
 
-Verified organization and brand marks are bundled locally and attributed in the directory. Listings without a verified, suitable mark use initials or a category symbol; these are directory identifiers, not official logos. See [logo sources and exceptions](public/logos/SOURCES.md).
+Verified organization and brand marks are bundled locally and attributed in the directory. Listings without a verified, suitable mark or photo show no substitute initials or category symbol. See [logo sources and exceptions](public/logos/SOURCES.md).
 
 See [DATA-INVENTORY.md](DATA-INVENTORY.md) for sources and data caveats.
 

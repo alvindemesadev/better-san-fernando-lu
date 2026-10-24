@@ -1,6 +1,5 @@
-import { ExternalLink, UserRound } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import type { Official } from '../data/types'
-import { initials } from '../lib/utils'
 
 interface OfficialCardProps {
   official: Official
@@ -19,11 +18,7 @@ export function OfficialCard({ official, featured = false }: OfficialCardProps) 
             className="size-full object-cover object-top transition duration-500 group-hover:scale-[1.025]"
           />
         ) : (
-          <div className="flex size-full items-center justify-center">
-            <span className="inline-flex size-24 items-center justify-center rounded-full bg-brand-100 text-2xl font-extrabold text-brand-700">
-              {initials(official.name) || <UserRound aria-hidden="true" className="size-8" />}
-            </span>
-          </div>
+          <div className="size-full bg-surface" aria-hidden="true" />
         )}
         <span className="absolute left-3 top-3 rounded-full bg-ink-950/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white backdrop-blur">
           {official.role}

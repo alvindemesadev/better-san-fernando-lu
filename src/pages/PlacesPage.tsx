@@ -12,10 +12,7 @@ import {
   MapPin,
   Search,
   ShieldCheck,
-  ShoppingBag,
-  Sparkles,
   Trees,
-  Utensils,
   Wallet,
   X,
   type LucideIcon,
@@ -34,9 +31,6 @@ const categoryIcons: Record<PlaceCategoryId, LucideIcon> = {
   safety: ShieldCheck,
   health: HeartPulse,
   education: GraduationCap,
-  shopping: ShoppingBag,
-  food: Utensils,
-  services: Sparkles,
   stay: BedDouble,
   attractions: Camera,
   parks: Trees,
@@ -77,8 +71,6 @@ const logoSources = [
   { href: 'https://commons.wikimedia.org/wiki/File:Logo_of_the_Department_of_Environment_and_Natural_Resources.svg', label: 'DENR logo' },
   { href: 'https://commons.wikimedia.org/wiki/File:Logo_of_the_Department_of_Agriculture_of_the_Philippines.jpg', label: 'Department of Agriculture seal' },
   { href: 'https://commons.wikimedia.org/wiki/File:Logo_of_the_Bureau_of_Internal_Revenue.png', label: 'BIR 2024 logo' },
-  { href: 'https://github.com/simple-icons/simple-icons', label: 'Simple Icons brand marks' },
-  { href: 'https://github.com/simple-icons/simple-icons/blob/develop/DISCLAIMER.md', label: 'Simple Icons trademark disclaimer' },
   { href: 'https://cicosat.edu.ph/', label: 'CICOSAT Colleges' },
   { href: 'https://www.dmmmsu.edu.ph/dmmmsu-university-seal-2025/', label: 'DMMMSU official 2025 seal' },
   { href: 'https://slc-sflu.edu.ph/', label: 'Saint Louis College' },
@@ -86,72 +78,15 @@ const logoSources = [
   { href: 'https://www.lormacolleges.com/', label: 'LORMA Colleges' },
   { href: 'https://www.amaes.edu.ph/main.html', label: 'AMA Education System' },
   { href: 'https://www.leadingedge.com.ph/', label: 'Leading Edge Aviation' },
-  { href: 'https://www.jollibee.com.ph/', label: 'Jollibee' },
-  { href: 'https://www.dunkin.com.ph/', label: 'Dunkin’ Philippines' },
-  { href: 'https://www.nationalbookstore.com/', label: 'National Book Store' },
-  { href: 'https://classicsavory.com/', label: 'Classic Savory' },
-  { href: 'https://shawarmashack.ph/', label: 'Shawarma Shack' },
-  { href: 'https://siomai.house/', label: 'Siomai House' },
-  { href: 'https://www.picturecity.ph/', label: 'Picture City' },
-  { href: 'https://www.davidsalon.com.ph/', label: 'David’s Salon' },
-  { href: 'https://www.contis.ph/', label: 'Conti’s Bakeshop and Restaurant' },
-  { href: 'https://www.bistro.com.ph/', label: 'The Bistro Group · Italianni’s' },
-  { href: 'https://fridays.com.ph/', label: 'TGI Fridays Philippines' },
-  { href: 'https://chilisphilippines.com/', label: 'Chili’s Philippines' },
-  { href: 'https://csimalls.com/', label: 'CSI City Mall and CSI Supermarket' },
+  { href: 'https://partasbusticket.ph/schedule', label: 'Partas operator wordmark · official ticket booking page' },
   { href: 'https://bethanyhospitalinc.com/', label: 'Bethany Hospital' },
   { href: 'https://lumed.com.ph/', label: 'LUMED Hospital' },
-  { href: 'https://www.bpi.com.ph/', label: 'Bank of the Philippine Islands' },
-  { href: 'https://www.lbcexpress.com/', label: 'LBC Express' },
-  { href: 'https://digitalwalker.ph/', label: 'Digital Walker' },
-  { href: 'https://handyman.com.ph/', label: 'Handyman' },
-  { href: 'https://powermaccenter.com/', label: 'Power Mac Center' },
-  { href: 'https://www.octagon.com.ph/', label: 'Octagon Computer Superstore' },
-  { href: 'https://pcx.com.ph/', label: 'PC Express' },
-  { href: 'https://robinsonsdepartmentstore.com.ph/', label: 'Robinsons Department Store' },
-  { href: 'https://www.robinsonssupermarket.com.ph/', label: 'Robinsons Supermarket' },
-  { href: 'https://www.robinsonseasymart.com.ph/', label: 'Robinsons Easymart' },
-  { href: 'https://www.daiso-sangyo.co.jp/', label: 'DAISO corporate brand mark' },
-  { href: 'https://smstore.com/', label: 'The SM Store' },
-  { href: 'https://gamextreme.ph/', label: 'GameXtreme' },
-  { href: 'https://www.watsons.com.ph/', label: 'Watsons Philippines' },
-  { href: 'https://aquaflask.com/', label: 'AquaFlask' },
-  { href: 'https://mandauefoam.ph/', label: 'Mandaue Foam' },
-  { href: 'https://www.infinixmobility.com/', label: 'Infinix' },
-  { href: 'https://www.kidzooona.com.ph/', label: 'kidzooona Philippines' },
-  { href: 'https://www.anytimefitness.com/en-ph', label: 'Anytime Fitness Philippines' },
-  { href: 'https://famousbelgianwaffles.com/', label: 'Famous Belgian Waffles' },
-  { href: 'https://www.executiveoptical.com/', label: 'EO Executive Optical' },
-  { href: 'https://levi.com.ph/', label: 'Levi’s Philippines' },
-  { href: 'https://worldbalance.com.ph/', label: 'World Balance' },
-  { href: 'https://surplusshop.com.ph/', label: 'Surplus' },
-  { href: 'https://robinsonsappliances.com.ph/', label: 'Robinsons Appliances' },
-  { href: 'https://www.toykingdom.com.ph/', label: 'Toy Kingdom' },
-  { href: 'https://www.petexpress.com.ph/', label: 'Pet Express' },
-  { href: 'https://sportscentral.ph/', label: 'Sports Central' },
-  { href: 'https://mesarestaurant.ph/', label: 'MESA Filipino Moderne' },
-  { href: 'https://www.turks.ph/', label: 'Turks Philippines' },
-  { href: 'https://www.smsupermalls.com/mall-directory/sm-savemore-tacloban/shops/sm-appliance-center', label: 'SM Appliance Center logo · SM Supermalls tenant directory' },
-  { href: 'https://www.smsupermalls.com/mall-directory/sm-city-la-union/shops/sm-supermarket', label: 'SM Supermarket logo · SM Supermalls tenant directory' },
-  { href: 'https://n-nagi.com/shop_overseas/', label: 'Ramen Nagi official shop directory' },
-  { href: 'https://robinsonsmalls.com/node/12', label: 'Robinsons MovieWorld official page' },
-  { href: 'https://www.robinsonsmovieworld.com/', label: 'Robinsons MovieWorld official website' },
-  { href: 'https://mallstoresdirectory.com/sm-city-urdaneta-central', label: 'Chapo’s Grill & Sizzlers logo · mall tenant directory' },
-  { href: 'https://www.pfa.org.ph/product-page/sam-s-everything-on-stick', label: 'Sam’s Everything on Sticks logo · Philippine Franchise Association' },
-  { href: 'https://www.smsupermalls.com/mall-directory/sm-city-davao/shops/candy-corner', label: 'Candy Corner logo · SM Supermalls' },
   { href: 'https://www.smsupermalls.com/mall-directory/sm-city-rosales/shops/smile-city-dental-essentials', label: 'Smile City Dental Essentials logo · SM Supermalls' },
-  { href: 'https://www.guanzongroup.com.ph/', label: 'Guanzon Group official mark' },
-  { href: 'https://www.aap.org.ph/contactus', label: 'Automobile Association Philippines · La Union branch' },
-  { href: 'https://www.smsupermalls.com/mall-directory/sm-center-sangandaan/shops/broadway-gems', label: 'Broadway Gems logo · SM Supermalls' },
-  { href: 'https://www.smsupermalls.com/mall-directory/smdc-green-mall/shops/savemore-market', label: 'Savemore Market logo · SM Supermalls' },
-  { href: 'https://services.tomsworld.com.ph/helpdesk_ticketing/', label: 'Tom’s World official mark' },
-  { href: 'https://www.smsupermalls.com/mall-directory/sm-city-north-edsa/shops/nailandia-spa', label: 'Nailandia logo · SM Supermalls' },
   { href: 'https://www.parlon.ph/parlon/nisce-skin-medispa/nisce-skin-medispa-robinsons-la-union', label: 'Nisce Skin Medispa · Robinsons La Union branch photo' },
 ]
 
 function PlaceCard({ item }: { item: PlaceRecord }) {
   const category = placeCategories.find((entry) => entry.id === item.category)
-  const Icon = categoryIcons[item.category]
 
   return (
     <article className="flex min-w-0 flex-col rounded-2xl border border-line bg-white p-4 shadow-card sm:p-5">
@@ -178,7 +113,7 @@ function PlaceCard({ item }: { item: PlaceRecord }) {
         </figure>
       ) : null}
       <div className="flex items-start gap-3">
-        {!item.image ? <PlaceMark item={item} fallback={Icon} /> : null}
+        {!item.image ? <PlaceMark item={item} /> : null}
         <div className="min-w-0 flex-1">
           <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-700">{category?.label}</p>
           <h3 className="mt-1 text-base font-extrabold leading-5 text-ink-950">{item.name}</h3>
@@ -228,7 +163,7 @@ export function PlacesPage() {
 
   usePageMeta(
     'Places and directory',
-    'Find government agencies, health facilities, schools, shopping, food, hotels, tourism, transport, parks and everyday services in San Fernando, La Union.',
+    'Find government offices, health facilities, schools, places to stay, attractions, transport, banks, payment centers, parks and essential services in San Fernando, La Union.',
   )
 
   const filteredPlaces = useMemo(() => {
@@ -262,12 +197,12 @@ export function PlacesPage() {
       <PageHero
         eyebrow="Explore the city"
         title="Find places in San Fernando"
-        description="Browse public offices, health and learning, shopping, food, places to stay, local attractions and everyday services—all in one directory."
+        description="Browse public offices, health and learning, places to stay, local attractions, transport, banks and essential services—all in one directory."
         crumbs={[{ label: 'City', href: '/city' }, { label: 'Places directory' }]}
       >
         <div className="flex flex-wrap gap-2">
           <span className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-bold text-ink-700">59 barangays</span>
-          <span className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-bold text-ink-700">14 place categories</span>
+          <span className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-bold text-ink-700">11 place categories</span>
           <span className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-bold text-ink-700">Map search for more listings</span>
         </div>
       </PageHero>
@@ -399,7 +334,7 @@ export function PlacesPage() {
               { href: 'https://vmd.robinsonsmalls.com/list-of-malls/north-luzon/robinsons-la-union', label: 'Robinsons La Union tenant directory' },
             ]}
           >
-            Government results include city offices and all 59 barangay hall profiles, alongside offices in the province’s February 2026 regional and provincial directory. Verified agency and business logos are shown where available; other government listings use clearly styled initials, and other places use a category symbol. Google Maps searches surface additional local listings, but Google listings can be user-submitted, duplicated or out of date. Confirm current operating status, access and hours before traveling. Nearby towns are not included.
+            Government results include city offices and all 59 barangay hall profiles, alongside offices in the province’s February 2026 regional and provincial directory. Verified public-agency marks and selected health and education institution logos are shown where available. Listings without a verified mark or photo have no substitute initials or category icon. Google Maps searches surface additional local listings, but Google listings can be user-submitted, duplicated or out of date. Confirm current operating status, access and hours before traveling. Nearby towns are not included.
           </SourceNote>
           <details className="mt-3 rounded-xl border border-line bg-white px-4 py-3 text-sm text-ink-600">
             <summary className="cursor-pointer font-semibold text-ink-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">

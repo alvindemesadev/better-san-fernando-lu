@@ -153,7 +153,7 @@ export const manuallyMaintainedData: DataFreshnessRow[] = [
   },
   {
     dataset: 'Place directory',
-    source: 'Mixed government, institutional, and map listings; many commercial records do not have a current permit-roster source',
+    source: 'Government and institutional directories, 2024 La Union accommodation inventory, bank and payment branch directories, and live Google Maps category searches; commercial branch status can change',
     recordCount: places.length,
     lastVerified: null,
     reviewEveryDays: 90,
