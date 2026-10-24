@@ -12,7 +12,8 @@ import {
   Waves,
   X,
 } from 'lucide-react'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useLenis } from 'lenis/react'
 import { Link } from 'react-router-dom'
 import { Breadcrumbs } from '../components/Breadcrumbs'
 import { Reveal } from '../components/Reveal'
@@ -240,8 +241,25 @@ const gettingHere = [
 
 export function LifePage() {
   const { translate } = useLanguage()
+  const lenis = useLenis()
   const [activeExperience, setActiveExperience] = useState<(typeof experiences)[number] | null>(null)
   const experienceDialogRef = useRef<HTMLDialogElement>(null)
+
+  useEffect(() => {
+    if (!activeExperience) return
+
+    const bodyOverflow = document.body.style.overflow
+    const rootOverflow = document.documentElement.style.overflow
+    lenis?.stop()
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = bodyOverflow
+      document.documentElement.style.overflow = rootOverflow
+      lenis?.start()
+    }
+  }, [activeExperience, lenis])
 
   usePageMeta(
     'Life and tourism',
@@ -436,6 +454,7 @@ export function LifePage() {
                         <button
                           type="button"
                           onClick={() => {
+                            lenis?.stop()
                             setActiveExperience(experience)
                             experienceDialogRef.current?.showModal()
                           }}
@@ -546,7 +565,7 @@ export function LifePage() {
         className="m-auto max-h-[90dvh] w-[min(92vw,44rem)] max-w-none overflow-hidden rounded-2xl border border-line bg-white p-0 text-ink-900 shadow-float backdrop:bg-ink-950/60"
       >
         {activeExperience ? (
-          <div className="max-h-[90dvh] overflow-y-auto">
+          <div data-lenis-prevent className="max-h-[90dvh] overflow-y-auto overscroll-contain">
             {activeExperience.photo ? (
               <figure className="relative aspect-[16/7] overflow-hidden bg-surface">
                 <img
