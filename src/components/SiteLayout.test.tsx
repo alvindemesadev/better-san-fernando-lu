@@ -11,6 +11,7 @@ vi.mock('motion/react', async () => {
   const React = await import('react')
   return {
     AnimatePresence: ({ children }: { children: ReactNode }) => children,
+    useReducedMotion: () => false,
     motion: {
       div: React.forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
         ({ children, ...props }, ref) => React.createElement('div', { ...props, ref }, children),
