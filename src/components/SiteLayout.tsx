@@ -24,23 +24,26 @@ export function SiteLayout() {
         {translate('Skip to content')}
       </a>
       <div className="relative z-[60] bg-ink-950 text-white">
-        <div className="container-page flex min-h-9 flex-wrap items-center justify-between gap-x-6 gap-y-1 py-1.5 text-[11px] sm:text-xs">
+        <div className="container-page flex flex-col gap-y-1 py-1.5 text-[11px] sm:text-xs lg:flex-row lg:items-center lg:justify-between lg:gap-x-6">
           <p className="inline-flex items-center gap-1.5 text-white/65">
             <ShieldCheck aria-hidden="true" className="size-3.5 text-accent" />
             {translate('An independent civic project, not the official city website')}
           </p>
-          <div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1">
+          <div className="flex items-center justify-between gap-x-3 lg:justify-end lg:gap-x-4">
             <a
               href={city.website}
               target="_blank"
               rel="noreferrer"
+              aria-label={translate('Official city website')}
               className="inline-flex items-center gap-1 text-white/70 transition hover:text-white"
             >
-              {translate('Official city website')}
+              <span className="lg:hidden">{translate('City website')}</span>
+              <span className="hidden lg:inline">{translate('Official city website')}</span>
               <ExternalLink aria-hidden="true" className="size-3" />
             </a>
-            <a href="tel:911" className="font-bold text-accent transition hover:text-white">
-              {translate('Emergency: 911')}
+            <a href="tel:911" aria-label={translate('Emergency: 911')} className="font-bold text-accent transition hover:text-white">
+              <span aria-hidden="true" className="lg:hidden">911</span>
+              <span className="hidden lg:inline">{translate('Emergency: 911')}</span>
             </a>
             <label className="sr-only" htmlFor="site-language">
               {translate('Choose language')}
