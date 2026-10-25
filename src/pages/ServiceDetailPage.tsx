@@ -121,15 +121,15 @@ export function ServiceDetailPage() {
       </PageHero>
 
       <div className="container-page py-10 sm:py-14">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
-          <div className="space-y-5">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
+          <div className="min-w-0 space-y-5">
             {service.dataNote ? (
               <aside
                 aria-label={translate('Source note')}
                 className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-950"
               >
                 <p className="font-bold">{translate('Source note')}</p>
-                <p className="mt-1">{service.dataNote}</p>
+                <p className="mt-1 break-words">{service.dataNote}</p>
               </aside>
             ) : null}
 
@@ -137,7 +137,7 @@ export function ServiceDetailPage() {
               <Reveal>
                 <section className="rounded-2xl border border-line bg-white p-5 shadow-card sm:p-7">
                   <h2 className="text-xl font-extrabold tracking-tight text-ink-950">{translate('Who may avail')}</h2>
-                  <p className="mt-3 whitespace-pre-line text-[15px] leading-7 text-ink-700">
+                  <p className="mt-3 whitespace-pre-line break-words text-[15px] leading-7 text-ink-700">
                     {service.whoMayAvail || translate('Eligibility is not listed in the charter. Confirm with the issuing office.')}
                   </p>
                 </section>
@@ -212,7 +212,7 @@ export function ServiceDetailPage() {
             </div>
           </div>
 
-          <aside className="space-y-4 lg:sticky lg:top-28 lg:self-start">
+          <aside className="min-w-0 space-y-4 lg:sticky lg:top-28 lg:self-start">
             <div className="rounded-2xl border border-line bg-white p-5 shadow-card">
               <h2 className="text-[11px] font-bold uppercase tracking-[0.16em] text-ink-400">{translate('At a glance')}</h2>
               <dl className="mt-4 space-y-3 text-sm">

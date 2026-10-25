@@ -123,7 +123,7 @@ export function OfficeDetailPage() {
               />
 
               {officeServices.length ? (
-                <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {officeServices.map((service) => (
                     <ServiceCard key={service.slug} service={service} categoryName={service.classification} />
                   ))}
